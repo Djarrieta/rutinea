@@ -1,0 +1,10 @@
+{
+  "name": "Rutinea",
+  "short_name": "Rutinea",
+  "description": "Crea, organiza y ejecuta tus rutinas de ejercicio.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0c0c0f",
+  "theme_color": "#18181b",
+  "icons": []
+}

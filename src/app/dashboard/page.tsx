@@ -1,7 +1,6 @@
 import { createClient } from "@/lib/supabase/server";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import LogoutButton from "./LogoutButton";
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -11,12 +10,6 @@ export default async function DashboardPage() {
 
   if (!user) redirect("/login");
 
-  const { data: profile } = await supabase
-    .from("profiles")
-    .select("full_name, avatar_url")
-    .eq("id", user.id)
-    .single();
-
   const { data: routines } = await supabase
     .from("routines")
     .select("id, title, description, slug, is_public, created_at")
@@ -25,24 +18,6 @@ export default async function DashboardPage() {
 
   return (
     <main className="min-h-screen px-4 py-8 max-w-lg mx-auto space-y-8">
-      <header className="flex items-center justify-between">
-        <div className="flex items-center gap-3">
-          {profile?.avatar_url && (
-            // eslint-disable-next-line @next/next/no-img-element
-            <img
-              src={profile.avatar_url}
-              alt="avatar"
-              className="w-10 h-10 rounded-full border border-zinc-700"
-            />
-          )}
-          <div>
-            <p className="text-xs text-zinc-400">Bienvenido,</p>
-            <p className="font-semibold">{profile?.full_name ?? user.email}</p>
-          </div>
-        </div>
-        <LogoutButton />
-      </header>
-
       <section className="space-y-4">
         <h2 className="text-xl font-bold">Mis Rutinas</h2>
         <Link

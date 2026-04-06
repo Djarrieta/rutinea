@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import NavbarUser from "./NavbarUser";
 
 export default async function Navbar() {
   const supabase = await createClient();
@@ -60,27 +61,14 @@ export default async function Navbar() {
                   Mis Ejercicios
                 </Link>
               </div>
-              <Link
-                href="/dashboard"
-                className="flex items-center gap-2 rounded-full hover:ring-2 hover:ring-zinc-600 transition-all"
-              >
-                {profile?.avatar_url ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={profile.avatar_url}
-                    alt="Perfil"
-                    className="w-8 h-8 rounded-full border border-zinc-700"
-                  />
-                ) : (
-                  <div className="w-8 h-8 rounded-full bg-emerald-700 flex items-center justify-center text-xs font-bold text-white">
-                    {(
-                      profile?.full_name?.[0] ??
-                      user.email?.[0] ??
-                      "U"
-                    ).toUpperCase()}
-                  </div>
-                )}
-              </Link>
+              <NavbarUser
+                avatarUrl={profile?.avatar_url ?? null}
+                initial={(
+                  profile?.full_name?.[0] ??
+                  user.email?.[0] ??
+                  "U"
+                ).toUpperCase()}
+              />
             </>
           ) : (
             <Link
