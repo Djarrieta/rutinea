@@ -1,34 +1,68 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = { title: "Rutinea" };
 
-export default function HomePage() {
-  return (
-    <main className="min-h-screen flex flex-col items-center justify-center px-4 text-center space-y-8">
-      <div className="space-y-4">
-        <div className="text-6xl">🏋️</div>
-        <h1 className="text-4xl font-extrabold tracking-tight">Rutinea</h1>
-        <p className="text-zinc-400 max-w-xs mx-auto">
-          Crea, organiza y ejecuta tus rutinas de ejercicio con timers e
-          imágenes.
-        </p>
-      </div>
+export default async function HomePage() {
+  const supabase = await createClient();
 
-      <div className="flex flex-col gap-3 w-full max-w-xs">
-        <Link
-          href="/login"
-          className="bg-emerald-600 hover:bg-emerald-500 active:scale-95 transition-all text-white font-semibold rounded-xl px-5 py-4 text-base"
-        >
-          Empezar gratis
-        </Link>
-        <Link
-          href="/login"
-          className="border border-zinc-600 hover:border-zinc-400 text-zinc-200 hover:text-white transition-all rounded-xl px-5 py-4 text-base"
-        >
-          Iniciar sesión
-        </Link>
-      </div>
+  const { data: routines } = await supabase
+    .from("routines")
+    .select(
+      "id, title, description, slug, is_public, created_at, profiles(full_name, avatar_url)",
+    )
+    .eq("is_public", true)
+    .order("created_at", { ascending: false })
+    .limit(20);
+
+  return (
+    <main className="flex-1 px-4 py-8 max-w-3xl mx-auto w-full space-y-6">
+      <h1 className="text-2xl font-bold">Rutinas</h1>
+
+      {routines && routines.length > 0 ? (
+        <div className="space-y-3">
+          {routines.map((routine) => (
+            <Link
+              key={routine.id}
+              href={`/routines/${routine.id}`}
+              className="block bg-zinc-900/50 border border-zinc-700/60 rounded-xl p-4 hover:border-zinc-600 transition-colors"
+            >
+              <div className="flex items-center justify-between">
+                <h3 className="font-semibold">{routine.title}</h3>
+                <span className="text-xs bg-emerald-900/50 text-emerald-400 px-2 py-0.5 rounded-full">
+                  Pública
+                </span>
+              </div>
+              {routine.description && (
+                <p className="text-sm text-zinc-400 mt-1 line-clamp-2">
+                  {routine.description}
+                </p>
+              )}
+              <div className="flex items-center justify-between mt-2">
+                {routine.profiles && (
+                  <p className="text-xs text-zinc-500">
+                    por{" "}
+                    {(routine.profiles as { full_name: string | null })
+                      .full_name ?? "Anónimo"}
+                  </p>
+                )}
+                <p className="text-xs text-zinc-500">
+                  {new Date(routine.created_at).toLocaleDateString("es", {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
+                  })}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      ) : (
+        <p className="text-center text-zinc-500 text-sm py-16">
+          Aún no hay rutinas públicas.
+        </p>
+      )}
     </main>
   );
 }

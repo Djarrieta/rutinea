@@ -23,6 +23,7 @@ export interface Exercise {
   image_url: string | null
   tips: string | null
   default_duration_seconds: number | null
+  is_public: boolean
   created_at: string
   updated_at: string
 }
