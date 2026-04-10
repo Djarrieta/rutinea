@@ -1,0 +1,77 @@
+import type { Exercise } from "@/types";
+
+interface Props {
+  exercise?: Exercise;
+  action: (formData: FormData) => Promise<void>;
+  submitLabel: string;
+}
+
+export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
+  return (
+    <form action={action} className="space-y-5 max-w-lg">
+      <div>
+        <label htmlFor="title" className="block text-sm font-medium mb-1">
+          Title
+        </label>
+        <input
+          id="title"
+          name="title"
+          type="text"
+          required
+          defaultValue={exercise?.title}
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="description" className="block text-sm font-medium mb-1">
+          Description
+        </label>
+        <textarea
+          id="description"
+          name="description"
+          rows={3}
+          defaultValue={exercise?.description ?? ""}
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="image_urls" className="block text-sm font-medium mb-1">
+          Image URLs <span className="text-gray-400">(comma-separated)</span>
+        </label>
+        <input
+          id="image_urls"
+          name="image_urls"
+          type="text"
+          defaultValue={exercise?.image_urls?.join(", ")}
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <div>
+        <label
+          htmlFor="duration_secs"
+          className="block text-sm font-medium mb-1"
+        >
+          Duration (seconds)
+        </label>
+        <input
+          id="duration_secs"
+          name="duration_secs"
+          type="number"
+          min={0}
+          defaultValue={exercise?.duration_secs ?? 0}
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <button
+        type="submit"
+        className="bg-blue-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-blue-700"
+      >
+        {submitLabel}
+      </button>
+    </form>
+  );
+}

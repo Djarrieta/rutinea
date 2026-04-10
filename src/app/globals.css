@@ -1,8 +1,1 @@
 @import "tailwindcss";
-
-@theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --color-brand: #10b981;
-  --color-brand-hover: #34d399;
-}

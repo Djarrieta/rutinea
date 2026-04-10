@@ -1,74 +1,50 @@
 import Link from "next/link";
-import type { Metadata } from "next";
 import { createClient } from "@/lib/supabase/server";
-
-export const metadata: Metadata = { title: "Ejercicios" };
+import type { Exercise } from "@/types";
 
 export default async function ExercisesPage() {
   const supabase = await createClient();
-
   const { data: exercises } = await supabase
     .from("exercises")
-    .select(
-      "id, name, image_url, tips, default_duration_seconds, created_at, profiles(full_name)",
-    )
-    .eq("is_public", true)
+    .select("*")
     .order("created_at", { ascending: false })
-    .limit(30);
+    .returns<Exercise[]>();
 
   return (
-    <main className="flex-1 px-4 py-8 max-w-3xl mx-auto w-full space-y-6">
-      <h1 className="text-2xl font-bold">Ejercicios</h1>
+    <div>
+      <h1 className="text-2xl font-bold mb-6">Exercises</h1>
 
-      {exercises && exercises.length > 0 ? (
-        <div className="grid gap-3 sm:grid-cols-2">
+      {!exercises?.length ? (
+        <p className="text-gray-500">
+          No exercises yet.{" "}
+          <Link href="/exercises/new" className="text-blue-600 underline">
+            Create one
+          </Link>
+        </p>
+      ) : (
+        <div className="grid gap-4 sm:grid-cols-2">
           {exercises.map((exercise) => (
             <Link
               key={exercise.id}
               href={`/exercises/${exercise.id}`}
-              className="flex gap-3 bg-zinc-900/50 border border-zinc-700/60 rounded-xl p-4 hover:border-zinc-600 transition-colors"
+              className="block bg-white rounded-lg border border-gray-200 p-5 hover:shadow-md transition-shadow"
             >
-              {exercise.image_url && (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={exercise.image_url}
-                  alt={exercise.name}
-                  className="w-14 h-14 rounded-lg object-cover flex-shrink-0 border border-zinc-700"
-                />
+              <h2 className="font-semibold text-lg">{exercise.title}</h2>
+              {exercise.description && (
+                <p className="text-gray-500 text-sm mt-1 line-clamp-2">
+                  {exercise.description}
+                </p>
               )}
-              <div className="min-w-0 flex-1">
-                <h3 className="font-semibold truncate">{exercise.name}</h3>
-                {exercise.tips && (
-                  <p className="text-sm text-zinc-400 mt-0.5 line-clamp-2">
-                    {exercise.tips}
-                  </p>
+              <div className="mt-3 flex items-center gap-3 text-xs text-gray-400">
+                <span>{exercise.duration_secs}s</span>
+                {exercise.image_urls.length > 0 && (
+                  <span>{exercise.image_urls.length} image(s)</span>
                 )}
-                <div className="flex items-center gap-2 mt-1.5">
-                  {exercise.default_duration_seconds && (
-                    <span className="text-xs text-zinc-500">
-                      {exercise.default_duration_seconds}s
-                    </span>
-                  )}
-                  {exercise.profiles && (
-                    <span className="text-xs text-zinc-500">
-                      por{" "}
-                      {(
-                        exercise.profiles as unknown as {
-                          full_name: string | null;
-                        }
-                      ).full_name ?? "Anónimo"}
-                    </span>
-                  )}
-                </div>
               </div>
             </Link>
           ))}
         </div>
-      ) : (
-        <p className="text-center text-zinc-500 text-sm py-16">
-          Aún no hay ejercicios públicos.
-        </p>
       )}
-    </main>
+    </div>
   );
 }
