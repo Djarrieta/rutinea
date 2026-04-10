@@ -2,15 +2,15 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import type { RoutineWithExercises } from "@/types";
+import type { RoutineWithSets } from "@/types";
 import RoutinePlayerModal from "./RoutinePlayerModal";
 
 export default function RoutineCard({
   routine,
-  exerciseCount,
+  setCount,
 }: {
-  routine: RoutineWithExercises;
-  exerciseCount: number;
+  routine: RoutineWithSets;
+  setCount: number;
 }) {
   const [showPlayer, setShowPlayer] = useState(false);
 
@@ -28,11 +28,11 @@ export default function RoutineCard({
         <div className="mt-3 flex items-center justify-between">
           <div className="flex items-center gap-3 text-xs text-gray-400">
             <span>
-              {exerciseCount} ejercicio{exerciseCount !== 1 ? "s" : ""}
+              {setCount} set{setCount !== 1 ? "s" : ""}
             </span>
             <span>{routine.rest_secs}s descanso</span>
           </div>
-          {exerciseCount > 0 && (
+          {setCount > 0 && (
             <button
               onClick={() => setShowPlayer(true)}
               className="flex items-center gap-1.5 bg-blue-600 text-white px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-blue-700 transition-colors"

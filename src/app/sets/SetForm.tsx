@@ -1,21 +1,21 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import type { Routine, Set as ExSet } from "@/types";
+import type { Set as ExSet, Exercise } from "@/types";
 import { createClient } from "@/lib/supabase/client";
 
-function SetPicker({ defaultValue }: { defaultValue: string[] }) {
-  const [sets, setSets] = useState<ExSet[]>([]);
+function ExercisePicker({ defaultValue }: { defaultValue: string[] }) {
+  const [exercises, setExercises] = useState<Exercise[]>([]);
   const [selected, setSelected] = useState<string[]>(defaultValue);
 
   useEffect(() => {
     const supabase = createClient();
     supabase
-      .from("sets")
+      .from("exercises")
       .select("*")
-      .order("name")
+      .order("title")
       .then(({ data }) => {
-        if (data) setSets(data as ExSet[]);
+        if (data) setExercises(data as Exercise[]);
       });
   }, []);
 
@@ -44,26 +44,30 @@ function SetPicker({ defaultValue }: { defaultValue: string[] }) {
     });
   };
 
-  const available = sets.filter((s) => !selected.includes(s.id));
-  const selectedSets = selected
-    .map((id) => sets.find((s) => s.id === id))
-    .filter(Boolean) as ExSet[];
+  const available = exercises.filter((e) => !selected.includes(e.id));
+  const selectedExercises = selected
+    .map((id) => exercises.find((e) => e.id === id))
+    .filter(Boolean) as Exercise[];
 
   return (
     <div className="space-y-3">
-      <input type="hidden" name="set_ids" value={JSON.stringify(selected)} />
+      <input
+        type="hidden"
+        name="exercise_ids"
+        value={JSON.stringify(selected)}
+      />
 
-      {selectedSets.length > 0 && (
+      {selectedExercises.length > 0 && (
         <ul className="space-y-2">
-          {selectedSets.map((s, i) => (
+          {selectedExercises.map((ex, i) => (
             <li
-              key={s.id}
+              key={ex.id}
               className="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm"
             >
               <span className="text-gray-400 font-mono text-xs w-5 text-center">
                 {i + 1}
               </span>
-              <span className="flex-1">{s.name}</span>
+              <span className="flex-1">{ex.title}</span>
               <button
                 type="button"
                 onClick={() => moveUp(i)}
@@ -75,7 +79,7 @@ function SetPicker({ defaultValue }: { defaultValue: string[] }) {
               <button
                 type="button"
                 onClick={() => moveDown(i)}
-                disabled={i === selectedSets.length - 1}
+                disabled={i === selectedExercises.length - 1}
                 className="text-gray-400 hover:text-gray-600 disabled:opacity-30 text-xs"
               >
                 ▼
@@ -104,33 +108,33 @@ function SetPicker({ defaultValue }: { defaultValue: string[] }) {
           className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <option value="" disabled>
-            + Agregar set…
+            + Agregar ejercicio…
           </option>
-          {available.map((s) => (
-            <option key={s.id} value={s.id}>
-              {s.name}
+          {available.map((ex) => (
+            <option key={ex.id} value={ex.id}>
+              {ex.title}
             </option>
           ))}
         </select>
       )}
 
-      {sets.length === 0 && (
-        <p className="text-gray-400 text-sm">Cargando sets…</p>
+      {exercises.length === 0 && (
+        <p className="text-gray-400 text-sm">Cargando ejercicios…</p>
       )}
     </div>
   );
 }
 
 interface Props {
-  routine?: Routine;
-  defaultSetIds?: string[];
+  set?: ExSet;
+  defaultExerciseIds?: string[];
   action: (formData: FormData) => Promise<void>;
   submitLabel: string;
 }
 
-export default function RoutineForm({
-  routine,
-  defaultSetIds = [],
+export default function SetForm({
+  set,
+  defaultExerciseIds = [],
   action,
   submitLabel,
 }: Props) {
@@ -145,7 +149,7 @@ export default function RoutineForm({
           name="name"
           type="text"
           required
-          defaultValue={routine?.name}
+          defaultValue={set?.name}
           className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
@@ -158,28 +162,14 @@ export default function RoutineForm({
           id="description"
           name="description"
           rows={3}
-          defaultValue={routine?.description ?? ""}
+          defaultValue={set?.description ?? ""}
           className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
       </div>
 
       <div>
-        <label htmlFor="rest_secs" className="block text-sm font-medium mb-1">
-          Descanso entre sets (segundos)
-        </label>
-        <input
-          id="rest_secs"
-          name="rest_secs"
-          type="number"
-          min={0}
-          defaultValue={routine?.rest_secs ?? 60}
-          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium mb-1">Sets</label>
-        <SetPicker defaultValue={defaultSetIds} />
+        <label className="block text-sm font-medium mb-1">Ejercicios</label>
+        <ExercisePicker defaultValue={defaultExerciseIds} />
       </div>
 
       <button

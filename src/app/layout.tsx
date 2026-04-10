@@ -27,6 +27,9 @@ export default function RootLayout({
                 >
                   Ejercicios
                 </a>
+                <a href="/sets" className="text-gray-600 hover:text-gray-900">
+                  Sets
+                </a>
                 <a
                   href="/routines"
                   className="text-gray-600 hover:text-gray-900"
@@ -41,6 +44,12 @@ export default function RootLayout({
                 className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm hover:bg-gray-200"
               >
                 + Ejercicio
+              </a>
+              <a
+                href="/sets/new"
+                className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm hover:bg-gray-200"
+              >
+                + Set
               </a>
               <a
                 href="/routines/new"

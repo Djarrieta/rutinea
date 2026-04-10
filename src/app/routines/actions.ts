@@ -14,8 +14,8 @@ export async function createRoutine(formData: FormData) {
     rest_secs: Number(formData.get('rest_secs')) || 60,
   }
 
-  const exerciseIds: string[] = JSON.parse(
-    (formData.get('exercise_ids') as string) || '[]',
+  const setIds: string[] = JSON.parse(
+    (formData.get('set_ids') as string) || '[]',
   )
 
   const { data: routine, error } = await supabase
@@ -26,14 +26,14 @@ export async function createRoutine(formData: FormData) {
 
   if (error) throw new Error(error.message)
 
-  if (exerciseIds.length > 0) {
-    const rows = exerciseIds.map((exercise_id, i) => ({
+  if (setIds.length > 0) {
+    const rows = setIds.map((set_id, i) => ({
       routine_id: routine.id,
-      exercise_id,
+      set_id,
       position: i,
     }))
     const { error: linkError } = await supabase
-      .from('routine_exercises')
+      .from('routine_sets')
       .insert(rows)
     if (linkError) throw new Error(linkError.message)
   }
@@ -51,8 +51,8 @@ export async function updateRoutine(id: string, formData: FormData) {
     rest_secs: Number(formData.get('rest_secs')) || 60,
   }
 
-  const exerciseIds: string[] = JSON.parse(
-    (formData.get('exercise_ids') as string) || '[]',
+  const setIds: string[] = JSON.parse(
+    (formData.get('set_ids') as string) || '[]',
   )
 
   const { error } = await supabase
@@ -62,22 +62,21 @@ export async function updateRoutine(id: string, formData: FormData) {
 
   if (error) throw new Error(error.message)
 
-  // Replace all linked exercises: delete existing, insert new
   const { error: delError } = await supabase
-    .from('routine_exercises')
+    .from('routine_sets')
     .delete()
     .eq('routine_id', id)
 
   if (delError) throw new Error(delError.message)
 
-  if (exerciseIds.length > 0) {
-    const rows = exerciseIds.map((exercise_id, i) => ({
+  if (setIds.length > 0) {
+    const rows = setIds.map((set_id, i) => ({
       routine_id: id,
-      exercise_id,
+      set_id,
       position: i,
     }))
     const { error: linkError } = await supabase
-      .from('routine_exercises')
+      .from('routine_sets')
       .insert(rows)
     if (linkError) throw new Error(linkError.message)
   }

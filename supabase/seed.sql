@@ -30,6 +30,63 @@ values (
         20
     );
 
+-- Seed sets (groups of exercises)
+
+insert into
+    public.sets (name, description)
+values (
+        'Compuestos Full Body',
+        'Sentadilla, press de banca y peso muerto.'
+    ),
+    (
+        'Tren Superior',
+        'Press de banca y peso muerto para pecho y espalda.'
+    ),
+    (
+        'Fuerza Piernas',
+        'Sentadilla y peso muerto para tren inferior.'
+    );
+
+-- Link exercises to sets
+
+-- Compuestos Full Body: all 3
+insert into
+    public.set_exercises (set_id, exercise_id, position)
+select s.id, e.id, row_number() over (
+        order by e.created_at
+    ) - 1
+from public.sets s
+    cross join public.exercises e
+where
+    s.name = 'Compuestos Full Body';
+
+-- Tren Superior: Bench Press + Deadlift
+insert into
+    public.set_exercises (set_id, exercise_id, position)
+select s.id, e.id, row_number() over (
+        order by e.created_at
+    ) - 1
+from public.sets s
+    cross join public.exercises e
+where
+    s.name = 'Tren Superior'
+    and e.title in ('Bench Press', 'Deadlift');
+
+-- Fuerza Piernas: Squat + Deadlift
+insert into
+    public.set_exercises (set_id, exercise_id, position)
+select s.id, e.id, row_number() over (
+        order by e.created_at
+    ) - 1
+from public.sets s
+    cross join public.exercises e
+where
+    s.name = 'Fuerza Piernas'
+    and e.title in (
+        'Barbell Back Squat',
+        'Deadlift'
+    );
+
 -- Seed routines
 
 insert into
@@ -50,52 +107,79 @@ values (
         5
     );
 
--- Link exercises to Rutina Full Body (all 3 exercises)
-insert into
-    public.routine_exercises (
-        routine_id,
-        exercise_id,
-        position
-    )
-select r.id, e.id, row_number() over (
-        order by e.created_at
-    ) - 1
-from public.routines r
-    cross join public.exercises e
-where
-    r.name = 'Rutina Full Body';
+-- Link sets to routines (3 sets per routine)
 
--- Link exercises to Rutina Tren Superior (Bench Press + Deadlift)
+-- Rutina Full Body: Compuestos Full Body → Tren Superior → Fuerza Piernas
 insert into
-    public.routine_exercises (
-        routine_id,
-        exercise_id,
-        position
-    )
-select r.id, e.id, row_number() over (
-        order by e.created_at
-    ) - 1
-from public.routines r
-    cross join public.exercises e
+    public.routine_sets (routine_id, set_id, position)
+select r.id, s.id, 0
+from public.routines r, public.sets s
+where
+    r.name = 'Rutina Full Body'
+    and s.name = 'Compuestos Full Body';
+
+insert into
+    public.routine_sets (routine_id, set_id, position)
+select r.id, s.id, 1
+from public.routines r, public.sets s
+where
+    r.name = 'Rutina Full Body'
+    and s.name = 'Tren Superior';
+
+insert into
+    public.routine_sets (routine_id, set_id, position)
+select r.id, s.id, 2
+from public.routines r, public.sets s
+where
+    r.name = 'Rutina Full Body'
+    and s.name = 'Fuerza Piernas';
+
+-- Rutina Tren Superior: Tren Superior → Compuestos Full Body → Fuerza Piernas
+insert into
+    public.routine_sets (routine_id, set_id, position)
+select r.id, s.id, 0
+from public.routines r, public.sets s
 where
     r.name = 'Rutina Tren Superior'
-    and e.title in ('Bench Press', 'Deadlift');
+    and s.name = 'Tren Superior';
 
--- Link exercises to Rutina Fuerza Piernas (Squat + Deadlift)
 insert into
-    public.routine_exercises (
-        routine_id,
-        exercise_id,
-        position
-    )
-select r.id, e.id, row_number() over (
-        order by e.created_at
-    ) - 1
-from public.routines r
-    cross join public.exercises e
+    public.routine_sets (routine_id, set_id, position)
+select r.id, s.id, 1
+from public.routines r, public.sets s
+where
+    r.name = 'Rutina Tren Superior'
+    and s.name = 'Compuestos Full Body';
+
+insert into
+    public.routine_sets (routine_id, set_id, position)
+select r.id, s.id, 2
+from public.routines r, public.sets s
+where
+    r.name = 'Rutina Tren Superior'
+    and s.name = 'Fuerza Piernas';
+
+-- Rutina Fuerza Piernas: Fuerza Piernas → Compuestos Full Body → Tren Superior
+insert into
+    public.routine_sets (routine_id, set_id, position)
+select r.id, s.id, 0
+from public.routines r, public.sets s
 where
     r.name = 'Rutina Fuerza Piernas'
-    and e.title in (
-        'Barbell Back Squat',
-        'Deadlift'
-    );
+    and s.name = 'Fuerza Piernas';
+
+insert into
+    public.routine_sets (routine_id, set_id, position)
+select r.id, s.id, 1
+from public.routines r, public.sets s
+where
+    r.name = 'Rutina Fuerza Piernas'
+    and s.name = 'Compuestos Full Body';
+
+insert into
+    public.routine_sets (routine_id, set_id, position)
+select r.id, s.id, 2
+from public.routines r, public.sets s
+where
+    r.name = 'Rutina Fuerza Piernas'
+    and s.name = 'Tren Superior';

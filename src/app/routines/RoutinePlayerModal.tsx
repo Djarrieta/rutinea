@@ -1,47 +1,87 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
-import type { RoutineWithExercises } from "@/types";
+import type { RoutineWithSets, Exercise } from "@/types";
 
 type Phase = "exercise" | "rest" | "finished";
 
+type ExerciseStep = {
+  type: "exercise";
+  exercise: Exercise;
+  setName: string;
+  globalIndex: number;
+  totalExercises: number;
+};
+type RestStep = { type: "rest" };
+type Step = ExerciseStep | RestStep;
+
 interface Props {
-  routine: RoutineWithExercises;
+  routine: RoutineWithSets;
   onClose: () => void;
 }
 
 export default function RoutinePlayerModal({ routine, onClose }: Props) {
-  const exercises = [...routine.routine_exercises]
-    .sort((a, b) => a.position - b.position)
-    .map((re) => re.exercise);
+  const sortedSets = [...routine.routine_sets].sort(
+    (a, b) => a.position - b.position,
+  );
 
-  const totalExercises = exercises.length;
+  const steps: Step[] = [];
+  let globalIdx = 0;
+  const totalExercises = sortedSets.reduce(
+    (sum, rs) => sum + rs.set.set_exercises.length,
+    0,
+  );
 
-  const [exerciseIndex, setExerciseIndex] = useState(0);
+  sortedSets.forEach((rs, blockIdx) => {
+    const exercises = [...rs.set.set_exercises]
+      .sort((a, b) => a.position - b.position)
+      .map((se) => se.exercise);
+
+    exercises.forEach((ex) => {
+      steps.push({
+        type: "exercise",
+        exercise: ex,
+        setName: rs.set.name,
+        globalIndex: globalIdx,
+        totalExercises,
+      });
+      globalIdx++;
+    });
+    if (blockIdx < sortedSets.length - 1) {
+      steps.push({ type: "rest" });
+    }
+  });
+
+  const totalSteps = steps.length;
+
+  const [stepIndex, setStepIndex] = useState(0);
   const [phase, setPhase] = useState<Phase>(
-    totalExercises > 0 ? "exercise" : "finished",
+    totalSteps > 0
+      ? steps[0].type === "exercise"
+        ? "exercise"
+        : "rest"
+      : "finished",
   );
   const [elapsed, setElapsed] = useState(0);
   const [imageIndex, setImageIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
 
-  const currentExercise = exercises[exerciseIndex] ?? null;
+  const currentStep = steps[stepIndex] ?? null;
+  const currentExercise =
+    currentStep?.type === "exercise" ? currentStep.exercise : null;
   const images = currentExercise?.images ?? [];
   const exerciseDuration = currentExercise?.duration_secs ?? 0;
   const timePerImage = images.length > 0 ? exerciseDuration / images.length : 0;
+  const phaseDuration =
+    phase === "exercise" ? exerciseDuration : routine.rest_secs;
 
-  // Tick timer
   useEffect(() => {
     if (!isPlaying || phase === "finished") return;
-
-    const phaseDuration =
-      phase === "exercise" ? exerciseDuration : routine.rest_secs;
 
     const interval = setInterval(() => {
       setElapsed((prev) => {
         const next = prev + 0.1;
 
-        // Update image index during exercise phase
         if (phase === "exercise" && images.length > 0 && timePerImage > 0) {
           const nextImg = Math.min(
             Math.floor(next / timePerImage),
@@ -50,19 +90,14 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
           setImageIndex(nextImg);
         }
 
-        // Phase complete
         if (next >= phaseDuration) {
-          if (phase === "exercise") {
-            // After last exercise → finished
-            if (exerciseIndex >= totalExercises - 1) {
-              setPhase("finished");
-            } else {
-              setPhase("rest");
-            }
+          const nextStepIdx = stepIndex + 1;
+          if (nextStepIdx >= totalSteps) {
+            setPhase("finished");
           } else {
-            // rest → next exercise
-            setExerciseIndex((prev) => prev + 1);
-            setPhase("exercise");
+            const nextStep = steps[nextStepIdx];
+            setStepIndex(nextStepIdx);
+            setPhase(nextStep.type === "exercise" ? "exercise" : "rest");
             setImageIndex(0);
           }
           return 0;
@@ -76,15 +111,14 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
   }, [
     isPlaying,
     phase,
-    exerciseDuration,
-    routine.rest_secs,
-    exerciseIndex,
-    totalExercises,
+    phaseDuration,
+    stepIndex,
+    totalSteps,
     images.length,
     timePerImage,
+    steps,
   ]);
 
-  // Close on Escape
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -94,35 +128,43 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
   }, [onClose]);
 
   const restart = useCallback(() => {
-    setExerciseIndex(0);
-    setPhase(totalExercises > 0 ? "exercise" : "finished");
+    setStepIndex(0);
+    setPhase(
+      totalSteps > 0
+        ? steps[0].type === "exercise"
+          ? "exercise"
+          : "rest"
+        : "finished",
+    );
     setElapsed(0);
     setImageIndex(0);
     setIsPlaying(true);
-  }, [totalExercises]);
+  }, [totalSteps, steps]);
 
-  const phaseDuration =
-    phase === "exercise" ? exerciseDuration : routine.rest_secs;
-  const progress = phaseDuration > 0 ? (elapsed / phaseDuration) * 100 : 0;
-
-  // Overall progress
-  const totalDuration = exercises.reduce(
-    (sum, ex, i) =>
-      sum + ex.duration_secs + (i < totalExercises - 1 ? routine.rest_secs : 0),
+  const totalDuration = steps.reduce(
+    (sum, s) =>
+      sum +
+      (s.type === "exercise" ? s.exercise.duration_secs : routine.rest_secs),
     0,
   );
   const completedDuration =
-    exercises
-      .slice(0, exerciseIndex)
+    steps
+      .slice(0, stepIndex)
       .reduce(
-        (sum, ex, i) =>
-          sum + ex.duration_secs + (i < exerciseIndex ? routine.rest_secs : 0),
+        (sum, s) =>
+          sum +
+          (s.type === "exercise"
+            ? s.exercise.duration_secs
+            : routine.rest_secs),
         0,
-      ) +
-    (phase === "rest" ? exerciseDuration : 0) +
-    elapsed;
+      ) + elapsed;
   const overallProgress =
     totalDuration > 0 ? (completedDuration / totalDuration) * 100 : 0;
+
+  const nextExerciseAfterRest =
+    phase === "rest" && stepIndex + 1 < totalSteps
+      ? steps[stepIndex + 1]
+      : null;
 
   return (
     <div
@@ -137,14 +179,14 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
         <div className="flex items-center justify-between px-4 py-3 border-b">
           <div className="min-w-0">
             <h2 className="font-semibold text-sm truncate">{routine.name}</h2>
-            {phase === "exercise" && currentExercise && (
+            {phase === "exercise" && currentStep?.type === "exercise" && (
               <p className="text-xs text-gray-400 truncate">
-                Ejercicio {exerciseIndex + 1}/{totalExercises} —{" "}
-                {currentExercise.title}
+                {currentStep.setName} — Ejercicio {currentStep.globalIndex + 1}/
+                {currentStep.totalExercises} — {currentStep.exercise.title}
               </p>
             )}
             {phase === "rest" && (
-              <p className="text-xs text-gray-400">Descanso</p>
+              <p className="text-xs text-gray-400">Descanso entre sets</p>
             )}
           </div>
           <button
@@ -205,9 +247,11 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
               <p className="text-3xl font-bold tabular-nums text-gray-700">
                 {Math.max(0, Math.ceil(routine.rest_secs - elapsed))}s
               </p>
-              <p className="text-sm text-gray-400">
-                Siguiente: {exercises[exerciseIndex + 1]?.title}
-              </p>
+              {nextExerciseAfterRest?.type === "exercise" && (
+                <p className="text-sm text-gray-400">
+                  Siguiente: {nextExerciseAfterRest.exercise.title}
+                </p>
+              )}
             </div>
           )}
 

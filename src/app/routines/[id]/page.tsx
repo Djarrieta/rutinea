@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import { deleteRoutine } from "../actions";
-import type { RoutineWithExercises } from "@/types";
+import type { RoutineWithSets } from "@/types";
 
 export default async function RoutineDetailPage({
   params,
@@ -13,15 +13,17 @@ export default async function RoutineDetailPage({
   const supabase = await createClient();
   const { data: routine } = await supabase
     .from("routines")
-    .select("*, routine_exercises(*, exercise:exercises(*))")
+    .select(
+      "*, routine_sets(*, set:sets(*, set_exercises(*, exercise:exercises(*))))",
+    )
     .eq("id", id)
-    .single<RoutineWithExercises>();
+    .single<RoutineWithSets>();
 
   if (!routine) notFound();
 
   const deleteWithId = deleteRoutine.bind(null, id);
 
-  const sortedExercises = [...routine.routine_exercises].sort(
+  const sortedSets = [...routine.routine_sets].sort(
     (a, b) => a.position - b.position,
   );
 
@@ -35,48 +37,58 @@ export default async function RoutineDetailPage({
 
       <dl className="grid grid-cols-2 gap-3 text-sm mb-6">
         <div>
-          <dt className="text-gray-400">Descanso</dt>
+          <dt className="text-gray-400">Descanso entre sets</dt>
           <dd>{routine.rest_secs}s</dd>
         </div>
         <div>
-          <dt className="text-gray-400">Ejercicios</dt>
-          <dd>{sortedExercises.length}</dd>
+          <dt className="text-gray-400">Sets</dt>
+          <dd>{sortedSets.length}</dd>
         </div>
       </dl>
 
-      {sortedExercises.length > 0 && (
-        <div className="mb-6 space-y-3">
-          <h2 className="text-sm font-medium text-gray-500">
-            Orden de ejercicios
-          </h2>
-          <ol className="space-y-2">
-            {sortedExercises.map((re, i) => (
-              <li
-                key={re.id}
-                className="flex items-center gap-3 bg-white border border-gray-200 rounded-lg px-4 py-3"
-              >
-                <span className="text-gray-400 font-mono text-sm w-5 text-center">
-                  {i + 1}
-                </span>
-                <div className="flex-1">
-                  <Link
-                    href={`/exercises/${re.exercise.id}`}
-                    className="font-medium text-blue-600 hover:underline"
-                  >
-                    {re.exercise.title}
-                  </Link>
-                  {re.exercise.description && (
-                    <p className="text-gray-500 text-xs mt-0.5 line-clamp-1">
-                      {re.exercise.description}
-                    </p>
-                  )}
-                </div>
-                <span className="text-xs text-gray-400">
-                  {re.exercise.duration_secs}s
-                </span>
-              </li>
-            ))}
-          </ol>
+      {sortedSets.length > 0 && (
+        <div className="mb-6 space-y-5">
+          <h2 className="text-sm font-medium text-gray-500">Orden de sets</h2>
+          {sortedSets.map((rs, si) => {
+            const sortedExercises = [...rs.set.set_exercises].sort(
+              (a, b) => a.position - b.position,
+            );
+            return (
+              <div key={rs.id} className="space-y-2">
+                <h3 className="text-sm font-semibold">
+                  {si + 1}. {rs.set.name}
+                </h3>
+                <ol className="space-y-2">
+                  {sortedExercises.map((se, i) => (
+                    <li
+                      key={se.id}
+                      className="flex items-center gap-3 bg-white border border-gray-200 rounded-lg px-4 py-3"
+                    >
+                      <span className="text-gray-400 font-mono text-sm w-5 text-center">
+                        {i + 1}
+                      </span>
+                      <div className="flex-1">
+                        <Link
+                          href={`/exercises/${se.exercise.id}`}
+                          className="font-medium text-blue-600 hover:underline"
+                        >
+                          {se.exercise.title}
+                        </Link>
+                        {se.exercise.description && (
+                          <p className="text-gray-500 text-xs mt-0.5 line-clamp-1">
+                            {se.exercise.description}
+                          </p>
+                        )}
+                      </div>
+                      <span className="text-xs text-gray-400">
+                        {se.exercise.duration_secs}s
+                      </span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            );
+          })}
         </div>
       )}
 

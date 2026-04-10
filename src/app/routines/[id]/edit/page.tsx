@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import RoutineForm from "../../RoutineForm";
 import { updateRoutine } from "../../actions";
-import type { RoutineWithExercises } from "@/types";
+import type { RoutineWithSets } from "@/types";
 
 export default async function EditRoutinePage({
   params,
@@ -13,24 +13,26 @@ export default async function EditRoutinePage({
   const supabase = await createClient();
   const { data: routine } = await supabase
     .from("routines")
-    .select("*, routine_exercises(*, exercise:exercises(*))")
+    .select(
+      "*, routine_sets(*, set:sets(*, set_exercises(*, exercise:exercises(*))))",
+    )
     .eq("id", id)
-    .single<RoutineWithExercises>();
+    .single<RoutineWithSets>();
 
   if (!routine) notFound();
 
   const updateWithId = updateRoutine.bind(null, id);
 
-  const exerciseIds = [...routine.routine_exercises]
+  const setIds = [...routine.routine_sets]
     .sort((a, b) => a.position - b.position)
-    .map((re) => re.exercise_id);
+    .map((rs) => rs.set_id);
 
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6">Editar Rutina</h1>
       <RoutineForm
         routine={routine}
-        defaultExerciseIds={exerciseIds}
+        defaultSetIds={setIds}
         action={updateWithId}
         submitLabel="Guardar Cambios"
       />
