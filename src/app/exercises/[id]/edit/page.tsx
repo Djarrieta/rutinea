@@ -23,11 +23,11 @@ export default async function EditExercisePage({
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-6">Edit Exercise</h1>
+      <h1 className="text-2xl font-bold mb-6">Editar Ejercicio</h1>
       <ExerciseForm
         exercise={exercise}
         action={updateWithId}
-        submitLabel="Save Changes"
+        submitLabel="Guardar Cambios"
       />
     </div>
   );

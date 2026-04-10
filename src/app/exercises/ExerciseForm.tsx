@@ -11,7 +11,7 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
     <form action={action} className="space-y-5 max-w-lg">
       <div>
         <label htmlFor="title" className="block text-sm font-medium mb-1">
-          Title
+          Título
         </label>
         <input
           id="title"
@@ -25,7 +25,7 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
 
       <div>
         <label htmlFor="description" className="block text-sm font-medium mb-1">
-          Description
+          Descripción
         </label>
         <textarea
           id="description"
@@ -38,7 +38,8 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
 
       <div>
         <label htmlFor="image_urls" className="block text-sm font-medium mb-1">
-          Image URLs <span className="text-gray-400">(comma-separated)</span>
+          URLs de imágenes{" "}
+          <span className="text-gray-400">(separadas por coma)</span>
         </label>
         <input
           id="image_urls"
@@ -51,9 +52,9 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
 
       <div>
         <label htmlFor="tags" className="block text-sm font-medium mb-1">
-          Tags{" "}
+          Etiquetas{" "}
           <span className="text-gray-400">
-            (comma-separated, e.g. bench, bar, mattress)
+            (separadas por coma, ej. banco, barra, colchoneta)
           </span>
         </label>
         <input
@@ -66,11 +67,27 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
       </div>
 
       <div>
+        <label htmlFor="tips" className="block text-sm font-medium mb-1">
+          Tips{" "}
+          <span className="text-gray-400">
+            (separados por coma, frases que se muestran sobre las imágenes)
+          </span>
+        </label>
+        <input
+          id="tips"
+          name="tips"
+          type="text"
+          defaultValue={exercise?.tips?.join(", ")}
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
+      <div>
         <label
           htmlFor="duration_secs"
           className="block text-sm font-medium mb-1"
         >
-          Duration (seconds)
+          Duración (segundos)
         </label>
         <input
           id="duration_secs"

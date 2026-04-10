@@ -19,6 +19,10 @@ export async function createExercise(formData: FormData) {
       .split(',')
       .map((t) => t.trim())
       .filter(Boolean),
+    tips: (formData.get('tips') as string || '')
+      .split(',')
+      .map((t) => t.trim())
+      .filter(Boolean),
     duration_secs: Number(formData.get('duration_secs')) || 0,
   }
 
@@ -41,6 +45,10 @@ export async function updateExercise(id: string, formData: FormData) {
       .map((u) => u.trim())
       .filter(Boolean),
     tags: (formData.get('tags') as string || '')
+      .split(',')
+      .map((t) => t.trim())
+      .filter(Boolean),
+    tips: (formData.get('tips') as string || '')
       .split(',')
       .map((t) => t.trim())
       .filter(Boolean),

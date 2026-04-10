@@ -91,7 +91,14 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
             />
           ) : (
             <div className="flex items-center justify-center h-full text-gray-400">
-              No images
+              Sin imágenes
+            </div>
+          )}
+
+          {/* Tip overlay */}
+          {exercise.tips.length > 0 && (
+            <div className="absolute bottom-3 left-3 right-3 bg-black/60 text-white text-sm px-3 py-2 rounded-lg text-center">
+              {exercise.tips[currentIndex % exercise.tips.length]}
             </div>
           )}
 
@@ -122,14 +129,14 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
                 onClick={restart}
                 className="bg-blue-600 text-white px-4 py-1.5 rounded-lg text-sm hover:bg-blue-700"
               >
-                Replay
+                Repetir
               </button>
             ) : (
               <button
                 onClick={() => setIsPlaying((p) => !p)}
                 className="bg-gray-100 px-4 py-1.5 rounded-lg text-sm hover:bg-gray-200"
               >
-                {isPlaying ? "Pause" : "Resume"}
+                {isPlaying ? "Pausar" : "Reanudar"}
               </button>
             )}
           </div>

@@ -31,12 +31,12 @@ export default async function ExerciseDetailPage({
 
       <dl className="grid grid-cols-2 gap-3 text-sm mb-6">
         <div>
-          <dt className="text-gray-400">Duration</dt>
+          <dt className="text-gray-400">Duración</dt>
           <dd>{exercise.duration_secs}s</dd>
         </div>
         <div>
-          <dt className="text-gray-400">Images</dt>
-          <dd>{exercise.image_urls.length || "None"}</dd>
+          <dt className="text-gray-400">Imágenes</dt>
+          <dd>{exercise.image_urls.length || "Ninguna"}</dd>
         </div>
       </dl>
 
@@ -71,14 +71,14 @@ export default async function ExerciseDetailPage({
           href={`/exercises/${id}/edit`}
           className="bg-gray-100 px-4 py-2 rounded-lg text-sm hover:bg-gray-200"
         >
-          Edit
+          Editar
         </Link>
         <form action={deleteWithId}>
           <button
             type="submit"
             className="bg-red-50 text-red-600 px-4 py-2 rounded-lg text-sm hover:bg-red-100"
           >
-            Delete
+            Eliminar
           </button>
         </form>
       </div>

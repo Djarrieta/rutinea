@@ -13,13 +13,13 @@ export default async function ExercisesPage() {
 
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-6">Exercises</h1>
+      <h1 className="text-2xl font-bold mb-6">Ejercicios</h1>
 
       {!exercises?.length ? (
         <p className="text-gray-500">
-          No exercises yet.{" "}
+          No hay ejercicios aún.{" "}
           <Link href="/exercises/new" className="text-blue-600 underline">
-            Create one
+            Crear uno
           </Link>
         </p>
       ) : (

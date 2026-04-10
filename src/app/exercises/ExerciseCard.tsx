@@ -35,7 +35,7 @@ export default function ExerciseCard({ exercise }: { exercise: Exercise }) {
           <div className="flex items-center gap-3 text-xs text-gray-400">
             <span>{exercise.duration_secs}s</span>
             {exercise.image_urls.length > 0 && (
-              <span>{exercise.image_urls.length} image(s)</span>
+              <span>{exercise.image_urls.length} imagen(es)</span>
             )}
           </div>
           {exercise.image_urls.length > 0 && (
@@ -51,7 +51,7 @@ export default function ExerciseCard({ exercise }: { exercise: Exercise }) {
               >
                 <path d="M6.3 2.84A1.5 1.5 0 004 4.11v11.78a1.5 1.5 0 002.3 1.27l9.344-5.891a1.5 1.5 0 000-2.538L6.3 2.841z" />
               </svg>
-              Play
+              Reproducir
             </button>
           )}
         </div>

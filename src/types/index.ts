@@ -4,6 +4,7 @@ export interface Exercise {
   description: string | null
   image_urls: string[]
   tags: string[]
+  tips: string[]
   duration_secs: number
   created_at: string
   updated_at: string
@@ -11,7 +12,7 @@ export interface Exercise {
 
 export type CreateExerciseInput = Pick<
   Exercise,
-  'title' | 'description' | 'image_urls' | 'tags' | 'duration_secs'
+  'title' | 'description' | 'image_urls' | 'tags' | 'tips' | 'duration_secs'
 >
 
 export type UpdateExerciseInput = Partial<CreateExerciseInput>
