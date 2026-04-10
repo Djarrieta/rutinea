@@ -4,9 +4,14 @@ import { useState, useEffect } from "react";
 import type { Routine, Set as ExSet } from "@/types";
 import { createClient } from "@/lib/supabase/client";
 
-function SetPicker({ defaultValue }: { defaultValue: string[] }) {
+interface SelectedSet {
+  id: string;
+  rounds: number;
+}
+
+function SetPicker({ defaultValue }: { defaultValue: SelectedSet[] }) {
   const [sets, setSets] = useState<ExSet[]>([]);
-  const [selected, setSelected] = useState<string[]>(defaultValue);
+  const [selected, setSelected] = useState<SelectedSet[]>(defaultValue);
 
   useEffect(() => {
     const supabase = createClient();
@@ -20,7 +25,8 @@ function SetPicker({ defaultValue }: { defaultValue: string[] }) {
   }, []);
 
   const add = (id: string) => {
-    if (!selected.includes(id)) setSelected((prev) => [...prev, id]);
+    if (!selected.some((s) => s.id === id))
+      setSelected((prev) => [...prev, { id, rounds: 1 }]);
   };
 
   const remove = (index: number) =>
@@ -44,14 +50,28 @@ function SetPicker({ defaultValue }: { defaultValue: string[] }) {
     });
   };
 
-  const available = sets.filter((s) => !selected.includes(s.id));
+  const setRounds = (index: number, rounds: number) => {
+    setSelected((prev) =>
+      prev.map((s, i) =>
+        i === index ? { ...s, rounds: Math.max(1, rounds) } : s,
+      ),
+    );
+  };
+
+  const available = sets.filter(
+    (s) => !selected.some((sel) => sel.id === s.id),
+  );
   const selectedSets = selected
-    .map((id) => sets.find((s) => s.id === id))
-    .filter(Boolean) as ExSet[];
+    .map((sel) => ({ ...sel, set: sets.find((s) => s.id === sel.id) }))
+    .filter((s) => s.set) as (SelectedSet & { set: ExSet })[];
 
   return (
     <div className="space-y-3">
-      <input type="hidden" name="set_ids" value={JSON.stringify(selected)} />
+      <input
+        type="hidden"
+        name="set_entries"
+        value={JSON.stringify(selected)}
+      />
 
       {selectedSets.length > 0 && (
         <ul className="space-y-2">
@@ -63,7 +83,17 @@ function SetPicker({ defaultValue }: { defaultValue: string[] }) {
               <span className="text-gray-400 font-mono text-xs w-5 text-center">
                 {i + 1}
               </span>
-              <span className="flex-1">{s.name}</span>
+              <span className="flex-1">{s.set.name}</span>
+              <label className="flex items-center gap-1 text-xs text-gray-500">
+                <input
+                  type="number"
+                  min={1}
+                  value={s.rounds}
+                  onChange={(e) => setRounds(i, Number(e.target.value))}
+                  className="w-12 rounded border border-gray-300 px-1.5 py-0.5 text-center text-xs"
+                />
+                rondas
+              </label>
               <button
                 type="button"
                 onClick={() => moveUp(i)}
@@ -123,14 +153,14 @@ function SetPicker({ defaultValue }: { defaultValue: string[] }) {
 
 interface Props {
   routine?: Routine;
-  defaultSetIds?: string[];
+  defaultSetEntries?: SelectedSet[];
   action: (formData: FormData) => Promise<void>;
   submitLabel: string;
 }
 
 export default function RoutineForm({
   routine,
-  defaultSetIds = [],
+  defaultSetEntries = [],
   action,
   submitLabel,
 }: Props) {
@@ -179,7 +209,7 @@ export default function RoutineForm({
 
       <div>
         <label className="block text-sm font-medium mb-1">Sets</label>
-        <SetPicker defaultValue={defaultSetIds} />
+        <SetPicker defaultValue={defaultSetEntries} />
       </div>
 
       <button

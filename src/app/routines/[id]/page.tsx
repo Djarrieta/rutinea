@@ -57,6 +57,11 @@ export default async function RoutineDetailPage({
               <div key={rs.id} className="space-y-2">
                 <h3 className="text-sm font-semibold">
                   {si + 1}. {rs.set.name}
+                  {rs.rounds > 1 && (
+                    <span className="ml-1 text-gray-400 font-normal">
+                      ×{rs.rounds}
+                    </span>
+                  )}
                 </h3>
                 <ol className="space-y-2">
                   {sortedExercises.map((se, i) => (

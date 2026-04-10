@@ -107,78 +107,123 @@ values (
         5
     );
 
--- Link sets to routines (3 sets per routine)
+-- Link sets to routines (3 sets per routine, with rounds)
 
--- Rutina Full Body: Compuestos Full Body → Tren Superior → Fuerza Piernas
+-- Rutina Full Body: Compuestos Full Body (x3) → Tren Superior (x2) → Fuerza Piernas (x1)
 insert into
-    public.routine_sets (routine_id, set_id, position)
-select r.id, s.id, 0
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 0, 3
 from public.routines r, public.sets s
 where
     r.name = 'Rutina Full Body'
     and s.name = 'Compuestos Full Body';
 
 insert into
-    public.routine_sets (routine_id, set_id, position)
-select r.id, s.id, 1
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 1, 2
 from public.routines r, public.sets s
 where
     r.name = 'Rutina Full Body'
     and s.name = 'Tren Superior';
 
 insert into
-    public.routine_sets (routine_id, set_id, position)
-select r.id, s.id, 2
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 2, 1
 from public.routines r, public.sets s
 where
     r.name = 'Rutina Full Body'
     and s.name = 'Fuerza Piernas';
 
--- Rutina Tren Superior: Tren Superior → Compuestos Full Body → Fuerza Piernas
+-- Rutina Tren Superior: Tren Superior (x3) → Compuestos Full Body (x1) → Fuerza Piernas (x2)
 insert into
-    public.routine_sets (routine_id, set_id, position)
-select r.id, s.id, 0
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 0, 3
 from public.routines r, public.sets s
 where
     r.name = 'Rutina Tren Superior'
     and s.name = 'Tren Superior';
 
 insert into
-    public.routine_sets (routine_id, set_id, position)
-select r.id, s.id, 1
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 1, 1
 from public.routines r, public.sets s
 where
     r.name = 'Rutina Tren Superior'
     and s.name = 'Compuestos Full Body';
 
 insert into
-    public.routine_sets (routine_id, set_id, position)
-select r.id, s.id, 2
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 2, 2
 from public.routines r, public.sets s
 where
     r.name = 'Rutina Tren Superior'
     and s.name = 'Fuerza Piernas';
 
--- Rutina Fuerza Piernas: Fuerza Piernas → Compuestos Full Body → Tren Superior
+-- Rutina Fuerza Piernas: Fuerza Piernas (x3) → Compuestos Full Body (x2) → Tren Superior (x1)
 insert into
-    public.routine_sets (routine_id, set_id, position)
-select r.id, s.id, 0
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 0, 3
 from public.routines r, public.sets s
 where
     r.name = 'Rutina Fuerza Piernas'
     and s.name = 'Fuerza Piernas';
 
 insert into
-    public.routine_sets (routine_id, set_id, position)
-select r.id, s.id, 1
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 1, 2
 from public.routines r, public.sets s
 where
     r.name = 'Rutina Fuerza Piernas'
     and s.name = 'Compuestos Full Body';
 
 insert into
-    public.routine_sets (routine_id, set_id, position)
-select r.id, s.id, 2
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 2, 1
 from public.routines r, public.sets s
 where
     r.name = 'Rutina Fuerza Piernas'

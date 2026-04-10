@@ -14,8 +14,8 @@ export async function createRoutine(formData: FormData) {
     rest_secs: Number(formData.get('rest_secs')) || 60,
   }
 
-  const setIds: string[] = JSON.parse(
-    (formData.get('set_ids') as string) || '[]',
+  const setEntries: { id: string; rounds: number }[] = JSON.parse(
+    (formData.get('set_entries') as string) || '[]',
   )
 
   const { data: routine, error } = await supabase
@@ -26,11 +26,12 @@ export async function createRoutine(formData: FormData) {
 
   if (error) throw new Error(error.message)
 
-  if (setIds.length > 0) {
-    const rows = setIds.map((set_id, i) => ({
+  if (setEntries.length > 0) {
+    const rows = setEntries.map((entry, i) => ({
       routine_id: routine.id,
-      set_id,
+      set_id: entry.id,
       position: i,
+      rounds: entry.rounds,
     }))
     const { error: linkError } = await supabase
       .from('routine_sets')
@@ -51,8 +52,8 @@ export async function updateRoutine(id: string, formData: FormData) {
     rest_secs: Number(formData.get('rest_secs')) || 60,
   }
 
-  const setIds: string[] = JSON.parse(
-    (formData.get('set_ids') as string) || '[]',
+  const setEntries: { id: string; rounds: number }[] = JSON.parse(
+    (formData.get('set_entries') as string) || '[]',
   )
 
   const { error } = await supabase
@@ -69,11 +70,12 @@ export async function updateRoutine(id: string, formData: FormData) {
 
   if (delError) throw new Error(delError.message)
 
-  if (setIds.length > 0) {
-    const rows = setIds.map((set_id, i) => ({
+  if (setEntries.length > 0) {
+    const rows = setEntries.map((entry, i) => ({
       routine_id: id,
-      set_id,
+      set_id: entry.id,
       position: i,
+      rounds: entry.rounds,
     }))
     const { error: linkError } = await supabase
       .from('routine_sets')

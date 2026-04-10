@@ -23,16 +23,16 @@ export default async function EditRoutinePage({
 
   const updateWithId = updateRoutine.bind(null, id);
 
-  const setIds = [...routine.routine_sets]
+  const setEntries = [...routine.routine_sets]
     .sort((a, b) => a.position - b.position)
-    .map((rs) => rs.set_id);
+    .map((rs) => ({ id: rs.set_id, rounds: rs.rounds }));
 
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6">Editar Rutina</h1>
       <RoutineForm
         routine={routine}
-        defaultSetIds={setIds}
+        defaultSetEntries={setEntries}
         action={updateWithId}
         submitLabel="Guardar Cambios"
       />

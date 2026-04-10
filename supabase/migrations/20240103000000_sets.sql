@@ -64,6 +64,7 @@ create table public.routine_sets (
     routine_id uuid not null references public.routines (id) on delete cascade,
     set_id uuid not null references public.sets (id) on delete cascade,
     position integer not null default 0,
+    rounds integer not null default 1,
     created_at timestamptz not null default now(),
     unique (routine_id, set_id)
 );

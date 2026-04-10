@@ -9,11 +9,26 @@ type ExerciseStep = {
   type: "exercise";
   exercise: Exercise;
   setName: string;
+  setIndex: number;
+  roundLabel: string | null;
+  exerciseInSetIndex: number;
+  exerciseInSetTotal: number;
   globalIndex: number;
   totalExercises: number;
 };
-type RestStep = { type: "rest" };
+type RestStep = {
+  type: "rest";
+  afterSetIndex: number;
+  nextSetName?: string;
+  nextRoundLabel?: string | null;
+};
 type Step = ExerciseStep | RestStep;
+
+interface SetNode {
+  name: string;
+  roundLabel: string | null;
+  exercises: Exercise[];
+}
 
 interface Props {
   routine: RoutineWithSets;
@@ -26,9 +41,11 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
   );
 
   const steps: Step[] = [];
+  const setTree: SetNode[] = [];
   let globalIdx = 0;
+  let setExpandedIdx = 0;
   const totalExercises = sortedSets.reduce(
-    (sum, rs) => sum + rs.set.set_exercises.length,
+    (sum, rs) => sum + rs.set.set_exercises.length * rs.rounds,
     0,
   );
 
@@ -37,18 +54,43 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
       .sort((a, b) => a.position - b.position)
       .map((se) => se.exercise);
 
-    exercises.forEach((ex) => {
-      steps.push({
-        type: "exercise",
-        exercise: ex,
-        setName: rs.set.name,
-        globalIndex: globalIdx,
-        totalExercises,
+    for (let round = 0; round < rs.rounds; round++) {
+      const roundLabel = rs.rounds > 1 ? `${round + 1}/${rs.rounds}` : null;
+
+      setTree.push({ name: rs.set.name, roundLabel, exercises });
+
+      exercises.forEach((ex, exIdx) => {
+        steps.push({
+          type: "exercise",
+          exercise: ex,
+          setName: rs.set.name,
+          setIndex: setExpandedIdx,
+          roundLabel,
+          exerciseInSetIndex: exIdx,
+          exerciseInSetTotal: exercises.length,
+          globalIndex: globalIdx,
+          totalExercises,
+        });
+        globalIdx++;
       });
-      globalIdx++;
-    });
-    if (blockIdx < sortedSets.length - 1) {
-      steps.push({ type: "rest" });
+      const isLastRound = round === rs.rounds - 1;
+      const isLastBlock = blockIdx === sortedSets.length - 1;
+      if (!(isLastRound && isLastBlock)) {
+        const nextBlockIdx = isLastRound ? blockIdx + 1 : blockIdx;
+        const nextRound = isLastRound ? 0 : round + 1;
+        const nextRs = sortedSets[nextBlockIdx];
+        const nextRoundLabel =
+          nextRs && nextRs.rounds > 1
+            ? `${nextRound + 1}/${nextRs.rounds}`
+            : null;
+        steps.push({
+          type: "rest",
+          afterSetIndex: setExpandedIdx,
+          nextSetName: nextRs?.set.name,
+          nextRoundLabel,
+        });
+      }
+      setExpandedIdx++;
     }
   });
 
@@ -161,10 +203,15 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
   const overallProgress =
     totalDuration > 0 ? (completedDuration / totalDuration) * 100 : 0;
 
-  const nextExerciseAfterRest =
-    phase === "rest" && stepIndex + 1 < totalSteps
-      ? steps[stepIndex + 1]
-      : null;
+  // Current active set index for the tree highlight
+  const activeSetIndex =
+    currentStep?.type === "exercise"
+      ? currentStep.setIndex
+      : currentStep?.type === "rest"
+        ? currentStep.afterSetIndex
+        : -1;
+  const activeExerciseInSet =
+    currentStep?.type === "exercise" ? currentStep.exerciseInSetIndex : -1;
 
   return (
     <div
@@ -176,25 +223,95 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="flex items-center justify-between px-4 py-3 border-b">
-          <div className="min-w-0">
+        <div className="px-4 py-3 border-b space-y-3">
+          <div className="flex items-center justify-between">
             <h2 className="font-semibold text-sm truncate">{routine.name}</h2>
-            {phase === "exercise" && currentStep?.type === "exercise" && (
-              <p className="text-xs text-gray-400 truncate">
-                {currentStep.setName} — Ejercicio {currentStep.globalIndex + 1}/
-                {currentStep.totalExercises} — {currentStep.exercise.title}
-              </p>
-            )}
-            {phase === "rest" && (
-              <p className="text-xs text-gray-400">Descanso entre sets</p>
-            )}
+            <button
+              onClick={onClose}
+              className="text-gray-400 hover:text-gray-600 text-xl leading-none ml-2"
+            >
+              &times;
+            </button>
           </div>
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 text-xl leading-none ml-2"
-          >
-            &times;
-          </button>
+
+          {/* Progress tree */}
+          {phase !== "finished" && (
+            <div className="flex gap-1 overflow-x-auto pb-1">
+              {setTree.map((node, si) => {
+                const isDone =
+                  si < activeSetIndex ||
+                  (si === activeSetIndex && phase === "rest");
+                const isCurrent = si === activeSetIndex && phase === "exercise";
+                const isFuture =
+                  si > activeSetIndex ||
+                  (si === activeSetIndex && phase === "rest" && false);
+
+                return (
+                  <div
+                    key={si}
+                    className={`flex-shrink-0 rounded-lg border px-2 py-1.5 text-[11px] leading-tight transition-colors ${
+                      isCurrent
+                        ? "border-blue-400 bg-blue-50"
+                        : isDone
+                          ? "border-green-300 bg-green-50"
+                          : "border-gray-200 bg-gray-50 opacity-50"
+                    }`}
+                  >
+                    <div
+                      className={`font-semibold truncate max-w-[7rem] ${isCurrent ? "text-blue-700" : isDone ? "text-green-600" : "text-gray-400"}`}
+                    >
+                      {isDone ? "✓ " : ""}
+                      {node.name}
+                    </div>
+                    {node.roundLabel && (
+                      <div
+                        className={`${isCurrent ? "text-blue-500" : isDone ? "text-green-400" : "text-gray-400"}`}
+                      >
+                        Ronda {node.roundLabel}
+                      </div>
+                    )}
+                    {isCurrent && (
+                      <div className="mt-1 space-y-0.5">
+                        {node.exercises.map((ex, ei) => {
+                          const exDone = ei < activeExerciseInSet;
+                          const exActive = ei === activeExerciseInSet;
+                          return (
+                            <div
+                              key={ei}
+                              className={`truncate max-w-[7rem] ${
+                                exActive
+                                  ? "text-blue-700 font-semibold"
+                                  : exDone
+                                    ? "text-green-500 line-through"
+                                    : "text-gray-400"
+                              }`}
+                            >
+                              {exDone ? "✓ " : exActive ? "▸ " : "  "}
+                              {ex.title}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+
+          {phase === "exercise" && currentStep?.type === "exercise" && (
+            <div>
+              <p className="text-sm font-medium truncate">
+                {currentStep.exercise.title}
+              </p>
+            </div>
+          )}
+
+          {phase === "rest" && (
+            <div>
+              <p className="text-xs text-gray-400">Descanso entre sets</p>
+            </div>
+          )}
         </div>
 
         {/* Content area */}
@@ -247,10 +364,18 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
               <p className="text-3xl font-bold tabular-nums text-gray-700">
                 {Math.max(0, Math.ceil(routine.rest_secs - elapsed))}s
               </p>
-              {nextExerciseAfterRest?.type === "exercise" && (
-                <p className="text-sm text-gray-400">
-                  Siguiente: {nextExerciseAfterRest.exercise.title}
-                </p>
+              {currentStep?.type === "rest" && currentStep.nextSetName && (
+                <div className="text-center space-y-1">
+                  <p className="text-sm text-gray-400">Siguiente set</p>
+                  <p className="text-sm font-medium text-gray-600">
+                    {currentStep.nextSetName}
+                    {currentStep.nextRoundLabel && (
+                      <span className="ml-1 text-purple-500 text-xs">
+                        Ronda {currentStep.nextRoundLabel}
+                      </span>
+                    )}
+                  </p>
+                </div>
               )}
             </div>
           )}

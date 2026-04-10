@@ -66,6 +66,7 @@ export interface RoutineSet {
   routine_id: string
   set_id: string
   position: number
+  rounds: number
   created_at: string
   set: SetWithExercises
 }
