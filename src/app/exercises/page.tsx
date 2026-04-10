@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import type { Exercise } from "@/types";
+import ExerciseCard from "./ExerciseCard";
 
 export default async function ExercisesPage() {
   const supabase = await createClient();
@@ -24,24 +25,7 @@ export default async function ExercisesPage() {
       ) : (
         <div className="grid gap-4 sm:grid-cols-2">
           {exercises.map((exercise) => (
-            <Link
-              key={exercise.id}
-              href={`/exercises/${exercise.id}`}
-              className="block bg-white rounded-lg border border-gray-200 p-5 hover:shadow-md transition-shadow"
-            >
-              <h2 className="font-semibold text-lg">{exercise.title}</h2>
-              {exercise.description && (
-                <p className="text-gray-500 text-sm mt-1 line-clamp-2">
-                  {exercise.description}
-                </p>
-              )}
-              <div className="mt-3 flex items-center gap-3 text-xs text-gray-400">
-                <span>{exercise.duration_secs}s</span>
-                {exercise.image_urls.length > 0 && (
-                  <span>{exercise.image_urls.length} image(s)</span>
-                )}
-              </div>
-            </Link>
+            <ExerciseCard key={exercise.id} exercise={exercise} />
           ))}
         </div>
       )}

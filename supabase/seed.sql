@@ -10,60 +10,18 @@ insert into
 values (
         'Barbell Back Squat',
         'Stand with a barbell on your upper back, squat down until thighs are parallel, then drive back up.',
-        '{}',
-        45
+        '{"https://images.unsplash.com/photo-1513352098199-8ccf457b35a8?w=800&fit=crop","https://images.unsplash.com/photo-1517964706594-8bf49837d8dc?w=800&fit=crop","https://images.unsplash.com/photo-1556817411-58c45dd94e8c?w=800&fit=crop"}',
+        9
     ),
     (
         'Bench Press',
         'Lie on a flat bench, lower the barbell to your chest, then press it back up to full arm extension.',
-        '{}',
-        40
+        '{"https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&fit=crop","https://images.unsplash.com/photo-1521804906057-1df8fdb718b7?w=800&fit=crop"}',
+        12
     ),
     (
         'Deadlift',
         'With feet hip-width apart, hinge at the hips to grip the barbell and lift it by extending hips and knees.',
-        '{}',
-        50
-    ),
-    (
-        'Overhead Press',
-        'Press a barbell from shoulder height to overhead while standing with a braced core.',
-        '{}',
-        35
-    ),
-    (
-        'Barbell Row',
-        'Hinge forward at the hips and pull the barbell toward your lower chest, squeezing your shoulder blades.',
-        '{}',
-        40
-    ),
-    (
-        'Pull-Up',
-        'Hang from a bar with palms facing away and pull yourself up until your chin clears the bar.',
-        '{}',
-        30
-    ),
-    (
-        'Dumbbell Lunges',
-        'Hold a dumbbell in each hand, step forward and lower your back knee toward the ground, then push back up.',
-        '{}',
-        40
-    ),
-    (
-        'Plank',
-        'Hold a push-up position on your forearms, keeping your body in a straight line from head to heels.',
-        '{}',
-        60
-    ),
-    (
-        'Romanian Deadlift',
-        'Hold a barbell with straight arms, hinge at the hips while keeping legs slightly bent, then return to standing.',
-        '{}',
-        45
-    ),
-    (
-        'Dumbbell Lateral Raise',
-        'Stand with dumbbells at your sides and raise them out to shoulder height with a slight bend in the elbows.',
-        '{}',
-        30
+        '{"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&fit=crop","https://images.unsplash.com/photo-1517964706594-8bf49837d8dc?w=800&fit=crop","https://images.unsplash.com/photo-1556817411-58c45dd94e8c?w=800&fit=crop","https://images.unsplash.com/photo-1517963879433-6ad2b056d712?w=800&fit=crop"}',
+        20
     );
