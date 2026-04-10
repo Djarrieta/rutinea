@@ -292,7 +292,10 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
                               {exDone ? "✓ " : exActive ? "▸ " : "  "}
                               {ex.title}
                               {ex.repetitions > 1 && (
-                                <span className="opacity-60 font-normal"> ×{ex.repetitions}</span>
+                                <span className="opacity-60 font-normal">
+                                  {" "}
+                                  ×{ex.repetitions}
+                                </span>
                               )}
                             </div>
                           );

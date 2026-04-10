@@ -142,10 +142,7 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
       </div>
 
       <div>
-        <label
-          htmlFor="repetitions"
-          className="block text-sm font-medium mb-1"
-        >
+        <label htmlFor="repetitions" className="block text-sm font-medium mb-1">
           Repeticiones
         </label>
         <input

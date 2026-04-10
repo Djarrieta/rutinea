@@ -18,7 +18,8 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
   const [isPlaying, setIsPlaying] = useState(true);
 
   const currentImageIndex = images.length > 0 ? currentSlot % images.length : 0;
-  const currentRep = images.length > 0 ? Math.floor(currentSlot / images.length) + 1 : 1;
+  const currentRep =
+    images.length > 0 ? Math.floor(currentSlot / images.length) + 1 : 1;
 
   // Advance images based on elapsed time
   useEffect(() => {
@@ -106,7 +107,8 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
           {/* Image counter + repetition */}
           {images.length > 0 && (
             <span className="absolute top-3 right-3 bg-black/60 text-white text-xs px-2 py-1 rounded-full">
-              {currentImageIndex + 1}/{images.length}{repetitions > 1 ? ` · rep ${currentRep}/${repetitions}` : ''}
+              {currentImageIndex + 1}/{images.length}
+              {repetitions > 1 ? ` · rep ${currentRep}/${repetitions}` : ""}
             </span>
           )}
         </div>
