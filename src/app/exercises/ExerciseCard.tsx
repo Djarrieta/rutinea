@@ -19,6 +19,18 @@ export default function ExerciseCard({ exercise }: { exercise: Exercise }) {
             </p>
           )}
         </Link>
+        {exercise.tags.length > 0 && (
+          <div className="mt-2 flex flex-wrap gap-1.5">
+            {exercise.tags.map((tag) => (
+              <span
+                key={tag}
+                className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-xs"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+        )}
         <div className="mt-3 flex items-center justify-between">
           <div className="flex items-center gap-3 text-xs text-gray-400">
             <span>{exercise.duration_secs}s</span>

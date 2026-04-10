@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^cd /home/djarrieta/ai/rutinea && bun db:reset$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}

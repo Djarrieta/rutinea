@@ -13,6 +13,7 @@ create table public.exercises (
     title text not null,
     description text,
     image_urls text [] not null default '{}',
+    tags text [] not null default '{}',
     duration_secs integer not null default 0,
     created_at timestamptz not null default now(),
     updated_at timestamptz not null default now()

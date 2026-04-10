@@ -40,6 +40,19 @@ export default async function ExerciseDetailPage({
         </div>
       </dl>
 
+      {exercise.tags.length > 0 && (
+        <div className="flex flex-wrap gap-1.5 mb-6">
+          {exercise.tags.map((tag) => (
+            <span
+              key={tag}
+              className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-xs"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+
       {exercise.image_urls.length > 0 && (
         <div className="flex gap-3 flex-wrap mb-6">
           {exercise.image_urls.map((url, i) => (

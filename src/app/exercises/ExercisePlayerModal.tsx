@@ -10,7 +10,8 @@ interface Props {
 
 export default function ExercisePlayerModal({ exercise, onClose }: Props) {
   const { image_urls, duration_secs } = exercise;
-  const timePerImage = image_urls.length > 0 ? duration_secs / image_urls.length : 0;
+  const timePerImage =
+    image_urls.length > 0 ? duration_secs / image_urls.length : 0;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [elapsed, setElapsed] = useState(0);
@@ -27,7 +28,7 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
         const next = prev + 0.1;
         const nextIndex = Math.min(
           Math.floor(next / timePerImage),
-          totalImages - 1
+          totalImages - 1,
         );
         setCurrentIndex(nextIndex);
 
