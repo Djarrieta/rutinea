@@ -1,15 +1,15 @@
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
-import type { Routine } from "@/types";
+import type { RoutineWithExercises } from "@/types";
 import RoutineCard from "./RoutineCard";
 
 export default async function RoutinesPage() {
   const supabase = await createClient();
   const { data: routines } = await supabase
     .from("routines")
-    .select("*, routine_exercises(count)")
+    .select("*, routine_exercises(*, exercise:exercises(*))")
     .order("created_at", { ascending: false })
-    .returns<(Routine & { routine_exercises: [{ count: number }] })[]>();
+    .returns<RoutineWithExercises[]>();
 
   return (
     <div>
@@ -28,7 +28,7 @@ export default async function RoutinesPage() {
             <RoutineCard
               key={routine.id}
               routine={routine}
-              exerciseCount={routine.routine_exercises[0].count}
+              exerciseCount={routine.routine_exercises.length}
             />
           ))}
         </div>
