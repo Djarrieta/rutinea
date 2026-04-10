@@ -37,10 +37,20 @@ insert into
 values (
         'Rutina Full Body',
         'Rutina completa de cuerpo entero con los 3 movimientos básicos.',
-        90
+        7
+    ),
+    (
+        'Rutina Tren Superior',
+        'Enfocada en pecho y espalda con press de banca y peso muerto.',
+        10
+    ),
+    (
+        'Rutina Fuerza Piernas',
+        'Sentadilla y peso muerto para desarrollar fuerza en tren inferior.',
+        5
     );
 
--- Link exercises to the routine in order
+-- Link exercises to Rutina Full Body (all 3 exercises)
 insert into
     public.routine_exercises (
         routine_id,
@@ -54,3 +64,38 @@ from public.routines r
     cross join public.exercises e
 where
     r.name = 'Rutina Full Body';
+
+-- Link exercises to Rutina Tren Superior (Bench Press + Deadlift)
+insert into
+    public.routine_exercises (
+        routine_id,
+        exercise_id,
+        position
+    )
+select r.id, e.id, row_number() over (
+        order by e.created_at
+    ) - 1
+from public.routines r
+    cross join public.exercises e
+where
+    r.name = 'Rutina Tren Superior'
+    and e.title in ('Bench Press', 'Deadlift');
+
+-- Link exercises to Rutina Fuerza Piernas (Squat + Deadlift)
+insert into
+    public.routine_exercises (
+        routine_id,
+        exercise_id,
+        position
+    )
+select r.id, e.id, row_number() over (
+        order by e.created_at
+    ) - 1
+from public.routines r
+    cross join public.exercises e
+where
+    r.name = 'Rutina Fuerza Piernas'
+    and e.title in (
+        'Barbell Back Squat',
+        'Deadlift'
+    );
