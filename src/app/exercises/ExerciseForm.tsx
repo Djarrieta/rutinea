@@ -51,7 +51,10 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
 
       <div>
         <label htmlFor="tags" className="block text-sm font-medium mb-1">
-          Tags <span className="text-gray-400">(comma-separated, e.g. bench, bar, mattress)</span>
+          Tags{" "}
+          <span className="text-gray-400">
+            (comma-separated, e.g. bench, bar, mattress)
+          </span>
         </label>
         <input
           id="tags"
