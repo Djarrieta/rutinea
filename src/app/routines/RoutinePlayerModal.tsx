@@ -113,7 +113,9 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
     currentStep?.type === "exercise" ? currentStep.exercise : null;
   const images = currentExercise?.images ?? [];
   const exerciseDuration = currentExercise?.duration_secs ?? 0;
-  const timePerImage = images.length > 0 ? exerciseDuration / images.length : 0;
+  const exerciseRepetitions = currentExercise?.repetitions ?? 1;
+  const totalSlots = images.length * exerciseRepetitions;
+  const timePerSlot = totalSlots > 0 ? exerciseDuration / totalSlots : 0;
   const phaseDuration =
     phase === "exercise" ? exerciseDuration : routine.rest_secs;
 
@@ -124,12 +126,12 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
       setElapsed((prev) => {
         const next = prev + 0.1;
 
-        if (phase === "exercise" && images.length > 0 && timePerImage > 0) {
-          const nextImg = Math.min(
-            Math.floor(next / timePerImage),
-            images.length - 1,
+        if (phase === "exercise" && totalSlots > 0 && timePerSlot > 0) {
+          const nextSlot = Math.min(
+            Math.floor(next / timePerSlot),
+            totalSlots - 1,
           );
-          setImageIndex(nextImg);
+          setImageIndex(nextSlot % images.length);
         }
 
         if (next >= phaseDuration) {
@@ -157,7 +159,8 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
     stepIndex,
     totalSteps,
     images.length,
-    timePerImage,
+    timePerSlot,
+    totalSlots,
     steps,
   ]);
 
@@ -288,6 +291,9 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
                             >
                               {exDone ? "✓ " : exActive ? "▸ " : "  "}
                               {ex.title}
+                              {ex.repetitions > 1 && (
+                                <span className="opacity-60 font-normal"> ×{ex.repetitions}</span>
+                              )}
                             </div>
                           );
                         })}

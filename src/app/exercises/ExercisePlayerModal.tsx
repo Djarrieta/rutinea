@@ -9,27 +9,29 @@ interface Props {
 }
 
 export default function ExercisePlayerModal({ exercise, onClose }: Props) {
-  const { images, duration_secs } = exercise;
-  const timePerImage = images.length > 0 ? duration_secs / images.length : 0;
+  const { images, duration_secs, repetitions } = exercise;
+  const totalSlots = images.length * repetitions;
+  const timePerSlot = totalSlots > 0 ? duration_secs / totalSlots : 0;
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentSlot, setCurrentSlot] = useState(0);
   const [elapsed, setElapsed] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
 
-  const totalImages = images.length;
+  const currentImageIndex = images.length > 0 ? currentSlot % images.length : 0;
+  const currentRep = images.length > 0 ? Math.floor(currentSlot / images.length) + 1 : 1;
 
   // Advance images based on elapsed time
   useEffect(() => {
-    if (!isPlaying || totalImages === 0) return;
+    if (!isPlaying || totalSlots === 0) return;
 
     const interval = setInterval(() => {
       setElapsed((prev) => {
         const next = prev + 0.1;
-        const nextIndex = Math.min(
-          Math.floor(next / timePerImage),
-          totalImages - 1,
+        const nextSlot = Math.min(
+          Math.floor(next / timePerSlot),
+          totalSlots - 1,
         );
-        setCurrentIndex(nextIndex);
+        setCurrentSlot(nextSlot);
 
         if (next >= duration_secs) {
           setIsPlaying(false);
@@ -40,7 +42,7 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
     }, 100);
 
     return () => clearInterval(interval);
-  }, [isPlaying, timePerImage, duration_secs, totalImages]);
+  }, [isPlaying, timePerSlot, duration_secs, totalSlots]);
 
   // Close on Escape
   useEffect(() => {
@@ -52,7 +54,7 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
   }, [onClose]);
 
   const restart = useCallback(() => {
-    setCurrentIndex(0);
+    setCurrentSlot(0);
     setElapsed(0);
     setIsPlaying(true);
   }, []);
@@ -82,10 +84,10 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
 
         {/* Image area */}
         <div className="relative aspect-square bg-gray-100">
-          {totalImages > 0 ? (
+          {images.length > 0 ? (
             <img
-              src={images[currentIndex].url}
-              alt={`${exercise.title} step ${currentIndex + 1}`}
+              src={images[currentImageIndex].url}
+              alt={`${exercise.title} step ${currentImageIndex + 1}`}
               className="w-full h-full object-cover"
             />
           ) : (
@@ -95,16 +97,16 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
           )}
 
           {/* Tip overlay */}
-          {totalImages > 0 && images[currentIndex].description && (
+          {images.length > 0 && images[currentImageIndex].description && (
             <div className="absolute bottom-3 left-3 right-3 bg-black/60 text-white text-sm px-3 py-2 rounded-lg text-center">
-              {images[currentIndex].description}
+              {images[currentImageIndex].description}
             </div>
           )}
 
-          {/* Image counter */}
-          {totalImages > 1 && (
+          {/* Image counter + repetition */}
+          {images.length > 0 && (
             <span className="absolute top-3 right-3 bg-black/60 text-white text-xs px-2 py-1 rounded-full">
-              {currentIndex + 1} / {totalImages}
+              {currentImageIndex + 1}/{images.length}{repetitions > 1 ? ` · rep ${currentRep}/${repetitions}` : ''}
             </span>
           )}
         </div>

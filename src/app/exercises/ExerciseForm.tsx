@@ -141,6 +141,23 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
         />
       </div>
 
+      <div>
+        <label
+          htmlFor="repetitions"
+          className="block text-sm font-medium mb-1"
+        >
+          Repeticiones
+        </label>
+        <input
+          id="repetitions"
+          name="repetitions"
+          type="number"
+          min={1}
+          defaultValue={exercise?.repetitions ?? 1}
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
+
       <button
         type="submit"
         className="bg-blue-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-blue-700"

@@ -35,6 +35,10 @@ export default async function ExerciseDetailPage({
           <dd>{exercise.duration_secs}s</dd>
         </div>
         <div>
+          <dt className="text-gray-400">Repeticiones</dt>
+          <dd>{exercise.repetitions}</dd>
+        </div>
+        <div>
           <dt className="text-gray-400">Imágenes</dt>
           <dd>{exercise.images.length || "Ninguna"}</dd>
         </div>

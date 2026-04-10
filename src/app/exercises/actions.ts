@@ -26,6 +26,7 @@ export async function createExercise(formData: FormData) {
       .map((t) => t.trim())
       .filter(Boolean),
     duration_secs: Number(formData.get('duration_secs')) || 0,
+    repetitions: Number(formData.get('repetitions')) || 1,
   }
 
   const { error } = await supabase.from('exercises').insert(input)
@@ -48,6 +49,7 @@ export async function updateExercise(id: string, formData: FormData) {
       .map((t) => t.trim())
       .filter(Boolean),
     duration_secs: Number(formData.get('duration_secs')) || 0,
+    repetitions: Number(formData.get('repetitions')) || 1,
   }
 
   const { error } = await supabase

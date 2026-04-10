@@ -34,6 +34,9 @@ export default function ExerciseCard({ exercise }: { exercise: Exercise }) {
         <div className="mt-3 flex items-center justify-between">
           <div className="flex items-center gap-3 text-xs text-gray-400">
             <span>{exercise.duration_secs}s</span>
+            {exercise.repetitions > 1 && (
+              <span>{exercise.repetitions} reps</span>
+            )}
             {exercise.images.length > 0 && (
               <span>{exercise.images.length} imagen(es)</span>
             )}
