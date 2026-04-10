@@ -12,9 +12,8 @@ create table public.exercises (
     id uuid primary key default gen_random_uuid (),
     title text not null,
     description text,
-    image_urls text [] not null default '{}',
+    images jsonb not null default '[]'::jsonb,
     tags text [] not null default '{}',
-    tips text [] not null default '{}',
     duration_secs integer not null default 0,
     created_at timestamptz not null default now(),
     updated_at timestamptz not null default now()

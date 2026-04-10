@@ -36,7 +36,7 @@ export default async function ExerciseDetailPage({
         </div>
         <div>
           <dt className="text-gray-400">Imágenes</dt>
-          <dd>{exercise.image_urls.length || "Ninguna"}</dd>
+          <dd>{exercise.images.length || "Ninguna"}</dd>
         </div>
       </dl>
 
@@ -53,15 +53,21 @@ export default async function ExerciseDetailPage({
         </div>
       )}
 
-      {exercise.image_urls.length > 0 && (
+      {exercise.images.length > 0 && (
         <div className="flex gap-3 flex-wrap mb-6">
-          {exercise.image_urls.map((url, i) => (
-            <img
-              key={i}
-              src={url}
-              alt={`${exercise.title} ${i + 1}`}
-              className="w-32 h-32 object-cover rounded-lg border"
-            />
+          {exercise.images.map((img, i) => (
+            <div key={i} className="flex flex-col items-center gap-1">
+              <img
+                src={img.url}
+                alt={img.description || `${exercise.title} ${i + 1}`}
+                className="w-32 h-32 object-cover rounded-lg border"
+              />
+              {img.description && (
+                <span className="text-xs text-gray-500 text-center max-w-[8rem]">
+                  {img.description}
+                </span>
+              )}
+            </div>
           ))}
         </div>
       )}

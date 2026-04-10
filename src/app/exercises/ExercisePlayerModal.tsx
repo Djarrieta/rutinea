@@ -9,15 +9,14 @@ interface Props {
 }
 
 export default function ExercisePlayerModal({ exercise, onClose }: Props) {
-  const { image_urls, duration_secs } = exercise;
-  const timePerImage =
-    image_urls.length > 0 ? duration_secs / image_urls.length : 0;
+  const { images, duration_secs } = exercise;
+  const timePerImage = images.length > 0 ? duration_secs / images.length : 0;
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [elapsed, setElapsed] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
 
-  const totalImages = image_urls.length;
+  const totalImages = images.length;
 
   // Advance images based on elapsed time
   useEffect(() => {
@@ -85,7 +84,7 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
         <div className="relative aspect-square bg-gray-100">
           {totalImages > 0 ? (
             <img
-              src={image_urls[currentIndex]}
+              src={images[currentIndex].url}
               alt={`${exercise.title} step ${currentIndex + 1}`}
               className="w-full h-full object-cover"
             />
@@ -96,9 +95,9 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
           )}
 
           {/* Tip overlay */}
-          {exercise.tips.length > 0 && (
+          {totalImages > 0 && images[currentIndex].description && (
             <div className="absolute bottom-3 left-3 right-3 bg-black/60 text-white text-sm px-3 py-2 rounded-lg text-center">
-              {exercise.tips[currentIndex % exercise.tips.length]}
+              {images[currentIndex].description}
             </div>
           )}
 

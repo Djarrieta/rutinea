@@ -3,7 +3,16 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
-import type { CreateExerciseInput, UpdateExerciseInput } from '@/types'
+import type { CreateExerciseInput, UpdateExerciseInput, ExerciseImage } from '@/types'
+
+function parseImages(formData: FormData): ExerciseImage[] {
+  const raw = formData.get('images') as string || '[]'
+  try {
+    return JSON.parse(raw) as ExerciseImage[]
+  } catch {
+    return []
+  }
+}
 
 export async function createExercise(formData: FormData) {
   const supabase = await createClient()
@@ -11,15 +20,8 @@ export async function createExercise(formData: FormData) {
   const input: CreateExerciseInput = {
     title: formData.get('title') as string,
     description: (formData.get('description') as string) || null,
-    image_urls: (formData.get('image_urls') as string)
-      .split(',')
-      .map((u) => u.trim())
-      .filter(Boolean),
+    images: parseImages(formData),
     tags: (formData.get('tags') as string || '')
-      .split(',')
-      .map((t) => t.trim())
-      .filter(Boolean),
-    tips: (formData.get('tips') as string || '')
       .split(',')
       .map((t) => t.trim())
       .filter(Boolean),
@@ -40,15 +42,8 @@ export async function updateExercise(id: string, formData: FormData) {
   const input: UpdateExerciseInput = {
     title: formData.get('title') as string,
     description: (formData.get('description') as string) || null,
-    image_urls: (formData.get('image_urls') as string)
-      .split(',')
-      .map((u) => u.trim())
-      .filter(Boolean),
+    images: parseImages(formData),
     tags: (formData.get('tags') as string || '')
-      .split(',')
-      .map((t) => t.trim())
-      .filter(Boolean),
-    tips: (formData.get('tips') as string || '')
       .split(',')
       .map((t) => t.trim())
       .filter(Boolean),

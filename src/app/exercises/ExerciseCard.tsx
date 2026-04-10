@@ -34,11 +34,11 @@ export default function ExerciseCard({ exercise }: { exercise: Exercise }) {
         <div className="mt-3 flex items-center justify-between">
           <div className="flex items-center gap-3 text-xs text-gray-400">
             <span>{exercise.duration_secs}s</span>
-            {exercise.image_urls.length > 0 && (
-              <span>{exercise.image_urls.length} imagen(es)</span>
+            {exercise.images.length > 0 && (
+              <span>{exercise.images.length} imagen(es)</span>
             )}
           </div>
-          {exercise.image_urls.length > 0 && (
+          {exercise.images.length > 0 && (
             <button
               onClick={() => setShowPlayer(true)}
               className="flex items-center gap-1.5 bg-blue-600 text-white px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-blue-700 transition-colors"
