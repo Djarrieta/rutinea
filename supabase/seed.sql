@@ -29,3 +29,28 @@ values (
         '{"barra","espalda","piernas"}',
         20
     );
+
+-- Seed routines
+
+insert into
+    public.routines (name, description, rest_secs)
+values (
+        'Rutina Full Body',
+        'Rutina completa de cuerpo entero con los 3 movimientos básicos.',
+        90
+    );
+
+-- Link exercises to the routine in order
+insert into
+    public.routine_exercises (
+        routine_id,
+        exercise_id,
+        position
+    )
+select r.id, e.id, row_number() over (
+        order by e.created_at
+    ) - 1
+from public.routines r
+    cross join public.exercises e
+where
+    r.name = 'Rutina Full Body';

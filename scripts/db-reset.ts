@@ -1,5 +1,5 @@
 import postgres from "postgres";
-import { readFileSync } from "fs";
+import { readFileSync, readdirSync } from "fs";
 import { join, dirname } from "path";
 
 const root = join(dirname(new URL(import.meta.url).pathname), "..");
@@ -16,13 +16,13 @@ if (!databaseUrl) {
 const sql = postgres(databaseUrl);
 
 async function run() {
-  const migrationPath = join(
-    root,
-    "supabase/migrations/20240101000000_exercises.sql"
-  );
+  const migrationsDir = join(root, "supabase/migrations");
   const seedPath = join(root, "supabase/seed.sql");
 
-  const migrationSql = readFileSync(migrationPath, "utf-8");
+  const migrationFiles = readdirSync(migrationsDir)
+    .filter((f) => f.endsWith(".sql"))
+    .sort();
+
   const seedSql = readFileSync(seedPath, "utf-8");
 
   console.log("⚠  Resetting database...");
@@ -36,7 +36,11 @@ async function run() {
   }
 
   console.log("→ Running migrations...");
-  await sql.unsafe(migrationSql);
+  for (const file of migrationFiles) {
+    console.log(`  → ${file}`);
+    const migrationSql = readFileSync(join(migrationsDir, file), "utf-8");
+    await sql.unsafe(migrationSql);
+  }
 
   console.log("→ Seeding data...");
   await sql.unsafe(seedSql);
