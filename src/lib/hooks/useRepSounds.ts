@@ -3,6 +3,7 @@ import { useRef, useEffect, useCallback } from "react";
 const SOUNDS = {
   rep: "/sounds/rep.wav",
   lastRep: "/sounds/last-rep.wav",
+  tick: "/sounds/tick.wav",
 } as const;
 
 type SoundKey = keyof typeof SOUNDS;

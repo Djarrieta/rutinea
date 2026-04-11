@@ -108,8 +108,9 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
   const [elapsed, setElapsed] = useState(0);
   const [imageIndex, setImageIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
-  const { playRep } = useRepSounds();
+  const { playRep, play } = useRepSounds();
   const prevRepRef = useRef(1);
+  const prevTickSecRef = useRef(-1);
 
   const currentStep = steps[stepIndex] ?? null;
   const currentExercise =
@@ -141,6 +142,19 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
     }
     prevRepRef.current = currentRep;
   }, [currentRep, exerciseRepetitions, phase, playRep]);
+
+  // Play tick every second during rest
+  const restSecond = phase === "rest" ? Math.floor(elapsed) : -1;
+  useEffect(() => {
+    if (phase !== "rest" || !isPlaying) {
+      prevTickSecRef.current = -1;
+      return;
+    }
+    if (restSecond !== prevTickSecRef.current && restSecond >= 0) {
+      play("tick");
+    }
+    prevTickSecRef.current = restSecond;
+  }, [restSecond, phase, isPlaying, play]);
 
   useEffect(() => {
     if (!isPlaying || phase === "finished") return;
