@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import "./globals.css";
 import { getUser } from "@/lib/auth";
 import UserMenu from "./components/UserMenu";
@@ -29,46 +30,49 @@ export default async function RootLayout({
         <nav className="hidden sm:block bg-white border-b border-gray-200 px-6 py-4">
           <div className="max-w-4xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-6">
-              <a href="/" className="text-xl font-bold">
+              <Link href="/" className="text-xl font-bold">
                 Rutinea
-              </a>
+              </Link>
               <div className="flex gap-4 text-sm">
-                <a
+                <Link
                   href="/exercises"
                   className="text-gray-600 hover:text-gray-900"
                 >
                   Ejercicios
-                </a>
-                <a href="/sets" className="text-gray-600 hover:text-gray-900">
+                </Link>
+                <Link
+                  href="/sets"
+                  className="text-gray-600 hover:text-gray-900"
+                >
                   Sets
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/routines"
                   className="text-gray-600 hover:text-gray-900"
                 >
                   Rutinas
-                </a>
+                </Link>
               </div>
             </div>
             <div className="flex items-center gap-3">
-              <a
+              <Link
                 href="/exercises/new"
                 className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm hover:bg-gray-200"
               >
                 + Ejercicio
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/sets/new"
                 className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm hover:bg-gray-200"
               >
                 + Set
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/routines/new"
                 className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700"
               >
                 + Rutina
-              </a>
+              </Link>
               <UserMenu user={userMenu} />
             </div>
           </div>
@@ -81,7 +85,8 @@ export default async function RootLayout({
         {/* Mobile bottom nav */}
         <nav className="sm:hidden fixed bottom-0 inset-x-0 bg-white border-t border-gray-200 z-40">
           <div className="flex justify-around items-center h-14">
-            <a
+            <UserMenu user={userMenu} popoverDirection="up" />
+            <Link
               href="/exercises"
               className="flex flex-col items-center gap-0.5 text-gray-500 hover:text-gray-900 px-3 py-1"
             >
@@ -98,8 +103,8 @@ export default async function RootLayout({
                 />
               </svg>
               <span className="text-[10px] font-medium">Ejercicios</span>
-            </a>
-            <a
+            </Link>
+            <Link
               href="/sets"
               className="flex flex-col items-center gap-0.5 text-gray-500 hover:text-gray-900 px-3 py-1"
             >
@@ -113,8 +118,8 @@ export default async function RootLayout({
                 <path d="M6 7.5A.5.5 0 016.5 7h7a.5.5 0 010 1h-7A.5.5 0 016 7.5zM6 10.5a.5.5 0 01.5-.5h7a.5.5 0 010 1h-7a.5.5 0 01-.5-.5zM6.5 13a.5.5 0 000 1h4a.5.5 0 000-1h-4z" />
               </svg>
               <span className="text-[10px] font-medium">Sets</span>
-            </a>
-            <a
+            </Link>
+            <Link
               href="/routines"
               className="flex flex-col items-center gap-0.5 text-gray-500 hover:text-gray-900 px-3 py-1"
             >
@@ -131,8 +136,8 @@ export default async function RootLayout({
                 />
               </svg>
               <span className="text-[10px] font-medium">Rutinas</span>
-            </a>
-            <a
+            </Link>
+            <Link
               href="/routines/new"
               className="flex flex-col items-center gap-0.5 text-blue-600 hover:text-blue-700 px-3 py-1"
             >
@@ -145,7 +150,7 @@ export default async function RootLayout({
                 <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
               </svg>
               <span className="text-[10px] font-medium">Crear</span>
-            </a>
+            </Link>
           </div>
         </nav>
       </body>
