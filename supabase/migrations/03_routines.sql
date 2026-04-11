@@ -1,5 +1,9 @@
 -- ─── Routines ─────────────────────────────────────────────────────────────────
 
+drop table if exists public.routines cascade;
+
+drop table if exists public.routine_sets cascade;
+
 create table public.routines (
     id uuid primary key default gen_random_uuid (),
     name text not null,
@@ -29,30 +33,31 @@ for update
 
 create policy "routines: public delete" on public.routines for delete using (true);
 
--- ─── Routine ↔ Exercise join table ───────────────────────────────────────────
+-- ─── Routine ↔ Set join table ────────────────────────────────────────────────
 
-create table public.routine_exercises (
+create table public.routine_sets (
     id uuid primary key default gen_random_uuid (),
     routine_id uuid not null references public.routines (id) on delete cascade,
-    exercise_id uuid not null references public.exercises (id) on delete cascade,
+    set_id uuid not null references public.sets (id) on delete cascade,
     position integer not null default 0,
+    rounds integer not null default 1,
     created_at timestamptz not null default now(),
-    unique (routine_id, exercise_id)
+    unique (routine_id, set_id)
 );
 
-create index routine_exercises_routine_pos on public.routine_exercises (routine_id, position);
+create index routine_sets_routine_pos on public.routine_sets (routine_id, position);
 
-alter table public.routine_exercises enable row level security;
+alter table public.routine_sets enable row level security;
 
-create policy "routine_exercises: public read" on public.routine_exercises for
+create policy "routine_sets: public read" on public.routine_sets for
 select using (true);
 
-create policy "routine_exercises: public insert" on public.routine_exercises for insert
+create policy "routine_sets: public insert" on public.routine_sets for insert
 with
     check (true);
 
-create policy "routine_exercises: public update" on public.routine_exercises
+create policy "routine_sets: public update" on public.routine_sets
 for update
     using (true);
 
-create policy "routine_exercises: public delete" on public.routine_exercises for delete using (true);
+create policy "routine_sets: public delete" on public.routine_sets for delete using (true);

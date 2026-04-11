@@ -1,10 +1,8 @@
--- ─── Drop everything to start fresh ──────────────────────────────────────────
+-- ─── Exercises ────────────────────────────────────────────────────────────────
 
 drop table if exists public.exercises cascade;
 
 drop function if exists public.set_updated_at () cascade;
-
--- ─── Exercises ────────────────────────────────────────────────────────────────
 
 create extension if not exists "pgcrypto";
 
@@ -15,6 +13,7 @@ create table public.exercises (
     images jsonb not null default '[]'::jsonb,
     tags text [] not null default '{}',
     duration_secs integer not null default 0,
+    repetitions integer not null default 1,
     created_at timestamptz not null default now(),
     updated_at timestamptz not null default now()
 );
