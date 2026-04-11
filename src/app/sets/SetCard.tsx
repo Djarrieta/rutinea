@@ -1,5 +1,10 @@
-import Link from "next/link";
+"use client";
+
+import { useState } from "react";
 import type { SetWithExercises } from "@/types";
+import EntityCard from "@/app/components/EntityCard";
+import PlayButton from "@/app/components/PlayButton";
+import SetPlayerModal from "./SetPlayerModal";
 
 export default function SetCard({
   set,
@@ -8,21 +13,29 @@ export default function SetCard({
   set: SetWithExercises;
   exerciseCount: number;
 }) {
+  const [showPlayer, setShowPlayer] = useState(false);
+
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-5 hover:shadow-md transition-shadow">
-      <Link href={`/sets/${set.id}`}>
-        <h2 className="font-semibold text-lg">{set.name}</h2>
-        {set.description && (
-          <p className="text-gray-500 text-sm mt-1 line-clamp-2">
-            {set.description}
-          </p>
-        )}
-      </Link>
-      <div className="mt-3 text-xs text-gray-400">
-        <span>
-          {exerciseCount} ejercicio{exerciseCount !== 1 ? "s" : ""}
-        </span>
-      </div>
-    </div>
+    <>
+      <EntityCard
+        href={`/sets/${set.id}`}
+        title={set.name}
+        description={set.description}
+        meta={
+          <span>
+            {exerciseCount} ejercicio{exerciseCount !== 1 ? "s" : ""}
+          </span>
+        }
+        action={
+          exerciseCount > 0 ? (
+            <PlayButton onClick={() => setShowPlayer(true)} />
+          ) : undefined
+        }
+      />
+
+      {showPlayer && (
+        <SetPlayerModal set={set} onClose={() => setShowPlayer(false)} />
+      )}
+    </>
   );
 }

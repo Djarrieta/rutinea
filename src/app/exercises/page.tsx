@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import type { Exercise } from "@/types";
 import ExerciseCard from "./ExerciseCard";
+import PageHeader from "@/app/components/PageHeader";
 
 export default async function ExercisesPage() {
   const supabase = await createClient();
@@ -12,23 +12,16 @@ export default async function ExercisesPage() {
     .returns<Exercise[]>();
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-6">Ejercicios</h1>
-
-      {!exercises?.length ? (
-        <p className="text-gray-500">
-          No hay ejercicios aún.{" "}
-          <Link href="/exercises/new" className="text-blue-600 underline">
-            Crear uno
-          </Link>
-        </p>
-      ) : (
-        <div className="grid gap-4 sm:grid-cols-2">
-          {exercises.map((exercise) => (
-            <ExerciseCard key={exercise.id} exercise={exercise} />
-          ))}
-        </div>
-      )}
-    </div>
+    <PageHeader
+      title="Ejercicios"
+      emptyText="No hay ejercicios aún."
+      createHref="/exercises/new"
+      createLabel="Crear uno"
+      isEmpty={!exercises?.length}
+    >
+      {exercises?.map((exercise) => (
+        <ExerciseCard key={exercise.id} exercise={exercise} />
+      ))}
+    </PageHeader>
   );
 }

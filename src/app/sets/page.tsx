@@ -1,7 +1,7 @@
-import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import type { SetWithExercises } from "@/types";
 import SetCard from "./SetCard";
+import PageHeader from "@/app/components/PageHeader";
 
 export default async function SetsPage() {
   const supabase = await createClient();
@@ -12,27 +12,20 @@ export default async function SetsPage() {
     .returns<SetWithExercises[]>();
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-6">Sets</h1>
-
-      {!sets?.length ? (
-        <p className="text-gray-500">
-          No hay sets aún.{" "}
-          <Link href="/sets/new" className="text-blue-600 underline">
-            Crear uno
-          </Link>
-        </p>
-      ) : (
-        <div className="grid gap-4 sm:grid-cols-2">
-          {sets.map((set) => (
-            <SetCard
-              key={set.id}
-              set={set}
-              exerciseCount={set.set_exercises.length}
-            />
-          ))}
-        </div>
-      )}
-    </div>
+    <PageHeader
+      title="Sets"
+      emptyText="No hay sets aún."
+      createHref="/sets/new"
+      createLabel="Crear uno"
+      isEmpty={!sets?.length}
+    >
+      {sets?.map((set) => (
+        <SetCard
+          key={set.id}
+          set={set}
+          exerciseCount={set.set_exercises.length}
+        />
+      ))}
+    </PageHeader>
   );
 }

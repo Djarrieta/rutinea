@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback, useRef } from "react";
 import type { RoutineWithSets, Exercise } from "@/types";
 import { useRepSounds } from "@/lib/hooks/useRepSounds";
+import PlayerModalShell from "@/app/components/PlayerModalShell";
 
 type Phase = "exercise" | "rest" | "finished";
 
@@ -201,14 +202,6 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
     steps,
   ]);
 
-  useEffect(() => {
-    const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-    };
-    window.addEventListener("keydown", handleKey);
-    return () => window.removeEventListener("keydown", handleKey);
-  }, [onClose]);
-
   const restart = useCallback(() => {
     setStepIndex(0);
     setPhase(
@@ -253,214 +246,99 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
   const activeExerciseInSet =
     currentStep?.type === "exercise" ? currentStep.exerciseInSetIndex : -1;
 
-  return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
-      onClick={onClose}
-    >
-      <div
-        className="relative bg-white rounded-2xl overflow-hidden shadow-2xl max-w-lg w-full mx-4"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Header */}
-        <div className="px-4 py-3 border-b space-y-3">
-          <div className="flex items-center justify-between">
-            <h2 className="font-semibold text-sm truncate">{routine.name}</h2>
-            <button
-              onClick={onClose}
-              className="text-gray-400 hover:text-gray-600 text-xl leading-none ml-2"
-            >
-              &times;
-            </button>
-          </div>
+  const headerContent = (
+    <>
+      {phase !== "finished" && (
+        <div className="flex gap-1 overflow-x-auto pb-1">
+          {setTree.map((node, si) => {
+            const isDone =
+              si < activeSetIndex ||
+              (si === activeSetIndex && phase === "rest");
+            const isCurrent = si === activeSetIndex && phase === "exercise";
 
-          {/* Progress tree */}
-          {phase !== "finished" && (
-            <div className="flex gap-1 overflow-x-auto pb-1">
-              {setTree.map((node, si) => {
-                const isDone =
-                  si < activeSetIndex ||
-                  (si === activeSetIndex && phase === "rest");
-                const isCurrent = si === activeSetIndex && phase === "exercise";
-                const isFuture =
-                  si > activeSetIndex ||
-                  (si === activeSetIndex && phase === "rest" && false);
-
-                return (
+            return (
+              <div
+                key={si}
+                className={`flex-shrink-0 rounded-lg border px-2 py-1.5 text-[11px] leading-tight transition-colors ${
+                  isCurrent
+                    ? "border-blue-400 bg-blue-50"
+                    : isDone
+                      ? "border-green-300 bg-green-50"
+                      : "border-gray-200 bg-gray-50 opacity-50"
+                }`}
+              >
+                <div
+                  className={`font-semibold truncate max-w-[7rem] ${isCurrent ? "text-blue-700" : isDone ? "text-green-600" : "text-gray-400"}`}
+                >
+                  {isDone ? "✓ " : ""}
+                  {node.name}
+                </div>
+                {node.roundLabel && (
                   <div
-                    key={si}
-                    className={`flex-shrink-0 rounded-lg border px-2 py-1.5 text-[11px] leading-tight transition-colors ${
-                      isCurrent
-                        ? "border-blue-400 bg-blue-50"
-                        : isDone
-                          ? "border-green-300 bg-green-50"
-                          : "border-gray-200 bg-gray-50 opacity-50"
-                    }`}
+                    className={`${isCurrent ? "text-blue-500" : isDone ? "text-green-400" : "text-gray-400"}`}
                   >
-                    <div
-                      className={`font-semibold truncate max-w-[7rem] ${isCurrent ? "text-blue-700" : isDone ? "text-green-600" : "text-gray-400"}`}
-                    >
-                      {isDone ? "✓ " : ""}
-                      {node.name}
-                    </div>
-                    {node.roundLabel && (
-                      <div
-                        className={`${isCurrent ? "text-blue-500" : isDone ? "text-green-400" : "text-gray-400"}`}
-                      >
-                        Ronda {node.roundLabel}
-                      </div>
-                    )}
-                    {isCurrent && (
-                      <div className="mt-1 space-y-0.5">
-                        {node.exercises.map((ex, ei) => {
-                          const exDone = ei < activeExerciseInSet;
-                          const exActive = ei === activeExerciseInSet;
-                          return (
-                            <div
-                              key={ei}
-                              className={`truncate max-w-[7rem] ${
-                                exActive
-                                  ? "text-blue-700 font-semibold"
-                                  : exDone
-                                    ? "text-green-500 line-through"
-                                    : "text-gray-400"
-                              }`}
-                            >
-                              {exDone ? "✓ " : exActive ? "▸ " : "  "}
-                              {ex.title}
-                              {ex.repetitions > 1 && (
-                                <span className="opacity-60 font-normal">
-                                  {" "}
-                                  ×{ex.repetitions}
-                                </span>
-                              )}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    )}
+                    Ronda {node.roundLabel}
                   </div>
-                );
-              })}
-            </div>
-          )}
-
-          {phase === "exercise" && currentStep?.type === "exercise" && (
-            <div>
-              <p className="text-sm font-medium truncate">
-                {currentStep.exercise.title}
-              </p>
-            </div>
-          )}
-
-          {phase === "rest" && (
-            <div>
-              <p className="text-xs text-gray-400">Descanso entre sets</p>
-            </div>
-          )}
+                )}
+                {isCurrent && (
+                  <div className="mt-1 space-y-0.5">
+                    {node.exercises.map((ex, ei) => {
+                      const exDone = ei < activeExerciseInSet;
+                      const exActive = ei === activeExerciseInSet;
+                      return (
+                        <div
+                          key={ei}
+                          className={`truncate max-w-[7rem] ${
+                            exActive
+                              ? "text-blue-700 font-semibold"
+                              : exDone
+                                ? "text-green-500 line-through"
+                                : "text-gray-400"
+                          }`}
+                        >
+                          {exDone ? "✓ " : exActive ? "▸ " : "  "}
+                          {ex.title}
+                          {ex.repetitions > 1 && (
+                            <span className="opacity-60 font-normal">
+                              {" "}
+                              ×{ex.repetitions}
+                            </span>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            );
+          })}
         </div>
+      )}
 
-        {/* Content area */}
-        <div className="relative aspect-square bg-gray-100">
-          {phase === "exercise" && currentExercise && (
-            <>
-              {images.length > 0 ? (
-                <img
-                  src={images[imageIndex].url}
-                  alt={`${currentExercise.title} step ${imageIndex + 1}`}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                <div className="flex items-center justify-center h-full text-gray-400">
-                  Sin imágenes
-                </div>
-              )}
-
-              {images.length > 0 && images[imageIndex].description && (
-                <div className="absolute bottom-3 left-3 right-3 bg-black/60 text-white text-sm px-3 py-2 rounded-lg text-center">
-                  {images[imageIndex].description}
-                </div>
-              )}
-
-              {images.length > 1 && (
-                <span className="absolute top-3 right-3 bg-black/60 text-white text-xs px-2 py-1 rounded-full">
-                  {imageIndex + 1} / {images.length}
-                </span>
-              )}
-            </>
-          )}
-
-          {phase === "rest" && (
-            <div className="flex flex-col items-center justify-center h-full gap-4">
-              {/* Clock icon */}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-20 h-20 text-blue-500"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                />
-              </svg>
-              <p className="text-3xl font-bold tabular-nums text-gray-700">
-                {Math.max(0, Math.ceil(routine.rest_secs - elapsed))}s
-              </p>
-              {currentStep?.type === "rest" && currentStep.nextSetName && (
-                <div className="text-center space-y-1">
-                  <p className="text-sm text-gray-400">Siguiente set</p>
-                  <p className="text-sm font-medium text-gray-600">
-                    {currentStep.nextSetName}
-                    {currentStep.nextRoundLabel && (
-                      <span className="ml-1 text-purple-500 text-xs">
-                        Ronda {currentStep.nextRoundLabel}
-                      </span>
-                    )}
-                  </p>
-                </div>
-              )}
-            </div>
-          )}
-
-          {phase === "finished" && (
-            <div className="flex flex-col items-center justify-center h-full gap-3">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-16 h-16 text-green-500"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-                />
-              </svg>
-              <p className="text-lg font-semibold text-gray-700">
-                ¡Rutina completada!
-              </p>
-            </div>
-          )}
+      {phase === "exercise" && currentStep?.type === "exercise" && (
+        <div>
+          <p className="text-sm font-medium truncate">
+            {currentStep.exercise.title}
+          </p>
         </div>
+      )}
 
-        {/* Overall progress bar */}
-        <div className="h-1 bg-gray-200">
-          <div
-            className="h-full bg-blue-600 transition-all duration-100"
-            style={{
-              width: `${phase === "finished" ? 100 : Math.min(overallProgress, 100)}%`,
-            }}
-          />
+      {phase === "rest" && (
+        <div>
+          <p className="text-xs text-gray-400">Descanso entre sets</p>
         </div>
+      )}
+    </>
+  );
 
-        {/* Controls */}
-        <div className="flex items-center justify-between px-4 py-3">
+  return (
+    <PlayerModalShell
+      title={routine.name}
+      onClose={onClose}
+      progress={phase === "finished" ? 100 : overallProgress}
+      header={headerContent}
+      controls={
+        <>
           <span className="text-xs text-gray-500">
             {phase === "exercise" &&
               `${Math.ceil(elapsed)}s / ${exerciseDuration}s`}
@@ -485,8 +363,93 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
               </button>
             )}
           </div>
+        </>
+      }
+    >
+      {phase === "exercise" && currentExercise && (
+        <>
+          {images.length > 0 ? (
+            <img
+              src={images[imageIndex].url}
+              alt={`${currentExercise.title} step ${imageIndex + 1}`}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            <div className="flex items-center justify-center h-full text-gray-400">
+              Sin imágenes
+            </div>
+          )}
+
+          {images.length > 0 && images[imageIndex].description && (
+            <div className="absolute bottom-3 left-3 right-3 bg-black/60 text-white text-sm px-3 py-2 rounded-lg text-center">
+              {images[imageIndex].description}
+            </div>
+          )}
+
+          {images.length > 1 && (
+            <span className="absolute top-3 right-3 bg-black/60 text-white text-xs px-2 py-1 rounded-full">
+              {imageIndex + 1} / {images.length}
+            </span>
+          )}
+        </>
+      )}
+
+      {phase === "rest" && (
+        <div className="flex flex-col items-center justify-center h-full gap-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-20 h-20 text-blue-500"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            />
+          </svg>
+          <p className="text-3xl font-bold tabular-nums text-gray-700">
+            {Math.max(0, Math.ceil(routine.rest_secs - elapsed))}s
+          </p>
+          {currentStep?.type === "rest" && currentStep.nextSetName && (
+            <div className="text-center space-y-1">
+              <p className="text-sm text-gray-400">Siguiente set</p>
+              <p className="text-sm font-medium text-gray-600">
+                {currentStep.nextSetName}
+                {currentStep.nextRoundLabel && (
+                  <span className="ml-1 text-purple-500 text-xs">
+                    Ronda {currentStep.nextRoundLabel}
+                  </span>
+                )}
+              </p>
+            </div>
+          )}
         </div>
-      </div>
-    </div>
+      )}
+
+      {phase === "finished" && (
+        <div className="flex flex-col items-center justify-center h-full gap-3">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-16 h-16 text-green-500"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            />
+          </svg>
+          <p className="text-lg font-semibold text-gray-700">
+            ¡Rutina completada!
+          </p>
+        </div>
+      )}
+    </PlayerModalShell>
   );
 }
