@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { requireAuth } from "@/lib/auth";
 import ExerciseForm from "../../ExerciseForm";
 import { updateExercise } from "../../actions";
 import type { Exercise } from "@/types";
@@ -9,6 +10,7 @@ export default async function EditExercisePage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  await requireAuth();
   const { id } = await params;
   const supabase = await createClient();
   const { data: exercise } = await supabase

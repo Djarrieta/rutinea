@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { requireAuth } from "@/lib/auth";
 import SetForm from "../../SetForm";
 import { updateSet } from "../../actions";
 import type { SetWithExercises } from "@/types";
@@ -9,6 +10,7 @@ export default async function EditSetPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  await requireAuth();
   const { id } = await params;
   const supabase = await createClient();
   const { data: set } = await supabase

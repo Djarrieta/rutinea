@@ -1,16 +1,27 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { getUser } from "@/lib/auth";
+import UserMenu from "./components/UserMenu";
 
 export const metadata: Metadata = {
   title: "Rutinea",
   description: "App de ejercicios",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const user = await getUser();
+  const userMenu = user
+    ? {
+        email: user.email,
+        avatar_url: user.user_metadata?.avatar_url,
+        full_name: user.user_metadata?.full_name,
+      }
+    : null;
+
   return (
     <html lang="es">
       <body className="bg-gray-50 text-gray-900 min-h-screen pb-16 sm:pb-0">
@@ -39,7 +50,7 @@ export default function RootLayout({
                 </a>
               </div>
             </div>
-            <div className="flex gap-2">
+            <div className="flex items-center gap-3">
               <a
                 href="/exercises/new"
                 className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg text-sm hover:bg-gray-200"
@@ -58,6 +69,7 @@ export default function RootLayout({
               >
                 + Rutina
               </a>
+              <UserMenu user={userMenu} />
             </div>
           </div>
         </nav>

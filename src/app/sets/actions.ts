@@ -3,9 +3,11 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { requireAuth } from '@/lib/auth'
 import type { CreateSetInput, UpdateSetInput } from '@/types'
 
 export async function createSet(formData: FormData) {
+  await requireAuth()
   const supabase = await createClient()
 
   const input: CreateSetInput = {
@@ -42,6 +44,7 @@ export async function createSet(formData: FormData) {
 }
 
 export async function updateSet(id: string, formData: FormData) {
+  await requireAuth()
   const supabase = await createClient()
 
   const input: UpdateSetInput = {
@@ -84,6 +87,7 @@ export async function updateSet(id: string, formData: FormData) {
 }
 
 export async function deleteSet(id: string) {
+  await requireAuth()
   const supabase = await createClient()
 
   const { error } = await supabase.from('sets').delete().eq('id', id)

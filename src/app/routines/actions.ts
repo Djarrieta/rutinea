@@ -3,9 +3,11 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { requireAuth } from '@/lib/auth'
 import type { CreateRoutineInput, UpdateRoutineInput } from '@/types'
 
 export async function createRoutine(formData: FormData) {
+  await requireAuth()
   const supabase = await createClient()
 
   const input: CreateRoutineInput = {
@@ -44,6 +46,7 @@ export async function createRoutine(formData: FormData) {
 }
 
 export async function updateRoutine(id: string, formData: FormData) {
+  await requireAuth()
   const supabase = await createClient()
 
   const input: UpdateRoutineInput = {
@@ -88,6 +91,7 @@ export async function updateRoutine(id: string, formData: FormData) {
 }
 
 export async function deleteRoutine(id: string) {
+  await requireAuth()
   const supabase = await createClient()
 
   const { error } = await supabase.from('routines').delete().eq('id', id)

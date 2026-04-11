@@ -3,6 +3,7 @@
 import { revalidatePath } from 'next/cache'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { requireAuth } from '@/lib/auth'
 import type { CreateExerciseInput, UpdateExerciseInput, ExerciseImage } from '@/types'
 
 function parseImages(formData: FormData): ExerciseImage[] {
@@ -15,6 +16,7 @@ function parseImages(formData: FormData): ExerciseImage[] {
 }
 
 export async function createExercise(formData: FormData) {
+  await requireAuth()
   const supabase = await createClient()
 
   const input: CreateExerciseInput = {
@@ -38,6 +40,7 @@ export async function createExercise(formData: FormData) {
 }
 
 export async function updateExercise(id: string, formData: FormData) {
+  await requireAuth()
   const supabase = await createClient()
 
   const input: UpdateExerciseInput = {
@@ -64,6 +67,7 @@ export async function updateExercise(id: string, formData: FormData) {
 }
 
 export async function deleteExercise(id: string) {
+  await requireAuth()
   const supabase = await createClient()
 
   const { error } = await supabase.from('exercises').delete().eq('id', id)

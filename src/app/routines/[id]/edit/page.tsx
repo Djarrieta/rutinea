@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
+import { requireAuth } from "@/lib/auth";
 import RoutineForm from "../../RoutineForm";
 import { updateRoutine } from "../../actions";
 import type { RoutineWithSets } from "@/types";
@@ -9,6 +10,7 @@ export default async function EditRoutinePage({
 }: {
   params: Promise<{ id: string }>;
 }) {
+  await requireAuth();
   const { id } = await params;
   const supabase = await createClient();
   const { data: routine } = await supabase
