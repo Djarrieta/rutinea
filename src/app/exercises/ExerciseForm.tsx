@@ -1,12 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import type { Exercise, ExerciseImage } from "@/types";
+import { uploadExerciseImage } from "@/lib/supabase/storage";
+
+interface ImageItem extends ExerciseImage {
+  uploading?: boolean;
+}
 
 function ImageListInput({ defaultValue }: { defaultValue: ExerciseImage[] }) {
-  const [items, setItems] = useState<ExerciseImage[]>(
+  const [items, setItems] = useState<ImageItem[]>(
     defaultValue.length > 0 ? defaultValue : [{ url: "", description: "" }],
   );
+  const fileInputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
   const update = (index: number, field: keyof ExerciseImage, value: string) => {
     setItems((prev) =>
@@ -19,7 +25,30 @@ function ImageListInput({ defaultValue }: { defaultValue: ExerciseImage[] }) {
   const remove = (index: number) =>
     setItems((prev) => prev.filter((_, i) => i !== index));
 
-  const serialised = items.filter((it) => it.url.trim() !== "");
+  const handleFileUpload = async (index: number, file: File) => {
+    setItems((prev) =>
+      prev.map((it, i) => (i === index ? { ...it, uploading: true } : it)),
+    );
+    try {
+      const url = await uploadExerciseImage(file);
+      setItems((prev) =>
+        prev.map((it, i) =>
+          i === index ? { ...it, url, uploading: false } : it,
+        ),
+      );
+    } catch (err) {
+      alert(
+        `Error al subir imagen: ${err instanceof Error ? err.message : err}`,
+      );
+      setItems((prev) =>
+        prev.map((it, i) => (i === index ? { ...it, uploading: false } : it)),
+      );
+    }
+  };
+
+  const serialised = items
+    .filter((it) => it.url.trim() !== "")
+    .map(({ url, description }) => ({ url, description }));
 
   return (
     <div className="space-y-3">
@@ -27,13 +56,42 @@ function ImageListInput({ defaultValue }: { defaultValue: ExerciseImage[] }) {
       {items.map((item, i) => (
         <div key={i} className="flex gap-2 items-start">
           <div className="flex-1 space-y-1">
-            <input
-              type="url"
-              placeholder="URL de imagen"
-              value={item.url}
-              onChange={(e) => update(i, "url", e.target.value)}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+            <div className="flex gap-2">
+              <input
+                type="url"
+                placeholder="URL de imagen"
+                value={item.url}
+                onChange={(e) => update(i, "url", e.target.value)}
+                className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              <input
+                ref={(el) => {
+                  fileInputRefs.current[i] = el;
+                }}
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) handleFileUpload(i, file);
+                }}
+              />
+              <button
+                type="button"
+                disabled={item.uploading}
+                onClick={() => fileInputRefs.current[i]?.click()}
+                className="shrink-0 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 disabled:opacity-50"
+              >
+                {item.uploading ? "Subiendo…" : "📁"}
+              </button>
+            </div>
+            {item.url && (
+              <img
+                src={item.url}
+                alt={item.description || "preview"}
+                className="h-16 w-16 object-cover rounded-lg border border-gray-200"
+              />
+            )}
             <input
               type="text"
               placeholder="Descripción / tip"
@@ -103,7 +161,9 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
       <div>
         <label className="block text-sm font-medium mb-1">
           Imágenes{" "}
-          <span className="text-gray-400">(URL y descripción por imagen)</span>
+          <span className="text-gray-400">
+            (sube un archivo o pega una URL)
+          </span>
         </label>
         <ImageListInput defaultValue={exercise?.images ?? []} />
       </div>
