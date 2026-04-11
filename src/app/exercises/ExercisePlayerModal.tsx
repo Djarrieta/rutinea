@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import type { Exercise } from "@/types";
+import { useRepSounds } from "@/lib/hooks/useRepSounds";
 
 interface Props {
   exercise: Exercise;
@@ -16,10 +17,20 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
   const [currentSlot, setCurrentSlot] = useState(0);
   const [elapsed, setElapsed] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
+  const { playRep } = useRepSounds();
+  const prevRepRef = useRef(1);
 
   const currentImageIndex = images.length > 0 ? currentSlot % images.length : 0;
   const currentRep =
     images.length > 0 ? Math.floor(currentSlot / images.length) + 1 : 1;
+
+  // Play sound when rep changes
+  useEffect(() => {
+    if (currentRep !== prevRepRef.current && repetitions > 1) {
+      playRep(currentRep, repetitions);
+    }
+    prevRepRef.current = currentRep;
+  }, [currentRep, repetitions, playRep]);
 
   // Advance images based on elapsed time
   useEffect(() => {

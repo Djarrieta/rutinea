@@ -74,7 +74,7 @@ async function run() {
   }
 
   console.log("→ Uploading seed assets...");
-  const seedAssetsDir = join(root, "supabase/seedAssets");
+  const seedAssetsDir = join(root, "supabase/seed-assets");
   if (existsSync(seedAssetsDir)) {
     const assets = readdirSync(seedAssetsDir).filter((f) =>
       /\.(jpg|jpeg|png|gif|webp)$/i.test(f)

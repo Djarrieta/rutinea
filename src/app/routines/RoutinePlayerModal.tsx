@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import type { RoutineWithSets, Exercise } from "@/types";
+import { useRepSounds } from "@/lib/hooks/useRepSounds";
 
 type Phase = "exercise" | "rest" | "finished";
 
@@ -107,6 +108,8 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
   const [elapsed, setElapsed] = useState(0);
   const [imageIndex, setImageIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
+  const { playRep } = useRepSounds();
+  const prevRepRef = useRef(1);
 
   const currentStep = steps[stepIndex] ?? null;
   const currentExercise =
@@ -118,6 +121,26 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
   const timePerSlot = totalSlots > 0 ? exerciseDuration / totalSlots : 0;
   const phaseDuration =
     phase === "exercise" ? exerciseDuration : routine.rest_secs;
+
+  // Derive current rep from elapsed time
+  const currentSlot =
+    phase === "exercise" && totalSlots > 0 && timePerSlot > 0
+      ? Math.min(Math.floor(elapsed / timePerSlot), totalSlots - 1)
+      : 0;
+  const currentRep =
+    images.length > 0 ? Math.floor(currentSlot / images.length) + 1 : 1;
+
+  // Play sound when rep changes
+  useEffect(() => {
+    if (phase !== "exercise") {
+      prevRepRef.current = 1;
+      return;
+    }
+    if (currentRep !== prevRepRef.current && exerciseRepetitions > 1) {
+      playRep(currentRep, exerciseRepetitions);
+    }
+    prevRepRef.current = currentRep;
+  }, [currentRep, exerciseRepetitions, phase, playRep]);
 
   useEffect(() => {
     if (!isPlaying || phase === "finished") return;
