@@ -5,7 +5,7 @@ import { getUser } from "@/lib/auth";
 import { deletePlan } from "../actions";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import type { PlanWithRoutines } from "@/types";
-import { DAY_LABELS } from "@/types";
+import { DAY_LABELS, getTodayDayIndex } from "@/types";
 
 export default async function PlanDetailPage({
   params,
@@ -33,6 +33,8 @@ export default async function PlanDetailPage({
     (a, b) => a.day_of_week - b.day_of_week,
   );
 
+  const today = getTodayDayIndex();
+
   return (
     <div className="max-w-lg">
       <Breadcrumb
@@ -56,26 +58,43 @@ export default async function PlanDetailPage({
           <h2 className="text-sm font-medium text-text-muted">
             Rutinas por día
           </h2>
-          {sortedDays.map((pr) => (
-            <div
-              key={pr.id}
-              className="flex items-center gap-3 bg-surface border border-border rounded-lg px-4 py-3"
-            >
-              <span className="text-sm font-semibold w-24">
-                {DAY_LABELS[pr.day_of_week]}
-              </span>
-              <Link
-                href={`/routines/${pr.routine.id}`}
-                className="font-medium text-primary-600 hover:underline flex-1"
+          {sortedDays.map((pr) => {
+            const isToday = pr.day_of_week === today;
+            return (
+              <div
+                key={pr.id}
+                className={`flex items-center gap-3 rounded-lg px-4 py-3 ${
+                  isToday
+                    ? "bg-primary-500/10 border-2 border-primary-500/40 ring-1 ring-primary-500/20"
+                    : "bg-surface border border-border"
+                }`}
               >
-                {pr.routine.name}
-              </Link>
-              <span className="text-xs text-text-faint">
-                {pr.routine.routine_sets.length} set
-                {pr.routine.routine_sets.length !== 1 ? "s" : ""}
-              </span>
-            </div>
-          ))}
+                <span
+                  className={`text-sm font-semibold w-24 ${isToday ? "text-primary-400" : ""}`}
+                >
+                  {isToday && "▶ "}
+                  {DAY_LABELS[pr.day_of_week]}
+                </span>
+                <Link
+                  href={`/routines/${pr.routine.id}`}
+                  className={`font-medium hover:underline flex-1 ${
+                    isToday ? "text-primary-400" : "text-primary-600"
+                  }`}
+                >
+                  {pr.routine.name}
+                </Link>
+                <span className="text-xs text-text-faint">
+                  {pr.routine.routine_sets.length} set
+                  {pr.routine.routine_sets.length !== 1 ? "s" : ""}
+                </span>
+                {isToday && (
+                  <span className="text-xs bg-primary-500 text-black px-2 py-0.5 rounded-full font-medium">
+                    Hoy
+                  </span>
+                )}
+              </div>
+            );
+          })}
         </div>
       )}
 

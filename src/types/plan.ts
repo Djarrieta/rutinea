@@ -10,6 +10,11 @@ export const DAY_LABELS = [
   'Domingo',
 ] as const
 
+/** Convert JS Date.getDay() (0=Sun) to day_of_week index (0=Mon) */
+export function getTodayDayIndex(): number {
+  return (new Date().getDay() + 6) % 7
+}
+
 export interface Plan {
   id: string
   user_id: string
