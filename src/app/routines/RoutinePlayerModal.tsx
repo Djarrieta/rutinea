@@ -261,21 +261,21 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
                 key={si}
                 className={`flex-shrink-0 rounded-lg border px-2 py-1.5 text-[11px] leading-tight transition-colors ${
                   isCurrent
-                    ? "border-indigo-400 bg-indigo-50"
+                    ? "border-primary-400 bg-primary-50"
                     : isDone
-                      ? "border-green-300 bg-green-50"
-                      : "border-slate-200 bg-slate-50 opacity-50"
+                      ? "border-success-300 bg-success-50"
+                      : "border-border bg-bg opacity-50"
                 }`}
               >
                 <div
-                  className={`font-semibold truncate max-w-[7rem] ${isCurrent ? "text-indigo-700" : isDone ? "text-green-600" : "text-slate-400"}`}
+                  className={`font-semibold truncate max-w-[7rem] ${isCurrent ? "text-primary-700" : isDone ? "text-success-600" : "text-text-faint"}`}
                 >
                   {isDone ? "✓ " : ""}
                   {node.name}
                 </div>
                 {node.roundLabel && (
                   <div
-                    className={`${isCurrent ? "text-indigo-500" : isDone ? "text-green-400" : "text-slate-400"}`}
+                    className={`${isCurrent ? "text-primary-500" : isDone ? "text-success-400" : "text-text-faint"}`}
                   >
                     Ronda {node.roundLabel}
                   </div>
@@ -290,10 +290,10 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
                           key={ei}
                           className={`truncate max-w-[7rem] ${
                             exActive
-                              ? "text-indigo-700 font-semibold"
+                              ? "text-primary-700 font-semibold"
                               : exDone
-                                ? "text-green-500 line-through"
-                                : "text-slate-400"
+                                ? "text-success-500 line-through"
+                                : "text-text-faint"
                           }`}
                         >
                           {exDone ? "✓ " : exActive ? "▸ " : "  "}
@@ -325,7 +325,7 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
 
       {phase === "rest" && (
         <div>
-          <p className="text-xs text-slate-400">Descanso entre sets</p>
+          <p className="text-xs text-text-faint">Descanso entre sets</p>
         </div>
       )}
     </>
@@ -339,7 +339,7 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
       header={headerContent}
       controls={
         <>
-          <span className="text-xs text-slate-500">
+          <span className="text-xs text-text-muted">
             {phase === "exercise" &&
               `${Math.ceil(elapsed)}s / ${exerciseDuration}s`}
             {phase === "rest" &&
@@ -350,14 +350,14 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
             {phase === "finished" ? (
               <button
                 onClick={restart}
-                className="bg-indigo-600 text-white px-4 py-1.5 rounded-lg text-sm hover:bg-indigo-700"
+                className="bg-primary-500 text-black px-4 py-1.5 rounded-lg text-sm hover:bg-primary-600"
               >
                 Repetir
               </button>
             ) : (
               <button
                 onClick={() => setIsPlaying((p) => !p)}
-                className="bg-slate-100 px-4 py-1.5 rounded-lg text-sm hover:bg-slate-200"
+                className="bg-surface-alt px-4 py-1.5 rounded-lg text-sm hover:bg-surface-hover"
               >
                 {isPlaying ? "Pausar" : "Reanudar"}
               </button>
@@ -375,7 +375,7 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
               className="w-full h-full object-cover"
             />
           ) : (
-            <div className="flex items-center justify-center h-full text-slate-400">
+            <div className="flex items-center justify-center h-full text-text-faint">
               Sin imágenes
             </div>
           )}
@@ -402,7 +402,7 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-20 h-20 text-indigo-500"
+            className="w-20 h-20 text-primary-500"
           >
             <path
               strokeLinecap="round"
@@ -410,16 +410,16 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
               d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
             />
           </svg>
-          <p className="text-3xl font-bold tabular-nums text-slate-700">
+          <p className="text-3xl font-bold tabular-nums text-text-secondary">
             {Math.max(0, Math.ceil(routine.rest_secs - elapsed))}s
           </p>
           {currentStep?.type === "rest" && currentStep.nextSetName && (
             <div className="text-center space-y-1">
-              <p className="text-sm text-slate-400">Siguiente set</p>
-              <p className="text-sm font-medium text-slate-600">
+              <p className="text-sm text-text-faint">Siguiente set</p>
+              <p className="text-sm font-medium text-text-secondary">
                 {currentStep.nextSetName}
                 {currentStep.nextRoundLabel && (
-                  <span className="ml-1 text-purple-500 text-xs">
+                  <span className="ml-1 text-accent-500 text-xs">
                     Ronda {currentStep.nextRoundLabel}
                   </span>
                 )}
@@ -437,7 +437,7 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-16 h-16 text-green-500"
+            className="w-16 h-16 text-success-500"
           >
             <path
               strokeLinecap="round"
@@ -445,7 +445,7 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
               d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
             />
           </svg>
-          <p className="text-lg font-semibold text-slate-700">
+          <p className="text-lg font-semibold text-text-secondary">
             ¡Rutina completada!
           </p>
         </div>

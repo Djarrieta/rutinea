@@ -26,9 +26,9 @@ export default async function RootLayout({
 
   return (
     <html lang="es">
-      <body className="bg-slate-50 text-slate-900 min-h-screen pb-16 sm:pb-0">
+      <body className="bg-bg text-text min-h-screen pb-16 sm:pb-0">
         {/* Desktop top nav */}
-        <nav className="hidden sm:block bg-white border-b border-slate-200 px-6 py-4">
+        <nav className="hidden sm:block bg-surface border-b border-border px-6 py-4">
           <div className="max-w-4xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-6">
               <Link href="/" className="text-xl font-bold">
@@ -39,25 +39,25 @@ export default async function RootLayout({
             <div className="flex items-center gap-3">
               <Link
                 href="/plans/new"
-                className="bg-primary-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-primary-700"
+                className="bg-primary-500 text-black px-4 py-2 rounded-lg text-sm hover:bg-primary-600"
               >
                 + Plan
               </Link>
               <Link
                 href="/routines/new"
-                className="bg-slate-100 text-slate-700 px-4 py-2 rounded-lg text-sm hover:bg-slate-200"
+                className="bg-surface-alt text-text-secondary px-4 py-2 rounded-lg text-sm hover:bg-surface-hover"
               >
                 + Rutina
               </Link>
               <Link
                 href="/sets/new"
-                className="bg-slate-100 text-slate-700 px-4 py-2 rounded-lg text-sm hover:bg-slate-200"
+                className="bg-surface-alt text-text-secondary px-4 py-2 rounded-lg text-sm hover:bg-surface-hover"
               >
                 + Set
               </Link>
               <Link
                 href="/exercises/new"
-                className="bg-slate-100 text-slate-700 px-4 py-2 rounded-lg text-sm hover:bg-slate-200"
+                className="bg-surface-alt text-text-secondary px-4 py-2 rounded-lg text-sm hover:bg-surface-hover"
               >
                 + Ejercicio
               </Link>
@@ -71,11 +71,11 @@ export default async function RootLayout({
         </main>
 
         {/* Mobile bottom nav */}
-        <nav className="sm:hidden fixed bottom-0 inset-x-0 bg-white border-t border-slate-200 z-40">
-          <div className="flex justify-around items-center h-14">
+        <nav className="sm:hidden fixed bottom-0 inset-x-0 bg-surface border-t border-border z-40">
+          <div className="flex justify-around items-center h-20">
             <Link
               href="/"
-              className="flex flex-col items-center gap-0.5 text-slate-500 hover:text-slate-900"
+              className="flex flex-col items-center gap-0.5 text-text-muted hover:text-text"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

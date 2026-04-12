@@ -104,14 +104,14 @@ export default function SetPlayerModal({ set, onClose }: Props) {
             key={i}
             className={`flex-shrink-0 rounded-lg border px-2 py-1.5 text-[11px] leading-tight transition-colors ${
               isCurrent
-                ? "border-indigo-400 bg-indigo-50"
+                ? "border-primary-400 bg-primary-50"
                 : isDone
-                  ? "border-green-300 bg-green-50"
-                  : "border-slate-200 bg-slate-50 opacity-50"
+                  ? "border-success-300 bg-success-50"
+                  : "border-border bg-bg opacity-50"
             }`}
           >
             <div
-              className={`font-semibold truncate max-w-[7rem] ${isCurrent ? "text-indigo-700" : isDone ? "text-green-600" : "text-slate-400"}`}
+              className={`font-semibold truncate max-w-[7rem] ${isCurrent ? "text-primary-700" : isDone ? "text-success-600" : "text-text-faint"}`}
             >
               {isDone ? "✓ " : isCurrent ? "▸ " : ""}
               {ex.title}
@@ -130,7 +130,7 @@ export default function SetPlayerModal({ set, onClose }: Props) {
       header={headerContent}
       controls={
         <>
-          <span className="text-xs text-slate-500">
+          <span className="text-xs text-text-muted">
             {finished
               ? "Finalizado"
               : `${Math.ceil(elapsed)}s / ${duration}s — ${exerciseIndex + 1}/${totalExercises}`}
@@ -139,14 +139,14 @@ export default function SetPlayerModal({ set, onClose }: Props) {
             {finished ? (
               <button
                 onClick={restart}
-                className="bg-indigo-600 text-white px-4 py-1.5 rounded-lg text-sm hover:bg-indigo-700"
+                className="bg-primary-500 text-black px-4 py-1.5 rounded-lg text-sm hover:bg-primary-600"
               >
                 Repetir
               </button>
             ) : (
               <button
                 onClick={() => setIsPlaying((p) => !p)}
-                className="bg-slate-100 px-4 py-1.5 rounded-lg text-sm hover:bg-slate-200"
+                className="bg-surface-alt px-4 py-1.5 rounded-lg text-sm hover:bg-surface-hover"
               >
                 {isPlaying ? "Pausar" : "Reanudar"}
               </button>
@@ -164,7 +164,7 @@ export default function SetPlayerModal({ set, onClose }: Props) {
               className="w-full h-full object-cover"
             />
           ) : (
-            <div className="flex items-center justify-center h-full text-slate-400">
+            <div className="flex items-center justify-center h-full text-text-faint">
               Sin imágenes
             </div>
           )}
@@ -192,7 +192,7 @@ export default function SetPlayerModal({ set, onClose }: Props) {
             viewBox="0 0 24 24"
             strokeWidth={1.5}
             stroke="currentColor"
-            className="w-16 h-16 text-green-500"
+            className="w-16 h-16 text-success-500"
           >
             <path
               strokeLinecap="round"
@@ -200,7 +200,7 @@ export default function SetPlayerModal({ set, onClose }: Props) {
               d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
             />
           </svg>
-          <p className="text-lg font-semibold text-slate-700">
+          <p className="text-lg font-semibold text-text-secondary">
             ¡Set completado!
           </p>
         </div>

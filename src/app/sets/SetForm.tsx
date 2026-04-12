@@ -62,9 +62,9 @@ function ExercisePicker({ defaultValue }: { defaultValue: string[] }) {
           {selectedExercises.map((ex, i) => (
             <li
               key={`${ex.id}-${i}`}
-              className="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm"
+              className="flex items-center gap-2 bg-bg border border-border rounded-lg px-3 py-2 text-sm"
             >
-              <span className="text-slate-400 font-mono text-xs w-5 text-center">
+              <span className="text-text-faint font-mono text-xs w-5 text-center">
                 {i + 1}
               </span>
               <span className="flex-1">{ex.title}</span>
@@ -72,7 +72,7 @@ function ExercisePicker({ defaultValue }: { defaultValue: string[] }) {
                 type="button"
                 onClick={() => moveUp(i)}
                 disabled={i === 0}
-                className="text-slate-400 hover:text-slate-600 disabled:opacity-30 text-xs"
+                className="text-text-faint hover:text-text-secondary disabled:opacity-30 text-xs"
               >
                 ▲
               </button>
@@ -80,14 +80,14 @@ function ExercisePicker({ defaultValue }: { defaultValue: string[] }) {
                 type="button"
                 onClick={() => moveDown(i)}
                 disabled={i === selectedExercises.length - 1}
-                className="text-slate-400 hover:text-slate-600 disabled:opacity-30 text-xs"
+                className="text-text-faint hover:text-text-secondary disabled:opacity-30 text-xs"
               >
                 ▼
               </button>
               <button
                 type="button"
                 onClick={() => remove(i)}
-                className="text-red-400 hover:text-red-600 text-lg leading-none"
+                className="text-danger-400 hover:text-danger-600 text-lg leading-none"
               >
                 &times;
               </button>
@@ -131,7 +131,7 @@ export default function SetForm({
           type="text"
           required
           defaultValue={set?.name}
-          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
         />
       </div>
 
@@ -144,7 +144,7 @@ export default function SetForm({
           name="description"
           rows={3}
           defaultValue={set?.description ?? ""}
-          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
         />
       </div>
 
@@ -155,7 +155,7 @@ export default function SetForm({
 
       <button
         type="submit"
-        className="bg-indigo-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700"
+        className="bg-primary-500 text-black px-5 py-2 rounded-lg text-sm font-medium hover:bg-primary-600"
       >
         {submitLabel}
       </button>

@@ -22,9 +22,9 @@ export default function PageHeader({
     return (
       <div>
         <h1 className="text-2xl font-bold mb-6">{title}</h1>
-        <p className="text-slate-500">
+        <p className="text-text-muted">
           {emptyText}{" "}
-          <Link href={createHref} className="text-indigo-600 underline">
+          <Link href={createHref} className="text-primary-600 underline">
             {createLabel}
           </Link>
         </p>

@@ -37,9 +37,9 @@ export default function Home() {
     <div className="space-y-20">
       {/* Hero */}
       <section className="relative overflow-hidden pt-8 pb-4">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-50 via-white to-purple-50 -z-10" />
-        <div className="absolute top-10 left-10 w-72 h-72 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" />
-        <div className="absolute bottom-10 right-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-bg to-accent-500/10 -z-10" />
+        <div className="absolute top-10 left-10 w-72 h-72 bg-primary-500 rounded-full mix-blend-screen filter blur-3xl opacity-10 animate-pulse" />
+        <div className="absolute bottom-10 right-10 w-72 h-72 bg-accent-500 rounded-full mix-blend-screen filter blur-3xl opacity-10 animate-pulse" />
 
         <div className="text-center space-y-6 relative">
           <div className="mx-auto w-full max-w-md">
@@ -52,10 +52,10 @@ export default function Home() {
               className="w-full h-auto"
             />
           </div>
-          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl bg-gradient-to-r from-primary-400 to-accent-500 bg-clip-text text-transparent">
             Rutinea
           </h1>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
             Diseña tus ejercicios, agrúpalos en sets, arma rutinas y organízalas
             en planes semanales. Luego solo dale play y entrena con un
             temporizador guiado que te lleva paso a paso.
@@ -89,9 +89,9 @@ export default function Home() {
             <Link
               key={mod.href}
               href={mod.href}
-              className="group block rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm hover:shadow-lg hover:border-indigo-200 transition-all duration-300"
+              className="group block rounded-2xl border border-border bg-surface overflow-hidden shadow-sm hover:shadow-lg hover:border-primary-500/40 transition-all duration-300"
             >
-              <div className="p-4 flex justify-center bg-gradient-to-b from-indigo-50/50 to-white">
+              <div className="p-4 flex justify-center bg-gradient-to-b from-primary-500/10 to-surface">
                 <Image
                   src={mod.image}
                   alt={mod.title}
@@ -101,10 +101,10 @@ export default function Home() {
                 />
               </div>
               <div className="p-6 pt-2">
-                <h3 className="text-lg font-semibold mb-2 group-hover:text-indigo-600 transition-colors">
+                <h3 className="text-lg font-semibold mb-2 group-hover:text-primary-400 transition-colors">
                   {mod.title}
                 </h3>
-                <p className="text-sm text-slate-600 leading-relaxed">
+                <p className="text-sm text-text-secondary leading-relaxed">
                   {mod.description}
                 </p>
               </div>
@@ -115,24 +115,24 @@ export default function Home() {
 
       {/* CTA */}
       <section className="relative rounded-2xl overflow-hidden mx-auto max-w-3xl">
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-600 to-purple-600" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-700 to-accent-600" />
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC4xIi8+PC9zdmc+')] opacity-50" />
         <div className="relative text-center space-y-4 px-8 py-12">
           <h2 className="text-2xl font-semibold text-white">Empieza ahora</h2>
-          <p className="text-indigo-100 max-w-xl mx-auto">
+          <p className="text-primary-100 max-w-xl mx-auto">
             Crea tu primer ejercicio, agrúpalo en un set, arma tu rutina y
             organízala en un plan semanal. En minutos estarás entrenando.
           </p>
           <div className="flex justify-center gap-3 flex-wrap pt-2">
             <Link
               href="/exercises/new"
-              className="inline-flex items-center gap-2 bg-white text-indigo-600 px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-indigo-50 transition shadow-md"
+              className="inline-flex items-center gap-2 bg-black text-primary-400 px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-bg transition shadow-md"
             >
               + Crear ejercicio
             </Link>
             <Link
               href="/routines"
-              className="inline-flex items-center gap-2 bg-indigo-500 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-indigo-400 transition border border-indigo-400"
+              className="inline-flex items-center gap-2 bg-primary-500 text-black px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-primary-400 transition border border-primary-400"
             >
               Ver rutinas
             </Link>

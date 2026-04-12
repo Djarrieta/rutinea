@@ -71,21 +71,21 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
       progress={progress}
       controls={
         <>
-          <span className="text-xs text-slate-500">
+          <span className="text-xs text-text-muted">
             {Math.ceil(elapsed)}s / {duration_secs}s
           </span>
           <div className="flex gap-2">
             {finished ? (
               <button
                 onClick={restart}
-                className="bg-indigo-600 text-white px-4 py-1.5 rounded-lg text-sm hover:bg-indigo-700"
+                className="bg-primary-500 text-black px-4 py-1.5 rounded-lg text-sm hover:bg-primary-600"
               >
                 Repetir
               </button>
             ) : (
               <button
                 onClick={() => setIsPlaying((p) => !p)}
-                className="bg-slate-100 px-4 py-1.5 rounded-lg text-sm hover:bg-slate-200"
+                className="bg-surface-alt px-4 py-1.5 rounded-lg text-sm hover:bg-surface-hover"
               >
                 {isPlaying ? "Pausar" : "Reanudar"}
               </button>
@@ -101,7 +101,7 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
           className="w-full h-full object-cover"
         />
       ) : (
-        <div className="flex items-center justify-center h-full text-slate-400">
+        <div className="flex items-center justify-center h-full text-text-faint">
           Sin imágenes
         </div>
       )}

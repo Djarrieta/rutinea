@@ -16,12 +16,12 @@ export default function LoginPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] gap-6">
       <h1 className="text-2xl font-bold">Iniciar sesión</h1>
-      <p className="text-slate-500 text-center max-w-sm">
+      <p className="text-text-muted text-center max-w-sm">
         Inicia sesión para crear y editar ejercicios, sets y rutinas.
       </p>
       <button
         onClick={handleGoogleLogin}
-        className="flex items-center gap-3 bg-white border border-slate-300 rounded-lg px-6 py-3 text-sm font-medium text-slate-700 hover:bg-slate-50 shadow-sm"
+        className="flex items-center gap-3 bg-surface border border-border rounded-lg px-6 py-3 text-sm font-medium text-text-secondary hover:bg-bg shadow-sm"
       >
         <svg className="w-5 h-5" viewBox="0 0 24 24">
           <path

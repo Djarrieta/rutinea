@@ -35,7 +35,7 @@ export default function UserMenu({
     return (
       <a
         href="/login"
-        className="flex flex-col items-center gap-0.5 text-slate-500 hover:text-slate-900"
+        className="flex flex-col items-center gap-0.5 text-text-muted hover:text-text"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +66,7 @@ export default function UserMenu({
     <div ref={ref} className="relative flex flex-col items-center">
       <button
         onClick={() => setOpen(!open)}
-        className="w-7 h-7 rounded-full bg-indigo-600 text-white text-xs font-bold flex items-center justify-center overflow-hidden hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+        className="w-7 h-7 rounded-full bg-primary-500 text-black text-xs font-bold flex items-center justify-center overflow-hidden hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
       >
         {user.avatar_url ? (
           <img
@@ -80,25 +80,25 @@ export default function UserMenu({
         )}
       </button>
       {popoverDirection === "up" && (
-        <span className="text-[10px] font-medium text-slate-500 mt-0.5">
+        <span className="text-[10px] font-medium text-text-muted mt-0.5">
           Cuenta
         </span>
       )}
 
       {open && (
         <div
-          className={`absolute w-48 bg-white border border-slate-200 rounded-lg shadow-lg py-1 z-50 ${
+          className={`absolute w-48 bg-surface border border-border rounded-lg shadow-lg py-1 z-50 ${
             popoverDirection === "up"
               ? "bottom-full mb-2 right-1/2 translate-x-1/2"
               : "right-0 mt-2"
           }`}
         >
-          <div className="px-4 py-2 text-xs text-slate-500 truncate border-b border-slate-100">
+          <div className="px-4 py-2 text-xs text-text-muted truncate border-b border-border-light">
             {user.email}
           </div>
           <button
             onClick={handleLogout}
-            className="w-full text-left px-4 py-2 text-sm text-slate-700 hover:bg-slate-50"
+            className="w-full text-left px-4 py-2 text-sm text-text-secondary hover:bg-bg"
           >
             Cerrar sesión
           </button>

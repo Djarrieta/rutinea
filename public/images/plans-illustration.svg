@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" fill="none">
   <!-- Background -->
-  <rect width="200" height="200" rx="24" fill="#EEF2FF"/>
+  <rect width="200" height="200" rx="24" fill="#1c1c1c"/>
   
   <!-- Calendar body -->
-  <rect x="35" y="50" width="130" height="110" rx="12" fill="white" stroke="#C7D2FE" stroke-width="2"/>
+  <rect x="35" y="50" width="130" height="110" rx="12" fill="#141414" stroke="#fde68a" stroke-width="2"/>
   
   <!-- Calendar header -->
-  <rect x="35" y="50" width="130" height="30" rx="12" fill="#6366F1"/>
-  <rect x="35" y="68" width="130" height="14" fill="#6366F1"/>
+  <rect x="35" y="50" width="130" height="30" rx="12" fill="#f59e0b"/>
+  <rect x="35" y="68" width="130" height="14" fill="#f59e0b"/>
   
   <!-- Day labels -->
   <text x="52" y="68" font-size="8" fill="white" font-family="system-ui" font-weight="600">L</text>
@@ -19,26 +19,26 @@
   <text x="155" y="68" font-size="8" fill="white" font-family="system-ui" font-weight="600">D</text>
   
   <!-- Grid cells with workout indicators -->
-  <rect x="45" y="90" width="16" height="16" rx="4" fill="#E0E7FF"/>
-  <rect x="63" y="90" width="16" height="16" rx="4" fill="#C7D2FE"/>
-  <rect x="81" y="90" width="16" height="16" rx="4" fill="#E0E7FF"/>
-  <rect x="99" y="90" width="16" height="16" rx="4" fill="#4F46E5"/>
-  <rect x="117" y="90" width="16" height="16" rx="4" fill="#E0E7FF"/>
-  <rect x="135" y="90" width="16" height="16" rx="4" fill="#C7D2FE"/>
+  <rect x="45" y="90" width="16" height="16" rx="4" fill="#262626"/>
+  <rect x="63" y="90" width="16" height="16" rx="4" fill="#fde68a"/>
+  <rect x="81" y="90" width="16" height="16" rx="4" fill="#262626"/>
+  <rect x="99" y="90" width="16" height="16" rx="4" fill="#d97706"/>
+  <rect x="117" y="90" width="16" height="16" rx="4" fill="#262626"/>
+  <rect x="135" y="90" width="16" height="16" rx="4" fill="#fde68a"/>
   
-  <rect x="45" y="112" width="16" height="16" rx="4" fill="#C7D2FE"/>
-  <rect x="63" y="112" width="16" height="16" rx="4" fill="#E0E7FF"/>
-  <rect x="81" y="112" width="16" height="16" rx="4" fill="#4F46E5"/>
-  <rect x="99" y="112" width="16" height="16" rx="4" fill="#E0E7FF"/>
-  <rect x="117" y="112" width="16" height="16" rx="4" fill="#E0E7FF"/>
-  <rect x="135" y="112" width="16" height="16" rx="4" fill="#4F46E5"/>
+  <rect x="45" y="112" width="16" height="16" rx="4" fill="#fde68a"/>
+  <rect x="63" y="112" width="16" height="16" rx="4" fill="#262626"/>
+  <rect x="81" y="112" width="16" height="16" rx="4" fill="#d97706"/>
+  <rect x="99" y="112" width="16" height="16" rx="4" fill="#262626"/>
+  <rect x="117" y="112" width="16" height="16" rx="4" fill="#262626"/>
+  <rect x="135" y="112" width="16" height="16" rx="4" fill="#d97706"/>
 
-  <rect x="45" y="134" width="16" height="16" rx="4" fill="#E0E7FF"/>
-  <rect x="63" y="134" width="16" height="16" rx="4" fill="#4F46E5"/>
-  <rect x="81" y="134" width="16" height="16" rx="4" fill="#E0E7FF"/>
-  <rect x="99" y="134" width="16" height="16" rx="4" fill="#C7D2FE"/>
-  <rect x="117" y="134" width="16" height="16" rx="4" fill="#4F46E5"/>
-  <rect x="135" y="134" width="16" height="16" rx="4" fill="#E0E7FF"/>
+  <rect x="45" y="134" width="16" height="16" rx="4" fill="#262626"/>
+  <rect x="63" y="134" width="16" height="16" rx="4" fill="#d97706"/>
+  <rect x="81" y="134" width="16" height="16" rx="4" fill="#262626"/>
+  <rect x="99" y="134" width="16" height="16" rx="4" fill="#fde68a"/>
+  <rect x="117" y="134" width="16" height="16" rx="4" fill="#d97706"/>
+  <rect x="135" y="134" width="16" height="16" rx="4" fill="#262626"/>
   
   <!-- Checkmarks on active days -->
   <path d="M103 95l3 3 5-5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -48,7 +48,7 @@
   <path d="M121 139l3 3 5-5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
   
   <!-- Decorative dots -->
-  <circle cx="25" cy="170" r="4" fill="#A5B4FC" opacity="0.5"/>
-  <circle cx="175" cy="40" r="5" fill="#C7D2FE" opacity="0.6"/>
-  <circle cx="170" cy="175" r="3" fill="#A5B4FC" opacity="0.4"/>
+  <circle cx="25" cy="170" r="4" fill="#fcd34d" opacity="0.5"/>
+  <circle cx="175" cy="40" r="5" fill="#fde68a" opacity="0.6"/>
+  <circle cx="170" cy="175" r="3" fill="#fcd34d" opacity="0.4"/>
 </svg>

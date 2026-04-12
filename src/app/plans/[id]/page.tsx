@@ -41,34 +41,36 @@ export default async function PlanDetailPage({
       <h1 className="text-2xl font-bold mb-2">{plan.name}</h1>
 
       {plan.description && (
-        <p className="text-slate-600 mb-4">{plan.description}</p>
+        <p className="text-text-secondary mb-4">{plan.description}</p>
       )}
 
       <dl className="grid grid-cols-2 gap-3 text-sm mb-6">
         <div>
-          <dt className="text-slate-400">Días activos</dt>
+          <dt className="text-text-faint">Días activos</dt>
           <dd>{sortedDays.length}</dd>
         </div>
       </dl>
 
       {sortedDays.length > 0 && (
         <div className="mb-6 space-y-4">
-          <h2 className="text-sm font-medium text-slate-500">Rutinas por día</h2>
+          <h2 className="text-sm font-medium text-text-muted">
+            Rutinas por día
+          </h2>
           {sortedDays.map((pr) => (
             <div
               key={pr.id}
-              className="flex items-center gap-3 bg-white border border-slate-200 rounded-lg px-4 py-3"
+              className="flex items-center gap-3 bg-surface border border-border rounded-lg px-4 py-3"
             >
               <span className="text-sm font-semibold w-24">
                 {DAY_LABELS[pr.day_of_week]}
               </span>
               <Link
                 href={`/routines/${pr.routine.id}`}
-                className="font-medium text-indigo-600 hover:underline flex-1"
+                className="font-medium text-primary-600 hover:underline flex-1"
               >
                 {pr.routine.name}
               </Link>
-              <span className="text-xs text-slate-400">
+              <span className="text-xs text-text-faint">
                 {pr.routine.routine_sets.length} set
                 {pr.routine.routine_sets.length !== 1 ? "s" : ""}
               </span>
@@ -81,14 +83,14 @@ export default async function PlanDetailPage({
         <div className="flex gap-3">
           <Link
             href={`/plans/${id}/edit`}
-            className="bg-slate-100 px-4 py-2 rounded-lg text-sm hover:bg-slate-200"
+            className="bg-surface-alt px-4 py-2 rounded-lg text-sm hover:bg-surface-hover"
           >
             Editar
           </Link>
           <form action={deleteWithId}>
             <button
               type="submit"
-              className="bg-red-50 text-red-600 px-4 py-2 rounded-lg text-sm hover:bg-red-100"
+              className="bg-danger-50 text-danger-600 px-4 py-2 rounded-lg text-sm hover:bg-danger-100"
             >
               Eliminar
             </button>

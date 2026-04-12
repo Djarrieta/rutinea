@@ -75,19 +75,19 @@ function SetPicker({ defaultValue }: { defaultValue: SelectedSet[] }) {
           {selectedSets.map((s, i) => (
             <li
               key={`${s.id}-${i}`}
-              className="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm"
+              className="flex items-center gap-2 bg-bg border border-border rounded-lg px-3 py-2 text-sm"
             >
-              <span className="text-slate-400 font-mono text-xs w-5 text-center">
+              <span className="text-text-faint font-mono text-xs w-5 text-center">
                 {i + 1}
               </span>
               <span className="flex-1">{s.set.name}</span>
-              <label className="flex items-center gap-1 text-xs text-slate-500">
+              <label className="flex items-center gap-1 text-xs text-text-muted">
                 <input
                   type="number"
                   min={1}
                   value={s.rounds}
                   onChange={(e) => setRounds(i, Number(e.target.value))}
-                  className="w-12 rounded border border-slate-300 px-1.5 py-0.5 text-center text-xs"
+                  className="w-12 rounded border border-border px-1.5 py-0.5 text-center text-xs"
                 />
                 rondas
               </label>
@@ -95,7 +95,7 @@ function SetPicker({ defaultValue }: { defaultValue: SelectedSet[] }) {
                 type="button"
                 onClick={() => moveUp(i)}
                 disabled={i === 0}
-                className="text-slate-400 hover:text-slate-600 disabled:opacity-30 text-xs"
+                className="text-text-faint hover:text-text-secondary disabled:opacity-30 text-xs"
               >
                 ▲
               </button>
@@ -103,14 +103,14 @@ function SetPicker({ defaultValue }: { defaultValue: SelectedSet[] }) {
                 type="button"
                 onClick={() => moveDown(i)}
                 disabled={i === selectedSets.length - 1}
-                className="text-slate-400 hover:text-slate-600 disabled:opacity-30 text-xs"
+                className="text-text-faint hover:text-text-secondary disabled:opacity-30 text-xs"
               >
                 ▼
               </button>
               <button
                 type="button"
                 onClick={() => remove(i)}
-                className="text-red-400 hover:text-red-600 text-lg leading-none"
+                className="text-danger-400 hover:text-danger-600 text-lg leading-none"
               >
                 &times;
               </button>
@@ -154,7 +154,7 @@ export default function RoutineForm({
           type="text"
           required
           defaultValue={routine?.name}
-          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
         />
       </div>
 
@@ -167,7 +167,7 @@ export default function RoutineForm({
           name="description"
           rows={3}
           defaultValue={routine?.description ?? ""}
-          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
         />
       </div>
 
@@ -181,7 +181,7 @@ export default function RoutineForm({
           type="number"
           min={0}
           defaultValue={routine?.rest_secs ?? 60}
-          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
         />
       </div>
 
@@ -192,7 +192,7 @@ export default function RoutineForm({
 
       <button
         type="submit"
-        className="bg-indigo-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700"
+        className="bg-primary-500 text-black px-5 py-2 rounded-lg text-sm font-medium hover:bg-primary-600"
       >
         {submitLabel}
       </button>

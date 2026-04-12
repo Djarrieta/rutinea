@@ -33,7 +33,7 @@ export default function PlayerModalShell({
       onClick={onClose}
     >
       <div
-        className="relative bg-white overflow-hidden shadow-2xl w-full h-full sm:h-auto sm:max-w-lg sm:mx-4 sm:rounded-2xl sm:max-h-[95vh] flex flex-col"
+        className="relative bg-surface overflow-hidden shadow-2xl w-full h-full sm:h-auto sm:max-w-lg sm:mx-4 sm:rounded-2xl sm:max-h-[95vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -42,7 +42,7 @@ export default function PlayerModalShell({
             <h2 className="font-semibold text-sm truncate">{title}</h2>
             <button
               onClick={onClose}
-              className="text-slate-400 hover:text-slate-600 text-xl leading-none ml-2 p-1"
+              className="text-text-faint hover:text-text-secondary text-xl leading-none ml-2 p-1"
             >
               &times;
             </button>
@@ -51,14 +51,14 @@ export default function PlayerModalShell({
         </div>
 
         {/* Content area */}
-        <div className="relative flex-1 sm:flex-none sm:aspect-square bg-slate-100 min-h-0">
+        <div className="relative flex-1 sm:flex-none sm:aspect-square bg-surface-alt min-h-0">
           {children}
         </div>
 
         {/* Progress bar */}
-        <div className="h-1 bg-slate-200 flex-shrink-0">
+        <div className="h-1 bg-surface-hover flex-shrink-0">
           <div
-            className="h-full bg-indigo-600 transition-all duration-100"
+            className="h-full bg-primary-600 transition-all duration-100"
             style={{ width: `${Math.min(progress, 100)}%` }}
           />
         </div>

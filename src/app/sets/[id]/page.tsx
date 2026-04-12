@@ -42,42 +42,42 @@ export default async function SetDetailPage({
       </div>
 
       {set.description && (
-        <p className="text-slate-600 mb-4">{set.description}</p>
+        <p className="text-text-secondary mb-4">{set.description}</p>
       )}
 
       <dl className="text-sm mb-6">
-        <dt className="text-slate-400">Ejercicios</dt>
+        <dt className="text-text-faint">Ejercicios</dt>
         <dd>{sortedExercises.length}</dd>
       </dl>
 
       {sortedExercises.length > 0 && (
         <div className="mb-6 space-y-3">
-          <h2 className="text-sm font-medium text-slate-500">
+          <h2 className="text-sm font-medium text-text-muted">
             Orden de ejercicios
           </h2>
           <ol className="space-y-2">
             {sortedExercises.map((se, i) => (
               <li
                 key={se.id}
-                className="flex items-center gap-3 bg-white border border-slate-200 rounded-lg px-4 py-3"
+                className="flex items-center gap-3 bg-surface border border-border rounded-lg px-4 py-3"
               >
-                <span className="text-slate-400 font-mono text-sm w-5 text-center">
+                <span className="text-text-faint font-mono text-sm w-5 text-center">
                   {i + 1}
                 </span>
                 <div className="flex-1">
                   <Link
                     href={`/exercises/${se.exercise.id}`}
-                    className="font-medium text-indigo-600 hover:underline"
+                    className="font-medium text-primary-600 hover:underline"
                   >
                     {se.exercise.title}
                   </Link>
                   {se.exercise.description && (
-                    <p className="text-slate-500 text-xs mt-0.5 line-clamp-1">
+                    <p className="text-text-muted text-xs mt-0.5 line-clamp-1">
                       {se.exercise.description}
                     </p>
                   )}
                 </div>
-                <span className="text-xs text-slate-400">
+                <span className="text-xs text-text-faint">
                   {se.exercise.duration_secs}s
                 </span>
               </li>
@@ -90,14 +90,14 @@ export default async function SetDetailPage({
         <div className="flex gap-3">
           <Link
             href={`/sets/${id}/edit`}
-            className="bg-slate-100 px-4 py-2 rounded-lg text-sm hover:bg-slate-200"
+            className="bg-surface-alt px-4 py-2 rounded-lg text-sm hover:bg-surface-hover"
           >
             Editar
           </Link>
           <form action={deleteWithId}>
             <button
               type="submit"
-              className="bg-red-50 text-red-600 px-4 py-2 rounded-lg text-sm hover:bg-red-100"
+              className="bg-danger-50 text-danger-600 px-4 py-2 rounded-lg text-sm hover:bg-danger-100"
             >
               Eliminar
             </button>

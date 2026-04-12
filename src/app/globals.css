@@ -1,1 +1,43 @@
 @import "tailwindcss";
+
+@theme {
+  /* Primary brand (amber/gold) */
+  --color-primary-50: #fffbeb;
+  --color-primary-100: #fef3c7;
+  --color-primary-200: #fde68a;
+  --color-primary-400: #fbbf24;
+  --color-primary-500: #f59e0b;
+  --color-primary-600: #d97706;
+  --color-primary-700: #b45309;
+
+  /* Accent (yellow) */
+  --color-accent-50: #fefce8;
+  --color-accent-200: #fef08a;
+  --color-accent-500: #eab308;
+  --color-accent-600: #ca8a04;
+
+  /* Danger (red — adjusted for dark bg) */
+  --color-danger-50: #1a0808;
+  --color-danger-100: #2d0f0f;
+  --color-danger-400: #f87171;
+  --color-danger-600: #ef4444;
+
+  /* Success (emerald — adjusted for dark bg) */
+  --color-success-50: #071a12;
+  --color-success-300: #6ee7b7;
+  --color-success-400: #34d399;
+  --color-success-500: #10b981;
+  --color-success-600: #059669;
+
+  /* Neutral semantic tokens */
+  --color-bg: #0a0a0a;
+  --color-surface: #141414;
+  --color-surface-alt: #1c1c1c;
+  --color-surface-hover: #262626;
+  --color-border: #2a2a2a;
+  --color-border-light: #1f1f1f;
+  --color-text: #fafafa;
+  --color-text-secondary: #d4d4d4;
+  --color-text-muted: #a3a3a3;
+  --color-text-faint: #737373;
+}
