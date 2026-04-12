@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import type { Set as ExSet, Exercise } from "@/types";
 import { createClient } from "@/lib/supabase/client";
+import SearchableSelect from "@/app/components/SearchableSelect";
 
 function ExercisePicker({ defaultValue }: { defaultValue: string[] }) {
   const [exercises, setExercises] = useState<Exercise[]>([]);
@@ -20,7 +21,7 @@ function ExercisePicker({ defaultValue }: { defaultValue: string[] }) {
   }, []);
 
   const add = (id: string) => {
-    if (!selected.includes(id)) setSelected((prev) => [...prev, id]);
+    setSelected((prev) => [...prev, id]);
   };
 
   const remove = (index: number) =>
@@ -44,7 +45,6 @@ function ExercisePicker({ defaultValue }: { defaultValue: string[] }) {
     });
   };
 
-  const available = exercises.filter((e) => !selected.includes(e.id));
   const selectedExercises = selected
     .map((id) => exercises.find((e) => e.id === id))
     .filter(Boolean) as Exercise[];
@@ -61,7 +61,7 @@ function ExercisePicker({ defaultValue }: { defaultValue: string[] }) {
         <ul className="space-y-2">
           {selectedExercises.map((ex, i) => (
             <li
-              key={ex.id}
+              key={`${ex.id}-${i}`}
               className="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm"
             >
               <span className="text-gray-400 font-mono text-xs w-5 text-center">
@@ -96,31 +96,12 @@ function ExercisePicker({ defaultValue }: { defaultValue: string[] }) {
         </ul>
       )}
 
-      {available.length > 0 && (
-        <select
-          onChange={(e) => {
-            if (e.target.value) {
-              add(e.target.value);
-              e.target.value = "";
-            }
-          }}
-          defaultValue=""
-          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          <option value="" disabled>
-            + Agregar ejercicio…
-          </option>
-          {available.map((ex) => (
-            <option key={ex.id} value={ex.id}>
-              {ex.title}
-            </option>
-          ))}
-        </select>
-      )}
-
-      {exercises.length === 0 && (
-        <p className="text-gray-400 text-sm">Cargando ejercicios…</p>
-      )}
+      <SearchableSelect
+        options={exercises.map((e) => ({ id: e.id, label: e.title }))}
+        onSelect={add}
+        placeholder="+ Agregar ejercicio…"
+        loading={exercises.length === 0}
+      />
     </div>
   );
 }

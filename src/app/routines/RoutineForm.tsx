@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import type { Routine, Set as ExSet } from "@/types";
 import { createClient } from "@/lib/supabase/client";
+import SearchableSelect from "@/app/components/SearchableSelect";
 
 interface SelectedSet {
   id: string;
@@ -25,8 +26,7 @@ function SetPicker({ defaultValue }: { defaultValue: SelectedSet[] }) {
   }, []);
 
   const add = (id: string) => {
-    if (!selected.some((s) => s.id === id))
-      setSelected((prev) => [...prev, { id, rounds: 1 }]);
+    setSelected((prev) => [...prev, { id, rounds: 1 }]);
   };
 
   const remove = (index: number) =>
@@ -58,9 +58,6 @@ function SetPicker({ defaultValue }: { defaultValue: SelectedSet[] }) {
     );
   };
 
-  const available = sets.filter(
-    (s) => !selected.some((sel) => sel.id === s.id),
-  );
   const selectedSets = selected
     .map((sel) => ({ ...sel, set: sets.find((s) => s.id === sel.id) }))
     .filter((s) => s.set) as (SelectedSet & { set: ExSet })[];
@@ -77,7 +74,7 @@ function SetPicker({ defaultValue }: { defaultValue: SelectedSet[] }) {
         <ul className="space-y-2">
           {selectedSets.map((s, i) => (
             <li
-              key={s.id}
+              key={`${s.id}-${i}`}
               className="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm"
             >
               <span className="text-gray-400 font-mono text-xs w-5 text-center">
@@ -122,31 +119,12 @@ function SetPicker({ defaultValue }: { defaultValue: SelectedSet[] }) {
         </ul>
       )}
 
-      {available.length > 0 && (
-        <select
-          onChange={(e) => {
-            if (e.target.value) {
-              add(e.target.value);
-              e.target.value = "";
-            }
-          }}
-          defaultValue=""
-          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          <option value="" disabled>
-            + Agregar set…
-          </option>
-          {available.map((s) => (
-            <option key={s.id} value={s.id}>
-              {s.name}
-            </option>
-          ))}
-        </select>
-      )}
-
-      {sets.length === 0 && (
-        <p className="text-gray-400 text-sm">Cargando sets…</p>
-      )}
+      <SearchableSelect
+        options={sets.map((s) => ({ id: s.id, label: s.name }))}
+        onSelect={add}
+        placeholder="+ Agregar set…"
+        loading={sets.length === 0}
+      />
     </div>
   );
 }

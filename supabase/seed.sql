@@ -94,7 +94,7 @@ values (
 insert into
     public.sets (user_id, name, description)
 values (
-        'a0000000-0000-0000-0000-000000000001',
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
         'Compuestos Full Body',
         'Sentadilla, press de banca y peso muerto.'
     ),
@@ -102,11 +102,6 @@ values (
         'a0000000-0000-0000-0000-000000000001',
         'Tren Superior',
         'Press de banca y peso muerto para pecho y espalda.'
-    ),
-    (
-        'a0000000-0000-0000-0000-000000000001',
-        'Fuerza Piernas',
-        'Sentadilla y peso muerto para tren inferior.'
     );
 
 -- Link exercises to sets
@@ -159,7 +154,7 @@ insert into
         rest_secs
     )
 values (
-        'a0000000-0000-0000-0000-000000000001',
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
         'Rutina Full Body',
         'Rutina completa de cuerpo entero con los 3 movimientos básicos.',
         7
@@ -169,12 +164,6 @@ values (
         'Rutina Tren Superior',
         'Enfocada en pecho y espalda con press de banca y peso muerto.',
         10
-    ),
-    (
-        'a0000000-0000-0000-0000-000000000001',
-        'Rutina Fuerza Piernas',
-        'Sentadilla y peso muerto para desarrollar fuerza en tren inferior.',
-        5
     );
 
 -- Link sets to routines (3 sets per routine, with rounds)
