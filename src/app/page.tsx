@@ -36,17 +36,20 @@ export default function Home() {
   return (
     <div className="space-y-20">
       {/* Hero */}
-      <section className="relative overflow-hidden pt-8 pb-4">
+      <section
+        className="relative overflow-hidden pt-8 pb-4 -mx-4 sm:-mx-6 px-4 sm:px-6"
+        style={{ width: "100vw", marginLeft: "calc(-50vw + 50%)" }}
+      >
         <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-bg to-accent-500/10 -z-10" />
         <div className="absolute top-10 left-10 w-72 h-72 bg-primary-500 rounded-full mix-blend-screen filter blur-3xl opacity-10 animate-pulse" />
         <div className="absolute bottom-10 right-10 w-72 h-72 bg-accent-500 rounded-full mix-blend-screen filter blur-3xl opacity-10 animate-pulse" />
 
         <div className="text-center space-y-6 relative">
-          <div className="mx-auto w-full max-w-md">
+          <div className="w-full">
             <Image
               src="/images/hero-illustration.svg"
               alt="Ilustración de entrenamiento"
-              width={800}
+              width={1200}
               height={400}
               priority
               className="w-full h-auto"
