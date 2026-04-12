@@ -39,7 +39,7 @@ export default async function RootLayout({
             <div className="flex items-center gap-3">
               <Link
                 href="/plans/new"
-                className="bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-indigo-700"
+                className="bg-primary-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-primary-700"
               >
                 + Plan
               </Link>
@@ -73,6 +73,24 @@ export default async function RootLayout({
         {/* Mobile bottom nav */}
         <nav className="sm:hidden fixed bottom-0 inset-x-0 bg-white border-t border-slate-200 z-40">
           <div className="flex justify-around items-center h-14">
+            <Link
+              href="/"
+              className="flex flex-col items-center gap-0.5 text-slate-500 hover:text-slate-900"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="w-5 h-5"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M9.293 2.293a1 1 0 011.414 0l7 7A1 1 0 0117 11h-1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-6H3a1 1 0 01-.707-1.707l7-7z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="text-[10px] font-medium">Inicio</span>
+            </Link>
             <UserMenu user={userMenu} popoverDirection="up" />
             <MobileNavLinks />
           </div>
