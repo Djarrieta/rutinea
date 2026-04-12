@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { requireAuth } from "@/lib/auth";
 import SetForm from "../../SetForm";
 import { updateSet } from "../../actions";
+import Breadcrumb from "@/app/components/Breadcrumb";
 import type { SetWithExercises } from "@/types";
 
 export default async function EditSetPage({
@@ -10,7 +11,7 @@ export default async function EditSetPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
-  await requireAuth();
+  const user = await requireAuth();
   const { id } = await params;
   const supabase = await createClient();
   const { data: set } = await supabase
@@ -19,7 +20,7 @@ export default async function EditSetPage({
     .eq("id", id)
     .single<SetWithExercises>();
 
-  if (!set) notFound();
+  if (!set || set.user_id !== user.id) notFound();
 
   const updateWithId = updateSet.bind(null, id);
 
@@ -29,6 +30,13 @@ export default async function EditSetPage({
 
   return (
     <div>
+      <Breadcrumb
+        items={[
+          { label: "Sets", href: "/sets" },
+          { label: set.name, href: `/sets/${id}` },
+          { label: "Editar" },
+        ]}
+      />
       <h1 className="text-2xl font-bold mb-6">Editar Set</h1>
       <SetForm
         set={set}

@@ -2,6 +2,7 @@ import { SetWithExercises } from './set'
 
 export interface Routine {
   id: string
+  user_id: string
   name: string
   description: string | null
   rest_secs: number

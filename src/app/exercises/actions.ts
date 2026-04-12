@@ -16,7 +16,7 @@ function parseImages(formData: FormData): ExerciseImage[] {
 }
 
 export async function createExercise(formData: FormData) {
-  await requireAuth()
+  const user = await requireAuth()
   const supabase = await createClient()
 
   const input: CreateExerciseInput = {
@@ -31,7 +31,7 @@ export async function createExercise(formData: FormData) {
     repetitions: Number(formData.get('repetitions')) || 1,
   }
 
-  const { error } = await supabase.from('exercises').insert(input)
+  const { error } = await supabase.from('exercises').insert({ ...input, user_id: user.id })
 
   if (error) throw new Error(error.message)
 
@@ -40,7 +40,7 @@ export async function createExercise(formData: FormData) {
 }
 
 export async function updateExercise(id: string, formData: FormData) {
-  await requireAuth()
+  const user = await requireAuth()
   const supabase = await createClient()
 
   const input: UpdateExerciseInput = {
@@ -59,6 +59,7 @@ export async function updateExercise(id: string, formData: FormData) {
     .from('exercises')
     .update(input)
     .eq('id', id)
+    .eq('user_id', user.id)
 
   if (error) throw new Error(error.message)
 
@@ -67,10 +68,10 @@ export async function updateExercise(id: string, formData: FormData) {
 }
 
 export async function deleteExercise(id: string) {
-  await requireAuth()
+  const user = await requireAuth()
   const supabase = await createClient()
 
-  const { error } = await supabase.from('exercises').delete().eq('id', id)
+  const { error } = await supabase.from('exercises').delete().eq('id', id).eq('user_id', user.id)
 
   if (error) throw new Error(error.message)
 

@@ -8,6 +8,7 @@ create extension if not exists "pgcrypto";
 
 create table public.exercises (
     id uuid primary key default gen_random_uuid (),
+    user_id uuid not null default auth.uid () references auth.users (id) on delete cascade,
     title text not null,
     description text,
     images jsonb not null default '[]'::jsonb,
@@ -37,12 +38,12 @@ alter table public.exercises enable row level security;
 create policy "exercises: public read" on public.exercises for
 select using (true);
 
-create policy "exercises: public insert" on public.exercises for insert
+create policy "exercises: owner insert" on public.exercises for insert
 with
-    check (true);
+    check (auth.uid () = user_id);
 
-create policy "exercises: public update" on public.exercises
+create policy "exercises: owner update" on public.exercises
 for update
-    using (true);
+    using (auth.uid () = user_id);
 
-create policy "exercises: public delete" on public.exercises for delete using (true);
+create policy "exercises: owner delete" on public.exercises for delete using (auth.uid () = user_id);

@@ -5,6 +5,7 @@ export interface ExerciseImage {
 
 export interface Exercise {
   id: string
+  user_id: string
   title: string
   description: string | null
   images: ExerciseImage[]

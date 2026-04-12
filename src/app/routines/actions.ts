@@ -7,7 +7,7 @@ import { requireAuth } from '@/lib/auth'
 import type { CreateRoutineInput, UpdateRoutineInput } from '@/types'
 
 export async function createRoutine(formData: FormData) {
-  await requireAuth()
+  const user = await requireAuth()
   const supabase = await createClient()
 
   const input: CreateRoutineInput = {
@@ -22,7 +22,7 @@ export async function createRoutine(formData: FormData) {
 
   const { data: routine, error } = await supabase
     .from('routines')
-    .insert(input)
+    .insert({ ...input, user_id: user.id })
     .select('id')
     .single()
 
@@ -46,7 +46,7 @@ export async function createRoutine(formData: FormData) {
 }
 
 export async function updateRoutine(id: string, formData: FormData) {
-  await requireAuth()
+  const user = await requireAuth()
   const supabase = await createClient()
 
   const input: UpdateRoutineInput = {
@@ -63,6 +63,7 @@ export async function updateRoutine(id: string, formData: FormData) {
     .from('routines')
     .update(input)
     .eq('id', id)
+    .eq('user_id', user.id)
 
   if (error) throw new Error(error.message)
 
@@ -91,10 +92,10 @@ export async function updateRoutine(id: string, formData: FormData) {
 }
 
 export async function deleteRoutine(id: string) {
-  await requireAuth()
+  const user = await requireAuth()
   const supabase = await createClient()
 
-  const { error } = await supabase.from('routines').delete().eq('id', id)
+  const { error } = await supabase.from('routines').delete().eq('id', id).eq('user_id', user.id)
 
   if (error) throw new Error(error.message)
 

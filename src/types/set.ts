@@ -2,6 +2,7 @@ import { Exercise } from './exercise'
 
 export interface Set {
   id: string
+  user_id: string
   name: string
   description: string | null
   created_at: string

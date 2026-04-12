@@ -3,6 +3,7 @@ import { createClient } from "@/lib/supabase/server";
 import { requireAuth } from "@/lib/auth";
 import RoutineForm from "../../RoutineForm";
 import { updateRoutine } from "../../actions";
+import Breadcrumb from "@/app/components/Breadcrumb";
 import type { RoutineWithSets } from "@/types";
 
 export default async function EditRoutinePage({
@@ -10,7 +11,7 @@ export default async function EditRoutinePage({
 }: {
   params: Promise<{ id: string }>;
 }) {
-  await requireAuth();
+  const user = await requireAuth();
   const { id } = await params;
   const supabase = await createClient();
   const { data: routine } = await supabase
@@ -21,7 +22,7 @@ export default async function EditRoutinePage({
     .eq("id", id)
     .single<RoutineWithSets>();
 
-  if (!routine) notFound();
+  if (!routine || routine.user_id !== user.id) notFound();
 
   const updateWithId = updateRoutine.bind(null, id);
 
@@ -31,6 +32,13 @@ export default async function EditRoutinePage({
 
   return (
     <div>
+      <Breadcrumb
+        items={[
+          { label: "Rutinas", href: "/routines" },
+          { label: routine.name, href: `/routines/${id}` },
+          { label: "Editar" },
+        ]}
+      />
       <h1 className="text-2xl font-bold mb-6">Editar Rutina</h1>
       <RoutineForm
         routine={routine}

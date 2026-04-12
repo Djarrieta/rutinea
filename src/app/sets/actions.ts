@@ -7,7 +7,7 @@ import { requireAuth } from '@/lib/auth'
 import type { CreateSetInput, UpdateSetInput } from '@/types'
 
 export async function createSet(formData: FormData) {
-  await requireAuth()
+  const user = await requireAuth()
   const supabase = await createClient()
 
   const input: CreateSetInput = {
@@ -21,7 +21,7 @@ export async function createSet(formData: FormData) {
 
   const { data: set, error } = await supabase
     .from('sets')
-    .insert(input)
+    .insert({ ...input, user_id: user.id })
     .select('id')
     .single()
 
@@ -44,7 +44,7 @@ export async function createSet(formData: FormData) {
 }
 
 export async function updateSet(id: string, formData: FormData) {
-  await requireAuth()
+  const user = await requireAuth()
   const supabase = await createClient()
 
   const input: UpdateSetInput = {
@@ -60,6 +60,7 @@ export async function updateSet(id: string, formData: FormData) {
     .from('sets')
     .update(input)
     .eq('id', id)
+    .eq('user_id', user.id)
 
   if (error) throw new Error(error.message)
 
@@ -87,10 +88,10 @@ export async function updateSet(id: string, formData: FormData) {
 }
 
 export async function deleteSet(id: string) {
-  await requireAuth()
+  const user = await requireAuth()
   const supabase = await createClient()
 
-  const { error } = await supabase.from('sets').delete().eq('id', id)
+  const { error } = await supabase.from('sets').delete().eq('id', id).eq('user_id', user.id)
 
   if (error) throw new Error(error.message)
 

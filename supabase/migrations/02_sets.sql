@@ -6,6 +6,7 @@ drop table if exists public.set_exercises cascade;
 
 create table public.sets (
     id uuid primary key default gen_random_uuid (),
+    user_id uuid not null default auth.uid () references auth.users (id) on delete cascade,
     name text not null,
     description text,
     created_at timestamptz not null default now(),
@@ -21,15 +22,15 @@ alter table public.sets enable row level security;
 create policy "sets: public read" on public.sets for
 select using (true);
 
-create policy "sets: public insert" on public.sets for insert
+create policy "sets: owner insert" on public.sets for insert
 with
-    check (true);
+    check (auth.uid () = user_id);
 
-create policy "sets: public update" on public.sets
+create policy "sets: owner update" on public.sets
 for update
-    using (true);
+    using (auth.uid () = user_id);
 
-create policy "sets: public delete" on public.sets for delete using (true);
+create policy "sets: owner delete" on public.sets for delete using (auth.uid () = user_id);
 
 -- ─── Set ↔ Exercise join table ───────────────────────────────────────────────
 
@@ -49,12 +50,36 @@ alter table public.set_exercises enable row level security;
 create policy "set_exercises: public read" on public.set_exercises for
 select using (true);
 
-create policy "set_exercises: public insert" on public.set_exercises for insert
+create policy "set_exercises: owner insert" on public.set_exercises for insert
 with
-    check (true);
+    check (
+        exists (
+            select 1
+            from public.sets
+            where
+                id = set_id
+                and user_id = auth.uid ()
+        )
+    );
 
-create policy "set_exercises: public update" on public.set_exercises
+create policy "set_exercises: owner update" on public.set_exercises
 for update
-    using (true);
+    using (
+        exists (
+            select 1
+            from public.sets
+            where
+                id = set_id
+                and user_id = auth.uid ()
+        )
+    );
 
-create policy "set_exercises: public delete" on public.set_exercises for delete using (true);
+create policy "set_exercises: owner delete" on public.set_exercises for delete using (
+    exists (
+        select 1
+        from public.sets
+        where
+            id = set_id
+            and user_id = auth.uid ()
+    )
+);

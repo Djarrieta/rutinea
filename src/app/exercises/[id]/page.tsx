@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { getUser } from "@/lib/auth";
 import { deleteExercise } from "../actions";
+import Breadcrumb from "@/app/components/Breadcrumb";
 import type { Exercise } from "@/types";
 
 export default async function ExerciseDetailPage({
@@ -19,10 +21,19 @@ export default async function ExerciseDetailPage({
 
   if (!exercise) notFound();
 
+  const user = await getUser();
+  const isOwner = user?.id === exercise.user_id;
+
   const deleteWithId = deleteExercise.bind(null, id);
 
   return (
     <div className="max-w-lg">
+      <Breadcrumb
+        items={[
+          { label: "Ejercicios", href: "/exercises" },
+          { label: exercise.title },
+        ]}
+      />
       <h1 className="text-2xl font-bold mb-2">{exercise.title}</h1>
 
       {exercise.description && (
@@ -76,22 +87,24 @@ export default async function ExerciseDetailPage({
         </div>
       )}
 
-      <div className="flex gap-3">
-        <Link
-          href={`/exercises/${id}/edit`}
-          className="bg-gray-100 px-4 py-2 rounded-lg text-sm hover:bg-gray-200"
-        >
-          Editar
-        </Link>
-        <form action={deleteWithId}>
-          <button
-            type="submit"
-            className="bg-red-50 text-red-600 px-4 py-2 rounded-lg text-sm hover:bg-red-100"
+      {isOwner && (
+        <div className="flex gap-3">
+          <Link
+            href={`/exercises/${id}/edit`}
+            className="bg-gray-100 px-4 py-2 rounded-lg text-sm hover:bg-gray-200"
           >
-            Eliminar
-          </button>
-        </form>
-      </div>
+            Editar
+          </Link>
+          <form action={deleteWithId}>
+            <button
+              type="submit"
+              className="bg-red-50 text-red-600 px-4 py-2 rounded-lg text-sm hover:bg-red-100"
+            >
+              Eliminar
+            </button>
+          </form>
+        </div>
+      )}
     </div>
   );
 }

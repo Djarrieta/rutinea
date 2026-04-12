@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { getUser } from "@/lib/auth";
 import { deleteSet } from "../actions";
+import Breadcrumb from "@/app/components/Breadcrumb";
 import type { SetWithExercises } from "@/types";
 
 export default async function SetDetailPage({
@@ -19,6 +21,9 @@ export default async function SetDetailPage({
 
   if (!set) notFound();
 
+  const user = await getUser();
+  const isOwner = user?.id === set.user_id;
+
   const deleteWithId = deleteSet.bind(null, id);
 
   const sortedExercises = [...set.set_exercises].sort(
@@ -27,6 +32,9 @@ export default async function SetDetailPage({
 
   return (
     <div className="max-w-lg">
+      <Breadcrumb
+        items={[{ label: "Sets", href: "/sets" }, { label: set.name }]}
+      />
       <h1 className="text-2xl font-bold mb-2">{set.name}</h1>
 
       {set.description && (
@@ -74,22 +82,24 @@ export default async function SetDetailPage({
         </div>
       )}
 
-      <div className="flex gap-3">
-        <Link
-          href={`/sets/${id}/edit`}
-          className="bg-gray-100 px-4 py-2 rounded-lg text-sm hover:bg-gray-200"
-        >
-          Editar
-        </Link>
-        <form action={deleteWithId}>
-          <button
-            type="submit"
-            className="bg-red-50 text-red-600 px-4 py-2 rounded-lg text-sm hover:bg-red-100"
+      {isOwner && (
+        <div className="flex gap-3">
+          <Link
+            href={`/sets/${id}/edit`}
+            className="bg-gray-100 px-4 py-2 rounded-lg text-sm hover:bg-gray-200"
           >
-            Eliminar
-          </button>
-        </form>
-      </div>
+            Editar
+          </Link>
+          <form action={deleteWithId}>
+            <button
+              type="submit"
+              className="bg-red-50 text-red-600 px-4 py-2 rounded-lg text-sm hover:bg-red-100"
+            >
+              Eliminar
+            </button>
+          </form>
+        </div>
+      )}
     </div>
   );
 }

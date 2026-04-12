@@ -1,7 +1,9 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
+import { getUser } from "@/lib/auth";
 import { deleteRoutine } from "../actions";
+import Breadcrumb from "@/app/components/Breadcrumb";
 import type { RoutineWithSets } from "@/types";
 
 export default async function RoutineDetailPage({
@@ -21,6 +23,9 @@ export default async function RoutineDetailPage({
 
   if (!routine) notFound();
 
+  const user = await getUser();
+  const isOwner = user?.id === routine.user_id;
+
   const deleteWithId = deleteRoutine.bind(null, id);
 
   const sortedSets = [...routine.routine_sets].sort(
@@ -29,6 +34,12 @@ export default async function RoutineDetailPage({
 
   return (
     <div className="max-w-lg">
+      <Breadcrumb
+        items={[
+          { label: "Rutinas", href: "/routines" },
+          { label: routine.name },
+        ]}
+      />
       <h1 className="text-2xl font-bold mb-2">{routine.name}</h1>
 
       {routine.description && (
@@ -97,22 +108,24 @@ export default async function RoutineDetailPage({
         </div>
       )}
 
-      <div className="flex gap-3">
-        <Link
-          href={`/routines/${id}/edit`}
-          className="bg-gray-100 px-4 py-2 rounded-lg text-sm hover:bg-gray-200"
-        >
-          Editar
-        </Link>
-        <form action={deleteWithId}>
-          <button
-            type="submit"
-            className="bg-red-50 text-red-600 px-4 py-2 rounded-lg text-sm hover:bg-red-100"
+      {isOwner && (
+        <div className="flex gap-3">
+          <Link
+            href={`/routines/${id}/edit`}
+            className="bg-gray-100 px-4 py-2 rounded-lg text-sm hover:bg-gray-200"
           >
-            Eliminar
-          </button>
-        </form>
-      </div>
+            Editar
+          </Link>
+          <form action={deleteWithId}>
+            <button
+              type="submit"
+              className="bg-red-50 text-red-600 px-4 py-2 rounded-lg text-sm hover:bg-red-100"
+            >
+              Eliminar
+            </button>
+          </form>
+        </div>
+      )}
     </div>
   );
 }

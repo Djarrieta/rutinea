@@ -6,6 +6,7 @@ drop table if exists public.routine_sets cascade;
 
 create table public.routines (
     id uuid primary key default gen_random_uuid (),
+    user_id uuid not null default auth.uid () references auth.users (id) on delete cascade,
     name text not null,
     description text,
     rest_secs integer not null default 60,
@@ -23,15 +24,15 @@ alter table public.routines enable row level security;
 create policy "routines: public read" on public.routines for
 select using (true);
 
-create policy "routines: public insert" on public.routines for insert
+create policy "routines: owner insert" on public.routines for insert
 with
-    check (true);
+    check (auth.uid () = user_id);
 
-create policy "routines: public update" on public.routines
+create policy "routines: owner update" on public.routines
 for update
-    using (true);
+    using (auth.uid () = user_id);
 
-create policy "routines: public delete" on public.routines for delete using (true);
+create policy "routines: owner delete" on public.routines for delete using (auth.uid () = user_id);
 
 -- ─── Routine ↔ Set join table ────────────────────────────────────────────────
 
@@ -52,12 +53,36 @@ alter table public.routine_sets enable row level security;
 create policy "routine_sets: public read" on public.routine_sets for
 select using (true);
 
-create policy "routine_sets: public insert" on public.routine_sets for insert
+create policy "routine_sets: owner insert" on public.routine_sets for insert
 with
-    check (true);
+    check (
+        exists (
+            select 1
+            from public.routines
+            where
+                id = routine_id
+                and user_id = auth.uid ()
+        )
+    );
 
-create policy "routine_sets: public update" on public.routine_sets
+create policy "routine_sets: owner update" on public.routine_sets
 for update
-    using (true);
+    using (
+        exists (
+            select 1
+            from public.routines
+            where
+                id = routine_id
+                and user_id = auth.uid ()
+        )
+    );
 
-create policy "routine_sets: public delete" on public.routine_sets for delete using (true);
+create policy "routine_sets: owner delete" on public.routine_sets for delete using (
+    exists (
+        select 1
+        from public.routines
+        where
+            id = routine_id
+            and user_id = auth.uid ()
+    )
+);
