@@ -39,15 +39,15 @@ Exercise CRUD app built with Next.js 16 and Supabase.
    bun run dev
    ```
 
-   Open [http://localhost:5000](http://localhost:5000).
+   Open [http://localhost:5001](http://localhost:5001).
 
 ## Scripts
 
 | Command            | Description                            |
 | ------------------ | -------------------------------------- |
-| `bun run dev`      | Start dev server on port 5000          |
+| `bun run dev`      | Start dev server on port 5001          |
 | `bun run build`    | Production build                       |
-| `bun run start`    | Start production server on port 5000   |
+| `bun run start`    | Start production server on port 5001   |
 | `bun run lint`     | Run ESLint                             |
 | `bun run db:reset` | Drop tables, run migrations, seed data |
 

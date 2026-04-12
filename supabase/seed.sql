@@ -9,7 +9,16 @@ insert into
         duration_secs,
         repetitions
     )
-values (
+values 
+(
+        'Pecho Plano Banco',
+        'Acuéstate en un banco plano con una barra sobre tu pecho. Agarra la barra con un agarre ligeramente más ancho que el ancho de tus hombros. Baja la barra controladamente hasta que esté a la altura del pecho, luego empuja hacia arriba hasta extender completamente los brazos.',
+        '[{"url":"https://fitcron.com/wp-content/uploads/2021/03/00251301-Barbell-Bench-Press_Chest-FIX_720.gif","description":"Mantén la espalda recta"}]'::jsonb,
+        '{"Brazos", "Pecho","Barras, Banco"}',
+        20,
+        10
+    ),
+(
         'Full Body Mancuernas',
         'Biseps curl, mancuernas arriba, mancuernas atras, mancuernas arriba, mancuernas abajo, sentadilla con mancuernas, peso muerto con mancuernas.',
         '[{"url":"https://images.unsplash.com/photo-1513352098199-8ccf457b35a8?w=800&fit=crop","description":"Mantén la espalda recta"},{"url":"https://images.unsplash.com/photo-1517964706594-8bf49837d8dc?w=800&fit=crop","description":"No dejes que las rodillas pasen los pies"},{"url":"https://images.unsplash.com/photo-1556817411-58c45dd94e8c?w=800&fit=crop","description":"Empuja con los talones"}]'::jsonb,
