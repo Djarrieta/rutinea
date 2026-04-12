@@ -287,3 +287,50 @@ from public.routines r, public.sets s
 where
     r.name = 'Rutina Fuerza Piernas'
     and s.name = 'Tren Superior';
+
+-- Seed plans
+
+insert into
+    public.plans (user_id, name, description)
+values (
+        'a0000000-0000-0000-0000-000000000001',
+        'Plan Semanal Full Body',
+        'Rutinas de cuerpo completo lunes, miércoles y viernes.'
+    );
+
+-- Plan Semanal Full Body: Lun(0), Mié(2), Vie(4)
+insert into
+    public.plan_routines (
+        plan_id,
+        routine_id,
+        day_of_week
+    )
+select p.id, r.id, 0
+from public.plans p, public.routines r
+where
+    p.name = 'Plan Semanal Full Body'
+    and r.name = 'Rutina Full Body';
+
+insert into
+    public.plan_routines (
+        plan_id,
+        routine_id,
+        day_of_week
+    )
+select p.id, r.id, 2
+from public.plans p, public.routines r
+where
+    p.name = 'Plan Semanal Full Body'
+    and r.name = 'Rutina Tren Superior';
+
+insert into
+    public.plan_routines (
+        plan_id,
+        routine_id,
+        day_of_week
+    )
+select p.id, r.id, 4
+from public.plans p, public.routines r
+where
+    p.name = 'Plan Semanal Full Body'
+    and r.name = 'Rutina Full Body';

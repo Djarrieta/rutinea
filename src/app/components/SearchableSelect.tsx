@@ -12,6 +12,7 @@ interface Props {
   onSelect: (id: string) => void;
   placeholder?: string;
   loading?: boolean;
+  disabled?: boolean;
 }
 
 export default function SearchableSelect({
@@ -19,6 +20,7 @@ export default function SearchableSelect({
   onSelect,
   placeholder = "Buscar…",
   loading = false,
+  disabled = false,
 }: Props) {
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
@@ -88,6 +90,7 @@ export default function SearchableSelect({
         ref={inputRef}
         type="text"
         value={query}
+        disabled={disabled}
         onChange={(e) => {
           setQuery(e.target.value);
           setOpen(true);
