@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import type { Exercise } from "@/types";
 import { useRepSounds } from "@/lib/hooks/useRepSounds";
 import PlayerModalShell from "@/app/components/PlayerModalShell";
+import PlayerControls from "@/app/components/PlayerControls";
 
 interface Props {
   exercise: Exercise;
@@ -70,28 +71,13 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
       onClose={onClose}
       progress={progress}
       controls={
-        <>
-          <span className="text-xs text-text-muted">
-            {Math.ceil(elapsed)}s / {duration_secs}s
-          </span>
-          <div className="flex gap-2">
-            {finished ? (
-              <button
-                onClick={restart}
-                className="bg-primary-500 text-black px-4 py-1.5 rounded-lg text-sm hover:bg-primary-600"
-              >
-                Repetir
-              </button>
-            ) : (
-              <button
-                onClick={() => setIsPlaying((p) => !p)}
-                className="bg-surface-alt px-4 py-1.5 rounded-lg text-sm hover:bg-surface-hover"
-              >
-                {isPlaying ? "Pausar" : "Reanudar"}
-              </button>
-            )}
-          </div>
-        </>
+        <PlayerControls
+          statusText={`${repetitions > 1 ? `Rep ${currentRep}/${repetitions} · ` : ""}${Math.ceil(elapsed)}s / ${duration_secs}s`}
+          finished={finished}
+          isPlaying={isPlaying}
+          onRestart={restart}
+          onTogglePlay={() => setIsPlaying((p) => !p)}
+        />
       }
     >
       {images.length > 0 ? (
