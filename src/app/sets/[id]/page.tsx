@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getUser } from "@/lib/auth";
 import { deleteSet } from "../actions";
 import Breadcrumb from "@/app/components/Breadcrumb";
+import SetDetailPlay from "../SetDetailPlay";
 import type { SetWithExercises } from "@/types";
 
 export default async function SetDetailPage({
@@ -35,7 +36,10 @@ export default async function SetDetailPage({
       <Breadcrumb
         items={[{ label: "Sets", href: "/sets" }, { label: set.name }]}
       />
-      <h1 className="text-2xl font-bold mb-2">{set.name}</h1>
+      <div className="flex items-center gap-3 mb-2">
+        <h1 className="text-2xl font-bold">{set.name}</h1>
+        <SetDetailPlay set={set} />
+      </div>
 
       {set.description && (
         <p className="text-slate-600 mb-4">{set.description}</p>

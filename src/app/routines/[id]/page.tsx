@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getUser } from "@/lib/auth";
 import { deleteRoutine } from "../actions";
 import Breadcrumb from "@/app/components/Breadcrumb";
+import RoutineDetailPlay from "../RoutineDetailPlay";
 import type { RoutineWithSets } from "@/types";
 
 export default async function RoutineDetailPage({
@@ -40,7 +41,10 @@ export default async function RoutineDetailPage({
           { label: routine.name },
         ]}
       />
-      <h1 className="text-2xl font-bold mb-2">{routine.name}</h1>
+      <div className="flex items-center gap-3 mb-2">
+        <h1 className="text-2xl font-bold">{routine.name}</h1>
+        <RoutineDetailPlay routine={routine} />
+      </div>
 
       {routine.description && (
         <p className="text-slate-600 mb-4">{routine.description}</p>

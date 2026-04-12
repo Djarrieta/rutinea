@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getUser } from "@/lib/auth";
 import { deleteExercise } from "../actions";
 import Breadcrumb from "@/app/components/Breadcrumb";
+import ExerciseDetailPlay from "../ExerciseDetailPlay";
 import type { Exercise } from "@/types";
 
 export default async function ExerciseDetailPage({
@@ -34,7 +35,10 @@ export default async function ExerciseDetailPage({
           { label: exercise.title },
         ]}
       />
-      <h1 className="text-2xl font-bold mb-2">{exercise.title}</h1>
+      <div className="flex items-center gap-3 mb-2">
+        <h1 className="text-2xl font-bold">{exercise.title}</h1>
+        <ExerciseDetailPlay exercise={exercise} />
+      </div>
 
       {exercise.description && (
         <p className="text-slate-600 mb-4">{exercise.description}</p>
