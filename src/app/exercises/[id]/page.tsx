@@ -37,20 +37,20 @@ export default async function ExerciseDetailPage({
       <h1 className="text-2xl font-bold mb-2">{exercise.title}</h1>
 
       {exercise.description && (
-        <p className="text-gray-600 mb-4">{exercise.description}</p>
+        <p className="text-slate-600 mb-4">{exercise.description}</p>
       )}
 
       <dl className="grid grid-cols-2 gap-3 text-sm mb-6">
         <div>
-          <dt className="text-gray-400">Duración</dt>
+          <dt className="text-slate-400">Duración</dt>
           <dd>{exercise.duration_secs}s</dd>
         </div>
         <div>
-          <dt className="text-gray-400">Repeticiones</dt>
+          <dt className="text-slate-400">Repeticiones</dt>
           <dd>{exercise.repetitions}</dd>
         </div>
         <div>
-          <dt className="text-gray-400">Imágenes</dt>
+          <dt className="text-slate-400">Imágenes</dt>
           <dd>{exercise.images.length || "Ninguna"}</dd>
         </div>
       </dl>
@@ -60,7 +60,7 @@ export default async function ExerciseDetailPage({
           {exercise.tags.map((tag) => (
             <span
               key={tag}
-              className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-xs"
+              className="bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full text-xs"
             >
               {tag}
             </span>
@@ -78,7 +78,7 @@ export default async function ExerciseDetailPage({
                 className="w-32 h-32 object-cover rounded-lg border"
               />
               {img.description && (
-                <span className="text-xs text-gray-500 text-center max-w-[8rem]">
+                <span className="text-xs text-slate-500 text-center max-w-[8rem]">
                   {img.description}
                 </span>
               )}
@@ -91,7 +91,7 @@ export default async function ExerciseDetailPage({
         <div className="flex gap-3">
           <Link
             href={`/exercises/${id}/edit`}
-            className="bg-gray-100 px-4 py-2 rounded-lg text-sm hover:bg-gray-200"
+            className="bg-slate-100 px-4 py-2 rounded-lg text-sm hover:bg-slate-200"
           >
             Editar
           </Link>

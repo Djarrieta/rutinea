@@ -43,23 +43,23 @@ export default async function RoutineDetailPage({
       <h1 className="text-2xl font-bold mb-2">{routine.name}</h1>
 
       {routine.description && (
-        <p className="text-gray-600 mb-4">{routine.description}</p>
+        <p className="text-slate-600 mb-4">{routine.description}</p>
       )}
 
       <dl className="grid grid-cols-2 gap-3 text-sm mb-6">
         <div>
-          <dt className="text-gray-400">Descanso entre sets</dt>
+          <dt className="text-slate-400">Descanso entre sets</dt>
           <dd>{routine.rest_secs}s</dd>
         </div>
         <div>
-          <dt className="text-gray-400">Sets</dt>
+          <dt className="text-slate-400">Sets</dt>
           <dd>{sortedSets.length}</dd>
         </div>
       </dl>
 
       {sortedSets.length > 0 && (
         <div className="mb-6 space-y-5">
-          <h2 className="text-sm font-medium text-gray-500">Orden de sets</h2>
+          <h2 className="text-sm font-medium text-slate-500">Orden de sets</h2>
           {sortedSets.map((rs, si) => {
             const sortedExercises = [...rs.set.set_exercises].sort(
               (a, b) => a.position - b.position,
@@ -69,7 +69,7 @@ export default async function RoutineDetailPage({
                 <h3 className="text-sm font-semibold">
                   {si + 1}. {rs.set.name}
                   {rs.rounds > 1 && (
-                    <span className="ml-1 text-gray-400 font-normal">
+                    <span className="ml-1 text-slate-400 font-normal">
                       ×{rs.rounds}
                     </span>
                   )}
@@ -78,25 +78,25 @@ export default async function RoutineDetailPage({
                   {sortedExercises.map((se, i) => (
                     <li
                       key={se.id}
-                      className="flex items-center gap-3 bg-white border border-gray-200 rounded-lg px-4 py-3"
+                      className="flex items-center gap-3 bg-white border border-slate-200 rounded-lg px-4 py-3"
                     >
-                      <span className="text-gray-400 font-mono text-sm w-5 text-center">
+                      <span className="text-slate-400 font-mono text-sm w-5 text-center">
                         {i + 1}
                       </span>
                       <div className="flex-1">
                         <Link
                           href={`/exercises/${se.exercise.id}`}
-                          className="font-medium text-blue-600 hover:underline"
+                          className="font-medium text-indigo-600 hover:underline"
                         >
                           {se.exercise.title}
                         </Link>
                         {se.exercise.description && (
-                          <p className="text-gray-500 text-xs mt-0.5 line-clamp-1">
+                          <p className="text-slate-500 text-xs mt-0.5 line-clamp-1">
                             {se.exercise.description}
                           </p>
                         )}
                       </div>
-                      <span className="text-xs text-gray-400">
+                      <span className="text-xs text-slate-400">
                         {se.exercise.duration_secs}s
                       </span>
                     </li>
@@ -112,7 +112,7 @@ export default async function RoutineDetailPage({
         <div className="flex gap-3">
           <Link
             href={`/routines/${id}/edit`}
-            className="bg-gray-100 px-4 py-2 rounded-lg text-sm hover:bg-gray-200"
+            className="bg-slate-100 px-4 py-2 rounded-lg text-sm hover:bg-slate-200"
           >
             Editar
           </Link>

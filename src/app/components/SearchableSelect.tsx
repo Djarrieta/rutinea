@@ -98,17 +98,17 @@ export default function SearchableSelect({
         onFocus={() => setOpen(true)}
         onKeyDown={handleKeyDown}
         placeholder={placeholder}
-        className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
       />
 
       {open && (
-        <ul className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-lg border border-gray-200 bg-white shadow-lg">
+        <ul className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-lg border border-slate-200 bg-white shadow-lg">
           {loading && (
-            <li className="px-3 py-2 text-sm text-gray-400">Cargando…</li>
+            <li className="px-3 py-2 text-sm text-slate-400">Cargando…</li>
           )}
 
           {!loading && filtered.length === 0 && (
-            <li className="px-3 py-2 text-sm text-gray-400">Sin resultados</li>
+            <li className="px-3 py-2 text-sm text-slate-400">Sin resultados</li>
           )}
 
           {!loading &&
@@ -119,8 +119,8 @@ export default function SearchableSelect({
                 onMouseEnter={() => setHighlightIndex(i)}
                 className={`cursor-pointer px-3 py-2 text-sm ${
                   i === highlightIndex
-                    ? "bg-blue-50 text-blue-700"
-                    : "text-gray-700 hover:bg-gray-50"
+                    ? "bg-indigo-50 text-indigo-700"
+                    : "text-slate-700 hover:bg-slate-50"
                 }`}
               >
                 {option.label}

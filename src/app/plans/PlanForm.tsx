@@ -66,7 +66,7 @@ function DayRoutinePicker({ defaultValue }: { defaultValue: DayEntry[] }) {
           {entryWithRoutine.map((e) => (
             <li
               key={e.day_of_week}
-              className="flex items-center gap-2 bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm"
+              className="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-lg px-3 py-2 text-sm"
             >
               <span className="font-semibold w-24">
                 {DAY_LABELS[e.day_of_week]}
@@ -87,7 +87,7 @@ function DayRoutinePicker({ defaultValue }: { defaultValue: DayEntry[] }) {
       {availableDays.length > 0 && (
         <div className="flex gap-2 items-end">
           <div className="flex-1">
-            <label className="block text-xs text-gray-500 mb-1">Día</label>
+            <label className="block text-xs text-slate-500 mb-1">Día</label>
             <select
               value={selectedDay ?? ""}
               onChange={(e) =>
@@ -95,7 +95,7 @@ function DayRoutinePicker({ defaultValue }: { defaultValue: DayEntry[] }) {
                   e.target.value === "" ? null : Number(e.target.value),
                 )
               }
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
               <option value="">Seleccionar día…</option>
               {availableDays.map((d) => (
@@ -106,7 +106,7 @@ function DayRoutinePicker({ defaultValue }: { defaultValue: DayEntry[] }) {
             </select>
           </div>
           <div className="flex-1">
-            <label className="block text-xs text-gray-500 mb-1">Rutina</label>
+            <label className="block text-xs text-slate-500 mb-1">Rutina</label>
             <SearchableSelect
               options={routines.map((r) => ({ id: r.id, label: r.name }))}
               onSelect={addEntry}
@@ -146,7 +146,7 @@ export default function PlanForm({
           type="text"
           required
           defaultValue={plan?.name}
-          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
         />
       </div>
 
@@ -159,7 +159,7 @@ export default function PlanForm({
           name="description"
           rows={3}
           defaultValue={plan?.description ?? ""}
-          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
         />
       </div>
 
@@ -172,7 +172,7 @@ export default function PlanForm({
 
       <button
         type="submit"
-        className="bg-blue-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-blue-700"
+        className="bg-indigo-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700"
       >
         {submitLabel}
       </button>

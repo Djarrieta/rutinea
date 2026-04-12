@@ -21,11 +21,11 @@ export default function EntityCard({
   action,
 }: EntityCardProps) {
   return (
-    <div className="bg-white rounded-lg border border-gray-200 p-4 hover:shadow-md transition-shadow">
+    <div className="bg-white rounded-lg border border-slate-200 p-4 hover:shadow-md transition-shadow">
       <Link href={href}>
         <h2 className="font-semibold text-base sm:text-lg">{title}</h2>
         {description && (
-          <p className="text-gray-500 text-sm mt-1 line-clamp-2">
+          <p className="text-slate-500 text-sm mt-1 line-clamp-2">
             {description}
           </p>
         )}
@@ -35,7 +35,7 @@ export default function EntityCard({
           {tags.map((tag) => (
             <span
               key={tag}
-              className="bg-gray-100 text-gray-600 px-2 py-0.5 rounded-full text-xs"
+              className="bg-slate-100 text-slate-600 px-2 py-0.5 rounded-full text-xs"
             >
               {tag}
             </span>
@@ -43,7 +43,7 @@ export default function EntityCard({
         </div>
       )}
       <div className="mt-3 flex items-center justify-between gap-2">
-        <div className="flex items-center gap-3 text-xs text-gray-400 min-w-0 flex-wrap">
+        <div className="flex items-center gap-3 text-xs text-slate-400 min-w-0 flex-wrap">
           {meta}
         </div>
         {action}

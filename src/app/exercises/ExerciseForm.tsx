@@ -62,7 +62,7 @@ function ImageListInput({ defaultValue }: { defaultValue: ExerciseImage[] }) {
                 placeholder="URL de imagen"
                 value={item.url}
                 onChange={(e) => update(i, "url", e.target.value)}
-                className="flex-1 rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="flex-1 rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
               />
               <input
                 ref={(el) => {
@@ -80,7 +80,7 @@ function ImageListInput({ defaultValue }: { defaultValue: ExerciseImage[] }) {
                 type="button"
                 disabled={item.uploading}
                 onClick={() => fileInputRefs.current[i]?.click()}
-                className="shrink-0 rounded-lg border border-gray-300 px-3 py-2 text-sm text-gray-600 hover:bg-gray-50 disabled:opacity-50"
+                className="shrink-0 rounded-lg border border-slate-300 px-3 py-2 text-sm text-slate-600 hover:bg-slate-50 disabled:opacity-50"
               >
                 {item.uploading ? "Subiendo…" : "📁"}
               </button>
@@ -89,7 +89,7 @@ function ImageListInput({ defaultValue }: { defaultValue: ExerciseImage[] }) {
               <img
                 src={item.url}
                 alt={item.description || "preview"}
-                className="h-16 w-16 object-cover rounded-lg border border-gray-200"
+                className="h-16 w-16 object-cover rounded-lg border border-slate-200"
               />
             )}
             <input
@@ -97,7 +97,7 @@ function ImageListInput({ defaultValue }: { defaultValue: ExerciseImage[] }) {
               placeholder="Descripción / tip"
               value={item.description}
               onChange={(e) => update(i, "description", e.target.value)}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
           </div>
           {items.length > 1 && (
@@ -114,7 +114,7 @@ function ImageListInput({ defaultValue }: { defaultValue: ExerciseImage[] }) {
       <button
         type="button"
         onClick={add}
-        className="text-sm text-blue-600 hover:underline"
+        className="text-sm text-indigo-600 hover:underline"
       >
         + Agregar imagen
       </button>
@@ -141,7 +141,7 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
           type="text"
           required
           defaultValue={exercise?.title}
-          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
         />
       </div>
 
@@ -154,14 +154,14 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
           name="description"
           rows={3}
           defaultValue={exercise?.description ?? ""}
-          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
         />
       </div>
 
       <div>
         <label className="block text-sm font-medium mb-1">
           Imágenes{" "}
-          <span className="text-gray-400">
+          <span className="text-slate-400">
             (sube un archivo o pega una URL)
           </span>
         </label>
@@ -171,7 +171,7 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
       <div>
         <label htmlFor="tags" className="block text-sm font-medium mb-1">
           Etiquetas{" "}
-          <span className="text-gray-400">
+          <span className="text-slate-400">
             (separadas por coma, ej. banco, barra, colchoneta)
           </span>
         </label>
@@ -180,7 +180,7 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
           name="tags"
           type="text"
           defaultValue={exercise?.tags?.join(", ")}
-          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
         />
       </div>
 
@@ -197,7 +197,7 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
           type="number"
           min={0}
           defaultValue={exercise?.duration_secs ?? 0}
-          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
         />
       </div>
 
@@ -211,13 +211,13 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
           type="number"
           min={1}
           defaultValue={exercise?.repetitions ?? 1}
-          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500"
         />
       </div>
 
       <button
         type="submit"
-        className="bg-blue-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-blue-700"
+        className="bg-indigo-600 text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-indigo-700"
       >
         {submitLabel}
       </button>

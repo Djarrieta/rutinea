@@ -42,7 +42,7 @@ export default function PlayerModalShell({
             <h2 className="font-semibold text-sm truncate">{title}</h2>
             <button
               onClick={onClose}
-              className="text-gray-400 hover:text-gray-600 text-xl leading-none ml-2 p-1"
+              className="text-slate-400 hover:text-slate-600 text-xl leading-none ml-2 p-1"
             >
               &times;
             </button>
@@ -51,14 +51,14 @@ export default function PlayerModalShell({
         </div>
 
         {/* Content area */}
-        <div className="relative flex-1 sm:flex-none sm:aspect-square bg-gray-100 min-h-0">
+        <div className="relative flex-1 sm:flex-none sm:aspect-square bg-slate-100 min-h-0">
           {children}
         </div>
 
         {/* Progress bar */}
-        <div className="h-1 bg-gray-200 flex-shrink-0">
+        <div className="h-1 bg-slate-200 flex-shrink-0">
           <div
-            className="h-full bg-blue-600 transition-all duration-100"
+            className="h-full bg-indigo-600 transition-all duration-100"
             style={{ width: `${Math.min(progress, 100)}%` }}
           />
         </div>

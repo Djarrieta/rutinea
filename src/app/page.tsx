@@ -88,7 +88,7 @@ export default function Home() {
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
           Rutinea
         </h1>
-        <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+        <p className="text-lg text-slate-600 max-w-2xl mx-auto">
           Diseña tus ejercicios, agrúpalos en sets, arma rutinas y organízalas
           en planes semanales. Luego solo dale play y entrena con un
           temporizador guiado que te lleva paso a paso.
@@ -103,11 +103,11 @@ export default function Home() {
             <Link
               key={mod.href}
               href={mod.href}
-              className="block rounded-xl border border-gray-200 bg-white p-6 shadow-sm hover:shadow-md hover:border-gray-300 transition"
+              className="block rounded-xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md hover:border-slate-300 transition"
             >
-              <div className="text-blue-600 mb-3">{mod.icon}</div>
+              <div className="text-indigo-600 mb-3">{mod.icon}</div>
               <h3 className="text-lg font-semibold mb-2">{mod.title}</h3>
-              <p className="text-sm text-gray-600 leading-relaxed">
+              <p className="text-sm text-slate-600 leading-relaxed">
                 {mod.description}
               </p>
             </Link>
@@ -118,20 +118,20 @@ export default function Home() {
       {/* Flow */}
       <section className="text-center space-y-4 pb-8">
         <h2 className="text-2xl font-semibold">Empieza ahora</h2>
-        <p className="text-gray-600 max-w-xl mx-auto">
+        <p className="text-slate-600 max-w-xl mx-auto">
           Crea tu primer ejercicio, agrúpalo en un set, arma tu rutina y
           organízala en un plan semanal. En minutos estarás entrenando.
         </p>
         <div className="flex justify-center gap-3 flex-wrap">
           <Link
             href="/exercises/new"
-            className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-blue-700 transition"
+            className="inline-flex items-center gap-2 bg-indigo-600 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-indigo-700 transition"
           >
             + Crear ejercicio
           </Link>
           <Link
             href="/routines"
-            className="inline-flex items-center gap-2 bg-gray-100 text-gray-700 px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-gray-200 transition"
+            className="inline-flex items-center gap-2 bg-slate-100 text-slate-700 px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-slate-200 transition"
           >
             Ver rutinas
           </Link>
