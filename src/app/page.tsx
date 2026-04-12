@@ -61,7 +61,8 @@ export default function Home() {
           <p className="text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
             Diseña tus ejercicios, agrúpalos en sets, arma rutinas y organízalas
             en planes semanales. Luego solo dale play y entrena con un
-            temporizador guiado que te lleva paso a paso.
+            temporizador guiado que te lleva paso a paso.{" "}
+            <strong>Comparte tus rutinas con amigos y entrenen juntos.</strong>
           </p>
         </div>
       </section>
