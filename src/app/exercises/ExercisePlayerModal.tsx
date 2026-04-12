@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import type { Exercise } from "@/types";
 import { useRepSounds } from "@/lib/hooks/useRepSounds";
 import PlayerModalShell from "@/app/components/PlayerModalShell";
@@ -55,11 +55,11 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
     return () => clearInterval(interval);
   }, [isPlaying, timePerSlot, duration_secs, totalSlots]);
 
-  const restart = useCallback(() => {
+  const restart = () => {
     setCurrentSlot(0);
     setElapsed(0);
     setIsPlaying(true);
-  }, []);
+  };
 
   const progress = duration_secs > 0 ? (elapsed / duration_secs) * 100 : 0;
   const finished = elapsed >= duration_secs;

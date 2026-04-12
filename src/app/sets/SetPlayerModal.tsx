@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import type { SetWithExercises, Exercise } from "@/types";
 import { useRepSounds } from "@/lib/hooks/useRepSounds";
 import PlayerModalShell from "@/app/components/PlayerModalShell";
@@ -78,13 +78,13 @@ export default function SetPlayerModal({ set, onClose }: Props) {
     currentExercise,
   ]);
 
-  const restart = useCallback(() => {
+  const restart = () => {
     setExerciseIndex(0);
     setElapsed(0);
     setIsPlaying(true);
     setFinished(false);
     prevRepRef.current = 1;
-  }, []);
+  };
 
   // Overall progress
   const totalDuration = exercises.reduce((s, e) => s + e.duration_secs, 0);
@@ -95,23 +95,23 @@ export default function SetPlayerModal({ set, onClose }: Props) {
     totalDuration > 0 ? (completedDuration / totalDuration) * 100 : 0;
 
   const headerContent = !finished ? (
-    <div className="flex gap-1 overflow-x-auto pb-1">
+    <div className="flex gap-1.5 overflow-x-auto pb-1 scroll-thin">
       {exercises.map((ex, i) => {
         const isDone = i < exerciseIndex;
         const isCurrent = i === exerciseIndex;
         return (
           <div
             key={i}
-            className={`flex-shrink-0 rounded-lg border px-2 py-1.5 text-[11px] leading-tight transition-colors ${
+            className={`flex-shrink-0 rounded-lg border px-2.5 py-1.5 text-[11px] leading-tight transition-colors ${
               isCurrent
-                ? "border-primary-400 bg-primary-50"
+                ? "border-primary-500 bg-primary-500/10"
                 : isDone
-                  ? "border-success-300 bg-success-50"
-                  : "border-border bg-bg opacity-50"
+                  ? "border-success-500/40 bg-success-50"
+                  : "border-border bg-surface-alt/60 opacity-60"
             }`}
           >
             <div
-              className={`font-semibold truncate max-w-[7rem] ${isCurrent ? "text-primary-700" : isDone ? "text-success-600" : "text-text-faint"}`}
+              className={`font-semibold truncate max-w-[8rem] ${isCurrent ? "text-primary-400" : isDone ? "text-success-400" : "text-text-faint"}`}
             >
               {isDone ? "✓ " : isCurrent ? "▸ " : ""}
               {ex.title}

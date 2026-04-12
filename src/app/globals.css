@@ -41,3 +41,12 @@
   --color-text-muted: #a3a3a3;
   --color-text-faint: #737373;
 }
+
+/* Hidden scrollbar for horizontal scroll areas */
+.scroll-thin {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scroll-thin::-webkit-scrollbar {
+  display: none;
+}

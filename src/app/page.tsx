@@ -63,7 +63,7 @@ export default function Home() {
             en planes semanales. Luego solo dale play y entrena con un
             temporizador guiado que te lleva paso a paso.
           </p>
-          <p className="text-xl text-text font-semibold max-w-2xl mx-auto">
+          <p className="text-2xl sm:text-3xl font-bold max-w-2xl mx-auto bg-gradient-to-r from-primary-400 to-accent-500 bg-clip-text text-transparent drop-shadow-lg">
             Comparte tus rutinas con amigos y entrenen juntos.
           </p>
         </div>
