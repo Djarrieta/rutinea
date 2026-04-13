@@ -319,8 +319,8 @@ values (
         'desde de pie, inclínate y camina con las manos al suelo hasta plancha, luego regresa caminando las manos hacia los pies.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Inchworm/0.jpg","description":"inchworm"}]'::jsonb,
         '{"calentamiento", "movilidad", "core", "cuerpo completo"}',
-        30,
-        5
+        80,
+        10
     ),
     (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
@@ -364,8 +364,8 @@ values (
         'en cuatro puntos, alterna entre arquear la espalda hacia arriba (gato) y hacia abajo (vaca).',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cat_Stretch/0.jpg","description":"cat-cow"}]'::jsonb,
         '{"calentamiento", "movilidad", "espalda", "core"}',
-        30,
-        5
+        40,
+        10
     ),
     (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
@@ -374,7 +374,7 @@ values (
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Arm_Circles/0.jpg","description":"arm circles"}]'::jsonb,
         '{"calentamiento", "movilidad", "hombros"}',
         30,
-        5
+        30
     ),
     (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
