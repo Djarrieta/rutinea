@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getUser } from "@/lib/auth";
 import { deleteExercise } from "../actions";
 import Breadcrumb from "@/app/components/Breadcrumb";
+import Badge from "@/app/components/Badge";
 import ExerciseDetailPlay from "../ExerciseDetailPlay";
 import type { Exercise } from "@/types";
 
@@ -62,12 +63,7 @@ export default async function ExerciseDetailPage({
       {exercise.tags.length > 0 && (
         <div className="flex flex-wrap gap-1.5 mb-6">
           {exercise.tags.map((tag) => (
-            <span
-              key={tag}
-              className="bg-surface-alt text-text-secondary px-2 py-0.5 rounded-full text-xs"
-            >
-              {tag}
-            </span>
+            <Badge key={tag}>{tag}</Badge>
           ))}
         </div>
       )}

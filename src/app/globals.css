@@ -40,6 +40,11 @@
   --color-text-secondary: #d4d4d4;
   --color-text-muted: #a3a3a3;
   --color-text-faint: #737373;
+
+  /* Tag/Badge specific (Vibrant & High Contrast) */
+  --color-tag-bg: #fbbf241a; /* primary-400 with 10% opacity */
+  --color-tag-text: #fde68a;  /* primary-200 */
+  --color-tag-border: #fbbf2433; /* primary-400 with 20% opacity */
 }
 
 /* Hidden scrollbar for horizontal scroll areas */

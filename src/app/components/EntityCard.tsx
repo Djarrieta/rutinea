@@ -2,6 +2,7 @@
 
 import { ReactNode } from "react";
 import Link from "next/link";
+import Badge from "./Badge";
 
 interface EntityCardProps {
   href: string;
@@ -33,12 +34,7 @@ export default function EntityCard({
       {tags && tags.length > 0 && (
         <div className="mt-2 flex flex-wrap gap-1.5">
           {tags.map((tag) => (
-            <span
-              key={tag}
-              className="bg-surface-alt text-text-secondary px-2 py-0.5 rounded-full text-xs"
-            >
-              {tag}
-            </span>
+            <Badge key={tag}>{tag}</Badge>
           ))}
         </div>
       )}
