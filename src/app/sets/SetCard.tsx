@@ -23,7 +23,7 @@ export default function SetCard({
   const [showPlayer, setShowPlayer] = useState(false);
 
   const totalSecs = set.set_exercises.reduce(
-    (sum, se) => sum + se.exercise.duration_secs,
+    (sum, se) => sum + se.exercise.duration_secs * se.exercise.repetitions,
     0,
   );
 

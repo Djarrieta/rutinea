@@ -84,7 +84,7 @@ export default async function SetDetailPage({
                   )}
                 </div>
                 <span className="text-xs text-text-faint">
-                  {se.exercise.duration_secs}s
+                  {se.exercise.duration_secs}s/rep
                 </span>
               </li>
             ))}

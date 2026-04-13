@@ -121,10 +121,11 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
   const images = currentExercise?.images ?? [];
   const exerciseDuration = currentExercise?.duration_secs ?? 0;
   const exerciseRepetitions = currentExercise?.repetitions ?? 1;
+  const exerciseTotalDuration = exerciseDuration * exerciseRepetitions;
   const totalSlots = images.length * exerciseRepetitions;
-  const timePerSlot = totalSlots > 0 ? exerciseDuration / totalSlots : 0;
+  const timePerSlot = totalSlots > 0 ? exerciseTotalDuration / totalSlots : 0;
   const phaseDuration =
-    phase === "exercise" ? exerciseDuration : routine.rest_secs;
+    phase === "exercise" ? exerciseTotalDuration : routine.rest_secs;
 
   // Derive current rep from elapsed time
   const currentSlot =
@@ -221,7 +222,9 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
   const totalDuration = steps.reduce(
     (sum, s) =>
       sum +
-      (s.type === "exercise" ? s.exercise.duration_secs : routine.rest_secs),
+      (s.type === "exercise"
+        ? s.exercise.duration_secs * s.exercise.repetitions
+        : routine.rest_secs),
     0,
   );
   const completedDuration =
@@ -231,7 +234,7 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
         (sum, s) =>
           sum +
           (s.type === "exercise"
-            ? s.exercise.duration_secs
+            ? s.exercise.duration_secs * s.exercise.repetitions
             : routine.rest_secs),
         0,
       ) + elapsed;

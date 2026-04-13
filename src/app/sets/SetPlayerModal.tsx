@@ -30,8 +30,9 @@ export default function SetPlayerModal({ set, onClose }: Props) {
   const images = currentExercise?.images ?? [];
   const duration = currentExercise?.duration_secs ?? 0;
   const repetitions = currentExercise?.repetitions ?? 1;
+  const exerciseTotalDuration = duration * repetitions;
   const totalSlots = images.length * repetitions;
-  const timePerSlot = totalSlots > 0 ? duration / totalSlots : 0;
+  const timePerSlot = totalSlots > 0 ? exerciseTotalDuration / totalSlots : 0;
 
   const currentSlot =
     totalSlots > 0 && timePerSlot > 0
@@ -56,7 +57,7 @@ export default function SetPlayerModal({ set, onClose }: Props) {
     const interval = setInterval(() => {
       setElapsed((prev) => {
         const next = prev + 0.1;
-        if (next >= duration) {
+        if (next >= exerciseTotalDuration) {
           const nextIdx = exerciseIndex + 1;
           if (nextIdx >= totalExercises) {
             setFinished(true);
@@ -74,7 +75,7 @@ export default function SetPlayerModal({ set, onClose }: Props) {
   }, [
     isPlaying,
     finished,
-    duration,
+    exerciseTotalDuration,
     exerciseIndex,
     totalExercises,
     currentExercise,
@@ -89,10 +90,14 @@ export default function SetPlayerModal({ set, onClose }: Props) {
   };
 
   // Overall progress
-  const totalDuration = exercises.reduce((s, e) => s + e.duration_secs, 0);
+  const totalDuration = exercises.reduce(
+    (s, e) => s + e.duration_secs * e.repetitions,
+    0,
+  );
   const completedDuration =
-    exercises.slice(0, exerciseIndex).reduce((s, e) => s + e.duration_secs, 0) +
-    elapsed;
+    exercises
+      .slice(0, exerciseIndex)
+      .reduce((s, e) => s + e.duration_secs * e.repetitions, 0) + elapsed;
   const overallProgress =
     totalDuration > 0 ? (completedDuration / totalDuration) * 100 : 0;
 
@@ -135,7 +140,7 @@ export default function SetPlayerModal({ set, onClose }: Props) {
           statusText={
             finished
               ? "Finalizado"
-              : `${repetitions > 1 ? `Rep ${currentRep}/${repetitions} · ` : ""}${Math.ceil(elapsed)}s / ${duration}s — ${exerciseIndex + 1}/${totalExercises}`
+              : `${repetitions > 1 ? `Rep ${currentRep}/${repetitions} · ` : ""}${Math.ceil(elapsed)}s / ${exerciseTotalDuration}s — ${exerciseIndex + 1}/${totalExercises}`
           }
           finished={finished}
           isPlaying={isPlaying}

@@ -8,7 +8,7 @@ export function getRoutineDuration(routine: {
   rest_secs: number;
   routine_sets: {
     rounds: number;
-    set: { set_exercises: { exercise: { duration_secs: number } }[] };
+    set: { set_exercises: { exercise: { duration_secs: number; repetitions: number } }[] };
   }[];
 }): number {
   const totalExpandedSets = routine.routine_sets.reduce(
@@ -18,7 +18,7 @@ export function getRoutineDuration(routine: {
   const exerciseTime = routine.routine_sets.reduce(
     (sum, rs) =>
       sum +
-      rs.set.set_exercises.reduce((s, se) => s + se.exercise.duration_secs, 0) *
+      rs.set.set_exercises.reduce((s, se) => s + se.exercise.duration_secs * se.exercise.repetitions, 0) *
         rs.rounds,
     0,
   );

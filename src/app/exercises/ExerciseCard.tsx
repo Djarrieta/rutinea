@@ -18,7 +18,7 @@ export default function ExerciseCard({ exercise }: { exercise: Exercise }) {
         tags={exercise.tags}
         meta={
           <>
-            <span>{exercise.duration_secs}s</span>
+            <span>{exercise.duration_secs}s/rep</span>
             {exercise.repetitions > 1 && (
               <span>{exercise.repetitions} reps</span>
             )}

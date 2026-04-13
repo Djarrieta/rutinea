@@ -189,7 +189,7 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
           htmlFor="duration_secs"
           className="block text-sm font-medium mb-1"
         >
-          Duración (segundos)
+          Segundos por repetición
         </label>
         <input
           id="duration_secs"

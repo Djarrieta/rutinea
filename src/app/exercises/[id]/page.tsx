@@ -50,7 +50,7 @@ export default async function ExerciseDetailPage({
 
       <dl className="grid grid-cols-2 gap-3 text-sm mb-6">
         <div>
-          <dt className="text-text-faint">Duración</dt>
+          <dt className="text-text-faint">Seg. por rep</dt>
           <dd>{exercise.duration_secs}s</dd>
         </div>
         <div>

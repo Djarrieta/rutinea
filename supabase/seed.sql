@@ -89,7 +89,7 @@ values (
         'acuéstate en banco plano con una mancuerna en cada mano. baja controladamente hasta la altura del pecho y empuja hacia arriba hasta extender los brazos.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Bench_Press/0.jpg","description":"press plano con mancuernas en banco"}]'::jsonb,
         '{"pecho", "mancuernas", "banco"}',
-        30,
+        3,
         12
     ),
     (
@@ -98,7 +98,7 @@ values (
         'en banco inclinado a 30-45°, empuja las mancuernas desde el pecho hacia arriba. enfatiza la parte superior del pecho.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Incline_Dumbbell_Press/0.jpg","description":"inclina el banco a 30-45 grados"}]'::jsonb,
         '{"pecho", "hombros", "mancuernas", "banco"}',
-        30,
+        3,
         12
     ),
     (
@@ -107,7 +107,7 @@ values (
         'acostado en banco plano, abre los brazos en arco con codos ligeramente flexionados. siente el estiramiento en el pecho y vuelve a cerrar.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Flyes/0.jpg","description":"codos ligeramente flexionados, movimiento en arco"}]'::jsonb,
         '{"pecho", "mancuernas", "banco"}',
-        30,
+        3,
         12
     ),
     (
@@ -116,7 +116,7 @@ values (
         'acostado en banco, sujeta una mancuerna con ambas manos sobre el pecho. baja detrás de la cabeza manteniendo los codos semiflexionados.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent-Arm_Dumbbell_Pullover/0.jpg","description":"estira bien los dorsales en la bajada"}]'::jsonb,
         '{"pecho", "espalda", "mancuernas", "banco"}',
-        30,
+        3,
         12
     ),
 
@@ -127,7 +127,7 @@ values (
     'sentado o de pie, empuja las mancuernas desde los hombros hacia arriba hasta extender completamente los brazos.',
     '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Shoulder_Press/0.jpg","description":"no arquees la espalda, aprieta el core"}]'::jsonb,
     '{"hombros", "mancuernas"}',
-    30,
+    3,
     12
 ),
 (
@@ -136,7 +136,7 @@ values (
     'de pie con mancuernas a los lados. sube los brazos lateralmente hasta la altura de los hombros con codos ligeramente flexionados.',
     '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Lateral_Raise/0.jpg","description":"no subas por encima del hombro, controla la bajada"}]'::jsonb,
     '{"hombros", "mancuernas"}',
-    25,
+    2,
     15
 ),
 (
@@ -145,7 +145,7 @@ values (
     'de pie, sube las mancuernas al frente alternando brazos hasta la altura de los hombros.',
     '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Front_Dumbbell_Raise/0.jpg","description":"movimiento controlado, sin balanceo"}]'::jsonb,
     '{"hombros", "mancuernas"}',
-    25,
+    3,
     12
 ),
 (
@@ -154,7 +154,7 @@ values (
     'inclinado hacia adelante, abre los brazos lateralmente apretando los omóplatos. trabaja el deltoides posterior.',
     '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Reverse_Flyes/0.jpg","description":"abre los brazos apretando omóplatos"}]'::jsonb,
     '{"hombros", "espalda", "mancuernas"}',
-    25,
+    3,
     12
 ),
 
@@ -165,7 +165,7 @@ values (
     'de pie con mancuernas a los lados, flexiona los codos alternando brazos. mantén los codos pegados al cuerpo.',
     '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Bicep_Curl/0.jpg","description":"codos fijos al costado, sin balanceo"}]'::jsonb,
     '{"bíceps", "mancuernas"}',
-    25,
+    3,
     12
 ),
 (
@@ -174,7 +174,7 @@ values (
     'igual que el curl de bíceps pero con agarre neutro (palmas enfrentadas). trabaja bíceps y braquiorradial.',
     '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Alternate_Hammer_Curl/0.jpg","description":"palmas enfrentadas durante todo el movimiento"}]'::jsonb,
     '{"bíceps", "antebrazo", "mancuernas"}',
-    25,
+    3,
     12
 ),
 (
@@ -183,7 +183,7 @@ values (
     'sentado, apoya el codo en la cara interna del muslo. flexiona el brazo concentrando la contracción del bíceps.',
     '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Concentration_Curls/0.jpg","description":"aprieta arriba, baja lento"}]'::jsonb,
     '{"bíceps", "mancuernas"}',
-    25,
+    3,
     10
 ),
 
@@ -194,7 +194,7 @@ values (
     'de pie o sentado, sujeta una mancuerna con ambas manos detrás de la cabeza. extiende los brazos hacia arriba.',
     '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Dumbbell_Triceps_Extension/0.jpg","description":"codos apuntando al techo, no los abras"}]'::jsonb,
     '{"tríceps", "mancuernas"}',
-    25,
+    3,
     12
 ),
 (
@@ -203,7 +203,7 @@ values (
     'inclinado, con el codo a 90°, extiende el antebrazo hacia atrás apretando el tríceps al final.',
     '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Tricep_Dumbbell_Kickback/0.jpg","description":"brazo paralelo al suelo, solo mueve el antebrazo"}]'::jsonb,
     '{"tríceps", "mancuernas"}',
-    25,
+    3,
     12
 ),
 (
@@ -212,7 +212,7 @@ values (
     'acostado en banco, baja la mancuerna hacia la frente flexionando solo el codo. extiende de vuelta sin mover el brazo.',
     '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Dumbbell_Tricep_Extension/0.jpg","description":"solo se mueve el antebrazo, codo fijo"}]'::jsonb,
     '{"tríceps", "mancuernas", "banco"}',
-    25,
+    3,
     10
 ),
 
@@ -223,7 +223,7 @@ values (
     'apoyado en banco con una mano y rodilla, tira la mancuerna hacia la cadera apretando el dorsal. baja controlado.',
     '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Arm_Dumbbell_Row/0.jpg","description":"tira hacia la cadera, aprieta el omóplato"}]'::jsonb,
     '{"espalda", "mancuernas", "banco"}',
-    30,
+    3,
     12
 ),
 (
@@ -232,7 +232,7 @@ values (
     'inclinado a 45° con una mancuerna en cada mano, tira ambas hacia el abdomen apretando la espalda.',
     '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Two-Dumbbell_Row/0.jpg","description":"inclinado a 45 grados, tira hacia el abdomen"}]'::jsonb,
     '{"espalda", "mancuernas"}',
-    30,
+    3,
     12
 ),
 (
@@ -241,7 +241,7 @@ values (
     'de pie con mancuernas a los lados, sube los hombros hacia las orejas apretando los trapecios. baja lento.',
     '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Shrug/0.jpg","description":"sube los hombros hacia las orejas"}]'::jsonb,
     '{"espalda", "trapecios", "mancuernas"}',
-    20,
+    2,
     15
 ),
 
@@ -252,7 +252,7 @@ values (
     'de pie con mancuernas a los lados, baja en sentadilla manteniendo las rodillas alineadas con los pies. empuja desde los talones.',
     '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Squat/0.jpg","description":"rodillas en línea con los pies, pecho arriba"}]'::jsonb,
     '{"piernas", "glúteos", "mancuernas"}',
-    30,
+    3,
     12
 ),
 (
@@ -261,7 +261,7 @@ values (
     'da un paso largo al frente bajando la rodilla trasera casi al suelo. alterna piernas. mantén el torso erguido.',
     '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Lunges/0.jpg","description":"rodilla delantera no pasa la punta del pie"}]'::jsonb,
     '{"piernas", "glúteos", "mancuernas"}',
-    30,
+    3,
     12
 ),
 (
@@ -270,7 +270,7 @@ values (
     'de pie con mancuernas al frente, empuja la cadera hacia atrás bajando el torso. siente el estiramiento en isquiotibiales.',
     '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Stiff-Legged_Dumbbell_Deadlift/0.jpg","description":"espalda recta, empuja cadera atrás"}]'::jsonb,
     '{"piernas", "glúteos", "espalda baja", "mancuernas"}',
-    30,
+    3,
     12
 ),
 (
@@ -279,7 +279,7 @@ values (
     'piernas abiertas más que los hombros, puntas afuera. sujeta una mancuerna entre las piernas y baja en sentadilla.',
     '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plie_Dumbbell_Squat/0.jpg","description":"piernas abiertas, puntas afuera"}]'::jsonb,
     '{"piernas", "glúteos", "aductores", "mancuernas"}',
-    30,
+    3,
     12
 ),
 (
@@ -288,7 +288,7 @@ values (
     'con el pie trasero elevado en un banco, baja en sentadilla con una pierna. excelente para cuádriceps y glúteos.',
     '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Split_Squat_with_Dumbbells/0.jpg","description":"pie trasero elevado en banco"}]'::jsonb,
     '{"piernas", "glúteos", "mancuernas", "banco"}',
-    30,
+    3,
     10
 );
 
@@ -310,7 +310,7 @@ values (
         'de pie, baja en sentadilla profunda y estira los brazos arriba. trabaja movilidad de cadera y tobillos.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bodyweight_Squat/0.jpg","description":"squat to stretch"}]'::jsonb,
         '{"calentamiento", "movilidad", "piernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -319,7 +319,7 @@ values (
         'desde de pie, inclínate y camina con las manos al suelo hasta plancha, luego regresa caminando las manos hacia los pies.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Inchworm/0.jpg","description":"inchworm"}]'::jsonb,
         '{"calentamiento", "movilidad", "core", "cuerpo completo"}',
-        80,
+        8,
         10
     ),
     (
@@ -328,7 +328,7 @@ values (
         'en sentadilla profunda, balancea el peso de lado a lado manteniendo los talones en el suelo.',
         '[]'::jsonb,
         '{"calentamiento", "movilidad", "piernas", "cadera"}',
-        30,
+        6,
         5
     ),
     (
@@ -337,7 +337,7 @@ values (
         'con un palo o banda, pasa los brazos extendidos por encima de la cabeza y detrás de la espalda en un arco completo.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Shoulder_Stretch/0.jpg","description":"shoulder dislocation"}]'::jsonb,
         '{"calentamiento", "movilidad", "hombros"}',
-        30,
+        6,
         5
     ),
     (
@@ -346,7 +346,7 @@ values (
         'acostado boca arriba con rodillas flexionadas, eleva la cadera apretando los glúteos arriba.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butt_Lift_Bridge/0.jpg","description":"glute bridge"}]'::jsonb,
         '{"glúteos", "piernas", "cuerpo libre"}',
-        30,
+        6,
         5
     ),
     (
@@ -355,7 +355,7 @@ values (
         'da un paso lateral amplio y baja la cadera hacia ese lado manteniendo la otra pierna extendida.',
         '[]'::jsonb,
         '{"calentamiento", "movilidad", "piernas", "aductores"}',
-        30,
+        6,
         5
     ),
     (
@@ -364,7 +364,7 @@ values (
         'en cuatro puntos, alterna entre arquear la espalda hacia arriba (gato) y hacia abajo (vaca).',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cat_Stretch/0.jpg","description":"cat-cow"}]'::jsonb,
         '{"calentamiento", "movilidad", "espalda", "core"}',
-        40,
+        4,
         10
     ),
     (
@@ -373,7 +373,7 @@ values (
         'de pie, extiende los brazos a los lados y haz círculos pequeños que van creciendo progresivamente.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Arm_Circles/0.jpg","description":"arm circles"}]'::jsonb,
         '{"calentamiento", "movilidad", "hombros"}',
-        30,
+        1,
         30
     ),
     (
@@ -382,7 +382,7 @@ values (
         'en cuatro puntos, eleva la rodilla lateralmente y haz círculos con la cadera. trabaja movilidad de cadera.',
         '[]'::jsonb,
         '{"calentamiento", "movilidad", "cadera", "glúteos"}',
-        30,
+        6,
         5
     ),
     (
@@ -391,7 +391,7 @@ values (
         'de pie o arrodillado, abre los brazos hacia atrás estirando el pecho y juntando los omóplatos.',
         '[]'::jsonb,
         '{"calentamiento", "movilidad", "pecho", "hombros"}',
-        30,
+        6,
         5
     ),
     (
@@ -400,7 +400,7 @@ values (
         'de pie apoyado en algo, balancea una pierna hacia adelante y atrás de forma controlada.',
         '[]'::jsonb,
         '{"calentamiento", "movilidad", "piernas", "cadera"}',
-        30,
+        6,
         5
     ),
     (
@@ -409,7 +409,7 @@ values (
         'desde plancha, empuja la cadera hacia arriba formando una v invertida, luego regresa a plancha.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg","description":"plank to downward dog"}]'::jsonb,
         '{"calentamiento", "movilidad", "core", "hombros"}',
-        30,
+        6,
         5
     ),
     (
@@ -418,7 +418,7 @@ values (
         'sentado con ambas piernas a 90 grados, rota las caderas llevando las rodillas de un lado al otro.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/90_90_Hamstring/0.jpg","description":"90/90 hip hinges"}]'::jsonb,
         '{"calentamiento", "movilidad", "cadera"}',
-        30,
+        6,
         5
     ),
     (
@@ -427,7 +427,7 @@ values (
         'alterna entre posición de niño (caderas hacia talones) y cobra (extensión de espalda boca abajo).',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Childs_Pose/0.jpg","description":"childs pose to cobra"}]'::jsonb,
         '{"calentamiento", "movilidad", "espalda"}',
-        30,
+        6,
         5
     ),
     (
@@ -436,7 +436,7 @@ values (
         'acostado con plantas de los pies juntas y rodillas abiertas, eleva la cadera apretando glúteos.',
         '[]'::jsonb,
         '{"glúteos", "cadera", "cuerpo libre"}',
-        30,
+        6,
         5
     ),
     (
@@ -445,7 +445,7 @@ values (
         'en cuatro puntos, pasa un brazo por debajo del torso rotando la columna. estira espalda y hombros.',
         '[]'::jsonb,
         '{"calentamiento", "movilidad", "espalda", "hombros"}',
-        30,
+        6,
         5
     ),
     (
@@ -454,7 +454,7 @@ values (
         'sentado con la espalda apoyada en un banco, eleva la cadera con peso hasta extensión completa de cadera.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Hip_Thrust/0.jpg","description":"hip thrust"}]'::jsonb,
         '{"glúteos", "piernas", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -463,7 +463,7 @@ values (
         'sentado con mancuernas al frente, rota los brazos hacia afuera mientras empujas hacia arriba.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Arnold_Dumbbell_Press/0.jpg","description":"arnold press"}]'::jsonb,
         '{"hombros", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -472,7 +472,7 @@ values (
         'con una mancuerna, haz un tirón desde el suelo hasta el hombro y luego empuja hacia arriba en un movimiento fluido.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Clean_and_Press/0.jpg","description":"single arm clean and press"}]'::jsonb,
         '{"hombros", "cuerpo completo", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -481,7 +481,7 @@ values (
         'inclinado con una mano apoyada, tira la mancuerna hacia la cadera con un brazo. trabaja dorsal.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Arm_Dumbbell_Row/0.jpg","description":"single arm row"}]'::jsonb,
         '{"espalda", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -490,7 +490,7 @@ values (
         'en posición de sentadilla, desplázate lateralmente de un lado a otro sin levantarte.',
         '[]'::jsonb,
         '{"piernas", "glúteos", "banda"}',
-        30,
+        6,
         5
     ),
     (
@@ -499,7 +499,7 @@ values (
         'inclinado con mancuernas juntas, tira hacia el abdomen con agarre cerrado enfatizando la espalda media.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Two-Dumbbell_Row/0.jpg","description":"dumbbell narrow row"}]'::jsonb,
         '{"espalda", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -508,7 +508,7 @@ values (
         'hip thrust con banda en las rodillas, al subir abre las rodillas hacia afuera activando glúteo medio.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Hip_Thrust/0.jpg","description":"banded hip thrust with abduction"}]'::jsonb,
         '{"glúteos", "piernas", "banda"}',
-        30,
+        6,
         5
     ),
     (
@@ -517,7 +517,7 @@ values (
         'desde plancha haz un remo alterno, salta a sentadilla y haz curl de bíceps. movimiento compuesto.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Alternating_Renegade_Row/0.jpg","description":"renegade row to squat thrust biceps curl"}]'::jsonb,
         '{"cuerpo completo", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -526,7 +526,7 @@ values (
         'da pasos largos alternos bajando la rodilla trasera casi al suelo. avanza con cada repetición.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bodyweight_Walking_Lunge/0.jpg","description":"walking lunges"}]'::jsonb,
         '{"piernas", "glúteos", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -535,7 +535,7 @@ values (
         'en posición de plancha, lleva las rodillas al pecho alternando rápidamente.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Mountain_Climbers/0.jpg","description":"mountain climbers"}]'::jsonb,
         '{"cardio", "core", "cuerpo libre"}',
-        30,
+        6,
         5
     ),
     (
@@ -544,7 +544,7 @@ values (
         'sobre una elevación, da un paso hacia atrás y baja más profundo de lo normal. enfatiza glúteos.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Lunges/0.jpg","description":"deficit reverse lunge"}]'::jsonb,
         '{"piernas", "glúteos", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -553,7 +553,7 @@ values (
         'de pie con mancuernas al frente, tira hacia arriba pegado al cuerpo hasta la altura de la barbilla.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Upright_Barbell_Row/0.jpg","description":"upright row"}]'::jsonb,
         '{"hombros", "trapecios", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -562,7 +562,7 @@ values (
         'sube a un banco con una pierna enfocándote en empujar con el glúteo. mantén el torso erguido.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Step_Ups/0.jpg","description":"step-up glute focus"}]'::jsonb,
         '{"glúteos", "piernas", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -571,7 +571,7 @@ values (
         'acostado en banco o en el suelo, empuja las mancuernas hacia arriba desde el pecho.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Bench_Press/0.jpg","description":"chest press"}]'::jsonb,
         '{"pecho", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -580,7 +580,7 @@ values (
         'sentadilla con pies juntos y talones elevados sobre un disco. enfatiza cuádriceps.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Squat/0.jpg","description":"narrow squat heels elevated"}]'::jsonb,
         '{"piernas", "cuádriceps", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -589,7 +589,7 @@ values (
         'push-up con las manos en una superficie elevada, codos pegados al cuerpo para enfatizar tríceps.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pushups/0.jpg","description":"incline triceps push-up"}]'::jsonb,
         '{"tríceps", "pecho", "cuerpo libre"}',
-        30,
+        6,
         5
     ),
     (
@@ -598,7 +598,7 @@ values (
         'remo inclinado con agarre supino (palmas hacia arriba). enfatiza bíceps y espalda baja.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Two-Dumbbell_Row_With_Palms_In/0.jpg","description":"underhand row"}]'::jsonb,
         '{"espalda", "bíceps", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -607,7 +607,7 @@ values (
         'de pie, elévate sobre las puntas de los pies apretando las pantorrillas. baja lento.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Calf_Raise_On_A_Dumbbell/0.jpg","description":"calf raises"}]'::jsonb,
         '{"piernas", "pantorrillas", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -616,7 +616,7 @@ values (
         'sujeta una mancuerna vertical contra el pecho y baja en sentadilla profunda con el torso erguido.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Goblet_Squat/0.jpg","description":"goblet squat"}]'::jsonb,
         '{"piernas", "glúteos", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -625,7 +625,7 @@ values (
         'abdominales sujetando una mancuerna contra el pecho. sube el torso completo.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sit-Up/0.jpg","description":"sit-up with weight"}]'::jsonb,
         '{"core", "abdominales", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -634,7 +634,7 @@ values (
         'acostado boca abajo, flexiona las rodillas llevando los talones hacia los glúteos contra resistencia.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Leg_Curls/0.jpg","description":"lying leg curl"}]'::jsonb,
         '{"piernas", "isquiotibiales", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -643,7 +643,7 @@ values (
         'apóyate contra la pared con las rodillas a 90 grados y mantén la posición estática.',
         '[]'::jsonb,
         '{"piernas", "cuádriceps", "isométrico"}',
-        30,
+        6,
         5
     ),
     (
@@ -652,7 +652,7 @@ values (
         'combina elevación lateral y frontal con mancuernas en un solo movimiento alterno.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Lateral_Raise/0.jpg","description":"lateral raise and front raise"}]'::jsonb,
         '{"hombros", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -661,7 +661,7 @@ values (
         'en cuatro puntos, alterna entre abrir la rodilla lateral y patada hacia atrás. trabaja glúteos.',
         '[]'::jsonb,
         '{"glúteos", "cadera", "cuerpo libre"}',
-        30,
+        6,
         5
     ),
     (
@@ -670,7 +670,7 @@ values (
         'en posición de plancha con mancuernas, tira una mancuerna hacia la cadera alternando lados.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Alternating_Renegade_Row/0.jpg","description":"renegade row"}]'::jsonb,
         '{"espalda", "core", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -679,7 +679,7 @@ values (
         'peso muerto con un pie ligeramente atrás como apoyo. trabaja unilateralmente glúteos y posterior.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Stiff-Legged_Dumbbell_Deadlift/0.jpg","description":"b-stance deadlift"}]'::jsonb,
         '{"piernas", "glúteos", "espalda baja", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -688,7 +688,7 @@ values (
         'en posición de puente de glúteo, realiza un press de pecho simultáneamente.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butt_Lift_Bridge/0.jpg","description":"glute bridge and chest press"}]'::jsonb,
         '{"glúteos", "pecho", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -697,7 +697,7 @@ values (
         'acostado boca arriba, alterna entre tocar la punta del pie y elevar las piernas. trabaja abdominales.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Flat_Bench_Lying_Leg_Raise/0.jpg","description":"toe tap and leg raise"}]'::jsonb,
         '{"core", "abdominales", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -706,7 +706,7 @@ values (
         'apoyado en un banco detrás, baja el cuerpo flexionando los codos y empuja de vuelta. trabaja tríceps.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bench_Dips/0.jpg","description":"triceps dip"}]'::jsonb,
         '{"tríceps", "cuerpo libre"}',
-        30,
+        6,
         5
     ),
     (
@@ -715,7 +715,7 @@ values (
         'de rodillas o de pie, tira de una banda elástica desde arriba hacia el pecho. trabaja dorsales.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Front_Lat_Pulldown/0.jpg","description":"lat pulldown with loop band"}]'::jsonb,
         '{"espalda", "banda"}',
-        30,
+        6,
         5
     ),
     (
@@ -724,7 +724,7 @@ values (
         'frog pumps con banda de resistencia en las rodillas para mayor activación de glúteo medio.',
         '[]'::jsonb,
         '{"glúteos", "banda"}',
-        30,
+        6,
         5
     ),
     (
@@ -733,7 +733,7 @@ values (
         'en posición de plancha alta, toca el hombro opuesto alternando manos sin rotar la cadera.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg","description":"plank shoulder taps"}]'::jsonb,
         '{"core", "hombros", "cuerpo libre"}',
-        30,
+        6,
         5
     ),
     (
@@ -742,7 +742,7 @@ values (
         'combina toques de hombro con saltos abriendo y cerrando piernas en plancha.',
         '[]'::jsonb,
         '{"core", "cardio", "cuerpo libre"}',
-        30,
+        6,
         5
     ),
     (
@@ -751,7 +751,7 @@ values (
         'haz zancada y al subir realiza una elevación lateral con mancuernas. trabaja piernas y hombros.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Lunges/0.jpg","description":"alternating lunges with lateral raise"}]'::jsonb,
         '{"piernas", "hombros", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -760,7 +760,7 @@ values (
         'realiza un peso muerto rumano y al estar inclinado haz un remo. movimiento compuesto.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/0.jpg","description":"romanian deadlift and row"}]'::jsonb,
         '{"espalda", "piernas", "glúteos", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -769,7 +769,7 @@ values (
         'acostado boca arriba, lleva las rodillas al pecho elevando la cadera del suelo. trabaja abdomen inferior.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Reverse_Crunch/0.jpg","description":"reverse crunch"}]'::jsonb,
         '{"core", "abdominales", "cuerpo libre"}',
-        30,
+        6,
         5
     ),
     (
@@ -778,7 +778,7 @@ values (
         'desde de pie, baja a plancha, haz push-up, salta los pies hacia las manos y salta arriba.',
         '[]'::jsonb,
         '{"cardio", "cuerpo completo", "cuerpo libre"}',
-        30,
+        6,
         5
     ),
     (
@@ -787,7 +787,7 @@ values (
         'abdominales sujetando mancuerna, al subir extiende los brazos con pullover. trabaja core y dorsal.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sit-Up/0.jpg","description":"sit-up and pullover"}]'::jsonb,
         '{"core", "abdominales", "mancuernas"}',
-        30,
+        6,
         5
     ),
     (
@@ -796,7 +796,7 @@ values (
         'desde zancada, salta y cambia de pierna en el aire. ejercicio pliométrico de piernas.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Split_Jump/0.jpg","description":"alternating jumping lunges"}]'::jsonb,
         '{"piernas", "cardio", "cuerpo libre"}',
-        30,
+        6,
         5
     ),
     (
@@ -805,7 +805,7 @@ values (
         'con banda en las rodillas, salta abriendo y cerrando las piernas en sentadilla.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Freehand_Jump_Squat/0.jpg","description":"banded squat jump in and out"}]'::jsonb,
         '{"piernas", "cardio", "banda"}',
-        30,
+        6,
         5
     ),
     (
@@ -814,7 +814,7 @@ values (
         'alterna entre dips de tríceps y toques de punta del pie. trabaja tríceps y core.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bench_Dips/0.jpg","description":"triceps dip and toe touch"}]'::jsonb,
         '{"tríceps", "core", "cuerpo libre"}',
-        30,
+        6,
         5
     ),
     (
@@ -823,7 +823,7 @@ values (
         'mantén la posición de plancha baja sobre los antebrazos. contrae abdomen y glúteos.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg","description":"low plank hold"}]'::jsonb,
         '{"core", "isométrico", "cuerpo libre"}',
-        30,
+        6,
         5
     ),
     (
@@ -832,7 +832,7 @@ values (
         'alterna entre plancha alta (manos) y baja (antebrazos) subiendo y bajando un brazo a la vez.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg","description":"high plank to low plank"}]'::jsonb,
         '{"core", "hombros", "cuerpo libre"}',
-        30,
+        6,
         5
     );
 

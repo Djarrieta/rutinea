@@ -14,8 +14,9 @@ interface Props {
 
 export default function ExercisePlayerModal({ exercise, onClose }: Props) {
   const { images, duration_secs, repetitions } = exercise;
+  const totalDuration = duration_secs * repetitions;
   const totalSlots = images.length * repetitions;
-  const timePerSlot = totalSlots > 0 ? duration_secs / totalSlots : 0;
+  const timePerSlot = totalSlots > 0 ? totalDuration / totalSlots : 0;
 
   const [currentSlot, setCurrentSlot] = useState(0);
   const [elapsed, setElapsed] = useState(0);
@@ -46,16 +47,16 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
         );
         setCurrentSlot(nextSlot);
 
-        if (next >= duration_secs) {
+        if (next >= totalDuration) {
           setIsPlaying(false);
-          return duration_secs;
+          return totalDuration;
         }
         return next;
       });
     }, 100);
 
     return () => clearInterval(interval);
-  }, [isPlaying, timePerSlot, duration_secs, totalSlots]);
+  }, [isPlaying, timePerSlot, totalDuration, totalSlots]);
 
   const restart = () => {
     setCurrentSlot(0);
@@ -63,8 +64,8 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
     setIsPlaying(true);
   };
 
-  const progress = duration_secs > 0 ? (elapsed / duration_secs) * 100 : 0;
-  const finished = elapsed >= duration_secs;
+  const progress = totalDuration > 0 ? (elapsed / totalDuration) * 100 : 0;
+  const finished = elapsed >= totalDuration;
 
   return (
     <PlayerModalShell
@@ -73,7 +74,7 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
       progress={progress}
       controls={
         <PlayerControls
-          statusText={`${repetitions > 1 ? `Rep ${currentRep}/${repetitions} · ` : ""}${Math.ceil(elapsed)}s / ${duration_secs}s`}
+          statusText={`${repetitions > 1 ? `Rep ${currentRep}/${repetitions} \u00b7 ` : ""}${Math.ceil(elapsed)}s / ${totalDuration}s`}
           finished={finished}
           isPlaying={isPlaying}
           onRestart={restart}
