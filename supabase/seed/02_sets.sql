@@ -76,6 +76,26 @@ values (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
         'barras paralelas',
         'ejercicios de calistenia en barras paralelas: fondos, remos y abdominales.'
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'calistenia empuje focalizado',
+        'rutina de empuje en paralelas centrada en pecho, tríceps y hombros.'
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'calistenia tirón focalizado',
+        'rutina de tirón en paralelas para fortalecer espalda y bíceps.'
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'calistenia core y estabilidad',
+        'ejercicios de core en paralelas y suelo para máxima estabilidad.'
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'calistenia pierna y potencia',
+        'entrenamiento de tren inferior usando peso corporal y movimientos explosivos.'
     );
 
 -- Link exercises → sets
@@ -371,4 +391,76 @@ where
         'dominadas negativas en paralelas',
         'remo prono suspendido en paralelas',
         'elevación de rodillas en paralelas'
+    );
+
+-- Calistenia Empuje Focalizado
+insert into
+    public.set_exercises (set_id, exercise_id, position)
+select s.id, e.id, row_number() over (
+        order by e.created_at
+    ) - 1
+from public.sets s
+    cross join public.exercises e
+where
+    s.name = 'calistenia empuje focalizado'
+    and e.title in (
+        'flexiones en barras paralelas',
+        'fondos para pecho en paralelas',
+        'fondos para tríceps en paralelas',
+        'press francés en paralelas',
+        'incline triceps push-up'
+    );
+
+-- Calistenia Tirón Focalizado
+insert into
+    public.set_exercises (set_id, exercise_id, position)
+select s.id, e.id, row_number() over (
+        order by e.created_at
+    ) - 1
+from public.sets s
+    cross join public.exercises e
+where
+    s.name = 'calistenia tirón focalizado'
+    and e.title in (
+        'remo agarre supino en paralelas',
+        'remo agarre prono en paralelas',
+        'remo prono suspendido en paralelas',
+        'dominadas negativas en paralelas',
+        'encogimiento de trapecio en paralelas'
+    );
+
+-- Calistenia Core y Estabilidad
+insert into
+    public.set_exercises (set_id, exercise_id, position)
+select s.id, e.id, row_number() over (
+        order by e.created_at
+    ) - 1
+from public.sets s
+    cross join public.exercises e
+where
+    s.name = 'calistenia core y estabilidad'
+    and e.title in (
+        'elevación de rodillas en paralelas',
+        'plank shoulder taps',
+        'low plank hold',
+        'reverse crunch',
+        'toe tap and leg raise'
+    );
+
+-- Calistenia Pierna y Potencia
+insert into
+    public.set_exercises (set_id, exercise_id, position)
+select s.id, e.id, row_number() over (
+        order by e.created_at
+    ) - 1
+from public.sets s
+    cross join public.exercises e
+where
+    s.name = 'calistenia pierna y potencia'
+    and e.title in (
+        'walking lunges',
+        'alternating jumping lunges',
+        'wall sit',
+        'calf raises',
+        'burpees'
     );

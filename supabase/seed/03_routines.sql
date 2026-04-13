@@ -78,6 +78,30 @@ values (
         'rutina barras paralelas',
         'rutina completa en barras paralelas para ganar fuerza y masa muscular.',
         10
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'calistenia push focus',
+        'rutina especializada en empuje (pecho/tríceps) usando barras paralelas.',
+        8
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'calistenia pull focus',
+        'rutina especializada en tirón (espalda/bíceps) usando remos y negativos.',
+        8
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'calistenia legs potency',
+        'rutina de piernas bodyweight explosiva para ganar fuerza y resistencia.',
+        10
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'calistenia full body mastery',
+        'circuito completo de calistenia integrando todos los grupos musculares.',
+        12
     );
 
 -- Tren Superior Completo: Pecho (x3) → Hombros (x3) → Espalda (x3) → Brazos (x2)
@@ -533,3 +557,91 @@ from public.routines r, public.sets s
 where
     r.name = 'rutina barras paralelas'
     and s.name = 'barras paralelas';
+
+-- Calistenia Push Focus: Calentamiento (x1) → Empuje Focalizado (x4) → Core (x2)
+insert into
+    public.routine_sets (routine_id, set_id, position, rounds)
+select r.id, s.id, 0, 1
+from public.routines r, public.sets s
+where r.name = 'calistenia push focus' and s.name = 'calentamiento y movilidad';
+
+insert into
+    public.routine_sets (routine_id, set_id, position, rounds)
+select r.id, s.id, 1, 4
+from public.routines r, public.sets s
+where r.name = 'calistenia push focus' and s.name = 'calistenia empuje focalizado';
+
+insert into
+    public.routine_sets (routine_id, set_id, position, rounds)
+select r.id, s.id, 2, 2
+from public.routines r, public.sets s
+where r.name = 'calistenia push focus' and s.name = 'calistenia core y estabilidad';
+
+-- Calistenia Pull Focus: Calentamiento (x1) → Tirón Focalizado (x4) → Core (x2)
+insert into
+    public.routine_sets (routine_id, set_id, position, rounds)
+select r.id, s.id, 0, 1
+from public.routines r, public.sets s
+where r.name = 'calistenia pull focus' and s.name = 'calentamiento y movilidad';
+
+insert into
+    public.routine_sets (routine_id, set_id, position, rounds)
+select r.id, s.id, 1, 4
+from public.routines r, public.sets s
+where r.name = 'calistenia pull focus' and s.name = 'calistenia tirón focalizado';
+
+insert into
+    public.routine_sets (routine_id, set_id, position, rounds)
+select r.id, s.id, 2, 2
+from public.routines r, public.sets s
+where r.name = 'calistenia pull focus' and s.name = 'calistenia core y estabilidad';
+
+-- Calistenia Legs Potency: Calentamiento (x1) → Pierna y Potencia (x4) → Core (x2)
+insert into
+    public.routine_sets (routine_id, set_id, position, rounds)
+select r.id, s.id, 0, 1
+from public.routines r, public.sets s
+where r.name = 'calistenia legs potency' and s.name = 'calentamiento y movilidad';
+
+insert into
+    public.routine_sets (routine_id, set_id, position, rounds)
+select r.id, s.id, 1, 4
+from public.routines r, public.sets s
+where r.name = 'calistenia legs potency' and s.name = 'calistenia pierna y potencia';
+
+insert into
+    public.routine_sets (routine_id, set_id, position, rounds)
+select r.id, s.id, 2, 2
+from public.routines r, public.sets s
+where r.name = 'calistenia legs potency' and s.name = 'calistenia core y estabilidad';
+
+-- Calistenia Full Body Mastery: Calentamiento (x1) → Empuje (x2) → Tirón (x2) → Piernas (x2) → Core (x1)
+insert into
+    public.routine_sets (routine_id, set_id, position, rounds)
+select r.id, s.id, 0, 1
+from public.routines r, public.sets s
+where r.name = 'calistenia full body mastery' and s.name = 'calentamiento y movilidad';
+
+insert into
+    public.routine_sets (routine_id, set_id, position, rounds)
+select r.id, s.id, 1, 2
+from public.routines r, public.sets s
+where r.name = 'calistenia full body mastery' and s.name = 'calistenia empuje focalizado';
+
+insert into
+    public.routine_sets (routine_id, set_id, position, rounds)
+select r.id, s.id, 2, 2
+from public.routines r, public.sets s
+where r.name = 'calistenia full body mastery' and s.name = 'calistenia tirón focalizado';
+
+insert into
+    public.routine_sets (routine_id, set_id, position, rounds)
+select r.id, s.id, 3, 2
+from public.routines r, public.sets s
+where r.name = 'calistenia full body mastery' and s.name = 'calistenia pierna y potencia';
+
+insert into
+    public.routine_sets (routine_id, set_id, position, rounds)
+select r.id, s.id, 4, 1
+from public.routines r, public.sets s
+where r.name = 'calistenia full body mastery' and s.name = 'calistenia core y estabilidad';

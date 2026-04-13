@@ -26,6 +26,11 @@ values (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
         'glúteos focus 4 días',
         'plan de 4 días enfocado en glúteos y piernas, con tren superior como complemento.'
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'plan calistenia elite',
+        'plan integral de calistenia para dominar el peso corporal. 4 días de entrenamiento intenso.'
     );
 
 -- Push Pull Legs: Lun(0)=Push, Mar(1)=Pull, Mié(2)=Legs, Jue(3)=Push, Vie(4)=Pull, Sáb(5)=Legs
@@ -248,6 +253,31 @@ from public.plans p, public.routines r
 where
     p.name = 'glúteos focus 4 días'
     and r.name = 'glúteos y piernas';
+
+-- Plan Calistenia Elite: Lun(0)=Push, Mar(1)=Pull, Jue(3)=Legs, Vie(4)=FullBody
+insert into
+    public.plan_routines (plan_id, routine_id, day_of_week)
+select p.id, r.id, 0
+from public.plans p, public.routines r
+where p.name = 'plan calistenia elite' and r.name = 'calistenia push focus';
+
+insert into
+    public.plan_routines (plan_id, routine_id, day_of_week)
+select p.id, r.id, 1
+from public.plans p, public.routines r
+where p.name = 'plan calistenia elite' and r.name = 'calistenia pull focus';
+
+insert into
+    public.plan_routines (plan_id, routine_id, day_of_week)
+select p.id, r.id, 3
+from public.plans p, public.routines r
+where p.name = 'plan calistenia elite' and r.name = 'calistenia legs potency';
+
+insert into
+    public.plan_routines (plan_id, routine_id, day_of_week)
+select p.id, r.id, 4
+from public.plans p, public.routines r
+where p.name = 'plan calistenia elite' and r.name = 'calistenia full body mastery';
 
 insert into
     public.plan_routines (
