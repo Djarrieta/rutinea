@@ -1,6 +1,6 @@
-/** Capitalize first letter of each word */
 export function properCase(str: string): string {
-  return str.replace(/\b\w/g, (c) => c.toUpperCase());
+  if (!str) return str;
+  return str.toLowerCase().replace(/(?<!\p{L})\p{L}/gu, (c) => c.toUpperCase());
 }
 
 /** Compute total duration in seconds for a routine (exercises + rests) */
