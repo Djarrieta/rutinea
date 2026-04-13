@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start --port 5001",
     "lint": "eslint",
-    "db:reset": "bun scripts/db-reset.ts"
+    "db:reset": "bun scripts/db-reset.ts",
+    "supabase:start": "DOCKER_HOST=unix:///run/user/$(id -u)/podman/podman.sock supabase start",
+    "supabase:stop": "DOCKER_HOST=unix:///run/user/$(id -u)/podman/podman.sock supabase stop",
+    "supabase:reset": "DOCKER_HOST=unix:///run/user/$(id -u)/podman/podman.sock supabase db reset"
   },
   "dependencies": {
     "@supabase/ssr": "^0.10.0",
@@ -24,6 +27,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.2",
+    "supabase": "^2.90.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   },

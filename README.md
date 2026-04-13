@@ -25,31 +25,46 @@ Exercise CRUD app built with Next.js 16 and Supabase.
 
    Fill in your Supabase project credentials (find them in the Supabase dashboard under Settings → API and Settings → Database).
 
-3. **Reset & seed the database**
+3. **Start local Supabase** (requires Podman or Docker)
 
    ```bash
-   bun run db:reset
+   bun supabase:start
    ```
 
-   This drops all tables, runs migrations, and seeds sample data.
+   This starts a local Supabase stack (API on `:5002`, DB on `:5003`, Studio on `:5004`).
+   On first run it will pull container images.
 
-4. **Start the dev server**
+4. **Create `.env.local`** with local credentials:
+
+   ```bash
+   # .env.local
+   NEXT_PUBLIC_SUPABASE_URL=http://localhost:5002
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=<key from supabase:start output>
+   DATABASE_URL=postgresql://postgres:postgres@localhost:5003/postgres
+   ```
+
+   `.env.local` overrides `.env` — remove it to connect to production.
+
+5. **Start the dev server**
 
    ```bash
    bun run dev
    ```
 
-   Open [http://localhost:5001](http://localhost:5001).
+   Open [http://localhost:5001](http://localhost:5001). Use the **"Login como seed@rutinea.local"** button (dev only, password: `password123`).
 
 ## Scripts
 
-| Command            | Description                            |
-| ------------------ | -------------------------------------- |
-| `bun run dev`      | Start dev server on port 5001          |
-| `bun run build`    | Production build                       |
-| `bun run start`    | Start production server on port 5001   |
-| `bun run lint`     | Run ESLint                             |
-| `bun run db:reset` | Drop tables, run migrations, seed data |
+| Command              | Description                            |
+| -------------------- | -------------------------------------- |
+| `bun run dev`        | Start dev server on port 5001          |
+| `bun run build`      | Production build                       |
+| `bun run start`      | Start production server on port 5001   |
+| `bun run lint`       | Run ESLint                             |
+| `bun run db:reset`   | Drop tables, run migrations, seed data |
+| `bun supabase:start` | Start local Supabase containers        |
+| `bun supabase:stop`  | Stop local Supabase containers         |
+| `bun supabase:reset` | Reset local DB (migrations + seed)     |
 
 ## Project Structure
 

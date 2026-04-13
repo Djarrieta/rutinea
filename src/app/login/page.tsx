@@ -1,8 +1,15 @@
 "use client";
 
 import { createClient } from "@/lib/supabase/client";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
+const isDev = process.env.NODE_ENV === "development";
 
 export default function LoginPage() {
+  const router = useRouter();
+  const [devError, setDevError] = useState("");
+
   async function handleGoogleLogin() {
     const supabase = createClient();
     await supabase.auth.signInWithOAuth({
@@ -11,6 +18,21 @@ export default function LoginPage() {
         redirectTo: `${location.origin}/auth/callback`,
       },
     });
+  }
+
+  async function handleDevLogin() {
+    setDevError("");
+    const supabase = createClient();
+    const { error } = await supabase.auth.signInWithPassword({
+      email: "seed@rutinea.local",
+      password: "password123",
+    });
+    if (error) {
+      setDevError(error.message);
+    } else {
+      router.push("/");
+      router.refresh();
+    }
   }
 
   return (
@@ -43,6 +65,18 @@ export default function LoginPage() {
         </svg>
         Continuar con Google
       </button>
+      {isDev && (
+        <div className="flex flex-col items-center gap-2 mt-4 pt-4 border-t border-border w-full max-w-sm">
+          <p className="text-xs text-text-muted">Modo desarrollo</p>
+          <button
+            onClick={handleDevLogin}
+            className="w-full bg-amber-600 text-white rounded-lg px-6 py-3 text-sm font-medium hover:bg-amber-700"
+          >
+            Login como seed@rutinea.local
+          </button>
+          {devError && <p className="text-red-500 text-xs">{devError}</p>}
+        </div>
+      )}
     </div>
   );
 }
