@@ -155,7 +155,7 @@ export default function SetPlayerModal({ set, onClose }: Props) {
             <img
               src={images[imageIndex].url}
               alt={`${currentExercise.title} step ${imageIndex + 1}`}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
             />
           ) : (
             <div className="flex items-center justify-center h-full text-text-faint">

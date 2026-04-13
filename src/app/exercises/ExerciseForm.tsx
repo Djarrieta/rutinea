@@ -89,7 +89,7 @@ function ImageListInput({ defaultValue }: { defaultValue: ExerciseImage[] }) {
               <img
                 src={item.url}
                 alt={item.description || "preview"}
-                className="h-16 w-16 object-cover rounded-lg border border-border"
+                className="h-16 w-16 object-contain rounded-lg border border-border bg-surface-alt"
               />
             )}
             <input

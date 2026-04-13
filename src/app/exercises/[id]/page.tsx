@@ -83,7 +83,7 @@ export default async function ExerciseDetailPage({
               <img
                 src={img.url}
                 alt={img.description || `${exercise.title} ${i + 1}`}
-                className="w-32 h-32 object-cover rounded-lg border"
+                className="w-32 h-32 object-contain rounded-lg border bg-surface-alt"
               />
               {img.description && (
                 <span className="text-xs text-text-muted text-center max-w-[8rem]">
