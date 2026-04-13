@@ -22,13 +22,10 @@ const sql = postgres(databaseUrl);
 
 async function run() {
   const migrationsDir = join(root, "supabase/migrations");
-  const seedPath = join(root, "supabase/seed.sql");
 
   const migrationFiles = readdirSync(migrationsDir)
     .filter((f) => f.endsWith(".sql"))
     .sort();
-
-  const seedSql = readFileSync(seedPath, "utf-8");
 
   console.log("⚠  Resetting database...");
 
@@ -95,8 +92,17 @@ async function run() {
   }
 
   console.log("→ Seeding data...");
-  const seedSqlResolved = seedSql.replaceAll("{{STORAGE_URL}}", supabaseUrl);
-  await sql.unsafe(seedSqlResolved);
+  const seedDir = join(root, "supabase/seed");
+  const seedFiles = readdirSync(seedDir)
+    .filter((f) => f.endsWith(".sql"))
+    .sort();
+
+  for (const file of seedFiles) {
+    console.log(`  → ${file}`);
+    const seedSql = readFileSync(join(seedDir, file), "utf-8");
+    const seedSqlResolved = seedSql.replaceAll("{{STORAGE_URL}}", supabaseUrl);
+    await sql.unsafe(seedSqlResolved);
+  }
 
   console.log("✓ Database reset complete.");
 
