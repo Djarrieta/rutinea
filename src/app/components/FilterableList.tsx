@@ -1,6 +1,13 @@
 "use client";
 
-import { ReactNode, useRef, useCallback, useState, useEffect } from "react";
+import {
+  ReactNode,
+  useRef,
+  useCallback,
+  useState,
+  useEffect,
+  useTransition,
+} from "react";
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { PAGE_SIZE } from "@/lib/constants";
 import { properCase } from "@/lib/format";
@@ -25,6 +32,7 @@ export default function FilterableList({
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
+  const [isPending, startTransition] = useTransition();
   const debounceRef = useRef<ReturnType<typeof setTimeout>>(null);
   const [inputValue, setInputValue] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -50,15 +58,19 @@ export default function FilterableList({
     : [];
 
   const navigate = useCallback(
-    (params: Record<string, string>) => {
+    (params: Record<string, string>, { replace = false } = {}) => {
       const sp = new URLSearchParams(searchParams.toString());
       for (const [k, v] of Object.entries(params)) {
         if (v) sp.set(k, v);
         else sp.delete(k);
       }
-      router.push(`${pathname}?${sp.toString()}`);
+      const url = `${pathname}?${sp.toString()}`;
+      startTransition(() => {
+        if (replace) router.replace(url);
+        else router.push(url);
+      });
     },
-    [router, pathname, searchParams],
+    [router, pathname, searchParams, startTransition],
   );
 
   function handleInputChange(value: string) {
@@ -66,8 +78,8 @@ export default function FilterableList({
     if (hasTags) setDropdownOpen(true);
     if (debounceRef.current) clearTimeout(debounceRef.current);
     debounceRef.current = setTimeout(() => {
-      navigate({ q: value, page: "" });
-    }, 300);
+      navigate({ q: value, page: "" }, { replace: true });
+    }, 400);
   }
 
   function addTag(tag: string) {
@@ -152,7 +164,11 @@ export default function FilterableList({
         )}
       </div>
 
-      <div className="grid gap-3 grid-cols-1 sm:grid-cols-2">{children}</div>
+      <div
+        className={`grid gap-3 grid-cols-1 sm:grid-cols-2 transition-opacity ${isPending ? "opacity-60" : ""}`}
+      >
+        {children}
+      </div>
       {total === 0 && (query || activeTags.length > 0) && (
         <p className="text-text-muted text-sm mt-2">
           Sin resultados{query ? <> para &ldquo;{query}&rdquo;</> : null}
