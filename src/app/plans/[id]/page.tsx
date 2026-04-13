@@ -4,7 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getUser } from "@/lib/auth";
 import { deletePlan } from "../actions";
 import Breadcrumb from "@/app/components/Breadcrumb";
-import { properCase } from "@/lib/format";
+import { properCase, formatDuration, getRoutineDuration } from "@/lib/format";
 import type { PlanWithRoutines } from "@/types";
 import { DAY_LABELS, getTodayDayIndex } from "@/types";
 
@@ -89,6 +89,9 @@ export default async function PlanDetailPage({
                 >
                   {properCase(pr.routine.name)}
                 </Link>
+                <span className="text-xs text-text-faint">
+                  {formatDuration(getRoutineDuration(pr.routine))}
+                </span>
                 <span className="text-xs text-text-faint">
                   {pr.routine.routine_sets.length} set
                   {pr.routine.routine_sets.length !== 1 ? "s" : ""}

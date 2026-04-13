@@ -66,7 +66,12 @@ export default async function ExerciseDetailPage({
       {exercise.tags.length > 0 && (
         <div className="flex flex-wrap gap-1.5 mb-6">
           {exercise.tags.map((tag) => (
-            <Badge key={tag}>{properCase(tag)}</Badge>
+            <Badge
+              key={tag}
+              href={`/exercises?tags=${encodeURIComponent(tag)}`}
+            >
+              {properCase(tag)}
+            </Badge>
           ))}
         </div>
       )}

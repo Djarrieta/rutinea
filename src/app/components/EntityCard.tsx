@@ -37,7 +37,12 @@ export default function EntityCard({
       {tags && tags.length > 0 && (
         <div className="mt-2 flex flex-wrap gap-1.5">
           {tags.map((tag) => (
-            <Badge key={tag}>{properCase(tag)}</Badge>
+            <Badge
+              key={tag}
+              href={`/exercises?tags=${encodeURIComponent(tag)}`}
+            >
+              {properCase(tag)}
+            </Badge>
           ))}
         </div>
       )}

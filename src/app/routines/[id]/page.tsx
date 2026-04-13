@@ -5,7 +5,7 @@ import { getUser } from "@/lib/auth";
 import { deleteRoutine } from "../actions";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import RoutineDetailPlay from "../RoutineDetailPlay";
-import { properCase } from "@/lib/format";
+import { properCase, formatDuration, getRoutineDuration } from "@/lib/format";
 import type { RoutineWithSets } from "@/types";
 
 export default async function RoutineDetailPage({
@@ -34,6 +34,8 @@ export default async function RoutineDetailPage({
     (a, b) => a.position - b.position,
   );
 
+  const totalDuration = getRoutineDuration(routine);
+
   return (
     <div className="max-w-lg">
       <Breadcrumb
@@ -53,7 +55,7 @@ export default async function RoutineDetailPage({
         </p>
       )}
 
-      <dl className="grid grid-cols-2 gap-3 text-sm mb-6">
+      <dl className="grid grid-cols-3 gap-3 text-sm mb-6">
         <div>
           <dt className="text-text-faint">Descanso entre sets</dt>
           <dd>{routine.rest_secs}s</dd>
@@ -61,6 +63,10 @@ export default async function RoutineDetailPage({
         <div>
           <dt className="text-text-faint">Sets</dt>
           <dd>{sortedSets.length}</dd>
+        </div>
+        <div>
+          <dt className="text-text-faint">Duración total</dt>
+          <dd>{formatDuration(totalDuration)}</dd>
         </div>
       </dl>
 

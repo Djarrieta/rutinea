@@ -8,12 +8,17 @@ import { PAGE_SIZE } from "@/lib/constants";
 export default async function ExercisesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; page?: string }>;
+  searchParams: Promise<{ q?: string; tags?: string; page?: string }>;
 }) {
-  const { q, page: pageStr } = await searchParams;
+  const { q, tags: tagsParam, page: pageStr } = await searchParams;
   const page = Math.max(1, parseInt(pageStr ?? "1", 10) || 1);
   const from = (page - 1) * PAGE_SIZE;
   const to = from + PAGE_SIZE - 1;
+
+  const activeTags = (tagsParam ?? "")
+    .split(",")
+    .map((t) => t.trim().toLowerCase())
+    .filter(Boolean);
 
   const supabase = await createClient();
 
@@ -24,14 +29,22 @@ export default async function ExercisesPage({
 
   if (q?.trim()) {
     const term = `%${q.trim().toLowerCase()}%`;
-    query = query.or(`title.ilike.${term},tags.cs.{${q.trim().toLowerCase()}}`);
+    query = query.or(`title.ilike.${term},description.ilike.${term}`);
   }
 
-  const { data: exercises, count } = await query
-    .range(from, to)
-    .returns<Exercise[]>();
+  if (activeTags.length > 0) {
+    query = query.contains("tags", activeTags);
+  }
+
+  const [{ data: exercises, count }, { data: tagRows }] = await Promise.all([
+    query.range(from, to).returns<Exercise[]>(),
+    supabase.from("exercises").select("tags"),
+  ]);
 
   const total = count ?? 0;
+  const allTags = [
+    ...new Set((tagRows ?? []).flatMap((r) => r.tags as string[])),
+  ].sort();
 
   return (
     <PageHeader
@@ -39,12 +52,14 @@ export default async function ExercisesPage({
       emptyText="No hay ejercicios aún."
       createHref="/exercises/new"
       createLabel="Crear uno"
-      isEmpty={total === 0 && !q}
+      isEmpty={total === 0 && !q && activeTags.length === 0}
     >
       <FilterableList
-        placeholder="Buscar por nombre o tag..."
+        placeholder="Buscar por nombre o descripción..."
         total={total}
         page={page}
+        activeTags={activeTags}
+        availableTags={allTags}
       >
         {(exercises ?? []).map((exercise) => (
           <ExerciseCard key={exercise.id} exercise={exercise} />
