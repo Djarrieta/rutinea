@@ -16,37 +16,37 @@ insert into
     )
 values (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-        'Press Plano Mancuernas',
-        'Acuéstate en banco plano con una mancuerna en cada mano. Baja controladamente hasta la altura del pecho y empuja hacia arriba hasta extender los brazos.',
-        '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Bench-Press.gif","description":"Controla la bajada, no rebotes"}]'::jsonb,
-        '{"Pecho","Mancuernas","Banco"}',
+        'press plano mancuernas',
+        'acuéstate en banco plano con una mancuerna en cada mano. baja controladamente hasta la altura del pecho y empuja hacia arriba hasta extender los brazos.',
+        '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Bench-Press.gif", "description":"controla la bajada, no rebotes"}]'::jsonb,
+        '{"pecho", "mancuernas", "banco"}',
         30,
         12
     ),
     (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-        'Press Inclinado Mancuernas',
-        'En banco inclinado a 30-45°, empuja las mancuernas desde el pecho hacia arriba. Enfatiza la parte superior del pecho.',
-        '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Incline-Dumbbell-Press.gif","description":"Inclina el banco a 30-45 grados"}]'::jsonb,
-        '{"Pecho","Hombros","Mancuernas","Banco"}',
+        'press inclinado mancuernas',
+        'en banco inclinado a 30-45°, empuja las mancuernas desde el pecho hacia arriba. enfatiza la parte superior del pecho.',
+        '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Incline-Dumbbell-Press.gif", "description":"inclina el banco a 30-45 grados"}]'::jsonb,
+        '{"pecho", "hombros", "mancuernas", "banco"}',
         30,
         12
     ),
     (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-        'Aperturas con Mancuernas',
-        'Acostado en banco plano, abre los brazos en arco con codos ligeramente flexionados. Siente el estiramiento en el pecho y vuelve a cerrar.',
-        '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Fly.gif","description":"Codos ligeramente flexionados, movimiento en arco"}]'::jsonb,
-        '{"Pecho","Mancuernas","Banco"}',
+        'aperturas con mancuernas',
+        'acostado en banco plano, abre los brazos en arco con codos ligeramente flexionados. siente el estiramiento en el pecho y vuelve a cerrar.',
+        '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Fly.gif", "description":"codos ligeramente flexionados, movimiento en arco"}]'::jsonb,
+        '{"pecho", "mancuernas", "banco"}',
         30,
         12
     ),
     (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-        'Pullover con Mancuerna',
-        'Acostado en banco, sujeta una mancuerna con ambas manos sobre el pecho. Baja detrás de la cabeza manteniendo los codos semiflexionados.',
-        '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Pullover.gif","description":"Estira bien los dorsales en la bajada"}]'::jsonb,
-        '{"Pecho","Espalda","Mancuernas","Banco"}',
+        'pullover con mancuerna',
+        'acostado en banco, sujeta una mancuerna con ambas manos sobre el pecho. baja detrás de la cabeza manteniendo los codos semiflexionados.',
+        '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Pullover.gif", "description":"estira bien los dorsales en la bajada"}]'::jsonb,
+        '{"pecho", "espalda", "mancuernas", "banco"}',
         30,
         12
     ),
@@ -54,37 +54,37 @@ values (
 -- Hombros (mancuernas)
 (
     'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-    'Press Militar Mancuernas',
-    'Sentado o de pie, empuja las mancuernas desde los hombros hacia arriba hasta extender completamente los brazos.',
-    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Shoulder-Press.gif","description":"No arquees la espalda, aprieta el core"}]'::jsonb,
-    '{"Hombros","Mancuernas"}',
+    'press militar mancuernas',
+    'sentado o de pie, empuja las mancuernas desde los hombros hacia arriba hasta extender completamente los brazos.',
+    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Shoulder-Press.gif", "description":"no arquees la espalda, aprieta el core"}]'::jsonb,
+    '{"hombros", "mancuernas"}',
     30,
     12
 ),
 (
     'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-    'Elevaciones Laterales',
-    'De pie con mancuernas a los lados. Sube los brazos lateralmente hasta la altura de los hombros con codos ligeramente flexionados.',
-    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lateral-Raise.gif","description":"No subas por encima del hombro, controla la bajada"}]'::jsonb,
-    '{"Hombros","Mancuernas"}',
+    'elevaciones laterales',
+    'de pie con mancuernas a los lados. sube los brazos lateralmente hasta la altura de los hombros con codos ligeramente flexionados.',
+    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lateral-Raise.gif", "description":"no subas por encima del hombro, controla la bajada"}]'::jsonb,
+    '{"hombros", "mancuernas"}',
     25,
     15
 ),
 (
     'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-    'Elevaciones Frontales',
-    'De pie, sube las mancuernas al frente alternando brazos hasta la altura de los hombros.',
-    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Front-Raise.gif","description":"Movimiento controlado, sin balanceo"}]'::jsonb,
-    '{"Hombros","Mancuernas"}',
+    'elevaciones frontales',
+    'de pie, sube las mancuernas al frente alternando brazos hasta la altura de los hombros.',
+    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Front-Raise.gif", "description":"movimiento controlado, sin balanceo"}]'::jsonb,
+    '{"hombros", "mancuernas"}',
     25,
     12
 ),
 (
     'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-    'Pájaros con Mancuernas',
-    'Inclinado hacia adelante, abre los brazos lateralmente apretando los omóplatos. Trabaja el deltoides posterior.',
-    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Rear-Delt-Fly.gif","description":"Inclínate a 45°, aprieta omóplatos arriba"}]'::jsonb,
-    '{"Hombros","Espalda","Mancuernas"}',
+    'pájaros con mancuernas',
+    'inclinado hacia adelante, abre los brazos lateralmente apretando los omóplatos. trabaja el deltoides posterior.',
+    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Rear-Delt-Fly.gif", "description":"inclínate a 45°, aprieta omóplatos arriba"}]'::jsonb,
+    '{"hombros", "espalda", "mancuernas"}',
     25,
     12
 ),
@@ -92,28 +92,28 @@ values (
 -- Bíceps (mancuernas)
 (
     'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-    'Curl de Bíceps Mancuernas',
-    'De pie con mancuernas a los lados, flexiona los codos alternando brazos. Mantén los codos pegados al cuerpo.',
-    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Curl.gif","description":"Codos fijos al costado, sin balanceo"}]'::jsonb,
-    '{"Bíceps","Mancuernas"}',
+    'curl de bíceps mancuernas',
+    'de pie con mancuernas a los lados, flexiona los codos alternando brazos. mantén los codos pegados al cuerpo.',
+    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Curl.gif", "description":"codos fijos al costado, sin balanceo"}]'::jsonb,
+    '{"bíceps", "mancuernas"}',
     25,
     12
 ),
 (
     'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-    'Curl Martillo',
-    'Igual que el curl de bíceps pero con agarre neutro (palmas enfrentadas). Trabaja bíceps y braquiorradial.',
-    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Hammer-Curl.gif","description":"Palmas enfrentadas durante todo el movimiento"}]'::jsonb,
-    '{"Bíceps","Antebrazo","Mancuernas"}',
+    'curl martillo',
+    'igual que el curl de bíceps pero con agarre neutro (palmas enfrentadas). trabaja bíceps y braquiorradial.',
+    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Hammer-Curl.gif", "description":"palmas enfrentadas durante todo el movimiento"}]'::jsonb,
+    '{"bíceps", "antebrazo", "mancuernas"}',
     25,
     12
 ),
 (
     'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-    'Curl Concentrado',
-    'Sentado, apoya el codo en la cara interna del muslo. Flexiona el brazo concentrando la contracción del bíceps.',
-    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Concentration-Curl.gif","description":"Aprieta arriba, baja lento"}]'::jsonb,
-    '{"Bíceps","Mancuernas"}',
+    'curl concentrado',
+    'sentado, apoya el codo en la cara interna del muslo. flexiona el brazo concentrando la contracción del bíceps.',
+    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Concentration-Curl.gif", "description":"aprieta arriba, baja lento"}]'::jsonb,
+    '{"bíceps", "mancuernas"}',
     25,
     10
 ),
@@ -121,28 +121,28 @@ values (
 -- Tríceps (mancuernas)
 (
     'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-    'Extensión de Tríceps sobre Cabeza',
-    'De pie o sentado, sujeta una mancuerna con ambas manos detrás de la cabeza. Extiende los brazos hacia arriba.',
-    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Triceps-Extension.gif","description":"Codos apuntando al techo, no los abras"}]'::jsonb,
-    '{"Tríceps","Mancuernas"}',
+    'extensión de tríceps sobre cabeza',
+    'de pie o sentado, sujeta una mancuerna con ambas manos detrás de la cabeza. extiende los brazos hacia arriba.',
+    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Triceps-Extension.gif", "description":"codos apuntando al techo, no los abras"}]'::jsonb,
+    '{"tríceps", "mancuernas"}',
     25,
     12
 ),
 (
     'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-    'Patada de Tríceps',
-    'Inclinado, con el codo a 90°, extiende el antebrazo hacia atrás apretando el tríceps al final.',
-    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Kickback.gif","description":"Brazo paralelo al suelo, solo mueve el antebrazo"}]'::jsonb,
-    '{"Tríceps","Mancuernas"}',
+    'patada de tríceps',
+    'inclinado, con el codo a 90°, extiende el antebrazo hacia atrás apretando el tríceps al final.',
+    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Kickback.gif", "description":"brazo paralelo al suelo, solo mueve el antebrazo"}]'::jsonb,
+    '{"tríceps", "mancuernas"}',
     25,
     12
 ),
 (
     'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-    'Extensión Tríceps Acostado',
-    'Acostado en banco, baja la mancuerna hacia la frente flexionando solo el codo. Extiende de vuelta sin mover el brazo.',
-    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/04/One-Arm-Lying-Triceps-Extension.gif","description":"Solo se mueve el antebrazo, codo fijo"}]'::jsonb,
-    '{"Tríceps","Mancuernas","Banco"}',
+    'extensión tríceps acostado',
+    'acostado en banco, baja la mancuerna hacia la frente flexionando solo el codo. extiende de vuelta sin mover el brazo.',
+    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/04/One-Arm-Lying-Triceps-Extension.gif", "description":"solo se mueve el antebrazo, codo fijo"}]'::jsonb,
+    '{"tríceps", "mancuernas", "banco"}',
     25,
     10
 ),
@@ -150,28 +150,28 @@ values (
 -- Espalda (mancuernas)
 (
     'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-    'Remo con Mancuerna',
-    'Apoyado en banco con una mano y rodilla, tira la mancuerna hacia la cadera apretando el dorsal. Baja controlado.',
-    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Row.gif","description":"Tira hacia la cadera, aprieta el omóplato"}]'::jsonb,
-    '{"Espalda","Mancuernas","Banco"}',
+    'remo con mancuerna',
+    'apoyado en banco con una mano y rodilla, tira la mancuerna hacia la cadera apretando el dorsal. baja controlado.',
+    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Row.gif", "description":"tira hacia la cadera, aprieta el omóplato"}]'::jsonb,
+    '{"espalda", "mancuernas", "banco"}',
     30,
     12
 ),
 (
     'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-    'Remo Inclinado con Mancuernas',
-    'Inclinado a 45° con una mancuerna en cada mano, tira ambas hacia el abdomen apretando la espalda.',
-    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Bent-Over-Row.gif","description":"Espalda recta, no redondees la lumbar"}]'::jsonb,
-    '{"Espalda","Mancuernas"}',
+    'remo inclinado con mancuernas',
+    'inclinado a 45° con una mancuerna en cada mano, tira ambas hacia el abdomen apretando la espalda.',
+    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Bent-Over-Row.gif", "description":"espalda recta, no redondees la lumbar"}]'::jsonb,
+    '{"espalda", "mancuernas"}',
     30,
     12
 ),
 (
     'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-    'Encogimientos con Mancuernas',
-    'De pie con mancuernas a los lados, sube los hombros hacia las orejas apretando los trapecios. Baja lento.',
-    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Shrug.gif","description":"Solo sube los hombros, no dobles los codos"}]'::jsonb,
-    '{"Espalda","Trapecios","Mancuernas"}',
+    'encogimientos con mancuernas',
+    'de pie con mancuernas a los lados, sube los hombros hacia las orejas apretando los trapecios. baja lento.',
+    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Shrug.gif", "description":"solo sube los hombros, no dobles los codos"}]'::jsonb,
+    '{"espalda", "trapecios", "mancuernas"}',
     20,
     15
 ),
@@ -179,46 +179,46 @@ values (
 -- Piernas (mancuernas)
 (
     'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-    'Sentadilla con Mancuernas',
-    'De pie con mancuernas a los lados, baja en sentadilla manteniendo las rodillas alineadas con los pies. Empuja desde los talones.',
-    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2023/09/Dumbbell-Squat.gif","description":"Rodillas en línea con los pies, pecho arriba"}]'::jsonb,
-    '{"Piernas","Glúteos","Mancuernas"}',
+    'sentadilla con mancuernas',
+    'de pie con mancuernas a los lados, baja en sentadilla manteniendo las rodillas alineadas con los pies. empuja desde los talones.',
+    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2023/09/Dumbbell-Squat.gif", "description":"rodillas en línea con los pies, pecho arriba"}]'::jsonb,
+    '{"piernas", "glúteos", "mancuernas"}',
     30,
     12
 ),
 (
     'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-    'Zancadas con Mancuernas',
-    'Da un paso largo al frente bajando la rodilla trasera casi al suelo. Alterna piernas. Mantén el torso erguido.',
-    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lunge.gif","description":"Rodilla delantera no pasa la punta del pie"}]'::jsonb,
-    '{"Piernas","Glúteos","Mancuernas"}',
+    'zancadas con mancuernas',
+    'da un paso largo al frente bajando la rodilla trasera casi al suelo. alterna piernas. mantén el torso erguido.',
+    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Lunge.gif", "description":"rodilla delantera no pasa la punta del pie"}]'::jsonb,
+    '{"piernas", "glúteos", "mancuernas"}',
     30,
     12
 ),
 (
     'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-    'Peso Muerto Rumano Mancuernas',
-    'De pie con mancuernas al frente, empuja la cadera hacia atrás bajando el torso. Siente el estiramiento en isquiotibiales.',
-    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Romanian-Deadlift.gif","description":"Espalda recta, empuja cadera atrás"}]'::jsonb,
-    '{"Piernas","Glúteos","Espalda Baja","Mancuernas"}',
+    'peso muerto rumano mancuernas',
+    'de pie con mancuernas al frente, empuja la cadera hacia atrás bajando el torso. siente el estiramiento en isquiotibiales.',
+    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Romanian-Deadlift.gif", "description":"espalda recta, empuja cadera atrás"}]'::jsonb,
+    '{"piernas", "glúteos", "espalda baja", "mancuernas"}',
     30,
     12
 ),
 (
     'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-    'Sentadilla Sumo Mancuerna',
-    'Piernas abiertas más que los hombros, puntas afuera. Sujeta una mancuerna entre las piernas y baja en sentadilla.',
-    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/06/Dumbbell-Sumo-Squat.gif","description":"Rodillas siguen la dirección de los pies"}]'::jsonb,
-    '{"Piernas","Glúteos","Aductores","Mancuernas"}',
+    'sentadilla sumo mancuerna',
+    'piernas abiertas más que los hombros, puntas afuera. sujeta una mancuerna entre las piernas y baja en sentadilla.',
+    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/06/Dumbbell-Sumo-Squat.gif", "description":"rodillas siguen la dirección de los pies"}]'::jsonb,
+    '{"piernas", "glúteos", "aductores", "mancuernas"}',
     30,
     12
 ),
 (
     'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-    'Sentadilla Búlgara Mancuernas',
-    'Con el pie trasero elevado en un banco, baja en sentadilla con una pierna. Excelente para cuádriceps y glúteos.',
-    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Bulgarian-Split-Squat.gif","description":"Torso erguido, rodilla alineada"}]'::jsonb,
-    '{"Piernas","Glúteos","Mancuernas","Banco"}',
+    'sentadilla búlgara mancuernas',
+    'con el pie trasero elevado en un banco, baja en sentadilla con una pierna. excelente para cuádriceps y glúteos.',
+    '[{"url":"https://fitnessprogramer.com/wp-content/uploads/2021/02/Dumbbell-Bulgarian-Split-Squat.gif", "description":"torso erguido, rodilla alineada"}]'::jsonb,
+    '{"piernas", "glúteos", "mancuernas", "banco"}',
     30,
     10
 );
@@ -229,33 +229,33 @@ insert into
     public.sets (user_id, name, description)
 values (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-        'Pecho Mancuernas',
-        'Ejercicios de pecho con mancuernas: press plano, inclinado, aperturas y pullover.'
+        'pecho mancuernas',
+        'ejercicios de pecho con mancuernas: press plano, inclinado, aperturas y pullover.'
     ),
     (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-        'Hombros Mancuernas',
-        'Trabajo completo de hombros: press militar, elevaciones laterales, frontales y pájaros.'
+        'hombros mancuernas',
+        'trabajo completo de hombros: press militar, elevaciones laterales, frontales y pájaros.'
     ),
     (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-        'Brazos Mancuernas',
-        'Bíceps y tríceps con mancuernas: curls, martillo, concentrado, extensiones y patadas.'
+        'brazos mancuernas',
+        'bíceps y tríceps con mancuernas: curls, martillo, concentrado, extensiones y patadas.'
     ),
     (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-        'Espalda Mancuernas',
-        'Espalda con mancuernas: remo unilateral, remo inclinado, encogimientos y pullover.'
+        'espalda mancuernas',
+        'espalda con mancuernas: remo unilateral, remo inclinado, encogimientos y pullover.'
     ),
     (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-        'Piernas Mancuernas',
-        'Tren inferior con mancuernas: sentadilla, zancadas, peso muerto rumano, sumo y búlgara.'
+        'piernas mancuernas',
+        'tren inferior con mancuernas: sentadilla, zancadas, peso muerto rumano, sumo y búlgara.'
     ),
     (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-        'Tren Superior Mancuernas',
-        'Combinación de pecho, hombros, espalda y brazos con mancuernas.'
+        'tren superior mancuernas',
+        'combinación de pecho, hombros, espalda y brazos con mancuernas.'
     );
 
 -- Link exercises → sets
@@ -269,12 +269,12 @@ select s.id, e.id, row_number() over (
 from public.sets s
     cross join public.exercises e
 where
-    s.name = 'Pecho Mancuernas'
+    s.name = 'pecho mancuernas'
     and e.title in (
-        'Press Plano Mancuernas',
-        'Press Inclinado Mancuernas',
-        'Aperturas con Mancuernas',
-        'Pullover con Mancuerna'
+        'press plano mancuernas',
+        'press inclinado mancuernas',
+        'aperturas con mancuernas',
+        'pullover con mancuerna'
     );
 
 -- Hombros Mancuernas
@@ -286,12 +286,12 @@ select s.id, e.id, row_number() over (
 from public.sets s
     cross join public.exercises e
 where
-    s.name = 'Hombros Mancuernas'
+    s.name = 'hombros mancuernas'
     and e.title in (
-        'Press Militar Mancuernas',
-        'Elevaciones Laterales',
-        'Elevaciones Frontales',
-        'Pájaros con Mancuernas'
+        'press militar mancuernas',
+        'elevaciones laterales',
+        'elevaciones frontales',
+        'pájaros con mancuernas'
     );
 
 -- Brazos Mancuernas
@@ -303,14 +303,14 @@ select s.id, e.id, row_number() over (
 from public.sets s
     cross join public.exercises e
 where
-    s.name = 'Brazos Mancuernas'
+    s.name = 'brazos mancuernas'
     and e.title in (
-        'Curl de Bíceps Mancuernas',
-        'Curl Martillo',
-        'Curl Concentrado',
-        'Extensión de Tríceps sobre Cabeza',
-        'Patada de Tríceps',
-        'Extensión Tríceps Acostado'
+        'curl de bíceps mancuernas',
+        'curl martillo',
+        'curl concentrado',
+        'extensión de tríceps sobre cabeza',
+        'patada de tríceps',
+        'extensión tríceps acostado'
     );
 
 -- Espalda Mancuernas
@@ -322,12 +322,12 @@ select s.id, e.id, row_number() over (
 from public.sets s
     cross join public.exercises e
 where
-    s.name = 'Espalda Mancuernas'
+    s.name = 'espalda mancuernas'
     and e.title in (
-        'Remo con Mancuerna',
-        'Remo Inclinado con Mancuernas',
-        'Encogimientos con Mancuernas',
-        'Pullover con Mancuerna'
+        'remo con mancuerna',
+        'remo inclinado con mancuernas',
+        'encogimientos con mancuernas',
+        'pullover con mancuerna'
     );
 
 -- Piernas Mancuernas
@@ -339,13 +339,13 @@ select s.id, e.id, row_number() over (
 from public.sets s
     cross join public.exercises e
 where
-    s.name = 'Piernas Mancuernas'
+    s.name = 'piernas mancuernas'
     and e.title in (
-        'Sentadilla con Mancuernas',
-        'Zancadas con Mancuernas',
-        'Peso Muerto Rumano Mancuernas',
-        'Sentadilla Sumo Mancuerna',
-        'Sentadilla Búlgara Mancuernas'
+        'sentadilla con mancuernas',
+        'zancadas con mancuernas',
+        'peso muerto rumano mancuernas',
+        'sentadilla sumo mancuerna',
+        'sentadilla búlgara mancuernas'
     );
 
 -- Tren Superior Mancuernas (mix de pecho, hombros, espalda y brazos)
@@ -357,14 +357,14 @@ select s.id, e.id, row_number() over (
 from public.sets s
     cross join public.exercises e
 where
-    s.name = 'Tren Superior Mancuernas'
+    s.name = 'tren superior mancuernas'
     and e.title in (
-        'Press Plano Mancuernas',
-        'Press Militar Mancuernas',
-        'Remo con Mancuerna',
-        'Curl de Bíceps Mancuernas',
-        'Patada de Tríceps',
-        'Elevaciones Laterales'
+        'press plano mancuernas',
+        'press militar mancuernas',
+        'remo con mancuerna',
+        'curl de bíceps mancuernas',
+        'patada de tríceps',
+        'elevaciones laterales'
     );
 
 -- ─── ROUTINES ────────────────────────────────────────────────────────────────
@@ -378,32 +378,32 @@ insert into
     )
 values (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-        'Tren Superior Completo',
-        'Rutina completa de tren superior con mancuernas: pecho, hombros, espalda y brazos.',
+        'tren superior completo',
+        'rutina completa de tren superior con mancuernas: pecho, hombros, espalda y brazos.',
         10
     ),
     (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-        'Pecho y Tríceps',
-        'Push day: pecho y tríceps con mancuernas.',
+        'pecho y tríceps',
+        'push day: pecho y tríceps con mancuernas.',
         8
     ),
     (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-        'Espalda y Bíceps',
-        'Pull day: espalda y bíceps con mancuernas.',
+        'espalda y bíceps',
+        'pull day: espalda y bíceps con mancuernas.',
         8
     ),
     (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-        'Piernas Mancuernas',
-        'Día de piernas completo con mancuernas: sentadillas, zancadas y peso muerto rumano.',
+        'piernas mancuernas',
+        'día de piernas completo con mancuernas: sentadillas, zancadas y peso muerto rumano.',
         10
     ),
     (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-        'Full Body Mancuernas',
-        'Rutina de cuerpo completo combinando tren superior e inferior con mancuernas.',
+        'full body mancuernas',
+        'rutina de cuerpo completo combinando tren superior e inferior con mancuernas.',
         10
     );
 
@@ -418,8 +418,8 @@ insert into
 select r.id, s.id, 0, 3
 from public.routines r, public.sets s
 where
-    r.name = 'Tren Superior Completo'
-    and s.name = 'Pecho Mancuernas';
+    r.name = 'tren superior completo'
+    and s.name = 'pecho mancuernas';
 
 insert into
     public.routine_sets (
@@ -431,8 +431,8 @@ insert into
 select r.id, s.id, 1, 3
 from public.routines r, public.sets s
 where
-    r.name = 'Tren Superior Completo'
-    and s.name = 'Hombros Mancuernas';
+    r.name = 'tren superior completo'
+    and s.name = 'hombros mancuernas';
 
 insert into
     public.routine_sets (
@@ -444,8 +444,8 @@ insert into
 select r.id, s.id, 2, 3
 from public.routines r, public.sets s
 where
-    r.name = 'Tren Superior Completo'
-    and s.name = 'Espalda Mancuernas';
+    r.name = 'tren superior completo'
+    and s.name = 'espalda mancuernas';
 
 insert into
     public.routine_sets (
@@ -457,8 +457,8 @@ insert into
 select r.id, s.id, 3, 2
 from public.routines r, public.sets s
 where
-    r.name = 'Tren Superior Completo'
-    and s.name = 'Brazos Mancuernas';
+    r.name = 'tren superior completo'
+    and s.name = 'brazos mancuernas';
 
 -- Pecho y Tríceps: Pecho (x4) → Brazos (tríceps subset, x3)
 insert into
@@ -471,8 +471,8 @@ insert into
 select r.id, s.id, 0, 4
 from public.routines r, public.sets s
 where
-    r.name = 'Pecho y Tríceps'
-    and s.name = 'Pecho Mancuernas';
+    r.name = 'pecho y tríceps'
+    and s.name = 'pecho mancuernas';
 
 insert into
     public.routine_sets (
@@ -484,8 +484,8 @@ insert into
 select r.id, s.id, 1, 3
 from public.routines r, public.sets s
 where
-    r.name = 'Pecho y Tríceps'
-    and s.name = 'Brazos Mancuernas';
+    r.name = 'pecho y tríceps'
+    and s.name = 'brazos mancuernas';
 
 -- Espalda y Bíceps: Espalda (x4) → Brazos (bíceps subset, x3)
 insert into
@@ -498,8 +498,8 @@ insert into
 select r.id, s.id, 0, 4
 from public.routines r, public.sets s
 where
-    r.name = 'Espalda y Bíceps'
-    and s.name = 'Espalda Mancuernas';
+    r.name = 'espalda y bíceps'
+    and s.name = 'espalda mancuernas';
 
 insert into
     public.routine_sets (
@@ -511,8 +511,8 @@ insert into
 select r.id, s.id, 1, 3
 from public.routines r, public.sets s
 where
-    r.name = 'Espalda y Bíceps'
-    and s.name = 'Brazos Mancuernas';
+    r.name = 'espalda y bíceps'
+    and s.name = 'brazos mancuernas';
 
 -- Piernas Mancuernas: Piernas (x4)
 insert into
@@ -525,8 +525,8 @@ insert into
 select r.id, s.id, 0, 4
 from public.routines r, public.sets s
 where
-    r.name = 'Piernas Mancuernas'
-    and s.name = 'Piernas Mancuernas';
+    r.name = 'piernas mancuernas'
+    and s.name = 'piernas mancuernas';
 
 -- Full Body Mancuernas: Tren Superior (x3) → Piernas (x3)
 insert into
@@ -539,8 +539,8 @@ insert into
 select r.id, s.id, 0, 3
 from public.routines r, public.sets s
 where
-    r.name = 'Full Body Mancuernas'
-    and s.name = 'Tren Superior Mancuernas';
+    r.name = 'full body mancuernas'
+    and s.name = 'tren superior mancuernas';
 
 insert into
     public.routine_sets (
@@ -552,8 +552,8 @@ insert into
 select r.id, s.id, 1, 3
 from public.routines r, public.sets s
 where
-    r.name = 'Full Body Mancuernas'
-    and s.name = 'Piernas Mancuernas';
+    r.name = 'full body mancuernas'
+    and s.name = 'piernas mancuernas';
 
 -- ─── PLANS ───────────────────────────────────────────────────────────────────
 
@@ -561,13 +561,13 @@ insert into
     public.plans (user_id, name, description)
 values (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-        'Push Pull Legs Mancuernas',
-        'Plan semanal Push/Pull/Legs con mancuernas. 6 días de entrenamiento.'
+        'push pull legs mancuernas',
+        'plan semanal push/pull/legs con mancuernas. 6 días de entrenamiento.'
     ),
     (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-        'Full Body 3 Días',
-        'Plan de 3 días por semana con rutinas de cuerpo completo. Ideal para principiantes.'
+        'full body 3 días',
+        'plan de 3 días por semana con rutinas de cuerpo completo. ideal para principiantes.'
     );
 
 -- Push Pull Legs: Lun(0)=Push, Mar(1)=Pull, Mié(2)=Legs, Jue(3)=Push, Vie(4)=Pull, Sáb(5)=Legs
@@ -580,8 +580,8 @@ insert into
 select p.id, r.id, 0
 from public.plans p, public.routines r
 where
-    p.name = 'Push Pull Legs Mancuernas'
-    and r.name = 'Pecho y Tríceps';
+    p.name = 'push pull legs mancuernas'
+    and r.name = 'pecho y tríceps';
 
 insert into
     public.plan_routines (
@@ -592,8 +592,8 @@ insert into
 select p.id, r.id, 1
 from public.plans p, public.routines r
 where
-    p.name = 'Push Pull Legs Mancuernas'
-    and r.name = 'Espalda y Bíceps';
+    p.name = 'push pull legs mancuernas'
+    and r.name = 'espalda y bíceps';
 
 insert into
     public.plan_routines (
@@ -604,8 +604,8 @@ insert into
 select p.id, r.id, 2
 from public.plans p, public.routines r
 where
-    p.name = 'Push Pull Legs Mancuernas'
-    and r.name = 'Piernas Mancuernas';
+    p.name = 'push pull legs mancuernas'
+    and r.name = 'piernas mancuernas';
 
 insert into
     public.plan_routines (
@@ -616,8 +616,8 @@ insert into
 select p.id, r.id, 3
 from public.plans p, public.routines r
 where
-    p.name = 'Push Pull Legs Mancuernas'
-    and r.name = 'Tren Superior Completo';
+    p.name = 'push pull legs mancuernas'
+    and r.name = 'tren superior completo';
 
 insert into
     public.plan_routines (
@@ -628,8 +628,8 @@ insert into
 select p.id, r.id, 4
 from public.plans p, public.routines r
 where
-    p.name = 'Push Pull Legs Mancuernas'
-    and r.name = 'Full Body Mancuernas';
+    p.name = 'push pull legs mancuernas'
+    and r.name = 'full body mancuernas';
 
 -- Full Body 3 Días: Lun(0), Mié(2), Vie(4)
 insert into
@@ -641,8 +641,8 @@ insert into
 select p.id, r.id, 0
 from public.plans p, public.routines r
 where
-    p.name = 'Full Body 3 Días'
-    and r.name = 'Full Body Mancuernas';
+    p.name = 'full body 3 días'
+    and r.name = 'full body mancuernas';
 
 insert into
     public.plan_routines (
@@ -653,8 +653,8 @@ insert into
 select p.id, r.id, 2
 from public.plans p, public.routines r
 where
-    p.name = 'Full Body 3 Días'
-    and r.name = 'Tren Superior Completo';
+    p.name = 'full body 3 días'
+    and r.name = 'tren superior completo';
 
 insert into
     public.plan_routines (
@@ -665,5 +665,5 @@ insert into
 select p.id, r.id, 4
 from public.plans p, public.routines r
 where
-    p.name = 'Full Body 3 Días'
-    and r.name = 'Full Body Mancuernas';
+    p.name = 'full body 3 días'
+    and r.name = 'full body mancuernas';
