@@ -4,6 +4,7 @@ const SOUNDS = {
   rep: "/sounds/rep.wav",
   lastRep: "/sounds/last-rep.wav",
   tick: "/sounds/tick.wav",
+  start: "/sounds/start.wav",
 } as const;
 
 type SoundKey = keyof typeof SOUNDS;

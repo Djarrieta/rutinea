@@ -1,7 +1,15 @@
+"use client";
+
 export default function PlayButton({ onClick }: { onClick: () => void }) {
+  const handleClick = () => {
+    const audio = new Audio("/sounds/start.wav");
+    audio.play().catch(() => {});
+    onClick();
+  };
+
   return (
     <button
-      onClick={onClick}
+      onClick={handleClick}
       className="flex items-center gap-1.5 bg-primary-500 text-black px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-primary-600 transition-colors"
     >
       <svg
