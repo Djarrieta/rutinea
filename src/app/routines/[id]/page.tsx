@@ -5,6 +5,7 @@ import { getUser } from "@/lib/auth";
 import { deleteRoutine } from "../actions";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import RoutineDetailPlay from "../RoutineDetailPlay";
+import { properCase } from "@/lib/format";
 import type { RoutineWithSets } from "@/types";
 
 export default async function RoutineDetailPage({
@@ -38,16 +39,18 @@ export default async function RoutineDetailPage({
       <Breadcrumb
         items={[
           { label: "Rutinas", href: "/routines" },
-          { label: routine.name },
+          { label: properCase(routine.name) },
         ]}
       />
       <div className="flex items-center gap-3 mb-2">
-        <h1 className="text-2xl font-bold">{routine.name}</h1>
+        <h1 className="text-2xl font-bold">{properCase(routine.name)}</h1>
         <RoutineDetailPlay routine={routine} />
       </div>
 
       {routine.description && (
-        <p className="text-text-secondary mb-4">{routine.description}</p>
+        <p className="text-text-secondary mb-4">
+          {properCase(routine.description)}
+        </p>
       )}
 
       <dl className="grid grid-cols-2 gap-3 text-sm mb-6">
@@ -71,7 +74,7 @@ export default async function RoutineDetailPage({
             return (
               <div key={rs.id} className="space-y-2">
                 <h3 className="text-sm font-semibold">
-                  {si + 1}. {rs.set.name}
+                  {si + 1}. {properCase(rs.set.name)}
                   {rs.rounds > 1 && (
                     <span className="ml-1 text-text-faint font-normal">
                       ×{rs.rounds}
@@ -92,11 +95,11 @@ export default async function RoutineDetailPage({
                           href={`/exercises/${se.exercise.id}`}
                           className="font-medium text-primary-600 hover:underline"
                         >
-                          {se.exercise.title}
+                          {properCase(se.exercise.title)}
                         </Link>
                         {se.exercise.description && (
                           <p className="text-text-muted text-xs mt-0.5 line-clamp-1">
-                            {se.exercise.description}
+                            {properCase(se.exercise.description)}
                           </p>
                         )}
                       </div>

@@ -5,6 +5,7 @@ import { getUser } from "@/lib/auth";
 import { deleteSet } from "../actions";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import SetDetailPlay from "../SetDetailPlay";
+import { properCase } from "@/lib/format";
 import type { SetWithExercises } from "@/types";
 
 export default async function SetDetailPage({
@@ -34,15 +35,20 @@ export default async function SetDetailPage({
   return (
     <div className="max-w-lg">
       <Breadcrumb
-        items={[{ label: "Sets", href: "/sets" }, { label: set.name }]}
+        items={[
+          { label: "Sets", href: "/sets" },
+          { label: properCase(set.name) },
+        ]}
       />
       <div className="flex items-center gap-3 mb-2">
-        <h1 className="text-2xl font-bold">{set.name}</h1>
+        <h1 className="text-2xl font-bold">{properCase(set.name)}</h1>
         <SetDetailPlay set={set} />
       </div>
 
       {set.description && (
-        <p className="text-text-secondary mb-4">{set.description}</p>
+        <p className="text-text-secondary mb-4">
+          {properCase(set.description)}
+        </p>
       )}
 
       <dl className="text-sm mb-6">
@@ -69,11 +75,11 @@ export default async function SetDetailPage({
                     href={`/exercises/${se.exercise.id}`}
                     className="font-medium text-primary-600 hover:underline"
                   >
-                    {se.exercise.title}
+                    {properCase(se.exercise.title)}
                   </Link>
                   {se.exercise.description && (
                     <p className="text-text-muted text-xs mt-0.5 line-clamp-1">
-                      {se.exercise.description}
+                      {properCase(se.exercise.description)}
                     </p>
                   )}
                 </div>

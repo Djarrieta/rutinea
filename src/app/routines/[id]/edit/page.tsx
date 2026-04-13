@@ -4,6 +4,7 @@ import { requireAuth } from "@/lib/auth";
 import RoutineForm from "../../RoutineForm";
 import { updateRoutine } from "../../actions";
 import Breadcrumb from "@/app/components/Breadcrumb";
+import { properCase } from "@/lib/format";
 import type { RoutineWithSets } from "@/types";
 
 export default async function EditRoutinePage({
@@ -35,7 +36,7 @@ export default async function EditRoutinePage({
       <Breadcrumb
         items={[
           { label: "Rutinas", href: "/routines" },
-          { label: routine.name, href: `/routines/${id}` },
+          { label: properCase(routine.name), href: `/routines/${id}` },
           { label: "Editar" },
         ]}
       />

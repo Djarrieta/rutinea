@@ -4,6 +4,7 @@ import { requireAuth } from "@/lib/auth";
 import SetForm from "../../SetForm";
 import { updateSet } from "../../actions";
 import Breadcrumb from "@/app/components/Breadcrumb";
+import { properCase } from "@/lib/format";
 import type { SetWithExercises } from "@/types";
 
 export default async function EditSetPage({
@@ -33,7 +34,7 @@ export default async function EditSetPage({
       <Breadcrumb
         items={[
           { label: "Sets", href: "/sets" },
-          { label: set.name, href: `/sets/${id}` },
+          { label: properCase(set.name), href: `/sets/${id}` },
           { label: "Editar" },
         ]}
       />

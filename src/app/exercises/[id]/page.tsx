@@ -6,6 +6,7 @@ import { deleteExercise } from "../actions";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import Badge from "@/app/components/Badge";
 import ExerciseDetailPlay from "../ExerciseDetailPlay";
+import { properCase } from "@/lib/format";
 import type { Exercise } from "@/types";
 
 export default async function ExerciseDetailPage({
@@ -33,16 +34,18 @@ export default async function ExerciseDetailPage({
       <Breadcrumb
         items={[
           { label: "Ejercicios", href: "/exercises" },
-          { label: exercise.title },
+          { label: properCase(exercise.title) },
         ]}
       />
       <div className="flex items-center gap-3 mb-2">
-        <h1 className="text-2xl font-bold">{exercise.title}</h1>
+        <h1 className="text-2xl font-bold">{properCase(exercise.title)}</h1>
         <ExerciseDetailPlay exercise={exercise} />
       </div>
 
       {exercise.description && (
-        <p className="text-text-secondary mb-4">{exercise.description}</p>
+        <p className="text-text-secondary mb-4">
+          {properCase(exercise.description)}
+        </p>
       )}
 
       <dl className="grid grid-cols-2 gap-3 text-sm mb-6">
@@ -63,7 +66,7 @@ export default async function ExerciseDetailPage({
       {exercise.tags.length > 0 && (
         <div className="flex flex-wrap gap-1.5 mb-6">
           {exercise.tags.map((tag) => (
-            <Badge key={tag}>{tag}</Badge>
+            <Badge key={tag}>{properCase(tag)}</Badge>
           ))}
         </div>
       )}

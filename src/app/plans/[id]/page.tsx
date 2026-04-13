@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getUser } from "@/lib/auth";
 import { deletePlan } from "../actions";
 import Breadcrumb from "@/app/components/Breadcrumb";
+import { properCase } from "@/lib/format";
 import type { PlanWithRoutines } from "@/types";
 import { DAY_LABELS, getTodayDayIndex } from "@/types";
 
@@ -38,12 +39,17 @@ export default async function PlanDetailPage({
   return (
     <div className="max-w-lg">
       <Breadcrumb
-        items={[{ label: "Planes", href: "/plans" }, { label: plan.name }]}
+        items={[
+          { label: "Planes", href: "/plans" },
+          { label: properCase(plan.name) },
+        ]}
       />
-      <h1 className="text-2xl font-bold mb-2">{plan.name}</h1>
+      <h1 className="text-2xl font-bold mb-2">{properCase(plan.name)}</h1>
 
       {plan.description && (
-        <p className="text-text-secondary mb-4">{plan.description}</p>
+        <p className="text-text-secondary mb-4">
+          {properCase(plan.description)}
+        </p>
       )}
 
       <dl className="grid grid-cols-2 gap-3 text-sm mb-6">
@@ -81,7 +87,7 @@ export default async function PlanDetailPage({
                     isToday ? "text-primary-400" : "text-primary-600"
                   }`}
                 >
-                  {pr.routine.name}
+                  {properCase(pr.routine.name)}
                 </Link>
                 <span className="text-xs text-text-faint">
                   {pr.routine.routine_sets.length} set

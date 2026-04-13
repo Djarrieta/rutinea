@@ -11,8 +11,8 @@ export async function createRoutine(formData: FormData) {
   const supabase = await createClient()
 
   const input: CreateRoutineInput = {
-    name: formData.get('name') as string,
-    description: (formData.get('description') as string) || null,
+    name: (formData.get('name') as string).toLowerCase(),
+    description: (formData.get('description') as string)?.toLowerCase() || null,
     rest_secs: Number(formData.get('rest_secs')) || 60,
   }
 
@@ -50,8 +50,8 @@ export async function updateRoutine(id: string, formData: FormData) {
   const supabase = await createClient()
 
   const input: UpdateRoutineInput = {
-    name: formData.get('name') as string,
-    description: (formData.get('description') as string) || null,
+    name: (formData.get('name') as string).toLowerCase(),
+    description: (formData.get('description') as string)?.toLowerCase() || null,
     rest_secs: Number(formData.get('rest_secs')) || 60,
   }
 

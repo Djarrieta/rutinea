@@ -20,12 +20,12 @@ export async function createExercise(formData: FormData) {
   const supabase = await createClient()
 
   const input: CreateExerciseInput = {
-    title: formData.get('title') as string,
-    description: (formData.get('description') as string) || null,
+    title: (formData.get('title') as string).toLowerCase(),
+    description: (formData.get('description') as string)?.toLowerCase() || null,
     images: parseImages(formData),
     tags: (formData.get('tags') as string || '')
       .split(',')
-      .map((t) => t.trim())
+      .map((t) => t.trim().toLowerCase())
       .filter(Boolean),
     duration_secs: Number(formData.get('duration_secs')) || 0,
     repetitions: Number(formData.get('repetitions')) || 1,
@@ -44,12 +44,12 @@ export async function updateExercise(id: string, formData: FormData) {
   const supabase = await createClient()
 
   const input: UpdateExerciseInput = {
-    title: formData.get('title') as string,
-    description: (formData.get('description') as string) || null,
+    title: (formData.get('title') as string).toLowerCase(),
+    description: (formData.get('description') as string)?.toLowerCase() || null,
     images: parseImages(formData),
     tags: (formData.get('tags') as string || '')
       .split(',')
-      .map((t) => t.trim())
+      .map((t) => t.trim().toLowerCase())
       .filter(Boolean),
     duration_secs: Number(formData.get('duration_secs')) || 0,
     repetitions: Number(formData.get('repetitions')) || 1,

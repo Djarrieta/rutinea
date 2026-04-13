@@ -4,6 +4,7 @@ import { requireAuth } from "@/lib/auth";
 import ExerciseForm from "../../ExerciseForm";
 import { updateExercise } from "../../actions";
 import Breadcrumb from "@/app/components/Breadcrumb";
+import { properCase } from "@/lib/format";
 import type { Exercise } from "@/types";
 
 export default async function EditExercisePage({
@@ -29,7 +30,7 @@ export default async function EditExercisePage({
       <Breadcrumb
         items={[
           { label: "Ejercicios", href: "/exercises" },
-          { label: exercise.title, href: `/exercises/${id}` },
+          { label: properCase(exercise.title), href: `/exercises/${id}` },
           { label: "Editar" },
         ]}
       />

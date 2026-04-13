@@ -35,7 +35,7 @@ export default function PageHeader({
   return (
     <div>
       <h1 className="text-2xl font-bold mb-6">{title}</h1>
-      <div className="grid gap-3 grid-cols-1 sm:grid-cols-2">{children}</div>
+      {children}
     </div>
   );
 }

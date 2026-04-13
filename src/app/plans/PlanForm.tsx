@@ -5,6 +5,7 @@ import type { Plan, Routine } from "@/types";
 import { DAY_LABELS } from "@/types";
 import { createClient } from "@/lib/supabase/client";
 import SearchableSelect from "@/app/components/SearchableSelect";
+import { properCase } from "@/lib/format";
 
 interface DayEntry {
   day_of_week: number;
@@ -71,7 +72,7 @@ function DayRoutinePicker({ defaultValue }: { defaultValue: DayEntry[] }) {
               <span className="font-semibold w-24">
                 {DAY_LABELS[e.day_of_week]}
               </span>
-              <span className="flex-1">{e.routine.name}</span>
+              <span className="flex-1">{properCase(e.routine.name)}</span>
               <button
                 type="button"
                 onClick={() => remove(e.day_of_week)}
@@ -108,7 +109,10 @@ function DayRoutinePicker({ defaultValue }: { defaultValue: DayEntry[] }) {
           <div className="flex-1">
             <label className="block text-xs text-text-muted mb-1">Rutina</label>
             <SearchableSelect
-              options={routines.map((r) => ({ id: r.id, label: r.name }))}
+              options={routines.map((r) => ({
+                id: r.id,
+                label: properCase(r.name),
+              }))}
               onSelect={addEntry}
               placeholder="+ Agregar rutina…"
               loading={routines.length === 0}

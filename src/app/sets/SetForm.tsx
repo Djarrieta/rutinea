@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import type { Set as ExSet, Exercise } from "@/types";
 import { createClient } from "@/lib/supabase/client";
 import SearchableSelect from "@/app/components/SearchableSelect";
+import { properCase } from "@/lib/format";
 
 function ExercisePicker({ defaultValue }: { defaultValue: string[] }) {
   const [exercises, setExercises] = useState<Exercise[]>([]);
@@ -67,7 +68,7 @@ function ExercisePicker({ defaultValue }: { defaultValue: string[] }) {
               <span className="text-text-faint font-mono text-xs w-5 text-center">
                 {i + 1}
               </span>
-              <span className="flex-1">{ex.title}</span>
+              <span className="flex-1">{properCase(ex.title)}</span>
               <button
                 type="button"
                 onClick={() => moveUp(i)}
@@ -97,7 +98,10 @@ function ExercisePicker({ defaultValue }: { defaultValue: string[] }) {
       )}
 
       <SearchableSelect
-        options={exercises.map((e) => ({ id: e.id, label: e.title }))}
+        options={exercises.map((e) => ({
+          id: e.id,
+          label: properCase(e.title),
+        }))}
         onSelect={add}
         placeholder="+ Agregar ejercicio…"
         loading={exercises.length === 0}

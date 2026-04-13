@@ -5,6 +5,7 @@ import type { RoutineWithSets, Exercise } from "@/types";
 import { useRepSounds } from "@/lib/hooks/useRepSounds";
 import PlayerModalShell from "@/app/components/PlayerModalShell";
 import PlayerControls from "@/app/components/PlayerControls";
+import { properCase } from "@/lib/format";
 
 type Phase = "exercise" | "rest" | "finished";
 
@@ -272,7 +273,7 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
                   className={`font-semibold truncate max-w-[8rem] ${isCurrent ? "text-primary-400" : isDone ? "text-success-400" : "text-text-faint"}`}
                 >
                   {isDone ? "✓ " : ""}
-                  {node.name}
+                  {properCase(node.name)}
                 </div>
                 {node.roundLabel && (
                   <div
@@ -298,7 +299,7 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
                           }`}
                         >
                           {exDone ? "✓ " : exActive ? "▸ " : "  "}
-                          {ex.title}
+                          {properCase(ex.title)}
                           {ex.repetitions > 1 && (
                             <span className="opacity-60 font-normal">
                               {" "}
@@ -319,7 +320,7 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
       {phase === "exercise" && currentStep?.type === "exercise" && (
         <div>
           <p className="text-sm font-medium truncate">
-            {currentStep.exercise.title}
+            {properCase(currentStep.exercise.title)}
           </p>
         </div>
       )}
@@ -334,7 +335,7 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
 
   return (
     <PlayerModalShell
-      title={routine.name}
+      title={properCase(routine.name)}
       onClose={onClose}
       progress={phase === "finished" ? 100 : overallProgress}
       header={headerContent}

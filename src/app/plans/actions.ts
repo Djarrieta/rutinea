@@ -11,8 +11,8 @@ export async function createPlan(formData: FormData) {
   const supabase = await createClient()
 
   const input: CreatePlanInput = {
-    name: formData.get('name') as string,
-    description: (formData.get('description') as string) || null,
+    name: (formData.get('name') as string).toLowerCase(),
+    description: (formData.get('description') as string)?.toLowerCase() || null,
   }
 
   const dayEntries: { day_of_week: number; routine_id: string }[] = JSON.parse(
@@ -48,8 +48,8 @@ export async function updatePlan(id: string, formData: FormData) {
   const supabase = await createClient()
 
   const input: UpdatePlanInput = {
-    name: formData.get('name') as string,
-    description: (formData.get('description') as string) || null,
+    name: (formData.get('name') as string).toLowerCase(),
+    description: (formData.get('description') as string)?.toLowerCase() || null,
   }
 
   const dayEntries: { day_of_week: number; routine_id: string }[] = JSON.parse(

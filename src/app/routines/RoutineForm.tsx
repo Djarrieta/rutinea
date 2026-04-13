@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import type { Routine, Set as ExSet } from "@/types";
 import { createClient } from "@/lib/supabase/client";
 import SearchableSelect from "@/app/components/SearchableSelect";
+import { properCase } from "@/lib/format";
 
 interface SelectedSet {
   id: string;
@@ -80,7 +81,7 @@ function SetPicker({ defaultValue }: { defaultValue: SelectedSet[] }) {
               <span className="text-text-faint font-mono text-xs w-5 text-center">
                 {i + 1}
               </span>
-              <span className="flex-1">{s.set.name}</span>
+              <span className="flex-1">{properCase(s.set.name)}</span>
               <label className="flex items-center gap-1 text-xs text-text-muted">
                 <input
                   type="number"
@@ -120,7 +121,7 @@ function SetPicker({ defaultValue }: { defaultValue: SelectedSet[] }) {
       )}
 
       <SearchableSelect
-        options={sets.map((s) => ({ id: s.id, label: s.name }))}
+        options={sets.map((s) => ({ id: s.id, label: properCase(s.name) }))}
         onSelect={add}
         placeholder="+ Agregar set…"
         loading={sets.length === 0}

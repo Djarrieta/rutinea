@@ -5,6 +5,7 @@ import type { Exercise } from "@/types";
 import { useRepSounds } from "@/lib/hooks/useRepSounds";
 import PlayerModalShell from "@/app/components/PlayerModalShell";
 import PlayerControls from "@/app/components/PlayerControls";
+import { properCase } from "@/lib/format";
 
 interface Props {
   exercise: Exercise;
@@ -67,7 +68,7 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
 
   return (
     <PlayerModalShell
-      title={exercise.title}
+      title={properCase(exercise.title)}
       onClose={onClose}
       progress={progress}
       controls={

@@ -3,6 +3,7 @@
 import type { PlanWithRoutines } from "@/types";
 import { DAY_LABELS, getTodayDayIndex } from "@/types";
 import EntityCard from "@/app/components/EntityCard";
+import { properCase } from "@/lib/format";
 
 export default function PlanCard({
   plan,
@@ -37,7 +38,7 @@ export default function PlanCard({
           </span>
           {todayRoutine ? (
             <span className="text-primary-400 font-medium truncate">
-              Hoy: {todayRoutine.routine.name}
+              Hoy: {properCase(todayRoutine.routine.name)}
             </span>
           ) : (
             <span className="truncate">{dayNames}</span>

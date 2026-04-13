@@ -5,6 +5,7 @@ import type { SetWithExercises, Exercise } from "@/types";
 import { useRepSounds } from "@/lib/hooks/useRepSounds";
 import PlayerModalShell from "@/app/components/PlayerModalShell";
 import PlayerControls from "@/app/components/PlayerControls";
+import { properCase } from "@/lib/format";
 
 interface Props {
   set: SetWithExercises;
@@ -115,7 +116,7 @@ export default function SetPlayerModal({ set, onClose }: Props) {
               className={`font-semibold truncate max-w-[8rem] ${isCurrent ? "text-primary-400" : isDone ? "text-success-400" : "text-text-faint"}`}
             >
               {isDone ? "✓ " : isCurrent ? "▸ " : ""}
-              {ex.title}
+              {properCase(ex.title)}
             </div>
           </div>
         );
@@ -125,7 +126,7 @@ export default function SetPlayerModal({ set, onClose }: Props) {
 
   return (
     <PlayerModalShell
-      title={set.name}
+      title={properCase(set.name)}
       onClose={onClose}
       progress={finished ? 100 : overallProgress}
       header={headerContent}

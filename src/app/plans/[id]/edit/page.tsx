@@ -4,6 +4,7 @@ import { requireAuth } from "@/lib/auth";
 import PlanForm from "../../PlanForm";
 import { updatePlan } from "../../actions";
 import Breadcrumb from "@/app/components/Breadcrumb";
+import { properCase } from "@/lib/format";
 import type { PlanWithRoutines } from "@/types";
 
 export default async function EditPlanPage({
@@ -35,7 +36,7 @@ export default async function EditPlanPage({
       <Breadcrumb
         items={[
           { label: "Planes", href: "/plans" },
-          { label: plan.name, href: `/plans/${id}` },
+          { label: properCase(plan.name), href: `/plans/${id}` },
           { label: "Editar" },
         ]}
       />

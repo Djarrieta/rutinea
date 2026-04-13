@@ -11,8 +11,8 @@ export async function createSet(formData: FormData) {
   const supabase = await createClient()
 
   const input: CreateSetInput = {
-    name: formData.get('name') as string,
-    description: (formData.get('description') as string) || null,
+    name: (formData.get('name') as string).toLowerCase(),
+    description: (formData.get('description') as string)?.toLowerCase() || null,
   }
 
   const exerciseIds: string[] = JSON.parse(
@@ -48,8 +48,8 @@ export async function updateSet(id: string, formData: FormData) {
   const supabase = await createClient()
 
   const input: UpdateSetInput = {
-    name: formData.get('name') as string,
-    description: (formData.get('description') as string) || null,
+    name: (formData.get('name') as string).toLowerCase(),
+    description: (formData.get('description') as string)?.toLowerCase() || null,
   }
 
   const exerciseIds: string[] = JSON.parse(
