@@ -800,6 +800,46 @@ values (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
         'tren superior mancuernas',
         'combinación de pecho, hombros, espalda y brazos con mancuernas.'
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'calentamiento y movilidad',
+        'ejercicios de calentamiento y movilidad articular para preparar el cuerpo antes de entrenar.'
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'glúteos y cadera',
+        'trabajo enfocado en glúteos y movilidad de cadera con peso corporal, mancuernas y banda.'
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'core y abdominales',
+        'ejercicios de core: planchas, abdominales con peso y movimientos antirotación.'
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'piernas funcional',
+        'variaciones funcionales de piernas: goblet squat, lunges, calf raises y más.'
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'hombros variaciones',
+        'variaciones de hombros: arnold press, upright row y movimientos compuestos.'
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'espalda variaciones',
+        'variaciones de espalda: remos con diferentes agarres, renegade row y pulldown con banda.'
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'cardio HIIT',
+        'circuito de alta intensidad: mountain climbers, burpees, jumping lunges y más.'
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'compuestos cuerpo completo',
+        'movimientos compuestos multiarticulares que trabajan todo el cuerpo en cada repetición.'
     );
 
 -- Link exercises → sets
@@ -911,6 +951,169 @@ where
         'elevaciones laterales'
     );
 
+-- Calentamiento y Movilidad
+insert into
+    public.set_exercises (set_id, exercise_id, position)
+select s.id, e.id, row_number() over (
+        order by e.created_at
+    ) - 1
+from public.sets s
+    cross join public.exercises e
+where
+    s.name = 'calentamiento y movilidad'
+    and e.title in (
+        'squat to stretch',
+        'inchworm',
+        'deep squat side to side',
+        'shoulder dislocation',
+        'cat-cow',
+        'arm circles',
+        'fire hydrant hip circles',
+        'chest openers',
+        'forward leg swing',
+        'plank to downward dog',
+        '90/90 hip hinges',
+        'child''s pose to cobra',
+        'thread the needle',
+        'low lateral lunge'
+    );
+
+-- Glúteos y Cadera
+insert into
+    public.set_exercises (set_id, exercise_id, position)
+select s.id, e.id, row_number() over (
+        order by e.created_at
+    ) - 1
+from public.sets s
+    cross join public.exercises e
+where
+    s.name = 'glúteos y cadera'
+    and e.title in (
+        'glute bridge',
+        'hip thrust',
+        'frog pumps',
+        'fire hydrant and donkey kick',
+        'step-up glute focus',
+        'b-stance deadlift',
+        'banded hip thrust with abduction',
+        'banded frog pumps'
+    );
+
+-- Core y Abdominales
+insert into
+    public.set_exercises (set_id, exercise_id, position)
+select s.id, e.id, row_number() over (
+        order by e.created_at
+    ) - 1
+from public.sets s
+    cross join public.exercises e
+where
+    s.name = 'core y abdominales'
+    and e.title in (
+        'sit-up with weight',
+        'toe tap and leg raise',
+        'reverse crunch',
+        'sit-up and pullover',
+        'plank shoulder taps',
+        'low plank hold',
+        'high plank to low plank',
+        'renegade row'
+    );
+
+-- Piernas Funcional
+insert into
+    public.set_exercises (set_id, exercise_id, position)
+select s.id, e.id, row_number() over (
+        order by e.created_at
+    ) - 1
+from public.sets s
+    cross join public.exercises e
+where
+    s.name = 'piernas funcional'
+    and e.title in (
+        'goblet squat',
+        'walking lunges',
+        'deficit reverse lunge',
+        'narrow squat heels elevated',
+        'lying leg curl',
+        'calf raises',
+        'wall sit',
+        'side to side squat'
+    );
+
+-- Hombros Variaciones
+insert into
+    public.set_exercises (set_id, exercise_id, position)
+select s.id, e.id, row_number() over (
+        order by e.created_at
+    ) - 1
+from public.sets s
+    cross join public.exercises e
+where
+    s.name = 'hombros variaciones'
+    and e.title in (
+        'arnold press',
+        'upright row',
+        'lateral raise and front raise',
+        'single arm clean and press'
+    );
+
+-- Espalda Variaciones
+insert into
+    public.set_exercises (set_id, exercise_id, position)
+select s.id, e.id, row_number() over (
+        order by e.created_at
+    ) - 1
+from public.sets s
+    cross join public.exercises e
+where
+    s.name = 'espalda variaciones'
+    and e.title in (
+        'single arm row',
+        'dumbbell narrow row',
+        'underhand row',
+        'renegade row',
+        'lat pulldown with loop band',
+        'romanian deadlift and row'
+    );
+
+-- Cardio HIIT
+insert into
+    public.set_exercises (set_id, exercise_id, position)
+select s.id, e.id, row_number() over (
+        order by e.created_at
+    ) - 1
+from public.sets s
+    cross join public.exercises e
+where
+    s.name = 'cardio HIIT'
+    and e.title in (
+        'mountain climbers',
+        'alternating jumping lunges',
+        'banded squat jump in and out',
+        'shoulder taps and plank jacks',
+        'burpees'
+    );
+
+-- Compuestos Cuerpo Completo
+insert into
+    public.set_exercises (set_id, exercise_id, position)
+select s.id, e.id, row_number() over (
+        order by e.created_at
+    ) - 1
+from public.sets s
+    cross join public.exercises e
+where
+    s.name = 'compuestos cuerpo completo'
+    and e.title in (
+        'single arm clean and press',
+        'renegade row to squat thrust biceps curl',
+        'alternating lunges with lateral raise',
+        'romanian deadlift and row',
+        'glute bridge and chest press',
+        'triceps dip'
+    );
+
 -- ─── ROUTINES ────────────────────────────────────────────────────────────────
 
 insert into
@@ -949,6 +1152,42 @@ values (
         'full body mancuernas',
         'rutina de cuerpo completo combinando tren superior e inferior con mancuernas.',
         10
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'glúteos y piernas',
+        'enfocada en glúteos y tren inferior con calentamiento de movilidad de cadera.',
+        10
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'HIIT cuerpo completo',
+        'circuito de alta intensidad con ejercicios compuestos y cardio. quema máxima.',
+        5
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'tren superior variaciones',
+        'hombros y espalda con variaciones avanzadas más trabajo de core.',
+        8
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'piernas y core',
+        'piernas pesadas con mancuernas combinado con trabajo de core y abdominales.',
+        10
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'push con core',
+        'pecho y hombros (empuje) con trabajo de core al final.',
+        8
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'pull con core',
+        'espalda y brazos (tirón) con trabajo de core al final.',
+        8
     );
 
 -- Tren Superior Completo: Pecho (x3) → Hombros (x3) → Espalda (x3) → Brazos (x2)
@@ -1099,6 +1338,298 @@ where
     r.name = 'full body mancuernas'
     and s.name = 'piernas mancuernas';
 
+-- Glúteos y Piernas: Calentamiento (x1) → Glúteos (x3) → Piernas Funcional (x3)
+insert into
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 0, 1
+from public.routines r, public.sets s
+where
+    r.name = 'glúteos y piernas'
+    and s.name = 'calentamiento y movilidad';
+
+insert into
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 1, 3
+from public.routines r, public.sets s
+where
+    r.name = 'glúteos y piernas'
+    and s.name = 'glúteos y cadera';
+
+insert into
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 2, 3
+from public.routines r, public.sets s
+where
+    r.name = 'glúteos y piernas'
+    and s.name = 'piernas funcional';
+
+-- HIIT Cuerpo Completo: Calentamiento (x1) → Compuestos (x3) → Cardio HIIT (x3)
+insert into
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 0, 1
+from public.routines r, public.sets s
+where
+    r.name = 'HIIT cuerpo completo'
+    and s.name = 'calentamiento y movilidad';
+
+insert into
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 1, 3
+from public.routines r, public.sets s
+where
+    r.name = 'HIIT cuerpo completo'
+    and s.name = 'compuestos cuerpo completo';
+
+insert into
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 2, 3
+from public.routines r, public.sets s
+where
+    r.name = 'HIIT cuerpo completo'
+    and s.name = 'cardio HIIT';
+
+-- Tren Superior Variaciones: Calentamiento (x1) → Hombros Variaciones (x3) → Espalda Variaciones (x3) → Core (x2)
+insert into
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 0, 1
+from public.routines r, public.sets s
+where
+    r.name = 'tren superior variaciones'
+    and s.name = 'calentamiento y movilidad';
+
+insert into
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 1, 3
+from public.routines r, public.sets s
+where
+    r.name = 'tren superior variaciones'
+    and s.name = 'hombros variaciones';
+
+insert into
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 2, 3
+from public.routines r, public.sets s
+where
+    r.name = 'tren superior variaciones'
+    and s.name = 'espalda variaciones';
+
+insert into
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 3, 2
+from public.routines r, public.sets s
+where
+    r.name = 'tren superior variaciones'
+    and s.name = 'core y abdominales';
+
+-- Piernas y Core: Calentamiento (x1) → Piernas Mancuernas (x4) → Glúteos (x2) → Core (x2)
+insert into
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 0, 1
+from public.routines r, public.sets s
+where
+    r.name = 'piernas y core'
+    and s.name = 'calentamiento y movilidad';
+
+insert into
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 1, 4
+from public.routines r, public.sets s
+where
+    r.name = 'piernas y core'
+    and s.name = 'piernas mancuernas';
+
+insert into
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 2, 2
+from public.routines r, public.sets s
+where
+    r.name = 'piernas y core'
+    and s.name = 'glúteos y cadera';
+
+insert into
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 3, 2
+from public.routines r, public.sets s
+where
+    r.name = 'piernas y core'
+    and s.name = 'core y abdominales';
+
+-- Push con Core: Calentamiento (x1) → Pecho (x3) → Hombros (x3) → Core (x2)
+insert into
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 0, 1
+from public.routines r, public.sets s
+where
+    r.name = 'push con core'
+    and s.name = 'calentamiento y movilidad';
+
+insert into
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 1, 3
+from public.routines r, public.sets s
+where
+    r.name = 'push con core'
+    and s.name = 'pecho mancuernas';
+
+insert into
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 2, 3
+from public.routines r, public.sets s
+where
+    r.name = 'push con core'
+    and s.name = 'hombros mancuernas';
+
+insert into
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 3, 2
+from public.routines r, public.sets s
+where
+    r.name = 'push con core'
+    and s.name = 'core y abdominales';
+
+-- Pull con Core: Calentamiento (x1) → Espalda (x3) → Brazos (x3) → Core (x2)
+insert into
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 0, 1
+from public.routines r, public.sets s
+where
+    r.name = 'pull con core'
+    and s.name = 'calentamiento y movilidad';
+
+insert into
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 1, 3
+from public.routines r, public.sets s
+where
+    r.name = 'pull con core'
+    and s.name = 'espalda mancuernas';
+
+insert into
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 2, 3
+from public.routines r, public.sets s
+where
+    r.name = 'pull con core'
+    and s.name = 'brazos mancuernas';
+
+insert into
+    public.routine_sets (
+        routine_id,
+        set_id,
+        position,
+        rounds
+    )
+select r.id, s.id, 3, 2
+from public.routines r, public.sets s
+where
+    r.name = 'pull con core'
+    and s.name = 'core y abdominales';
+
 -- ─── PLANS ───────────────────────────────────────────────────────────────────
 
 insert into
@@ -1112,6 +1643,21 @@ values (
         'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
         'full body 3 días',
         'plan de 3 días por semana con rutinas de cuerpo completo. ideal para principiantes.'
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'upper lower 4 días',
+        'plan de 4 días alternando tren superior e inferior con core. lun/jue upper, mar/vie lower.'
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'HIIT y fuerza 5 días',
+        'plan de 5 días combinando sesiones de fuerza con días HIIT para maximizar quema y músculo.'
+    ),
+    (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'glúteos focus 4 días',
+        'plan de 4 días enfocado en glúteos y piernas, con tren superior como complemento.'
     );
 
 -- Push Pull Legs: Lun(0)=Push, Mar(1)=Pull, Mié(2)=Legs, Jue(3)=Push, Vie(4)=Pull, Sáb(5)=Legs
@@ -1211,3 +1757,162 @@ from public.plans p, public.routines r
 where
     p.name = 'full body 3 días'
     and r.name = 'full body mancuernas';
+
+-- Upper Lower 4 Días: Lun(0)=Push, Mar(1)=Piernas+Core, Jue(3)=Pull, Vie(4)=Glúteos+Piernas
+insert into
+    public.plan_routines (
+        plan_id,
+        routine_id,
+        day_of_week
+    )
+select p.id, r.id, 0
+from public.plans p, public.routines r
+where
+    p.name = 'upper lower 4 días'
+    and r.name = 'push con core';
+
+insert into
+    public.plan_routines (
+        plan_id,
+        routine_id,
+        day_of_week
+    )
+select p.id, r.id, 1
+from public.plans p, public.routines r
+where
+    p.name = 'upper lower 4 días'
+    and r.name = 'piernas y core';
+
+insert into
+    public.plan_routines (
+        plan_id,
+        routine_id,
+        day_of_week
+    )
+select p.id, r.id, 3
+from public.plans p, public.routines r
+where
+    p.name = 'upper lower 4 días'
+    and r.name = 'pull con core';
+
+insert into
+    public.plan_routines (
+        plan_id,
+        routine_id,
+        day_of_week
+    )
+select p.id, r.id, 4
+from public.plans p, public.routines r
+where
+    p.name = 'upper lower 4 días'
+    and r.name = 'glúteos y piernas';
+
+-- HIIT y Fuerza 5 Días: Lun(0)=Push, Mar(1)=HIIT, Mié(2)=Piernas, Jue(3)=Pull, Vie(4)=HIIT
+insert into
+    public.plan_routines (
+        plan_id,
+        routine_id,
+        day_of_week
+    )
+select p.id, r.id, 0
+from public.plans p, public.routines r
+where
+    p.name = 'HIIT y fuerza 5 días'
+    and r.name = 'push con core';
+
+insert into
+    public.plan_routines (
+        plan_id,
+        routine_id,
+        day_of_week
+    )
+select p.id, r.id, 1
+from public.plans p, public.routines r
+where
+    p.name = 'HIIT y fuerza 5 días'
+    and r.name = 'HIIT cuerpo completo';
+
+insert into
+    public.plan_routines (
+        plan_id,
+        routine_id,
+        day_of_week
+    )
+select p.id, r.id, 2
+from public.plans p, public.routines r
+where
+    p.name = 'HIIT y fuerza 5 días'
+    and r.name = 'piernas y core';
+
+insert into
+    public.plan_routines (
+        plan_id,
+        routine_id,
+        day_of_week
+    )
+select p.id, r.id, 3
+from public.plans p, public.routines r
+where
+    p.name = 'HIIT y fuerza 5 días'
+    and r.name = 'pull con core';
+
+insert into
+    public.plan_routines (
+        plan_id,
+        routine_id,
+        day_of_week
+    )
+select p.id, r.id, 4
+from public.plans p, public.routines r
+where
+    p.name = 'HIIT y fuerza 5 días'
+    and r.name = 'HIIT cuerpo completo';
+
+-- Glúteos Focus 4 Días: Lun(0)=Glúteos, Mar(1)=Upper Variaciones, Jue(3)=Piernas+Core, Vie(4)=Glúteos
+insert into
+    public.plan_routines (
+        plan_id,
+        routine_id,
+        day_of_week
+    )
+select p.id, r.id, 0
+from public.plans p, public.routines r
+where
+    p.name = 'glúteos focus 4 días'
+    and r.name = 'glúteos y piernas';
+
+insert into
+    public.plan_routines (
+        plan_id,
+        routine_id,
+        day_of_week
+    )
+select p.id, r.id, 1
+from public.plans p, public.routines r
+where
+    p.name = 'glúteos focus 4 días'
+    and r.name = 'tren superior variaciones';
+
+insert into
+    public.plan_routines (
+        plan_id,
+        routine_id,
+        day_of_week
+    )
+select p.id, r.id, 3
+from public.plans p, public.routines r
+where
+    p.name = 'glúteos focus 4 días'
+    and r.name = 'piernas y core';
+
+insert into
+    public.plan_routines (
+        plan_id,
+        routine_id,
+        day_of_week
+    )
+select p.id, r.id, 4
+from public.plans p, public.routines r
+where
+    p.name = 'glúteos focus 4 días'
+    and r.name = 'glúteos y piernas';
