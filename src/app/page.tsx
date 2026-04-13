@@ -36,10 +36,7 @@ export default function Home() {
   return (
     <div className="space-y-20">
       {/* Hero */}
-      <section
-        className="relative overflow-hidden pt-8 pb-4 -mx-4 sm:-mx-6 px-4 sm:px-6"
-        style={{ width: "100vw", marginLeft: "calc(-50vw + 50%)" }}
-      >
+      <section className="relative overflow-hidden pt-8 pb-4 -mx-4 sm:-mx-6 px-4 sm:px-6">
         <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-bg to-accent-500/10 -z-10" />
         <div className="absolute top-10 left-10 w-72 h-72 bg-primary-500 rounded-full mix-blend-screen filter blur-3xl opacity-10 animate-pulse" />
         <div className="absolute bottom-10 right-10 w-72 h-72 bg-accent-500 rounded-full mix-blend-screen filter blur-3xl opacity-10 animate-pulse" />
@@ -123,7 +120,7 @@ export default function Home() {
       <section className="relative rounded-2xl overflow-hidden mx-auto max-w-3xl">
         <div className="absolute inset-0 bg-gradient-to-r from-primary-700 to-accent-600" />
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIyMCIgY3k9IjIwIiByPSIxIiBmaWxsPSJ3aGl0ZSIgb3BhY2l0eT0iMC4xIi8+PC9zdmc+')] opacity-50" />
-        <div className="relative text-center space-y-4 px-8 py-12">
+        <div className="relative text-center space-y-4 px-4 py-8 sm:px-8 sm:py-12">
           <h2 className="text-2xl font-semibold text-white">Empieza ahora</h2>
           <p className="text-primary-100 max-w-xl mx-auto">
             Crea tu primer ejercicio, agrúpalo en un set, arma tu rutina y

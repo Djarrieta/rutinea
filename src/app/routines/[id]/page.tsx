@@ -55,7 +55,7 @@ export default async function RoutineDetailPage({
         </p>
       )}
 
-      <dl className="grid grid-cols-3 gap-3 text-sm mb-6">
+      <dl className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm mb-6">
         <div>
           <dt className="text-text-faint">Descanso entre sets</dt>
           <dd>{routine.rest_secs}s</dd>

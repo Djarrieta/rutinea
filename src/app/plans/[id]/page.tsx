@@ -76,7 +76,7 @@ export default async function PlanDetailPage({
                 }`}
               >
                 <span
-                  className={`text-sm font-semibold w-24 ${isToday ? "text-primary-400" : ""}`}
+                  className={`text-sm font-semibold w-16 sm:w-24 shrink-0 ${isToday ? "text-primary-400" : ""}`}
                 >
                   {isToday && "▶ "}
                   {DAY_LABELS[pr.day_of_week]}
