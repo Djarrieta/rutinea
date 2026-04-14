@@ -122,7 +122,7 @@ export async function cloneSet(id: string) {
   await supabase.rpc('increment_clone_count', { table_name: 'sets', row_id: id })
 
   revalidatePath('/sets')
-  redirect(`/sets/${clone.id}`)
+  redirect(`/sets/${clone.id}/edit`)
 }
 
 export async function deleteSet(id: string) {

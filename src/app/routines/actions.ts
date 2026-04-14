@@ -127,7 +127,7 @@ export async function cloneRoutine(id: string) {
   await supabase.rpc('increment_clone_count', { table_name: 'routines', row_id: id })
 
   revalidatePath('/routines')
-  redirect(`/routines/${clone.id}`)
+  redirect(`/routines/${clone.id}/edit`)
 }
 
 export async function deleteRoutine(id: string) {

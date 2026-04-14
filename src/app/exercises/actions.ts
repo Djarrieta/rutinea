@@ -90,7 +90,7 @@ export async function cloneExercise(id: string) {
   await supabase.rpc('increment_clone_count', { table_name: 'exercises', row_id: id })
 
   revalidatePath('/exercises')
-  redirect(`/exercises/${clone.id}`)
+  redirect(`/exercises/${clone.id}/edit`)
 }
 
 export async function deleteExercise(id: string) {
