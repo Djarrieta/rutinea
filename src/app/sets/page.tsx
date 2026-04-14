@@ -4,6 +4,7 @@ import type { SetWithExercises } from "@/types";
 import SetCard from "./SetCard";
 import PageHeader from "@/app/components/PageHeader";
 import FilterableList from "@/app/components/FilterableList";
+import SelectionProvider from "@/app/components/SelectionProvider";
 import { PAGE_SIZE } from "@/lib/constants";
 
 export default async function SetsPage({
@@ -49,21 +50,28 @@ export default async function SetsPage({
       createLabel="Crear uno"
       isEmpty={total === 0 && !q && !mine}
     >
-      <FilterableList
-        placeholder="Buscar por nombre..."
-        total={total}
-        page={page}
-        showMineFilter={!!user}
-        mineActive={!!mine}
+      <SelectionProvider
+        actionLabel="Crear Rutina"
+        createPath="/routines/new"
+        paramName="sets"
       >
-        {(sets ?? []).map((set) => (
-          <SetCard
-            key={set.id}
-            set={set}
-            exerciseCount={set.set_exercises.length}
-          />
-        ))}
-      </FilterableList>
+        <FilterableList
+          placeholder="Buscar por nombre..."
+          total={total}
+          page={page}
+          showMineFilter={!!user}
+          mineActive={!!mine}
+        >
+          {(sets ?? []).map((set) => (
+            <SetCard
+              key={set.id}
+              set={set}
+              exerciseCount={set.set_exercises.length}
+              selectable
+            />
+          ))}
+        </FilterableList>
+      </SelectionProvider>
     </PageHeader>
   );
 }

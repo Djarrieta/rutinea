@@ -5,9 +5,17 @@ import type { Exercise } from "@/types";
 import EntityCard from "@/app/components/EntityCard";
 import PlayButton from "@/app/components/PlayButton";
 import ExercisePlayerModal from "./ExercisePlayerModal";
+import { useSelection } from "@/app/components/SelectionProvider";
 
-export default function ExerciseCard({ exercise }: { exercise: Exercise }) {
+export default function ExerciseCard({
+  exercise,
+  selectable,
+}: {
+  exercise: Exercise;
+  selectable?: boolean;
+}) {
   const [showPlayer, setShowPlayer] = useState(false);
+  const selection = useSelection(exercise.id);
 
   return (
     <>
@@ -20,6 +28,9 @@ export default function ExerciseCard({ exercise }: { exercise: Exercise }) {
         creatorName={exercise.profile?.display_name}
         creatorAvatar={exercise.profile?.avatar_url}
         cloneCount={exercise.clone_count}
+        selectable={selectable}
+        selected={selection?.selected}
+        onSelect={selection?.toggle}
         meta={
           <>
             <span>{exercise.duration_secs}s/rep</span>

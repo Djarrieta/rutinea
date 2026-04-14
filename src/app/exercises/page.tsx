@@ -4,12 +4,18 @@ import type { Exercise } from "@/types";
 import ExerciseCard from "./ExerciseCard";
 import PageHeader from "@/app/components/PageHeader";
 import FilterableList from "@/app/components/FilterableList";
+import SelectionProvider from "@/app/components/SelectionProvider";
 import { PAGE_SIZE } from "@/lib/constants";
 
 export default async function ExercisesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; tags?: string; page?: string; mine?: string }>;
+  searchParams: Promise<{
+    q?: string;
+    tags?: string;
+    page?: string;
+    mine?: string;
+  }>;
 }) {
   const { q, tags: tagsParam, page: pageStr, mine } = await searchParams;
   const user = await getUser();
@@ -65,19 +71,25 @@ export default async function ExercisesPage({
       createLabel="Crear uno"
       isEmpty={total === 0 && !q && activeTags.length === 0 && !mine}
     >
-      <FilterableList
-        placeholder="Buscar por nombre o descripción..."
-        total={total}
-        page={page}
-        activeTags={activeTags}
-        availableTags={allTags}
-        showMineFilter={!!user}
-        mineActive={!!mine}
+      <SelectionProvider
+        actionLabel="Crear Set"
+        createPath="/sets/new"
+        paramName="exercises"
       >
-        {(exercises ?? []).map((exercise) => (
-          <ExerciseCard key={exercise.id} exercise={exercise} />
-        ))}
-      </FilterableList>
+        <FilterableList
+          placeholder="Buscar por nombre o descripción..."
+          total={total}
+          page={page}
+          activeTags={activeTags}
+          availableTags={allTags}
+          showMineFilter={!!user}
+          mineActive={!!mine}
+        >
+          {(exercises ?? []).map((exercise) => (
+            <ExerciseCard key={exercise.id} exercise={exercise} selectable />
+          ))}
+        </FilterableList>
+      </SelectionProvider>
     </PageHeader>
   );
 }

@@ -5,6 +5,7 @@ import type { SetWithExercises } from "@/types";
 import EntityCard from "@/app/components/EntityCard";
 import PlayButton from "@/app/components/PlayButton";
 import SetPlayerModal from "./SetPlayerModal";
+import { useSelection } from "@/app/components/SelectionProvider";
 
 function formatTime(secs: number): string {
   const m = Math.floor(secs / 60);
@@ -16,11 +17,14 @@ function formatTime(secs: number): string {
 export default function SetCard({
   set,
   exerciseCount,
+  selectable,
 }: {
   set: SetWithExercises;
   exerciseCount: number;
+  selectable?: boolean;
 }) {
   const [showPlayer, setShowPlayer] = useState(false);
+  const selection = useSelection(set.id);
 
   const totalSecs = set.set_exercises.reduce(
     (sum, se) => sum + se.exercise.duration_secs * se.exercise.repetitions,
@@ -41,6 +45,9 @@ export default function SetCard({
         creatorName={set.profile?.display_name}
         creatorAvatar={set.profile?.avatar_url}
         cloneCount={set.clone_count}
+        selectable={selectable}
+        selected={selection?.selected}
+        onSelect={selection?.toggle}
         meta={
           <>
             <span>

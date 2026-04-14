@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import Badge from "./Badge";
 import { properCase } from "@/lib/format";
@@ -16,6 +17,9 @@ interface EntityCardProps {
   creatorName?: string;
   creatorAvatar?: string | null;
   cloneCount?: number;
+  selectable?: boolean;
+  selected?: boolean;
+  onSelect?: () => void;
 }
 
 export default function EntityCard({
@@ -29,25 +33,38 @@ export default function EntityCard({
   creatorName,
   creatorAvatar,
   cloneCount,
+  selectable,
+  selected,
+  onSelect,
 }: EntityCardProps) {
   return (
-    <div className="bg-surface rounded-lg border border-border p-4 hover:shadow-md transition-shadow">
+    <div
+      className={`bg-surface rounded-lg border p-4 transition-shadow ${
+        selected
+          ? "border-primary-500 ring-1 ring-primary-500/40"
+          : "border-border hover:shadow-md"
+      }`}
+    >
       <div className="flex items-start gap-3">
         {thumbnail && (
-          <Link href={href} className="shrink-0">
-            <img
+          <div className="shrink-0">
+            <Image
               src={thumbnail}
-              alt=""
+              alt={title}
+              width={56}
+              height={56}
               className="w-14 h-14 rounded-md object-cover bg-surface-alt"
             />
-          </Link>
+          </div>
         )}
         {creatorName && (
           <div className="shrink-0 mt-0.5" title={creatorName}>
             {creatorAvatar ? (
-              <img
+              <Image
                 src={creatorAvatar}
                 alt={creatorName}
+                width={28}
+                height={28}
                 className="w-7 h-7 rounded-full object-cover"
               />
             ) : (
@@ -58,16 +75,14 @@ export default function EntityCard({
           </div>
         )}
         <div className="min-w-0 flex-1">
-          <Link href={href}>
-            <h2 className="font-semibold text-base sm:text-lg">
-              {properCase(title)}
-            </h2>
-            {description && (
-              <p className="text-text-muted text-sm mt-1 line-clamp-2">
-                {properCase(description)}
-              </p>
-            )}
-          </Link>
+          <h2 className="font-semibold text-base sm:text-lg">
+            {properCase(title)}
+          </h2>
+          {description && (
+            <p className="text-text-muted text-sm mt-1 line-clamp-2">
+              {properCase(description)}
+            </p>
+          )}
         </div>
       </div>
       {tags && tags.length > 0 && (
@@ -103,7 +118,28 @@ export default function EntityCard({
             </span>
           )}
         </div>
-        {action}
+        <div className="flex items-center gap-2">
+          {action}
+          <Link
+            href={href}
+            className="rounded-lg border border-border px-2.5 py-1 text-xs font-medium text-text-muted hover:bg-surface-hover transition-colors"
+          >
+            Detalles
+          </Link>
+          {selectable && onSelect && (
+            <button
+              type="button"
+              onClick={onSelect}
+              className={`rounded-lg border px-2.5 py-1 text-xs font-medium transition-colors ${
+                selected
+                  ? "border-primary-500 bg-primary-500 text-white"
+                  : "border-border text-text-muted hover:bg-surface-hover"
+              }`}
+            >
+              {selected ? "Seleccionado" : "Seleccionar"}
+            </button>
+          )}
+        </div>
       </div>
     </div>
   );
