@@ -27,6 +27,7 @@ export async function createExercise(formData: FormData) {
       .split(',')
       .map((t) => t.trim().toLowerCase())
       .filter(Boolean),
+    preparation_secs: Number(formData.get('preparation_secs')) || 0,
     duration_secs: Number(formData.get('duration_secs')) || 0,
     repetitions: Number(formData.get('repetitions')) || 1,
   }
@@ -51,6 +52,7 @@ export async function updateExercise(id: string, formData: FormData) {
       .split(',')
       .map((t) => t.trim().toLowerCase())
       .filter(Boolean),
+    preparation_secs: Number(formData.get('preparation_secs')) || 0,
     duration_secs: Number(formData.get('duration_secs')) || 0,
     repetitions: Number(formData.get('repetitions')) || 1,
   }
@@ -73,7 +75,7 @@ export async function cloneExercise(id: string) {
 
   const { data: source, error: fetchError } = await supabase
     .from('exercises')
-    .select('title, description, images, tags, duration_secs, repetitions')
+    .select('title, description, images, tags, preparation_secs, duration_secs, repetitions')
     .eq('id', id)
     .single()
 

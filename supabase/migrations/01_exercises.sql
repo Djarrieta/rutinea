@@ -13,6 +13,7 @@ create table public.exercises (
     description text,
     images jsonb not null default '[]'::jsonb,
     tags text [] not null default '{}',
+    preparation_secs integer not null default 0,
     duration_secs integer not null default 0,
     repetitions integer not null default 1,
     created_at timestamptz not null default now(),

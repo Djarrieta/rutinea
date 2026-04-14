@@ -7,7 +7,7 @@ import PlayerModalShell from "@/app/components/PlayerModalShell";
 import PlayerControls from "@/app/components/PlayerControls";
 import { properCase } from "@/lib/format";
 
-type Phase = "exercise" | "rest" | "finished";
+type Phase = "preparation" | "exercise" | "rest" | "finished";
 
 type ExerciseStep = {
   type: "exercise";
@@ -100,14 +100,16 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
 
   const totalSteps = steps.length;
 
+  function initialPhase(): Phase {
+    if (totalSteps === 0) return "finished";
+    const first = steps[0];
+    if (first.type === "exercise" && first.exercise.preparation_secs > 0)
+      return "preparation";
+    return first.type === "exercise" ? "exercise" : "rest";
+  }
+
   const [stepIndex, setStepIndex] = useState(0);
-  const [phase, setPhase] = useState<Phase>(
-    totalSteps > 0
-      ? steps[0].type === "exercise"
-        ? "exercise"
-        : "rest"
-      : "finished",
-  );
+  const [phase, setPhase] = useState<Phase>(initialPhase);
   const [elapsed, setElapsed] = useState(0);
   const [imageIndex, setImageIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
@@ -122,10 +124,15 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
   const exerciseDuration = currentExercise?.duration_secs ?? 0;
   const exerciseRepetitions = currentExercise?.repetitions ?? 1;
   const exerciseTotalDuration = exerciseDuration * exerciseRepetitions;
+  const exercisePreparationSecs = currentExercise?.preparation_secs ?? 0;
   const totalSlots = images.length * exerciseRepetitions;
   const timePerSlot = totalSlots > 0 ? exerciseTotalDuration / totalSlots : 0;
   const phaseDuration =
-    phase === "exercise" ? exerciseTotalDuration : routine.rest_secs;
+    phase === "preparation"
+      ? exercisePreparationSecs
+      : phase === "exercise"
+        ? exerciseTotalDuration
+        : routine.rest_secs;
 
   // Derive current rep from elapsed time
   const currentSlot =
@@ -147,18 +154,19 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
     prevRepRef.current = currentRep;
   }, [currentRep, exerciseRepetitions, phase, playRep]);
 
-  // Play tick every second during rest
-  const restSecond = phase === "rest" ? Math.floor(elapsed) : -1;
+  // Play tick every second during rest or preparation
+  const tickPhase = phase === "rest" || phase === "preparation";
+  const tickSecond = tickPhase ? Math.floor(elapsed) : -1;
   useEffect(() => {
-    if (phase !== "rest" || !isPlaying) {
+    if (!tickPhase || !isPlaying) {
       prevTickSecRef.current = -1;
       return;
     }
-    if (restSecond !== prevTickSecRef.current && restSecond >= 0) {
+    if (tickSecond !== prevTickSecRef.current && tickSecond >= 0) {
       play("tick");
     }
-    prevTickSecRef.current = restSecond;
-  }, [restSecond, phase, isPlaying, play]);
+    prevTickSecRef.current = tickSecond;
+  }, [tickSecond, tickPhase, isPlaying, play]);
 
   useEffect(() => {
     if (!isPlaying || phase === "finished") return;
@@ -175,14 +183,29 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
           setImageIndex(nextSlot % images.length);
         }
 
-        if (next >= phaseDuration) {
+        if (phase === "preparation" && next >= phaseDuration) {
+          setPhase("exercise");
+          return 0;
+        }
+
+        if (
+          (phase === "exercise" || phase === "rest") &&
+          next >= phaseDuration
+        ) {
           const nextStepIdx = stepIndex + 1;
           if (nextStepIdx >= totalSteps) {
             setPhase("finished");
           } else {
             const nextStep = steps[nextStepIdx];
             setStepIndex(nextStepIdx);
-            setPhase(nextStep.type === "exercise" ? "exercise" : "rest");
+            if (
+              nextStep.type === "exercise" &&
+              nextStep.exercise.preparation_secs > 0
+            ) {
+              setPhase("preparation");
+            } else {
+              setPhase(nextStep.type === "exercise" ? "exercise" : "rest");
+            }
             setImageIndex(0);
           }
           return 0;
@@ -207,13 +230,7 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
 
   const restart = () => {
     setStepIndex(0);
-    setPhase(
-      totalSteps > 0
-        ? steps[0].type === "exercise"
-          ? "exercise"
-          : "rest"
-        : "finished",
-    );
+    setPhase(initialPhase());
     setElapsed(0);
     setImageIndex(0);
     setIsPlaying(true);
@@ -223,21 +240,19 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
     (sum, s) =>
       sum +
       (s.type === "exercise"
-        ? s.exercise.duration_secs * s.exercise.repetitions
+        ? (s.exercise.preparation_secs ?? 0) +
+          s.exercise.duration_secs * s.exercise.repetitions
         : routine.rest_secs),
     0,
   );
+  const stepDurationFn = (s: Step) =>
+    s.type === "exercise"
+      ? (s.exercise.preparation_secs ?? 0) +
+        s.exercise.duration_secs * s.exercise.repetitions
+      : routine.rest_secs;
   const completedDuration =
-    steps
-      .slice(0, stepIndex)
-      .reduce(
-        (sum, s) =>
-          sum +
-          (s.type === "exercise"
-            ? s.exercise.duration_secs * s.exercise.repetitions
-            : routine.rest_secs),
-        0,
-      ) + elapsed;
+    steps.slice(0, stepIndex).reduce((sum, s) => sum + stepDurationFn(s), 0) +
+    (phase === "preparation" ? elapsed : exercisePreparationSecs + elapsed);
   const overallProgress =
     totalDuration > 0 ? (completedDuration / totalDuration) * 100 : 0;
 
@@ -320,13 +335,15 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
         </div>
       )}
 
-      {phase === "exercise" && currentStep?.type === "exercise" && (
-        <div>
-          <p className="text-sm font-medium truncate">
-            {properCase(currentStep.exercise.title)}
-          </p>
-        </div>
-      )}
+      {(phase === "exercise" || phase === "preparation") &&
+        currentStep?.type === "exercise" && (
+          <div>
+            <p className="text-sm font-medium truncate">
+              {phase === "preparation" ? "Preparación: " : ""}
+              {properCase(currentStep.exercise.title)}
+            </p>
+          </div>
+        )}
 
       {phase === "rest" && (
         <div>
@@ -345,11 +362,13 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
       controls={
         <PlayerControls
           statusText={
-            phase === "exercise"
-              ? `${exerciseRepetitions > 1 ? `Rep ${currentRep}/${exerciseRepetitions} · ` : ""}${Math.ceil(elapsed)}s / ${exerciseDuration}s`
-              : phase === "rest"
-                ? `Descanso ${Math.ceil(elapsed)}s / ${routine.rest_secs}s`
-                : "Finalizada"
+            phase === "preparation"
+              ? `Preparación ${Math.max(0, Math.ceil(exercisePreparationSecs - elapsed))}s`
+              : phase === "exercise"
+                ? `${exerciseRepetitions > 1 ? `Rep ${currentRep}/${exerciseRepetitions} · ` : ""}${Math.ceil(elapsed)}s / ${exerciseDuration}s`
+                : phase === "rest"
+                  ? `Descanso ${Math.ceil(elapsed)}s / ${routine.rest_secs}s`
+                  : "Finalizada"
           }
           finished={phase === "finished"}
           isPlaying={isPlaying}
@@ -358,6 +377,34 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
         />
       }
     >
+      {phase === "preparation" && currentExercise && (
+        <div className="flex flex-col items-center justify-center h-full gap-4">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-20 h-20 text-primary-500 animate-pulse"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            />
+          </svg>
+          <p className="text-lg font-semibold text-text-secondary">
+            ¡Prepárate!
+          </p>
+          <p className="text-sm text-text-faint">
+            {properCase(currentExercise.title)}
+          </p>
+          <p className="text-4xl font-bold tabular-nums text-primary-500">
+            {Math.max(0, Math.ceil(exercisePreparationSecs - elapsed))}s
+          </p>
+        </div>
+      )}
+
       {phase === "exercise" && currentExercise && (
         <>
           {images.length > 0 ? (

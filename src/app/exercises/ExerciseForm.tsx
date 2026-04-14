@@ -186,6 +186,23 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
 
       <div>
         <label
+          htmlFor="preparation_secs"
+          className="block text-sm font-medium mb-1"
+        >
+          Segundos de preparación
+        </label>
+        <input
+          id="preparation_secs"
+          name="preparation_secs"
+          type="number"
+          min={0}
+          defaultValue={exercise?.preparation_secs ?? 0}
+          className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+        />
+      </div>
+
+      <div>
+        <label
           htmlFor="duration_secs"
           className="block text-sm font-medium mb-1"
         >

@@ -10,6 +10,7 @@ export interface Exercise {
   description: string | null
   images: ExerciseImage[]
   tags: string[]
+  preparation_secs: number
   duration_secs: number
   repetitions: number
   clone_count: number
@@ -20,7 +21,7 @@ export interface Exercise {
 
 export type CreateExerciseInput = Pick<
   Exercise,
-  'title' | 'description' | 'images' | 'tags' | 'duration_secs' | 'repetitions'
+  'title' | 'description' | 'images' | 'tags' | 'preparation_secs' | 'duration_secs' | 'repetitions'
 >
 
 export type UpdateExerciseInput = Partial<CreateExerciseInput>
