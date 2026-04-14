@@ -12,6 +12,7 @@ interface EntityCardProps {
   tags?: string[];
   meta: ReactNode;
   action?: ReactNode;
+  thumbnail?: string;
   creatorName?: string;
   creatorAvatar?: string | null;
   cloneCount?: number;
@@ -24,6 +25,7 @@ export default function EntityCard({
   tags,
   meta,
   action,
+  thumbnail,
   creatorName,
   creatorAvatar,
   cloneCount,
@@ -31,6 +33,15 @@ export default function EntityCard({
   return (
     <div className="bg-surface rounded-lg border border-border p-4 hover:shadow-md transition-shadow">
       <div className="flex items-start gap-3">
+        {thumbnail && (
+          <Link href={href} className="shrink-0">
+            <img
+              src={thumbnail}
+              alt=""
+              className="w-14 h-14 rounded-md object-cover bg-surface-alt"
+            />
+          </Link>
+        )}
         {creatorName && (
           <div className="shrink-0 mt-0.5" title={creatorName}>
             {creatorAvatar ? (

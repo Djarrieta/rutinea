@@ -135,7 +135,7 @@ export default function SetForm({
           type="text"
           required
           defaultValue={set?.name}
-          className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+          className="w-full rounded-lg border border-border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
         />
       </div>
 
@@ -148,7 +148,7 @@ export default function SetForm({
           name="description"
           rows={3}
           defaultValue={set?.description ?? ""}
-          className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+          className="w-full rounded-lg border border-border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
         />
       </div>
 

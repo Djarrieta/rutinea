@@ -62,7 +62,7 @@ function ImageListInput({ defaultValue }: { defaultValue: ExerciseImage[] }) {
                 placeholder="URL de imagen"
                 value={item.url}
                 onChange={(e) => update(i, "url", e.target.value)}
-                className="flex-1 rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+                className="flex-1 rounded-lg border border-border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
               />
               <input
                 ref={(el) => {
@@ -97,7 +97,7 @@ function ImageListInput({ defaultValue }: { defaultValue: ExerciseImage[] }) {
               placeholder="Descripción / tip"
               value={item.description}
               onChange={(e) => update(i, "description", e.target.value)}
-              className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="w-full rounded-lg border border-border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
           </div>
           {items.length > 1 && (
@@ -141,7 +141,7 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
           type="text"
           required
           defaultValue={exercise?.title}
-          className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+          className="w-full rounded-lg border border-border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
         />
       </div>
 
@@ -154,7 +154,7 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
           name="description"
           rows={3}
           defaultValue={exercise?.description ?? ""}
-          className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+          className="w-full rounded-lg border border-border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
         />
       </div>
 
@@ -180,7 +180,7 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
           name="tags"
           type="text"
           defaultValue={exercise?.tags?.join(", ")}
-          className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+          className="w-full rounded-lg border border-border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
         />
       </div>
 
@@ -197,7 +197,7 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
           type="number"
           min={0}
           defaultValue={exercise?.preparation_secs ?? 0}
-          className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+          className="w-full rounded-lg border border-border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
         />
       </div>
 
@@ -214,7 +214,7 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
           type="number"
           min={0}
           defaultValue={exercise?.duration_secs ?? 0}
-          className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+          className="w-full rounded-lg border border-border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
         />
       </div>
 
@@ -228,7 +228,7 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
           type="number"
           min={1}
           defaultValue={exercise?.repetitions ?? 1}
-          className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+          className="w-full rounded-lg border border-border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
         />
       </div>
 

@@ -96,7 +96,7 @@ function DayRoutinePicker({ defaultValue }: { defaultValue: DayEntry[] }) {
                   e.target.value === "" ? null : Number(e.target.value),
                 )
               }
-              className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+              className="w-full rounded-lg border border-border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
             >
               <option value="">Seleccionar día…</option>
               {availableDays.map((d) => (
@@ -150,7 +150,7 @@ export default function PlanForm({
           type="text"
           required
           defaultValue={plan?.name}
-          className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+          className="w-full rounded-lg border border-border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
         />
       </div>
 
@@ -163,7 +163,7 @@ export default function PlanForm({
           name="description"
           rows={3}
           defaultValue={plan?.description ?? ""}
-          className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+          className="w-full rounded-lg border border-border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
         />
       </div>
 

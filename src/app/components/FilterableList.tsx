@@ -138,7 +138,7 @@ export default function FilterableList({
             placeholder={
               activeTags.length > 0 ? "Agregar filtro..." : placeholder
             }
-            className="flex-1 min-w-[120px] bg-transparent py-0.5 text-sm focus:outline-none placeholder:text-text-muted"
+            className="flex-1 min-w-[120px] bg-transparent py-0.5 text-base focus:outline-none placeholder:text-text-muted"
           />
         </div>
 

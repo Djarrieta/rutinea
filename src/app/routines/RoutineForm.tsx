@@ -88,7 +88,7 @@ function SetPicker({ defaultValue }: { defaultValue: SelectedSet[] }) {
                   min={1}
                   value={s.rounds}
                   onChange={(e) => setRounds(i, Number(e.target.value))}
-                  className="w-12 rounded border border-border px-1.5 py-0.5 text-center text-xs"
+                  className="w-14 rounded border border-border px-1.5 py-0.5 text-center text-base"
                 />
                 rondas
               </label>
@@ -155,7 +155,7 @@ export default function RoutineForm({
           type="text"
           required
           defaultValue={routine?.name}
-          className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+          className="w-full rounded-lg border border-border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
         />
       </div>
 
@@ -168,7 +168,7 @@ export default function RoutineForm({
           name="description"
           rows={3}
           defaultValue={routine?.description ?? ""}
-          className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+          className="w-full rounded-lg border border-border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
         />
       </div>
 
@@ -182,7 +182,7 @@ export default function RoutineForm({
           type="number"
           min={0}
           defaultValue={routine?.rest_secs ?? 60}
-          className="w-full rounded-lg border border-border px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+          className="w-full rounded-lg border border-border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
         />
       </div>
 

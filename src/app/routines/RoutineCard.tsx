@@ -38,12 +38,17 @@ export default function RoutineCard({
     totalSecs += routine.rest_secs * (totalExpandedSets - 1);
   }
 
+  const thumbnail = routine.routine_sets
+    .flatMap((rs) => rs.set.set_exercises)
+    .find((se) => se.exercise.images.length > 0)?.exercise.images[0]?.url;
+
   return (
     <>
       <EntityCard
         href={`/routines/${routine.id}`}
         title={routine.name}
         description={routine.description}
+        thumbnail={thumbnail}
         creatorName={routine.profile?.display_name}
         creatorAvatar={routine.profile?.avatar_url}
         cloneCount={routine.clone_count}

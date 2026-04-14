@@ -26,11 +26,17 @@ export default function PlanCard({
     })
     .join(", ");
 
+  const thumbnail = plan.plan_routines
+    .flatMap((pr) => pr.routine.routine_sets)
+    .flatMap((rs) => rs.set.set_exercises)
+    .find((se) => se.exercise.images.length > 0)?.exercise.images[0]?.url;
+
   return (
     <EntityCard
       href={`/plans/${plan.id}`}
       title={plan.name}
       description={plan.description}
+      thumbnail={thumbnail}
       creatorName={plan.profile?.display_name}
       creatorAvatar={plan.profile?.avatar_url}
       cloneCount={plan.clone_count}

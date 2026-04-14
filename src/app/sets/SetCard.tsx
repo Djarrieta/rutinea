@@ -27,12 +27,17 @@ export default function SetCard({
     0,
   );
 
+  const thumbnail = set.set_exercises.find(
+    (se) => se.exercise.images.length > 0,
+  )?.exercise.images[0]?.url;
+
   return (
     <>
       <EntityCard
         href={`/sets/${set.id}`}
         title={set.name}
         description={set.description}
+        thumbnail={thumbnail}
         creatorName={set.profile?.display_name}
         creatorAvatar={set.profile?.avatar_url}
         cloneCount={set.clone_count}
