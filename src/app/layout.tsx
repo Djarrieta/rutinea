@@ -26,7 +26,7 @@ export default async function RootLayout({
 
   return (
     <html lang="es">
-      <body className="bg-bg text-text min-h-screen pb-16 sm:pb-0 overflow-x-hidden">
+      <body className="bg-bg text-text min-h-screen pb-20 sm:pb-0 overflow-x-hidden">
         {/* Desktop top nav */}
         <nav className="hidden sm:block bg-surface border-b border-border px-6 py-4">
           <div className="max-w-4xl mx-auto flex items-center justify-between">
