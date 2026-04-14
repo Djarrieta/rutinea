@@ -99,7 +99,7 @@ values (
     ),
     (
         '00000000-0000-0000-0000-000000000000',
-        'pecho plano mancuernas y barra',
+        'pecho plano',
         'press plano y aperturas con mancuernas para trabajo de pecho en banco plano.'
     );
 
@@ -114,11 +114,11 @@ select s.id, e.id, row_number() over (
 from public.sets s
     cross join public.exercises e
 where
-    s.name = 'pecho mancuernas'
+    s.name = 'pecho plano'
     and e.title in (
-        'press plano mancuernas',
-        'press inclinado mancuernas',
+        'pecho plano con barra',
         'aperturas con mancuernas',
+        'pecho plano con mancuernas',
         'pullover con mancuerna'
     );
 
@@ -468,19 +468,4 @@ where
         'wall sit',
         'calf raises',
         'burpees'
-    );
-
--- Pecho Plano Mancuernas y Barra
-insert into
-    public.set_exercises (set_id, exercise_id, position)
-select s.id, e.id, row_number() over (
-        order by e.created_at
-    ) - 1
-from public.sets s
-    cross join public.exercises e
-where
-    s.name = 'pecho plano mancuernas y barra'
-    and e.title in (
-        'press plano mancuernas',
-        'aperturas con mancuernas'
     );
