@@ -9,8 +9,7 @@
     "lint": "eslint",
     "db:reset": "bun scripts/db-reset.ts",
     "supabase:start": "DOCKER_HOST=unix:///run/user/$(id -u)/podman/podman.sock bunx supabase start --ignore-health-check",
-    "supabase:stop": "DOCKER_HOST=unix:///run/user/$(id -u)/podman/podman.sock bunx supabase stop",
-    "supabase:reset": "DOCKER_HOST=unix:///run/user/$(id -u)/podman/podman.sock bunx supabase db reset"
+    "supabase:stop": "DOCKER_HOST=unix:///run/user/$(id -u)/podman/podman.sock bunx supabase stop"
   },
   "dependencies": {
     "@supabase/ssr": "^0.10.0",

@@ -1,5 +1,7 @@
 -- ─── Profiles (public mirror of auth.users) ──────────────────────────────────
 
+drop table if exists public.profiles cascade;
+
 create table public.profiles (
     id uuid primary key references auth.users (id) on delete cascade,
     display_name text not null default '',
@@ -39,19 +41,33 @@ begin
 end;
 $$;
 
+drop trigger if exists on_auth_user_created on auth.users;
+
 create trigger on_auth_user_created
   after insert on auth.users
   for each row execute procedure public.handle_new_user();
 
 -- FK from entity tables to profiles so PostgREST can join them
 alter table public.exercises
+drop constraint if exists exercises_user_id_profiles_fk;
+
+alter table public.exercises
 add constraint exercises_user_id_profiles_fk foreign key (user_id) references public.profiles (id);
+
+alter table public.sets
+drop constraint if exists sets_user_id_profiles_fk;
 
 alter table public.sets
 add constraint sets_user_id_profiles_fk foreign key (user_id) references public.profiles (id);
 
 alter table public.routines
+drop constraint if exists routines_user_id_profiles_fk;
+
+alter table public.routines
 add constraint routines_user_id_profiles_fk foreign key (user_id) references public.profiles (id);
+
+alter table public.plans
+drop constraint if exists plans_user_id_profiles_fk;
 
 alter table public.plans
 add constraint plans_user_id_profiles_fk foreign key (user_id) references public.profiles (id);
