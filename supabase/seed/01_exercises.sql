@@ -282,7 +282,7 @@ values (
         'en sentadilla profunda, balancea el peso de lado a lado manteniendo los talones en el suelo.',
         '[]'::jsonb,
         '{"calentamiento", "movilidad", "piernas", "cadera"}',
-       3,
+       4,
        2,
        10
     ),
@@ -332,9 +332,9 @@ values (
         'de pie, extiende los brazos a los lados y haz círculos pequeños que van creciendo progresivamente.',
         '[{"url":"https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Arm_Circles/0.jpg","description":"arm circles"}]'::jsonb,
         '{"calentamiento", "movilidad", "hombros"}',
-        3,
         1,
-        30
+        1,
+        20
     ),
     (
         '00000000-0000-0000-0000-000000000000',
