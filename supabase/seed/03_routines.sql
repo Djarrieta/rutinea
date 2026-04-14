@@ -8,97 +8,97 @@ insert into
         rest_secs
     )
 values (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'tren superior completo',
         'rutina completa de tren superior con mancuernas: pecho, hombros, espalda y brazos.',
         10
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'pecho y tríceps',
         'push day: pecho y tríceps con mancuernas.',
         8
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'espalda y bíceps',
         'pull day: espalda y bíceps con mancuernas.',
         8
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'piernas mancuernas',
         'día de piernas completo con mancuernas: sentadillas, zancadas y peso muerto rumano.',
         10
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'full body mancuernas',
         'rutina de cuerpo completo combinando tren superior e inferior con mancuernas.',
         10
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'glúteos y piernas',
         'enfocada en glúteos y tren inferior con calentamiento de movilidad de cadera.',
         10
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'HIIT cuerpo completo',
         'circuito de alta intensidad con ejercicios compuestos y cardio. quema máxima.',
         5
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'tren superior variaciones',
         'hombros y espalda con variaciones avanzadas más trabajo de core.',
         8
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'piernas y core',
         'piernas pesadas con mancuernas combinado con trabajo de core y abdominales.',
         10
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'push con core',
         'pecho y hombros (empuje) con trabajo de core al final.',
         8
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'pull con core',
         'espalda y brazos (tirón) con trabajo de core al final.',
         8
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'rutina barras paralelas',
         'rutina completa en barras paralelas para ganar fuerza y masa muscular.',
         10
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'calistenia push focus',
         'rutina especializada en empuje (pecho/tríceps) usando barras paralelas.',
         8
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'calistenia pull focus',
         'rutina especializada en tirón (espalda/bíceps) usando remos y negativos.',
         8
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'calistenia legs potency',
         'rutina de piernas bodyweight explosiva para ganar fuerza y resistencia.',
         10
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'calistenia full body mastery',
         'circuito completo de calistenia integrando todos los grupos musculares.',
         12

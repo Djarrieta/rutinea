@@ -1,5 +1,5 @@
 -- ─── Seed Data ────────────────────────────────────────────────────────────────
--- User: ec507c0b-6185-4c54-9cc5-2aa357e4bb6d (real user, owner of all data)
+-- User: 00000000-0000-0000-0000-000000000000 (seed user, owner of all demo data)
 
 -- Create the seed user in auth.users if it doesn't exist (needed for local dev)
 insert into
@@ -22,7 +22,7 @@ insert into
         is_super_admin
     )
 select
-    'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+    '00000000-0000-0000-0000-000000000000',
     '00000000-0000-0000-0000-000000000000',
     'authenticated',
     'authenticated',
@@ -39,14 +39,14 @@ select
     '',
     '',
     '{"provider":"email","providers":["email"]}'::jsonb,
-    '{}'::jsonb,
+    '{"display_name":"Rutinea"}'::jsonb,
     false
 where
     not exists (
         select 1
         from auth.users
         where
-            id = 'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d'
+            id = '00000000-0000-0000-0000-000000000000'
     );
 
 -- Create identity for the seed user (required by GoTrue for email/password login)
@@ -61,21 +61,21 @@ insert into
         created_at,
         updated_at
     )
-select 'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d', 'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d', 'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d', '{"sub":"ec507c0b-6185-4c54-9cc5-2aa357e4bb6d","email":"seed@rutinea.local"}'::jsonb, 'email', now(), now(), now()
+select '00000000-0000-0000-0000-000000000000', '00000000-0000-0000-0000-000000000000', '00000000-0000-0000-0000-000000000000', '{"sub":"00000000-0000-0000-0000-000000000000","email":"seed@rutinea.local"}'::jsonb, 'email', now(), now(), now()
 where
     not exists (
         select 1
         from auth.identities
         where
-            user_id = 'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d'
+            user_id = '00000000-0000-0000-0000-000000000000'
     );
 
 -- Create profile for seed user
 insert into
     public.profiles (id, display_name, avatar_url)
 values (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
-        'Seed User',
+        '00000000-0000-0000-0000-000000000000',
+        'Rutinea',
         null
     )
 on conflict (id) do nothing;

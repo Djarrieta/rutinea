@@ -3,97 +3,97 @@
 insert into
     public.sets (user_id, name, description)
 values (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'pecho mancuernas',
         'ejercicios de pecho con mancuernas: press plano, inclinado, aperturas y pullover.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'hombros mancuernas',
         'trabajo completo de hombros: press militar, elevaciones laterales, frontales y pájaros.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'brazos mancuernas',
         'bíceps y tríceps con mancuernas: curls, martillo, concentrado, extensiones y patadas.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'espalda mancuernas',
         'espalda con mancuernas: remo unilateral, remo inclinado, encogimientos y pullover.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'piernas mancuernas',
         'tren inferior con mancuernas: sentadilla, zancadas, peso muerto rumano, sumo y búlgara.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'tren superior mancuernas',
         'combinación de pecho, hombros, espalda y brazos con mancuernas.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'calentamiento y movilidad',
         'ejercicios de calentamiento y movilidad articular para preparar el cuerpo antes de entrenar.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'glúteos y cadera',
         'trabajo enfocado en glúteos y movilidad de cadera con peso corporal, mancuernas y banda.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'core y abdominales',
         'ejercicios de core: planchas, abdominales con peso y movimientos antirotación.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'piernas funcional',
         'variaciones funcionales de piernas: goblet squat, lunges, calf raises y más.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'hombros variaciones',
         'variaciones de hombros: arnold press, upright row y movimientos compuestos.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'espalda variaciones',
         'variaciones de espalda: remos con diferentes agarres, renegade row y pulldown con banda.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'cardio HIIT',
         'circuito de alta intensidad: mountain climbers, burpees, jumping lunges y más.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'compuestos cuerpo completo',
         'movimientos compuestos multiarticulares que trabajan todo el cuerpo en cada repetición.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'barras paralelas',
         'ejercicios de calistenia en barras paralelas: fondos, remos y abdominales.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'calistenia empuje focalizado',
         'rutina de empuje en paralelas centrada en pecho, tríceps y hombros.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'calistenia tirón focalizado',
         'rutina de tirón en paralelas para fortalecer espalda y bíceps.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'calistenia core y estabilidad',
         'ejercicios de core en paralelas y suelo para máxima estabilidad.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'calistenia pierna y potencia',
         'entrenamiento de tren inferior usando peso corporal y movimientos explosivos.'
     );

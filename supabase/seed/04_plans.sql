@@ -3,32 +3,32 @@
 insert into
     public.plans (user_id, name, description)
 values (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'push pull legs mancuernas',
         'plan semanal push/pull/legs con mancuernas. 6 días de entrenamiento.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'full body 3 días',
         'plan de 3 días por semana con rutinas de cuerpo completo. ideal para principiantes.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'upper lower 4 días',
         'plan de 4 días alternando tren superior e inferior con core. lun/jue upper, mar/vie lower.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'HIIT y fuerza 5 días',
         'plan de 5 días combinando sesiones de fuerza con días HIIT para maximizar quema y músculo.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'glúteos focus 4 días',
         'plan de 4 días enfocado en glúteos y piernas, con tren superior como complemento.'
     ),
     (
-        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        '00000000-0000-0000-0000-000000000000',
         'plan calistenia elite',
         'plan integral de calistenia para dominar el peso corporal. 4 días de entrenamiento intenso.'
     );
