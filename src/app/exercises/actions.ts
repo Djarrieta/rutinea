@@ -67,6 +67,30 @@ export async function updateExercise(id: string, formData: FormData) {
   redirect(`/exercises/${id}`)
 }
 
+export async function cloneExercise(id: string) {
+  const user = await requireAuth()
+  const supabase = await createClient()
+
+  const { data: source, error: fetchError } = await supabase
+    .from('exercises')
+    .select('title, description, images, tags, duration_secs, repetitions')
+    .eq('id', id)
+    .single()
+
+  if (fetchError || !source) throw new Error(fetchError?.message ?? 'Exercise not found')
+
+  const { data: clone, error } = await supabase
+    .from('exercises')
+    .insert({ ...source, title: `${source.title} [clon]`, user_id: user.id })
+    .select('id')
+    .single()
+
+  if (error) throw new Error(error.message)
+
+  revalidatePath('/exercises')
+  redirect(`/exercises/${clone.id}`)
+}
+
 export async function deleteExercise(id: string) {
   const user = await requireAuth()
   const supabase = await createClient()

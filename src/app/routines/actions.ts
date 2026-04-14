@@ -91,6 +91,43 @@ export async function updateRoutine(id: string, formData: FormData) {
   redirect(`/routines/${id}`)
 }
 
+export async function cloneRoutine(id: string) {
+  const user = await requireAuth()
+  const supabase = await createClient()
+
+  const { data: source, error: fetchError } = await supabase
+    .from('routines')
+    .select('name, description, rest_secs, routine_sets(set_id, position, rounds)')
+    .eq('id', id)
+    .single()
+
+  if (fetchError || !source) throw new Error(fetchError?.message ?? 'Routine not found')
+
+  const { routine_sets, ...routineData } = source as { name: string; description: string | null; rest_secs: number; routine_sets: { set_id: string; position: number; rounds: number }[] }
+
+  const { data: clone, error } = await supabase
+    .from('routines')
+    .insert({ ...routineData, name: `${routineData.name} [clon]`, user_id: user.id })
+    .select('id')
+    .single()
+
+  if (error) throw new Error(error.message)
+
+  if (routine_sets.length > 0) {
+    const rows = routine_sets.map((rs) => ({
+      routine_id: clone.id,
+      set_id: rs.set_id,
+      position: rs.position,
+      rounds: rs.rounds,
+    }))
+    const { error: linkError } = await supabase.from('routine_sets').insert(rows)
+    if (linkError) throw new Error(linkError.message)
+  }
+
+  revalidatePath('/routines')
+  redirect(`/routines/${clone.id}`)
+}
+
 export async function deleteRoutine(id: string) {
   const user = await requireAuth()
   const supabase = await createClient()

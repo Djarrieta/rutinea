@@ -87,6 +87,42 @@ export async function updateSet(id: string, formData: FormData) {
   redirect(`/sets/${id}`)
 }
 
+export async function cloneSet(id: string) {
+  const user = await requireAuth()
+  const supabase = await createClient()
+
+  const { data: source, error: fetchError } = await supabase
+    .from('sets')
+    .select('name, description, set_exercises(exercise_id, position)')
+    .eq('id', id)
+    .single()
+
+  if (fetchError || !source) throw new Error(fetchError?.message ?? 'Set not found')
+
+  const { set_exercises, ...setData } = source as { name: string; description: string | null; set_exercises: { exercise_id: string; position: number }[] }
+
+  const { data: clone, error } = await supabase
+    .from('sets')
+    .insert({ ...setData, name: `${setData.name} [clon]`, user_id: user.id })
+    .select('id')
+    .single()
+
+  if (error) throw new Error(error.message)
+
+  if (set_exercises.length > 0) {
+    const rows = set_exercises.map((se) => ({
+      set_id: clone.id,
+      exercise_id: se.exercise_id,
+      position: se.position,
+    }))
+    const { error: linkError } = await supabase.from('set_exercises').insert(rows)
+    if (linkError) throw new Error(linkError.message)
+  }
+
+  revalidatePath('/sets')
+  redirect(`/sets/${clone.id}`)
+}
+
 export async function deleteSet(id: string) {
   const user = await requireAuth()
   const supabase = await createClient()
