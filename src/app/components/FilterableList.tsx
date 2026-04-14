@@ -19,6 +19,8 @@ interface FilterableListProps {
   placeholder?: string;
   activeTags?: string[];
   availableTags?: string[];
+  showMineFilter?: boolean;
+  mineActive?: boolean;
 }
 
 export default function FilterableList({
@@ -28,6 +30,8 @@ export default function FilterableList({
   placeholder = "Buscar...",
   activeTags = [],
   availableTags = [],
+  showMineFilter = false,
+  mineActive = false,
 }: FilterableListProps) {
   const router = useRouter();
   const pathname = usePathname();
@@ -105,14 +109,32 @@ export default function FilterableList({
     }
   }
 
+  function toggleMine() {
+    navigate({ mine: mineActive ? "" : "1", page: "" }, { replace: true });
+  }
+
   return (
     <>
       {/* Unified search bar */}
       <div className="relative mb-4" ref={containerRef}>
-        <div
-          className="flex flex-wrap items-center gap-1.5 rounded-lg border border-border bg-surface px-2 py-1.5 focus-within:ring-2 focus-within:ring-primary-500 transition-shadow"
-          onClick={() => inputRef.current?.focus()}
-        >
+        <div className="flex items-center gap-2">
+          {showMineFilter && (
+            <button
+              type="button"
+              onClick={toggleMine}
+              className={`shrink-0 rounded-full border px-3 py-1.5 text-sm font-medium transition-colors ${
+                mineActive
+                  ? "border-primary-500 bg-primary-500 text-white"
+                  : "border-border bg-surface text-text-muted hover:bg-surface-hover"
+              }`}
+            >
+              Míos
+            </button>
+          )}
+          <div
+            className="flex flex-1 flex-wrap items-center gap-1.5 rounded-lg border border-border bg-surface px-2 py-1.5 focus-within:ring-2 focus-within:ring-primary-500 transition-shadow"
+            onClick={() => inputRef.current?.focus()}
+          >
           {activeTags.map((tag) => (
             <button
               key={tag}
@@ -162,6 +184,7 @@ export default function FilterableList({
             ))}
           </ul>
         )}
+        </div>
       </div>
 
       <div
@@ -169,7 +192,7 @@ export default function FilterableList({
       >
         {children}
       </div>
-      {total === 0 && (query || activeTags.length > 0) && (
+      {total === 0 && (query || activeTags.length > 0 || mineActive) && (
         <p className="text-text-muted text-sm mt-2">
           Sin resultados{query ? <> para &ldquo;{query}&rdquo;</> : null}
         </p>

@@ -1,4 +1,5 @@
 import { createClient } from "@/lib/supabase/server";
+import { getUser } from "@/lib/auth";
 import type { RoutineWithSets } from "@/types";
 import RoutineCard from "./RoutineCard";
 import PageHeader from "@/app/components/PageHeader";
@@ -8,9 +9,10 @@ import { PAGE_SIZE } from "@/lib/constants";
 export default async function RoutinesPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string; page?: string }>;
+  searchParams: Promise<{ q?: string; page?: string; mine?: string }>;
 }) {
-  const { q, page: pageStr } = await searchParams;
+  const { q, page: pageStr, mine } = await searchParams;
+  const user = await getUser();
   const page = Math.max(1, parseInt(pageStr ?? "1", 10) || 1);
   const from = (page - 1) * PAGE_SIZE;
   const to = from + PAGE_SIZE - 1;
@@ -29,6 +31,10 @@ export default async function RoutinesPage({
     query = query.ilike("name", `%${q.trim()}%`);
   }
 
+  if (mine && user) {
+    query = query.eq("user_id", user.id);
+  }
+
   const { data: routines, count } = await query
     .range(from, to)
     .returns<RoutineWithSets[]>();
@@ -41,12 +47,14 @@ export default async function RoutinesPage({
       emptyText="No hay rutinas a\u00fan."
       createHref="/routines/new"
       createLabel="Crear una"
-      isEmpty={total === 0 && !q}
+      isEmpty={total === 0 && !q && !mine}
     >
       <FilterableList
         placeholder="Buscar por nombre..."
         total={total}
         page={page}
+        showMineFilter={!!user}
+        mineActive={!!mine}
       >
         {(routines ?? []).map((routine) => (
           <RoutineCard
