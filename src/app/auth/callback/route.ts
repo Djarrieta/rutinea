@@ -10,6 +10,14 @@ export async function GET(request: Request) {
     const supabase = await createClient()
     const { error } = await supabase.auth.exchangeCodeForSession(code)
     if (!error) {
+      const { data: { user } } = await supabase.auth.getUser()
+      if (user) {
+        await supabase.from('profiles').upsert({
+          id: user.id,
+          display_name: user.user_metadata?.full_name ?? user.user_metadata?.display_name ?? user.email?.split('@')[0] ?? '',
+          avatar_url: user.user_metadata?.avatar_url ?? null,
+        }, { onConflict: 'id', ignoreDuplicates: false })
+      }
       return NextResponse.redirect(`${origin}${next}`)
     }
   }
