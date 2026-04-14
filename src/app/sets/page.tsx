@@ -19,7 +19,10 @@ export default async function SetsPage({
 
   let query = supabase
     .from("sets")
-    .select("*, set_exercises(*, exercise:exercises(*))", { count: "exact" })
+    .select(
+      "*, set_exercises(*, exercise:exercises(*)), profile:profiles(display_name, avatar_url)",
+      { count: "exact" },
+    )
     .order("created_at", { ascending: false });
 
   if (q?.trim()) {

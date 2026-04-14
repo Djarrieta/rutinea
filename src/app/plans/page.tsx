@@ -20,7 +20,7 @@ export default async function PlansPage({
   let query = supabase
     .from("plans")
     .select(
-      "*, plan_routines(*, routine:routines(*, routine_sets(*, set:sets(*, set_exercises(*, exercise:exercises(*))))))",
+      "*, plan_routines(*, routine:routines(*, routine_sets(*, set:sets(*, set_exercises(*, exercise:exercises(*)))))), profile:profiles(display_name, avatar_url)",
       { count: "exact" },
     )
     .order("created_at", { ascending: false });

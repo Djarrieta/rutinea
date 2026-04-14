@@ -24,7 +24,7 @@ export default async function ExercisesPage({
 
   let query = supabase
     .from("exercises")
-    .select("*", { count: "exact" })
+    .select("*, profile:profiles(display_name, avatar_url)", { count: "exact" })
     .order("created_at", { ascending: false });
 
   if (q?.trim()) {

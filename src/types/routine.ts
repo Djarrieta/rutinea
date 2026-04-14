@@ -6,8 +6,10 @@ export interface Routine {
   name: string
   description: string | null
   rest_secs: number
+  clone_count: number
   created_at: string
   updated_at: string
+  profile?: { display_name: string; avatar_url: string | null }
 }
 
 export interface RoutineSet {

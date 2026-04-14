@@ -33,6 +33,9 @@ export default function SetCard({
         href={`/sets/${set.id}`}
         title={set.name}
         description={set.description}
+        creatorName={set.profile?.display_name}
+        creatorAvatar={set.profile?.avatar_url}
+        cloneCount={set.clone_count}
         meta={
           <>
             <span>

@@ -12,8 +12,10 @@ export interface Exercise {
   tags: string[]
   duration_secs: number
   repetitions: number
+  clone_count: number
   created_at: string
   updated_at: string
+  profile?: { display_name: string; avatar_url: string | null }
 }
 
 export type CreateExerciseInput = Pick<

@@ -31,6 +31,9 @@ export default function PlanCard({
       href={`/plans/${plan.id}`}
       title={plan.name}
       description={plan.description}
+      creatorName={plan.profile?.display_name}
+      creatorAvatar={plan.profile?.avatar_url}
+      cloneCount={plan.clone_count}
       meta={
         <>
           <span>

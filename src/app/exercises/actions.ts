@@ -87,6 +87,8 @@ export async function cloneExercise(id: string) {
 
   if (error) throw new Error(error.message)
 
+  await supabase.rpc('increment_clone_count', { table_name: 'exercises', row_id: id })
+
   revalidatePath('/exercises')
   redirect(`/exercises/${clone.id}`)
 }

@@ -5,8 +5,10 @@ export interface Set {
   user_id: string
   name: string
   description: string | null
+  clone_count: number
   created_at: string
   updated_at: string
+  profile?: { display_name: string; avatar_url: string | null }
 }
 
 export interface SetExercise {

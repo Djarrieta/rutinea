@@ -119,6 +119,8 @@ export async function cloneSet(id: string) {
     if (linkError) throw new Error(linkError.message)
   }
 
+  await supabase.rpc('increment_clone_count', { table_name: 'sets', row_id: id })
+
   revalidatePath('/sets')
   redirect(`/sets/${clone.id}`)
 }

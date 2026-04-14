@@ -124,6 +124,8 @@ export async function cloneRoutine(id: string) {
     if (linkError) throw new Error(linkError.message)
   }
 
+  await supabase.rpc('increment_clone_count', { table_name: 'routines', row_id: id })
+
   revalidatePath('/routines')
   redirect(`/routines/${clone.id}`)
 }

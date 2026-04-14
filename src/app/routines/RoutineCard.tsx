@@ -44,6 +44,9 @@ export default function RoutineCard({
         href={`/routines/${routine.id}`}
         title={routine.name}
         description={routine.description}
+        creatorName={routine.profile?.display_name}
+        creatorAvatar={routine.profile?.avatar_url}
+        cloneCount={routine.clone_count}
         meta={
           <>
             <span>

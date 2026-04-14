@@ -70,3 +70,12 @@ where
             user_id = 'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d'
     );
 
+-- Create profile for seed user
+insert into
+    public.profiles (id, display_name, avatar_url)
+values (
+        'ec507c0b-6185-4c54-9cc5-2aa357e4bb6d',
+        'Seed User',
+        null
+    )
+on conflict (id) do nothing;

@@ -16,6 +16,9 @@ export default function ExerciseCard({ exercise }: { exercise: Exercise }) {
         title={exercise.title}
         description={exercise.description}
         tags={exercise.tags}
+        creatorName={exercise.profile?.display_name}
+        creatorAvatar={exercise.profile?.avatar_url}
+        cloneCount={exercise.clone_count}
         meta={
           <>
             <span>{exercise.duration_secs}s/rep</span>
