@@ -1,7 +1,6 @@
 "use client";
 
 import { ReactNode } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import Badge from "./Badge";
 import { properCase } from "@/lib/format";
@@ -48,11 +47,10 @@ export default function EntityCard({
       <div className="flex items-start gap-3">
         {thumbnail && (
           <div className="shrink-0">
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={thumbnail}
               alt={title}
-              width={56}
-              height={56}
               className="w-14 h-14 rounded-md object-cover bg-surface-alt"
             />
           </div>
@@ -60,11 +58,10 @@ export default function EntityCard({
         {creatorName && (
           <div className="shrink-0 mt-0.5" title={creatorName}>
             {creatorAvatar ? (
-              <Image
+              /* eslint-disable-next-line @next/next/no-img-element */
+              <img
                 src={creatorAvatar}
                 alt={creatorName}
-                width={28}
-                height={28}
                 className="w-7 h-7 rounded-full object-cover"
               />
             ) : (
