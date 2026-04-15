@@ -39,6 +39,6 @@ export interface PlanWithRoutines extends Plan {
   plan_routines: PlanRoutine[]
 }
 
-export type CreatePlanInput = Pick<Plan, 'name' | 'description'>
+export type CreatePlanInput = Omit<Plan, 'id' | 'user_id' | 'clone_count' | 'created_at' | 'updated_at' | 'profile'>
 
 export type UpdatePlanInput = Partial<CreatePlanInput>

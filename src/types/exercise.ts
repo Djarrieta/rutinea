@@ -19,9 +19,9 @@ export interface Exercise {
   profile?: { display_name: string; avatar_url: string | null }
 }
 
-export type CreateExerciseInput = Pick<
+export type CreateExerciseInput = Omit<
   Exercise,
-  'title' | 'description' | 'images' | 'tags' | 'preparation_secs' | 'duration_secs' | 'repetitions'
+  'id' | 'user_id' | 'clone_count' | 'created_at' | 'updated_at' | 'profile'
 >
 
 export type UpdateExerciseInput = Partial<CreateExerciseInput>

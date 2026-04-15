@@ -24,6 +24,6 @@ export interface SetWithExercises extends Set {
   set_exercises: SetExercise[]
 }
 
-export type CreateSetInput = Pick<Set, 'name' | 'description'>
+export type CreateSetInput = Omit<Set, 'id' | 'user_id' | 'clone_count' | 'created_at' | 'updated_at' | 'profile'>
 
 export type UpdateSetInput = Partial<CreateSetInput>

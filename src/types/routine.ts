@@ -26,6 +26,6 @@ export interface RoutineWithSets extends Routine {
   routine_sets: RoutineSet[]
 }
 
-export type CreateRoutineInput = Pick<Routine, 'name' | 'description' | 'rest_secs'>
+export type CreateRoutineInput = Omit<Routine, 'id' | 'user_id' | 'clone_count' | 'created_at' | 'updated_at' | 'profile'>
 
 export type UpdateRoutineInput = Partial<CreateRoutineInput>
