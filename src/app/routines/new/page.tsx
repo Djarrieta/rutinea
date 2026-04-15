@@ -33,13 +33,14 @@ export default async function NewRoutinePage({
       .map((id) => ({ id, rounds: 1 }));
   }
 
-  const defaultRoutine = (name || description || rest_secs)
-    ? {
-        name: name ?? "",
-        description: description ?? null,
-        rest_secs: rest_secs ? Number(rest_secs) : 60,
-      }
-    : undefined;
+  const defaultRoutine =
+    name || description || rest_secs
+      ? {
+          name: name ?? "",
+          description: description ?? null,
+          rest_secs: rest_secs ? Number(rest_secs) : 60,
+        }
+      : undefined;
 
   return (
     <div>
