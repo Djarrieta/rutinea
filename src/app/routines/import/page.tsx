@@ -180,7 +180,7 @@ export default function ImportRoutinePage() {
       for (let si = 0; si < bundle.sets.length; si++) {
         const bs = bundle.sets[si];
 
-        const { data: newSet, error: setError } = await supabase
+        const { data: newSet, error: setInsertError } = await supabase
           .from("sets")
           .insert({
             name: bs.name.toLowerCase(),
@@ -189,8 +189,10 @@ export default function ImportRoutinePage() {
           .select("id")
           .single();
 
-        if (setError || !newSet) {
-          setError(`Error creando set "${bs.name}": ${setError?.message}`);
+        if (setInsertError || !newSet) {
+          setError(
+            `Error creando set "${bs.name}": ${setInsertError?.message}`,
+          );
           return;
         }
 
