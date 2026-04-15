@@ -116,10 +116,9 @@ from public.sets s
 where
     s.name = 'pecho plano'
     and e.title in (
-        'pecho plano con barra',
         'aperturas con mancuernas',
         'pecho plano con mancuernas',
-        'pullover con mancuerna'
+        'pecho plano con barra'
     );
 
 -- Hombros Mancuernas
