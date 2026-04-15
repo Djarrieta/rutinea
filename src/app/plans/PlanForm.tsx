@@ -128,6 +128,7 @@ function DayRoutinePicker({ defaultValue }: { defaultValue: DayEntry[] }) {
 interface Props {
   plan?: Plan;
   defaultDayEntries?: DayEntry[];
+  defaultValues?: { name: string; description: string | null };
   action: (formData: FormData) => Promise<void>;
   submitLabel: string;
 }
@@ -135,6 +136,7 @@ interface Props {
 export default function PlanForm({
   plan,
   defaultDayEntries = [],
+  defaultValues,
   action,
   submitLabel,
 }: Props) {
@@ -149,7 +151,7 @@ export default function PlanForm({
           name="name"
           type="text"
           required
-          defaultValue={plan?.name}
+          defaultValue={plan?.name ?? defaultValues?.name}
           className="w-full rounded-lg border border-border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
         />
       </div>
@@ -162,7 +164,7 @@ export default function PlanForm({
           id="description"
           name="description"
           rows={3}
-          defaultValue={plan?.description ?? ""}
+          defaultValue={plan?.description ?? defaultValues?.description ?? ""}
           className="w-full rounded-lg border border-border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
         />
       </div>
