@@ -239,7 +239,6 @@ export default function SetPlayerModal({ set, onClose }: Props) {
         <PlayerPhaseExercise
           images={images}
           currentImageIndex={imageIndex}
-          imageKey={currentSlot}
           currentRep={currentRep}
           repetitions={repetitions}
           description={

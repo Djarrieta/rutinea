@@ -169,7 +169,6 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
         <PlayerPhaseExercise
           images={images}
           currentImageIndex={currentImageIndex}
-          imageKey={currentSlot}
           currentRep={currentRep}
           repetitions={repetitions}
           elapsed={elapsed}

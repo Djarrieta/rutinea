@@ -4,8 +4,6 @@ import { formatTime } from "./constants";
 interface Props {
   images: ExerciseImage[];
   currentImageIndex: number;
-  /** Used as React key to trigger crossfade animation */
-  imageKey: number;
   currentRep: number;
   repetitions: number;
   /** Time elapsed in the current exercise (secs) */
@@ -19,7 +17,6 @@ interface Props {
 export default function PlayerPhaseExercise({
   images,
   currentImageIndex,
-  imageKey,
   currentRep,
   repetitions,
   elapsed,
@@ -33,10 +30,9 @@ export default function PlayerPhaseExercise({
     <>
       {images.length > 0 ? (
         <img
-          key={currentImageIndex}
           src={images[currentImageIndex].url}
           alt={images[currentImageIndex].description || "Exercise image"}
-          className="w-full h-full object-contain player-image-fade"
+          className="w-full h-full object-contain"
         />
       ) : (
         <div className="flex items-center justify-center h-full text-text-faint">

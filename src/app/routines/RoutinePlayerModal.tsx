@@ -410,7 +410,6 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
         <PlayerPhaseExercise
           images={images}
           currentImageIndex={images.length > 0 ? imageIndex % images.length : 0}
-          imageKey={imageIndex}
           currentRep={currentRep}
           repetitions={exerciseRepetitions}
           description={
