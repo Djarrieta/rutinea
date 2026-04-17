@@ -1,0 +1,1848 @@
+{
+  "plan": {
+    "name": "Plan semanal mancuernas 6 días",
+    "description": "plan semanal de 6 días con mancuernas: piernas, tren superior A, piernas B, tren superior B, glúteos y full body compuesto."
+  },
+  "days": [
+    {
+      "day_of_week": 0,
+      "routine": {
+        "routine": {
+          "name": "Piernas A",
+          "description": "piernas con enfoque en glúteos e isquiotibiales: hip thrust, walking lunges, bulgarian split squat, romanian deadlift y goblet squat.",
+          "rest_secs": 90
+        },
+        "sets": [
+          {
+            "name": "Calentamiento",
+            "description": "calentamiento y movilidad articular. 2 rondas, 30 segundos por ejercicio.",
+            "rounds": 2,
+            "exercises": [
+              {
+                "title": "squat to stretch",
+                "description": "de pie, baja en sentadilla profunda y estira los brazos arriba. trabaja movilidad de cadera y tobillos.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bodyweight_Squat/0.jpg",
+                    "description": "squat to stretch"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "piernas"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "low lateral lunge",
+                "description": "da un paso lateral amplio y baja la cadera hacia ese lado manteniendo la otra pierna extendida.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Groiners/0.jpg",
+                    "description": "low lateral lunge"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "piernas",
+                  "aductores"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "zancadas con mancuernas",
+                "description": "da un paso largo al frente bajando la rodilla trasera casi al suelo. alterna piernas.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Lunges/0.jpg",
+                    "description": "zancadas con mancuernas"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "piernas",
+                  "glúteos"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "90/90 hip hinges",
+                "description": "sentado con ambas piernas a 90 grados, rota las caderas llevando las rodillas de un lado al otro.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/90_90_Hamstring/0.jpg",
+                    "description": "90/90 hip hinges"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "cadera"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "glute bridge",
+                "description": "acostado boca arriba con rodillas flexionadas, eleva la cadera apretando los glúteos arriba.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butt_Lift_Bridge/0.jpg",
+                    "description": "glute bridge"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "glúteos",
+                  "piernas"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Hip Thrust warm-up",
+            "description": "calentamiento con hip thrust a altas repeticiones.",
+            "rounds": 1,
+            "exercises": [
+              {
+                "title": "hip thrust",
+                "description": "sentado con la espalda apoyada en un banco, eleva la cadera con peso hasta extensión completa de cadera.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Hip_Thrust/0.jpg",
+                    "description": "hip thrust"
+                  }
+                ],
+                "tags": [
+                  "glúteos",
+                  "piernas",
+                  "mancuernas"
+                ],
+                "repetitions": 20,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Hip Thrust pesado",
+            "description": "hip thrust con peso moderado-alto para fuerza de glúteos.",
+            "rounds": 4,
+            "exercises": [
+              {
+                "title": "hip thrust",
+                "description": "sentado con la espalda apoyada en un banco, eleva la cadera con peso hasta extensión completa de cadera.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Hip_Thrust/0.jpg",
+                    "description": "hip thrust"
+                  }
+                ],
+                "tags": [
+                  "glúteos",
+                  "piernas",
+                  "mancuernas"
+                ],
+                "repetitions": 12,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Walking Lunges",
+            "description": "zancadas caminando para cuádriceps y glúteos.",
+            "rounds": 4,
+            "exercises": [
+              {
+                "title": "walking lunges",
+                "description": "da pasos largos alternos bajando la rodilla trasera casi al suelo. avanza con cada repetición.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bodyweight_Walking_Lunge/0.jpg",
+                    "description": "walking lunges"
+                  }
+                ],
+                "tags": [
+                  "piernas",
+                  "glúteos",
+                  "mancuernas"
+                ],
+                "repetitions": 20,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Bulgarian Split Squat",
+            "description": "sentadilla búlgara unilateral para glúteos y cuádriceps.",
+            "rounds": 4,
+            "exercises": [
+              {
+                "title": "bulgarian split squat",
+                "description": "apoya el pie trasero en un banco, baja la rodilla trasera casi al suelo manteniendo el torso erguido. 10 reps por pierna.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Elevated_Back_Lunge/0.jpg",
+                    "description": "bulgarian split squat"
+                  }
+                ],
+                "tags": [
+                  "piernas",
+                  "glúteos",
+                  "mancuernas"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Romanian Deadlift + Goblet Squat",
+            "description": "superset de peso muerto rumano y goblet squat para isquiotibiales y cuádriceps.",
+            "rounds": 3,
+            "exercises": [
+              {
+                "title": "romanian deadlift",
+                "description": "de pie con mancuernas, baja el torso inclinándote desde la cadera con piernas semiflexionadas. siente el estiramiento en los isquiotibiales y sube apretando glúteos.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/0.jpg",
+                    "description": "romanian deadlift"
+                  }
+                ],
+                "tags": [
+                  "piernas",
+                  "glúteos",
+                  "espalda baja",
+                  "mancuernas"
+                ],
+                "repetitions": 12,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "goblet squat",
+                "description": "sujeta una mancuerna vertical contra el pecho y baja en sentadilla profunda con el torso erguido.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Goblet_Squat/0.jpg",
+                    "description": "goblet squat"
+                  }
+                ],
+                "tags": [
+                  "piernas",
+                  "glúteos",
+                  "mancuernas"
+                ],
+                "repetitions": 12,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day_of_week": 1,
+      "routine": {
+        "routine": {
+          "name": "Tren Superior A",
+          "description": "push/pull con mancuernas: hombros, espalda, pecho, core y brazos. finisher de shoulder press a fallo.",
+          "rest_secs": 60
+        },
+        "sets": [
+          {
+            "name": "Calentamiento",
+            "description": "calentamiento y movilidad articular. 2 rondas, 30 segundos por ejercicio.",
+            "rounds": 2,
+            "exercises": [
+              {
+                "title": "inchworm",
+                "description": "desde de pie, inclínate y camina con las manos al suelo hasta plancha, luego regresa.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Inchworm/0.jpg",
+                    "description": "inchworm"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "core"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "cat-cow",
+                "description": "en cuatro puntos, alterna entre arquear la espalda hacia arriba (gato) y hacia abajo (vaca).",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Cat_Stretch/0.jpg",
+                    "description": "cat-cow"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "espalda"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "chest openers",
+                "description": "de pie o arrodillado, abre los brazos hacia atrás estirando el pecho y juntando los omóplatos. lado derecho.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chest_And_Front_Of_Shoulder_Stretch/0.jpg",
+                    "description": "chest openers"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "pecho",
+                  "hombros"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "chest openers",
+                "description": "de pie o arrodillado, abre los brazos hacia atrás estirando el pecho y juntando los omóplatos. lado izquierdo.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chest_And_Front_Of_Shoulder_Stretch/0.jpg",
+                    "description": "chest openers"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "pecho",
+                  "hombros"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "arm circles",
+                "description": "de pie, extiende los brazos a los lados y haz círculos pequeños que van creciendo progresivamente. 15 hacia adelante, 15 hacia atrás.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Arm_Circles/0.jpg",
+                    "description": "arm circles"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "hombros"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Hombros + Espalda + Cardio",
+            "description": "shoulder press, single arm row y mountain climbers.",
+            "rounds": 3,
+            "exercises": [
+              {
+                "title": "press militar mancuernas",
+                "description": "sentado o de pie, empuja las mancuernas desde los hombros hacia arriba hasta extender completamente los brazos.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Shoulder_Press/0.jpg",
+                    "description": "shoulder press"
+                  }
+                ],
+                "tags": [
+                  "hombros",
+                  "mancuernas"
+                ],
+                "repetitions": 12,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "single arm row",
+                "description": "inclinado con una mano apoyada, tira la mancuerna hacia la cadera con un brazo. trabaja dorsal.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/One-Arm_Dumbbell_Row/0.jpg",
+                    "description": "single arm row"
+                  }
+                ],
+                "tags": [
+                  "espalda",
+                  "mancuernas"
+                ],
+                "repetitions": 12,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "mountain climbers",
+                "description": "en posición de plancha, lleva las rodillas al pecho alternando rápidamente.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Mountain_Climbers/0.jpg",
+                    "description": "mountain climbers"
+                  }
+                ],
+                "tags": [
+                  "cardio",
+                  "core",
+                  "cuerpo libre"
+                ],
+                "repetitions": 10,
+                "duration_secs": 40,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Pecho + Espalda + Core",
+            "description": "chest press, underhand row y sit-up con peso.",
+            "rounds": 3,
+            "exercises": [
+              {
+                "title": "pecho plano con mancuernas",
+                "description": "acostado en banco o en el suelo, empuja las mancuernas hacia arriba desde el pecho.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Bench_Press/0.jpg",
+                    "description": "chest press"
+                  }
+                ],
+                "tags": [
+                  "pecho",
+                  "mancuernas"
+                ],
+                "repetitions": 15,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "underhand row",
+                "description": "remo inclinado con agarre supino (palmas hacia arriba). enfatiza bíceps y espalda baja.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Two-Dumbbell_Row_With_Palms_In/0.jpg",
+                    "description": "underhand row"
+                  }
+                ],
+                "tags": [
+                  "espalda",
+                  "bíceps",
+                  "mancuernas"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "sit-up with weight",
+                "description": "abdominales sujetando una mancuerna contra el pecho. sube el torso completo.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sit-Up/0.jpg",
+                    "description": "sit-up with weight"
+                  }
+                ],
+                "tags": [
+                  "core",
+                  "abdominales",
+                  "mancuernas"
+                ],
+                "repetitions": 10,
+                "duration_secs": 40,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Hombros + Remo + Core",
+            "description": "lateral raise + front raise, renegade row y toe tap con peso.",
+            "rounds": 3,
+            "exercises": [
+              {
+                "title": "lateral raise and front raise",
+                "description": "combina elevación lateral y frontal con mancuernas en un solo movimiento alterno.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Side_Lateral_Raise/0.jpg",
+                    "description": "lateral raise and front raise"
+                  }
+                ],
+                "tags": [
+                  "hombros",
+                  "mancuernas"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "renegade row",
+                "description": "en posición de plancha con mancuernas, tira una mancuerna hacia la cadera alternando lados.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Alternating_Renegade_Row/0.jpg",
+                    "description": "renegade row"
+                  }
+                ],
+                "tags": [
+                  "espalda",
+                  "core",
+                  "mancuernas"
+                ],
+                "repetitions": 16,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "toe tap and leg raise",
+                "description": "acostado boca arriba, alterna entre tocar la punta del pie y elevar las piernas. trabaja abdominales.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Flat_Bench_Lying_Leg_Raise/0.jpg",
+                    "description": "toe tap and leg raise"
+                  }
+                ],
+                "tags": [
+                  "core",
+                  "abdominales",
+                  "mancuernas"
+                ],
+                "repetitions": 10,
+                "duration_secs": 40,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Bíceps + Tríceps",
+            "description": "alternating hammer curl y triceps dip.",
+            "rounds": 3,
+            "exercises": [
+              {
+                "title": "curl martillo",
+                "description": "igual que el curl de bíceps pero con agarre neutro (palmas enfrentadas). trabaja bíceps y braquiorradial.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Alternate_Hammer_Curl/0.jpg",
+                    "description": "alternating hammer curl"
+                  }
+                ],
+                "tags": [
+                  "bíceps",
+                  "antebrazo",
+                  "mancuernas"
+                ],
+                "repetitions": 20,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "triceps dip",
+                "description": "apoyado en un banco detrás, baja el cuerpo flexionando los codos y empuja de vuelta. trabaja tríceps.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bench_Dips/0.jpg",
+                    "description": "triceps dip"
+                  }
+                ],
+                "tags": [
+                  "tríceps",
+                  "cuerpo libre"
+                ],
+                "repetitions": 15,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Finisher: Shoulder Press a fallo",
+            "description": "shoulder press hasta el fallo muscular.",
+            "rounds": 1,
+            "exercises": [
+              {
+                "title": "press militar mancuernas",
+                "description": "sentado o de pie, empuja las mancuernas desde los hombros hacia arriba hasta extender completamente los brazos.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Shoulder_Press/0.jpg",
+                    "description": "shoulder press a fallo"
+                  }
+                ],
+                "tags": [
+                  "hombros",
+                  "mancuernas"
+                ],
+                "repetitions": 30,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day_of_week": 2,
+      "routine": {
+        "routine": {
+          "name": "Piernas B",
+          "description": "piernas con enfoque en cuádriceps y pantorrillas: sumo squat, side to side squat, deficit reverse lunge, narrow squat, calf raises, lying leg curl y wall sit.",
+          "rest_secs": 90
+        },
+        "sets": [
+          {
+            "name": "Calentamiento",
+            "description": "calentamiento y movilidad articular. 2 rondas, 30 segundos por ejercicio.",
+            "rounds": 2,
+            "exercises": [
+              {
+                "title": "deep squat side to side",
+                "description": "en sentadilla profunda, balancea el peso de lado a lado manteniendo los talones en el suelo.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bodyweight_Squat/0.jpg",
+                    "description": "deep squat side to side"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "piernas",
+                  "cadera"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "sentadilla con mancuernas",
+                "description": "de pie con mancuernas a los lados, baja en sentadilla manteniendo las rodillas alineadas con los pies.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Squat/0.jpg",
+                    "description": "sentadilla con mancuernas"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "piernas",
+                  "glúteos"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "forward leg swing",
+                "description": "de pie apoyado en algo, balancea una pierna hacia adelante y atrás de forma controlada. pierna derecha.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Hip_Circles/0.jpg",
+                    "description": "forward leg swing"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "piernas",
+                  "cadera"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "forward leg swing",
+                "description": "de pie apoyado en algo, balancea una pierna hacia adelante y atrás de forma controlada. pierna izquierda.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Hip_Circles/0.jpg",
+                    "description": "forward leg swing"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "piernas",
+                  "cadera"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "frog pumps",
+                "description": "acostado con plantas de los pies juntas y rodillas abiertas, eleva la cadera apretando glúteos.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hip_Circles_prone/0.jpg",
+                    "description": "frog pumps"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "glúteos",
+                  "cadera"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Sumo + Side to Side Squat",
+            "description": "sumo squat 3-2-1 y side to side squat con banda.",
+            "rounds": 4,
+            "exercises": [
+              {
+                "title": "sentadilla sumo mancuerna",
+                "description": "piernas abiertas más que los hombros, puntas afuera. sujeta una mancuerna entre las piernas y baja en sentadilla.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plie_Dumbbell_Squat/0.jpg",
+                    "description": "sumo squat 3-2-1"
+                  }
+                ],
+                "tags": [
+                  "piernas",
+                  "glúteos",
+                  "aductores",
+                  "mancuernas"
+                ],
+                "repetitions": 12,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "side to side squat",
+                "description": "en posición de sentadilla, desplázate lateralmente de un lado a otro sin levantarte.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plie_Dumbbell_Squat/0.jpg",
+                    "description": "side to side squat"
+                  }
+                ],
+                "tags": [
+                  "piernas",
+                  "glúteos",
+                  "banda"
+                ],
+                "repetitions": 28,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Deficit Lunge + Narrow Squat + Calf Raises",
+            "description": "deficit reverse lunge, narrow squat con talones elevados y calf raises.",
+            "rounds": 4,
+            "exercises": [
+              {
+                "title": "deficit reverse lunge",
+                "description": "sobre una elevación, da un paso hacia atrás y baja más profundo de lo normal. enfatiza glúteos.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Lunges/0.jpg",
+                    "description": "deficit reverse lunge"
+                  }
+                ],
+                "tags": [
+                  "piernas",
+                  "glúteos",
+                  "mancuernas"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "narrow squat heels elevated",
+                "description": "sentadilla con pies juntos y talones elevados sobre un disco. enfatiza cuádriceps.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Squat/0.jpg",
+                    "description": "narrow squat heels elevated"
+                  }
+                ],
+                "tags": [
+                  "piernas",
+                  "cuádriceps",
+                  "mancuernas"
+                ],
+                "repetitions": 12,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "calf raises",
+                "description": "de pie, elévate sobre las puntas de los pies apretando las pantorrillas. baja lento.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Calf_Raise_On_A_Dumbbell/0.jpg",
+                    "description": "calf raises"
+                  }
+                ],
+                "tags": [
+                  "piernas",
+                  "pantorrillas",
+                  "mancuernas"
+                ],
+                "repetitions": 20,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Lying Leg Curl + Wall Sit",
+            "description": "lying leg curl y wall sit para isquiotibiales y cuádriceps isométrico.",
+            "rounds": 3,
+            "exercises": [
+              {
+                "title": "lying leg curl",
+                "description": "acostado boca abajo, flexiona las rodillas llevando los talones hacia los glúteos contra resistencia.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Lying_Leg_Curls/0.jpg",
+                    "description": "lying leg curl"
+                  }
+                ],
+                "tags": [
+                  "piernas",
+                  "isquiotibiales",
+                  "mancuernas"
+                ],
+                "repetitions": 12,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "wall sit",
+                "description": "apóyate contra la pared con las rodillas a 90 grados y mantén la posición estática.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bodyweight_Squat/0.jpg",
+                    "description": "wall sit"
+                  }
+                ],
+                "tags": [
+                  "piernas",
+                  "cuádriceps",
+                  "isométrico"
+                ],
+                "repetitions": 10,
+                "duration_secs": 120,
+                "preparation_secs": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day_of_week": 3,
+      "routine": {
+        "routine": {
+          "name": "Tren Superior B",
+          "description": "tren superior enfocado en hombros, espalda, brazos y core. finisher de plank hold.",
+          "rest_secs": 60
+        },
+        "sets": [
+          {
+            "name": "Calentamiento",
+            "description": "calentamiento y movilidad articular. 2 rondas, 30 segundos por ejercicio.",
+            "rounds": 2,
+            "exercises": [
+              {
+                "title": "shoulder dislocation",
+                "description": "con un palo o banda, pasa los brazos extendidos por encima de la cabeza y detrás de la espalda.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Shoulder_Stretch/0.jpg",
+                    "description": "shoulder dislocation"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "hombros"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "arm circles",
+                "description": "de pie, extiende los brazos a los lados y haz círculos. 15 hacia adelante, 15 hacia atrás.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Arm_Circles/0.jpg",
+                    "description": "arm circles"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "hombros"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "plank to downward dog",
+                "description": "desde plancha, empuja la cadera hacia arriba formando una v invertida, luego regresa a plancha.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg",
+                    "description": "plank to downward dog"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "core",
+                  "hombros"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "child's pose to cobra",
+                "description": "alterna entre posición de niño y cobra (extensión de espalda boca abajo).",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Childs_Pose/0.jpg",
+                    "description": "child's pose to cobra"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "espalda"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "thread the needle",
+                "description": "en cuatro puntos, pasa un brazo por debajo del torso rotando la columna.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Chest_And_Front_Of_Shoulder_Stretch/0.jpg",
+                    "description": "thread the needle"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "espalda",
+                  "hombros"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Arnold Press + Narrow Row",
+            "description": "arnold press y dumbbell narrow row.",
+            "rounds": 3,
+            "exercises": [
+              {
+                "title": "arnold press",
+                "description": "sentado con mancuernas al frente, rota los brazos hacia afuera mientras empujas hacia arriba.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Arnold_Dumbbell_Press/0.jpg",
+                    "description": "arnold press"
+                  }
+                ],
+                "tags": [
+                  "hombros",
+                  "mancuernas"
+                ],
+                "repetitions": 12,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "dumbbell narrow row",
+                "description": "inclinado con mancuernas juntas, tira hacia el abdomen con agarre cerrado enfatizando la espalda media.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bent_Over_Two-Dumbbell_Row/0.jpg",
+                    "description": "dumbbell narrow row"
+                  }
+                ],
+                "tags": [
+                  "espalda",
+                  "mancuernas"
+                ],
+                "repetitions": 12,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Upright Row + Incline Triceps Push-up",
+            "description": "upright row y push-up inclinado para tríceps.",
+            "rounds": 3,
+            "exercises": [
+              {
+                "title": "upright row",
+                "description": "de pie con mancuernas al frente, tira hacia arriba pegado al cuerpo hasta la altura de la barbilla.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Upright_Barbell_Row/0.jpg",
+                    "description": "upright row"
+                  }
+                ],
+                "tags": [
+                  "hombros",
+                  "trapecios",
+                  "mancuernas"
+                ],
+                "repetitions": 12,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "incline triceps push-up",
+                "description": "push-up con las manos en una superficie elevada, codos pegados al cuerpo para enfatizar tríceps.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Pushups/0.jpg",
+                    "description": "incline triceps push-up"
+                  }
+                ],
+                "tags": [
+                  "tríceps",
+                  "pecho",
+                  "cuerpo libre"
+                ],
+                "repetitions": 12,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Reverse Fly",
+            "description": "pájaros para deltoides posterior.",
+            "rounds": 3,
+            "exercises": [
+              {
+                "title": "pájaros con mancuernas",
+                "description": "inclinado hacia adelante, abre los brazos lateralmente apretando los omóplatos. trabaja el deltoides posterior.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Reverse_Flyes/0.jpg",
+                    "description": "reverse fly"
+                  }
+                ],
+                "tags": [
+                  "hombros",
+                  "espalda",
+                  "mancuernas"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Bíceps Curl + Triceps Extension",
+            "description": "curl alterno de bíceps y extensión de tríceps sobre cabeza.",
+            "rounds": 3,
+            "exercises": [
+              {
+                "title": "curl de bíceps mancuernas",
+                "description": "de pie con mancuernas a los lados, flexiona los codos alternando brazos. mantén los codos pegados al cuerpo.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Bicep_Curl/0.jpg",
+                    "description": "alternating biceps curl"
+                  }
+                ],
+                "tags": [
+                  "bíceps",
+                  "mancuernas"
+                ],
+                "repetitions": 16,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "extensión de tríceps sobre cabeza",
+                "description": "de pie o sentado, sujeta una mancuerna con ambas manos detrás de la cabeza. extiende los brazos hacia arriba.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Standing_Dumbbell_Triceps_Extension/0.jpg",
+                    "description": "overhead triceps extension"
+                  }
+                ],
+                "tags": [
+                  "tríceps",
+                  "mancuernas"
+                ],
+                "repetitions": 15,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Core + Cardio Circuit",
+            "description": "lat pulldown con banda, shoulder taps + plank jacks, reverse crunch y burpees.",
+            "rounds": 3,
+            "exercises": [
+              {
+                "title": "lat pulldown with loop band",
+                "description": "de rodillas o de pie, tira de una banda elástica desde arriba hacia el pecho. trabaja dorsales.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Close-Grip_Front_Lat_Pulldown/0.jpg",
+                    "description": "lat pulldown with loop band"
+                  }
+                ],
+                "tags": [
+                  "espalda",
+                  "banda"
+                ],
+                "repetitions": 10,
+                "duration_secs": 40,
+                "preparation_secs": 3
+              },
+              {
+                "title": "shoulder taps and plank jacks",
+                "description": "combina toques de hombro con saltos abriendo y cerrando piernas en plancha.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg",
+                    "description": "shoulder taps and plank jacks"
+                  }
+                ],
+                "tags": [
+                  "core",
+                  "cardio",
+                  "cuerpo libre"
+                ],
+                "repetitions": 10,
+                "duration_secs": 40,
+                "preparation_secs": 3
+              },
+              {
+                "title": "reverse crunch",
+                "description": "acostado boca arriba, lleva las rodillas al pecho elevando la cadera del suelo. trabaja abdomen inferior.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Reverse_Crunch/0.jpg",
+                    "description": "reverse crunch"
+                  }
+                ],
+                "tags": [
+                  "core",
+                  "abdominales",
+                  "cuerpo libre"
+                ],
+                "repetitions": 10,
+                "duration_secs": 40,
+                "preparation_secs": 3
+              },
+              {
+                "title": "burpees",
+                "description": "desde de pie, baja a plancha, haz push-up, salta los pies hacia las manos y salta arriba.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Freehand_Jump_Squat/0.jpg",
+                    "description": "burpees"
+                  }
+                ],
+                "tags": [
+                  "cardio",
+                  "cuerpo completo",
+                  "cuerpo libre"
+                ],
+                "repetitions": 10,
+                "duration_secs": 40,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Finisher: Plank Hold",
+            "description": "low plank hold y high plank to low plank.",
+            "rounds": 1,
+            "exercises": [
+              {
+                "title": "low plank hold",
+                "description": "mantén la posición de plancha baja sobre los antebrazos. contrae abdomen y glúteos.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg",
+                    "description": "low plank hold"
+                  }
+                ],
+                "tags": [
+                  "core",
+                  "isométrico",
+                  "cuerpo libre"
+                ],
+                "repetitions": 10,
+                "duration_secs": 60,
+                "preparation_secs": 3
+              },
+              {
+                "title": "high plank to low plank",
+                "description": "alterna entre plancha alta (manos) y baja (antebrazos) subiendo y bajando un brazo a la vez.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg",
+                    "description": "high plank to low plank"
+                  }
+                ],
+                "tags": [
+                  "core",
+                  "hombros",
+                  "cuerpo libre"
+                ],
+                "repetitions": 10,
+                "duration_secs": 60,
+                "preparation_secs": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day_of_week": 4,
+      "routine": {
+        "routine": {
+          "name": "Glúteos y Piernas",
+          "description": "enfocada en glúteos: hip thrust pesado, banded hip thrust, step-up, lunges, jumping lunges, B-stance deadlift, fire hydrant y frog pumps al fallo.",
+          "rest_secs": 90
+        },
+        "sets": [
+          {
+            "name": "Calentamiento",
+            "description": "calentamiento y movilidad articular. 2 rondas, 30 segundos por ejercicio.",
+            "rounds": 2,
+            "exercises": [
+              {
+                "title": "glute bridge",
+                "description": "acostado boca arriba con rodillas flexionadas, eleva la cadera apretando los glúteos arriba.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butt_Lift_Bridge/0.jpg",
+                    "description": "glute bridge"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "glúteos",
+                  "piernas"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "fire hydrant hip circles",
+                "description": "en cuatro puntos, eleva la rodilla lateralmente y haz círculos con la cadera. 15 reps lado derecho, 15 lado izquierdo.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hip_Circles_prone/0.jpg",
+                    "description": "fire hydrant hip circles"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "cadera",
+                  "glúteos"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "fire hydrant hip circles",
+                "description": "en cuatro puntos, eleva la rodilla lateralmente y haz círculos con la cadera. 15 reps lado izquierdo, 15 lado derecho.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hip_Circles_prone/0.jpg",
+                    "description": "fire hydrant hip circles"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "cadera",
+                  "glúteos"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "low lateral lunge",
+                "description": "da un paso lateral amplio y baja la cadera manteniendo la otra pierna extendida. alterna lados.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Groiners/0.jpg",
+                    "description": "low lateral lunge"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "piernas",
+                  "aductores"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "sentadilla con mancuernas",
+                "description": "de pie, baja en sentadilla manteniendo las rodillas alineadas con los pies.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Squat/0.jpg",
+                    "description": "sentadilla con mancuernas"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "piernas",
+                  "glúteos"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Hip Thrust pesado + Banded",
+            "description": "hip thrust pesado y banded hip thrust with abduction.",
+            "rounds": 4,
+            "exercises": [
+              {
+                "title": "hip thrust",
+                "description": "sentado con la espalda apoyada en un banco, eleva la cadera con peso hasta extensión completa de cadera.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Hip_Thrust/0.jpg",
+                    "description": "hip thrust pesado"
+                  }
+                ],
+                "tags": [
+                  "glúteos",
+                  "piernas",
+                  "mancuernas"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "banded hip thrust with abduction",
+                "description": "hip thrust con banda en las rodillas, al subir abre las rodillas hacia afuera activando glúteo medio.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Barbell_Hip_Thrust/0.jpg",
+                    "description": "banded hip thrust with abduction"
+                  }
+                ],
+                "tags": [
+                  "glúteos",
+                  "piernas",
+                  "banda"
+                ],
+                "repetitions": 15,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Step-up + Lunges + Jumping Lunges",
+            "description": "step-up glute focus, alternating lunges y alternating jumping lunges.",
+            "rounds": 4,
+            "exercises": [
+              {
+                "title": "step-up glute focus",
+                "description": "sube a un banco con una pierna enfocándote en empujar con el glúteo. mantén el torso erguido.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Step_Ups/0.jpg",
+                    "description": "step-up glute focus"
+                  }
+                ],
+                "tags": [
+                  "glúteos",
+                  "piernas",
+                  "mancuernas"
+                ],
+                "repetitions": 12,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "zancadas con mancuernas",
+                "description": "da un paso largo al frente bajando la rodilla trasera casi al suelo. alterna piernas. mantén el torso erguido.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Lunges/0.jpg",
+                    "description": "alternating lunges"
+                  }
+                ],
+                "tags": [
+                  "piernas",
+                  "glúteos",
+                  "mancuernas"
+                ],
+                "repetitions": 20,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "alternating jumping lunges",
+                "description": "desde zancada, salta y cambia de pierna en el aire. ejercicio pliométrico de piernas.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Split_Jump/0.jpg",
+                    "description": "alternating jumping lunges"
+                  }
+                ],
+                "tags": [
+                  "piernas",
+                  "cardio",
+                  "cuerpo libre"
+                ],
+                "repetitions": 20,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "B-stance Deadlift + Fire Hydrant",
+            "description": "B-stance deadlift y fire hydrant + donkey kick para glúteos.",
+            "rounds": 3,
+            "exercises": [
+              {
+                "title": "b-stance deadlift",
+                "description": "peso muerto con un pie ligeramente atrás como apoyo. trabaja unilateralmente glúteos y posterior.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Stiff-Legged_Dumbbell_Deadlift/0.jpg",
+                    "description": "b-stance deadlift"
+                  }
+                ],
+                "tags": [
+                  "piernas",
+                  "glúteos",
+                  "espalda baja",
+                  "mancuernas"
+                ],
+                "repetitions": 12,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "fire hydrant and donkey kick",
+                "description": "en cuatro puntos, alterna entre abrir la rodilla lateral y patada hacia atrás. trabaja glúteos.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hip_Circles_prone/0.jpg",
+                    "description": "fire hydrant and donkey kick"
+                  }
+                ],
+                "tags": [
+                  "glúteos",
+                  "cadera",
+                  "cuerpo libre"
+                ],
+                "repetitions": 12,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Finisher: Banded Frog Pumps al fallo",
+            "description": "frog pumps con banda hasta el fallo muscular.",
+            "rounds": 1,
+            "exercises": [
+              {
+                "title": "banded frog pumps",
+                "description": "frog pumps con banda de resistencia en las rodillas para mayor activación de glúteo medio.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Hip_Circles_prone/0.jpg",
+                    "description": "banded frog pumps"
+                  }
+                ],
+                "tags": [
+                  "glúteos",
+                  "banda"
+                ],
+                "repetitions": 50,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "day_of_week": 5,
+      "routine": {
+        "routine": {
+          "name": "Full Body Compuesto",
+          "description": "circuito de cuerpo completo con movimientos compuestos: clean and press, renegade row, goblet squat, lunges con raises, deadlift con row, glute bridge con press.",
+          "rest_secs": 60
+        },
+        "sets": [
+          {
+            "name": "Calentamiento",
+            "description": "calentamiento y movilidad articular. 2 rondas, 30 segundos por ejercicio.",
+            "rounds": 2,
+            "exercises": [
+              {
+                "title": "low lateral lunge",
+                "description": "da un paso lateral amplio y baja la cadera manteniendo la otra pierna extendida.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Groiners/0.jpg",
+                    "description": "low lateral lunge"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "piernas",
+                  "aductores"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "arm circles",
+                "description": "de pie, extiende los brazos y haz círculos. 15 hacia adelante, 15 hacia atrás.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Arm_Circles/0.jpg",
+                    "description": "arm circles"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "hombros"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "inchworm",
+                "description": "desde de pie, inclínate y camina con las manos al suelo hasta plancha, luego regresa.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Inchworm/0.jpg",
+                    "description": "inchworm"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "core"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "90/90 hip hinges",
+                "description": "sentado con ambas piernas a 90 grados, rota las caderas de un lado al otro.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/90_90_Hamstring/0.jpg",
+                    "description": "90/90 hip hinges"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "cadera"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "child's pose to cobra",
+                "description": "alterna entre posición de niño y cobra (extensión de espalda boca abajo).",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Childs_Pose/0.jpg",
+                    "description": "child's pose to cobra"
+                  }
+                ],
+                "tags": [
+                  "calentamiento",
+                  "movilidad",
+                  "espalda"
+                ],
+                "repetitions": 10,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Circuito Compuesto A",
+            "description": "single arm clean + press, renegade row to squat thrust, goblet squat, triceps dip + toe touch, sit-up + pullover.",
+            "rounds": 3,
+            "exercises": [
+              {
+                "title": "single arm clean and press",
+                "description": "con una mancuerna, haz un tirón desde el suelo hasta el hombro y luego empuja hacia arriba en un movimiento fluido.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Clean_and_Press/0.jpg",
+                    "description": "single arm clean and press"
+                  }
+                ],
+                "tags": [
+                  "hombros",
+                  "cuerpo completo",
+                  "mancuernas"
+                ],
+                "repetitions": 12,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "renegade row to squat thrust biceps curl",
+                "description": "desde plancha haz un remo alterno, salta a sentadilla y haz curl de bíceps. movimiento compuesto.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Alternating_Renegade_Row/0.jpg",
+                    "description": "renegade row to squat thrust biceps curl"
+                  }
+                ],
+                "tags": [
+                  "cuerpo completo",
+                  "mancuernas"
+                ],
+                "repetitions": 8,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "goblet squat",
+                "description": "sujeta una mancuerna vertical contra el pecho y baja en sentadilla profunda con el torso erguido.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Goblet_Squat/0.jpg",
+                    "description": "goblet squat"
+                  }
+                ],
+                "tags": [
+                  "piernas",
+                  "glúteos",
+                  "mancuernas"
+                ],
+                "repetitions": 12,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "triceps dip and toe touch",
+                "description": "alterna entre dips de tríceps y toques de punta del pie. trabaja tríceps y core.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Bench_Dips/0.jpg",
+                    "description": "triceps dip and toe touch"
+                  }
+                ],
+                "tags": [
+                  "tríceps",
+                  "core",
+                  "cuerpo libre"
+                ],
+                "repetitions": 8,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "sit-up and pullover",
+                "description": "abdominales sujetando mancuerna, al subir extiende los brazos con pullover. trabaja core y dorsal.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Sit-Up/0.jpg",
+                    "description": "sit-up and pullover"
+                  }
+                ],
+                "tags": [
+                  "core",
+                  "abdominales",
+                  "mancuernas"
+                ],
+                "repetitions": 10,
+                "duration_secs": 40,
+                "preparation_secs": 3
+              }
+            ]
+          },
+          {
+            "name": "Circuito Compuesto B",
+            "description": "alternating lunges con lateral raise, romanian deadlift + row, glute bridge + chest press, plank shoulder taps, banded squat jump in and out.",
+            "rounds": 3,
+            "exercises": [
+              {
+                "title": "alternating lunges with lateral raise",
+                "description": "haz zancada y al subir realiza una elevación lateral con mancuernas. trabaja piernas y hombros.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Dumbbell_Lunges/0.jpg",
+                    "description": "alternating lunges with lateral raise"
+                  }
+                ],
+                "tags": [
+                  "piernas",
+                  "hombros",
+                  "mancuernas"
+                ],
+                "repetitions": 12,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "romanian deadlift and row",
+                "description": "realiza un peso muerto rumano y al estar inclinado haz un remo. movimiento compuesto.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Romanian_Deadlift/0.jpg",
+                    "description": "romanian deadlift and row"
+                  }
+                ],
+                "tags": [
+                  "espalda",
+                  "piernas",
+                  "glúteos",
+                  "mancuernas"
+                ],
+                "repetitions": 12,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "glute bridge and chest press",
+                "description": "en posición de puente de glúteo, realiza un press de pecho simultáneamente.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Butt_Lift_Bridge/0.jpg",
+                    "description": "glute bridge and chest press"
+                  }
+                ],
+                "tags": [
+                  "glúteos",
+                  "pecho",
+                  "mancuernas"
+                ],
+                "repetitions": 12,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              },
+              {
+                "title": "plank shoulder taps",
+                "description": "en posición de plancha alta, toca el hombro opuesto alternando manos sin rotar la cadera.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Plank/0.jpg",
+                    "description": "plank shoulder taps"
+                  }
+                ],
+                "tags": [
+                  "core",
+                  "hombros",
+                  "cuerpo libre"
+                ],
+                "repetitions": 10,
+                "duration_secs": 40,
+                "preparation_secs": 3
+              },
+              {
+                "title": "banded squat jump in and out",
+                "description": "con banda en las rodillas, salta abriendo y cerrando las piernas en sentadilla.",
+                "images": [
+                  {
+                    "url": "https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/Freehand_Jump_Squat/0.jpg",
+                    "description": "banded squat jump in and out"
+                  }
+                ],
+                "tags": [
+                  "piernas",
+                  "cardio",
+                  "banda"
+                ],
+                "repetitions": 20,
+                "duration_secs": 3,
+                "preparation_secs": 3
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

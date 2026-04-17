@@ -48,7 +48,7 @@ export default function EntityCard({
       <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent pointer-events-none" />
       {/* Background decoration */}
       <div className="absolute -right-4 -top-4 w-24 h-24 bg-primary-500/5 blur-2xl group-hover:bg-primary-500/10 transition-colors duration-700" />
-      
+
       <div className="p-6 relative z-10">
         <div className="flex justify-between items-start gap-4 mb-4">
           <div className="min-w-0 flex-1">
@@ -61,7 +61,7 @@ export default function EntityCard({
               </h2>
             </Link>
           </div>
-          
+
           <div className="flex shrink-0 items-start gap-2">
             {thumbnail && (
               <div className="relative group/thumb">
@@ -104,11 +104,15 @@ export default function EntityCard({
         <div className="flex items-center justify-between gap-4 pt-4 border-t border-white/5">
           <div className="flex items-center gap-3 min-w-0">
             {creatorName && (
-              <div className="flex items-center gap-2 pr-3 border-r border-white/10 shrink-0" title={`Creado por ${creatorName}`}>
+              <div
+                className="flex items-center pr-3 border-r border-white/10 shrink-0"
+                title={`Creado por ${creatorName}`}
+              >
                 {creatorAvatar ? (
                   <img
                     src={creatorAvatar}
                     alt={creatorName}
+                    referrerPolicy="no-referrer"
                     className="w-5 h-5 rounded-full border border-white/10 object-cover"
                   />
                 ) : (
@@ -116,12 +120,9 @@ export default function EntityCard({
                     {creatorName[0]}
                   </div>
                 )}
-                <span className="text-[10px] font-bold text-text-faint hover:text-primary-400 transition-colors truncate max-w-[80px]">
-                  {creatorName.split(" ")[0]}
-                </span>
               </div>
             )}
-            
+
             {typeof cloneCount === "number" && cloneCount > 0 && (
               <div
                 className="flex items-center gap-1.5 text-[10px] font-bold text-text-faint hover:text-text-muted transition-colors cursor-default shrink-0"
@@ -141,7 +142,7 @@ export default function EntityCard({
             )}
             {action}
           </div>
-          
+
           <div className="flex items-center gap-2 shrink-0">
             {selectable && onSelect && (
               <button
@@ -160,8 +161,17 @@ export default function EntityCard({
               href={href}
               className="p-2 rounded-xl bg-white/5 text-text-muted hover:bg-primary-500 hover:text-black transition-all group/arrow"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 transition-transform group-hover/arrow:translate-x-0.5">
-                <path fillRule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clipRule="evenodd" />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="w-4 h-4 transition-transform group-hover/arrow:translate-x-0.5"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z"
+                  clipRule="evenodd"
+                />
               </svg>
             </Link>
           </div>
