@@ -28,7 +28,8 @@ export default async function RoutinesPage({
     .order("created_at", { ascending: false });
 
   if (q?.trim()) {
-    query = query.ilike("name", `%${q.trim()}%`);
+    const term = q.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    query = query.ilike("name_search", `%${term}%`);
   }
 
   if (mine && user) {

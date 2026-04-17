@@ -36,8 +36,8 @@ export default async function ExercisesPage({
     .order("created_at", { ascending: false });
 
   if (q?.trim()) {
-    const term = `%${q.trim().toLowerCase()}%`;
-    query = query.or(`title.ilike.${term},description.ilike.${term}`);
+    const term = `%${q.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")}%`;
+    query = query.or(`title_search.ilike.${term},description_search.ilike.${term}`);
   }
 
   if (activeTags.length > 0) {
