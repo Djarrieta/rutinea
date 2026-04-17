@@ -38,12 +38,12 @@
   --color-surface: #0f0f0f;
   --color-surface-alt: #161616;
   --color-surface-hover: #1f1f1f;
-  --color-border: #222222;
-  --color-border-light: #181818;
+  --color-border: #2a2a2a;
+  --color-border-light: #1e1e1e;
   --color-text: #ffffff;
   --color-text-secondary: #a3a3a3;
-  --color-text-muted: #737373;
-  --color-text-faint: #404040;
+  --color-text-muted: #8a8a8a;
+  --color-text-faint: #555555;
 
   /* Tag/Badge specific (Vibrant & High Contrast) */
   --color-tag-bg: #fbbf2410; /* primary-400 with 6% opacity */

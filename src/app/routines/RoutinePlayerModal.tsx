@@ -10,7 +10,6 @@ import {
   PlayerPhaseExercise,
   PlayerPhaseFinished,
   PlayerPhaseRest,
-  PlayerMiniTimer,
   formatTime,
 } from "@/app/components/player";
 import { properCase } from "@/lib/format";
@@ -370,24 +369,25 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
       controls={
         <PlayerControls
           statusContent={
-            phase === "preparation" ? (
-              <span className="text-xs text-primary-500 font-medium tabular-nums">
-                Preparación
-              </span>
-            ) : phase === "exercise" ? (
-              <PlayerMiniTimer
-                elapsed={elapsed}
-                totalDuration={exerciseTotalDuration}
-                currentRep={currentRep}
-                repetitions={exerciseRepetitions}
-              />
-            ) : phase === "rest" ? (
-              <span className="text-xs text-accent-500 font-medium tabular-nums">
-                Descanso · {Math.max(0, Math.ceil(routine.rest_secs - elapsed))}s
-              </span>
-            ) : (
+            phase === "finished" ? (
               <span className="text-xs text-success-400 font-medium">
                 Completada
+              </span>
+            ) : phase === "rest" ? (
+              <span className="text-xs text-accent-500 font-medium tabular-nums">
+                Descanso · {Math.max(0, Math.ceil(routine.rest_secs - elapsed))}
+                s
+              </span>
+            ) : (
+              <span className="text-xs text-text-secondary font-medium tabular-nums">
+                {currentStep?.type === "exercise"
+                  ? `${currentStep.globalIndex + 1}/${totalExercises}`
+                  : ""}
+                <span className="text-text-faint">
+                  {" "}
+                  · {formatTime(completedDuration)} /{" "}
+                  {formatTime(totalDuration)}
+                </span>
               </span>
             )
           }
@@ -413,7 +413,13 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
           imageKey={imageIndex}
           currentRep={currentRep}
           repetitions={exerciseRepetitions}
-          description={images.length > 0 ? images[imageIndex % images.length]?.description : undefined}
+          description={
+            images.length > 0
+              ? images[imageIndex % images.length]?.description
+              : undefined
+          }
+          elapsed={elapsed}
+          totalDuration={exerciseTotalDuration}
           isPlaying={isPlaying}
         />
       )}
@@ -422,8 +428,14 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
         <PlayerPhaseRest
           elapsed={elapsed}
           totalSecs={routine.rest_secs}
-          nextSetName={currentStep?.type === "rest" ? currentStep.nextSetName : undefined}
-          nextRoundLabel={currentStep?.type === "rest" ? currentStep.nextRoundLabel : undefined}
+          nextSetName={
+            currentStep?.type === "rest" ? currentStep.nextSetName : undefined
+          }
+          nextRoundLabel={
+            currentStep?.type === "rest"
+              ? currentStep.nextRoundLabel
+              : undefined
+          }
         />
       )}
 

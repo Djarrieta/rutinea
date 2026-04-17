@@ -52,7 +52,7 @@ export default function ExerciseCard({
             </span>
             {exercise.repetitions > 1 && (
               <>
-                <span className="w-1 h-1 rounded-full bg-white/10" />
+                <span className="w-1 h-1 rounded-full bg-white/25" />
                 <span className="flex items-center gap-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -73,7 +73,7 @@ export default function ExerciseCard({
             )}
             {exercise.images.length > 0 && (
               <>
-                <span className="w-1 h-1 rounded-full bg-white/10" />
+                <span className="w-1 h-1 rounded-full bg-white/25" />
                 <span className="flex items-center gap-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

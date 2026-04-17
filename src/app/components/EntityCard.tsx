@@ -77,7 +77,7 @@ export default function EntityCard({
         </div>
 
         {description && (
-          <p className="text-text-secondary/70 text-sm line-clamp-2 leading-relaxed font-sans font-medium mb-5">
+          <p className="text-text-secondary text-sm line-clamp-2 leading-relaxed font-sans font-medium mb-5">
             {properCase(description)}
           </p>
         )}

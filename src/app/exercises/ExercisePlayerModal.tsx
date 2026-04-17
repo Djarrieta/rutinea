@@ -9,7 +9,6 @@ import {
   PlayerPhasePreparation,
   PlayerPhaseExercise,
   PlayerPhaseFinished,
-  PlayerMiniTimer,
   formatTime,
 } from "@/app/components/player";
 import { properCase } from "@/lib/format";
@@ -35,8 +34,7 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
   const prevRepRef = useRef(1);
   const prevTickSecRef = useRef(-1);
 
-  const currentImageIndex =
-    images.length > 0 ? currentSlot % images.length : 0;
+  const currentImageIndex = images.length > 0 ? currentSlot % images.length : 0;
   const currentRep =
     images.length > 0 ? Math.floor(currentSlot / images.length) + 1 : 1;
 
@@ -124,24 +122,8 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
       : phase === "exercise"
         ? preparation_secs + elapsed
         : overallTotal;
-  const progress =
-    overallTotal > 0 ? (overallElapsed / overallTotal) * 100 : 0;
+  const progress = overallTotal > 0 ? (overallElapsed / overallTotal) * 100 : 0;
   const finished = phase === "finished";
-
-  const statusContent = phase === "preparation" ? (
-    <span className="text-xs text-primary-500 font-medium tabular-nums">
-      Preparación
-    </span>
-  ) : phase === "exercise" ? (
-    <PlayerMiniTimer
-      elapsed={elapsed}
-      totalDuration={totalDuration}
-      currentRep={currentRep}
-      repetitions={repetitions}
-    />
-  ) : (
-    <span className="text-xs text-success-400 font-medium">Completado</span>
-  );
 
   return (
     <PlayerModalShell
@@ -150,7 +132,25 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
       progress={progress}
       controls={
         <PlayerControls
-          statusContent={statusContent}
+          statusContent={
+            finished ? (
+              <span className="text-xs text-success-400 font-medium">
+                Completado
+              </span>
+            ) : phase === "preparation" ? (
+              <span className="text-xs text-primary-500 font-medium tabular-nums">
+                Preparación
+              </span>
+            ) : (
+              <span className="text-xs text-text-secondary font-medium tabular-nums">
+                {formatTime(elapsed)}
+                <span className="text-text-faint">
+                  {" "}
+                  / {formatTime(totalDuration)}
+                </span>
+              </span>
+            )
+          }
           finished={finished}
           isPlaying={isPlaying}
           onRestart={restart}
@@ -172,6 +172,8 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
           imageKey={currentSlot}
           currentRep={currentRep}
           repetitions={repetitions}
+          elapsed={elapsed}
+          totalDuration={totalDuration}
           description={exercise.description}
           isPlaying={isPlaying}
         />

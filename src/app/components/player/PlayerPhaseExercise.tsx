@@ -1,4 +1,5 @@
 import type { ExerciseImage } from "@/types";
+import { formatTime } from "./constants";
 
 interface Props {
   images: ExerciseImage[];
@@ -7,6 +8,10 @@ interface Props {
   imageKey: number;
   currentRep: number;
   repetitions: number;
+  /** Time elapsed in the current exercise (secs) */
+  elapsed: number;
+  /** Total duration of the current exercise including reps (secs) */
+  totalDuration: number;
   description?: string | null;
   isPlaying: boolean;
 }
@@ -17,9 +22,13 @@ export default function PlayerPhaseExercise({
   imageKey,
   currentRep,
   repetitions,
+  elapsed,
+  totalDuration,
   description,
   isPlaying,
 }: Props) {
+  const remaining = Math.max(0, Math.ceil(totalDuration - elapsed));
+
   return (
     <>
       {images.length > 0 ? (
@@ -35,16 +44,19 @@ export default function PlayerPhaseExercise({
         </div>
       )}
 
-      {/* Top overlay: image counter + rep badge */}
-      {(images.length > 1 || repetitions > 1) && (
-        <div className="absolute top-3 left-3 right-3 flex items-start justify-between pointer-events-none">
+      {/* Top overlay: rep badge (left) + timer pill (right) */}
+      <div className="absolute top-3 left-3 right-3 flex items-start justify-between pointer-events-none">
+        <div className="flex items-center gap-1.5">
           {repetitions > 1 && (
             <span className="bg-primary-500/90 text-black text-xs font-bold px-2.5 py-1 rounded-full backdrop-blur-sm">
               Rep {currentRep}/{repetitions}
             </span>
           )}
+        </div>
+        <div className="flex items-center gap-1.5">
+          {/* Image counter dots */}
           {images.length > 1 && (
-            <div className="flex gap-1 ml-auto items-center bg-black/50 backdrop-blur-sm rounded-full px-2 py-1">
+            <div className="flex gap-1 items-center bg-black/50 backdrop-blur-sm rounded-full px-2 py-1">
               {images.map((_, i) => (
                 <span
                   key={i}
@@ -57,8 +69,12 @@ export default function PlayerPhaseExercise({
               ))}
             </div>
           )}
+          {/* Timer pill */}
+          <span className="bg-black/50 backdrop-blur-sm text-white text-xs font-bold tabular-nums px-2.5 py-1 rounded-full">
+            {remaining}s
+          </span>
         </div>
-      )}
+      </div>
 
       {/* Bottom overlay: description */}
       {description && (
@@ -79,9 +95,7 @@ export default function PlayerPhaseExercise({
             >
               <path d="M6.75 5.25a.75.75 0 0 1 .75-.75H9a.75.75 0 0 1 .75.75v13.5a.75.75 0 0 1-.75.75H7.5a.75.75 0 0 1-.75-.75V5.25Zm7.5 0A.75.75 0 0 1 15 4.5h1.5a.75.75 0 0 1 .75.75v13.5a.75.75 0 0 1-.75.75H15a.75.75 0 0 1-.75-.75V5.25Z" />
             </svg>
-            <span className="text-sm font-medium text-white/60">
-              En pausa
-            </span>
+            <span className="text-sm font-medium text-white/60">En pausa</span>
           </div>
         </div>
       )}

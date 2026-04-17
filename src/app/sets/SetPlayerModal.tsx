@@ -9,7 +9,6 @@ import {
   PlayerPhasePreparation,
   PlayerPhaseExercise,
   PlayerPhaseFinished,
-  PlayerMiniTimer,
   formatTime,
 } from "@/app/components/player";
 import { properCase } from "@/lib/format";
@@ -210,18 +209,15 @@ export default function SetPlayerModal({ set, onClose }: Props) {
               <span className="text-xs text-success-400 font-medium">
                 Completado
               </span>
-            ) : phase === "preparation" ? (
-              <span className="text-xs text-primary-500 font-medium tabular-nums">
-                Preparación · {exerciseIndex + 1}/{totalExercises}
-              </span>
             ) : (
-              <PlayerMiniTimer
-                elapsed={elapsed}
-                totalDuration={exerciseTotalDuration}
-                currentRep={currentRep}
-                repetitions={repetitions}
-                subtitle={`${exerciseIndex + 1}/${totalExercises} ejercicios`}
-              />
+              <span className="text-xs text-text-secondary font-medium tabular-nums">
+                {exerciseIndex + 1}/{totalExercises} ejercicios
+                <span className="text-text-faint">
+                  {" "}
+                  · {formatTime(completedDuration)} /{" "}
+                  {formatTime(totalDuration)}
+                </span>
+              </span>
             )
           }
           finished={finished}
@@ -246,7 +242,11 @@ export default function SetPlayerModal({ set, onClose }: Props) {
           imageKey={currentSlot}
           currentRep={currentRep}
           repetitions={repetitions}
-          description={images.length > 0 ? images[imageIndex]?.description : undefined}
+          description={
+            images.length > 0 ? images[imageIndex]?.description : undefined
+          }
+          elapsed={elapsed}
+          totalDuration={exerciseTotalDuration}
           isPlaying={isPlaying}
         />
       )}

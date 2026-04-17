@@ -43,12 +43,21 @@ export default function PlanCard({
       meta={
         <div className="flex items-center gap-3">
           <span className="flex items-center gap-1">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-3 h-3 opacity-50">
-              <path fillRule="evenodd" d="M4 1.75a.75.75 0 0 1 1.5 0V3h5V1.75a.75.75 0 0 1 1.5 0V3h.75A1.75 1.75 0 0 1 14.5 4.75v8.5a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-8.5A1.75 1.75 0 0 1 3.25 3H4V1.75ZM3.25 4.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25h-9.5Z" clipRule="evenodd" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              fill="currentColor"
+              className="w-3 h-3 opacity-50"
+            >
+              <path
+                fillRule="evenodd"
+                d="M4 1.75a.75.75 0 0 1 1.5 0V3h5V1.75a.75.75 0 0 1 1.5 0V3h.75A1.75 1.75 0 0 1 14.5 4.75v8.5a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-8.5A1.75 1.75 0 0 1 3.25 3H4V1.75ZM3.25 4.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25h-9.5Z"
+                clipRule="evenodd"
+              />
             </svg>
             {dayCount}
           </span>
-          <span className="w-1 h-1 rounded-full bg-white/10" />
+          <span className="w-1 h-1 rounded-full bg-white/25" />
           {todayRoutine ? (
             <span className="text-primary-400 font-bold truncate flex items-center gap-1.5">
               <span className="w-1.5 h-1.5 rounded-full bg-primary-500 animate-pulse" />
