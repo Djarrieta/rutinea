@@ -6,7 +6,7 @@
   },
   "sets": [
     {
-      "name": "ABS",
+      "name": "Bloque 1",
       "description": "Crunch básico y crunch cruzado para activar recto abdominal y oblicuos.",
       "rounds": 1,
       "exercises": [
@@ -22,7 +22,7 @@
             },
             {
               "youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
-              "timestamp": "0:08",
+              "timestamp": "0:07",
               "description": "Torso elevado",
               "file": "supabase/.temp/frames/abdominales-en-8-minutos/crunch-2.jpg"
             }
@@ -41,13 +41,13 @@
           "images": [
             {
               "youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
-              "timestamp": "0:56",
+              "timestamp": "0:57",
               "description": "Codo hacia rodilla opuesta",
               "file": "supabase/.temp/frames/abdominales-en-8-minutos/crunch-cruzado-3.jpg"
             },
             {
               "youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
-              "timestamp": "0:58",
+              "timestamp": "1:00",
               "description": "Posición inicial",
               "file": "supabase/.temp/frames/abdominales-en-8-minutos/crunch-cruzado-4.jpg"
             }
@@ -59,20 +59,27 @@
           "repetitions": 30,
           "duration_secs": 2,
           "preparation_secs": 3
-        },
+        }
+      ]
+    },
+    {
+      "name": "Bloque 2",
+      "description": "Toque de talones y elevación de piernas para abdominales inferiores y oblicuos.",
+      "rounds": 1,
+      "exercises": [
         {
           "title": "Toque de talones",
           "description": "Acostado con rodillas flexionadas, lleva cada mano al talón del mismo lado alternando.",
           "images": [
             {
               "youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
-              "timestamp": "2:16",
+              "timestamp": "2:15",
               "description": "Posición inicial",
               "file": "supabase/.temp/frames/abdominales-en-8-minutos/toque-de-talones-5.jpg"
             },
             {
               "youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
-              "timestamp": "2:17",
+              "timestamp": "2:18",
               "description": "Mano tocando talón",
               "file": "supabase/.temp/frames/abdominales-en-8-minutos/toque-de-talones-6.jpg"
             }
@@ -97,15 +104,21 @@
             },
             {
               "youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
-              "timestamp": "3:12",
+              "timestamp": "3:08",
               "description": "Piernas elevadas",
               "file": "supabase/.temp/frames/abdominales-en-8-minutos/elevacion-de-piernas-8.jpg"
             },
             {
               "youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
+              "timestamp": "3:12",
+              "description": "Bajando piernas con control",
+              "file": "supabase/.temp/frames/abdominales-en-8-minutos/elevacion-de-piernas-9.jpg"
+            },
+            {
+              "youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
               "timestamp": "3:04",
               "description": "Posición de inicio",
-              "file": "supabase/.temp/frames/abdominales-en-8-minutos/elevacion-de-piernas-9.jpg"
+              "file": "supabase/.temp/frames/abdominales-en-8-minutos/elevacion-de-piernas-10.jpg"
             }
           ],
           "tags": [
@@ -115,7 +128,14 @@
           "repetitions": 30,
           "duration_secs": 2,
           "preparation_secs": 3
-        },
+        }
+      ]
+    },
+    {
+      "name": "Bloque 3",
+      "description": "Crunch inverso y crunch vertical para abdominales inferiores y superiores.",
+      "rounds": 1,
+      "exercises": [
         {
           "title": "Crunch inverso",
           "description": "Acostado con rodillas flexionadas, contrae el abdomen llevando las rodillas hacia el pecho con un movimiento corto.",
@@ -124,13 +144,13 @@
               "youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
               "timestamp": "4:26",
               "description": "Posición inicial",
-              "file": "supabase/.temp/frames/abdominales-en-8-minutos/crunch-inverso-10.jpg"
+              "file": "supabase/.temp/frames/abdominales-en-8-minutos/crunch-inverso-11.jpg"
             },
             {
               "youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
               "timestamp": "4:30",
               "description": "Rodillas hacia el pecho",
-              "file": "supabase/.temp/frames/abdominales-en-8-minutos/crunch-inverso-11.jpg"
+              "file": "supabase/.temp/frames/abdominales-en-8-minutos/crunch-inverso-12.jpg"
             }
           ],
           "tags": [
@@ -149,13 +169,13 @@
               "youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
               "timestamp": "5:16",
               "description": "Acostado con piernas arriba",
-              "file": "supabase/.temp/frames/abdominales-en-8-minutos/crunch-vertical-12.jpg"
+              "file": "supabase/.temp/frames/abdominales-en-8-minutos/crunch-vertical-13.jpg"
             },
             {
               "youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
-              "timestamp": "5:18",
+              "timestamp": "5:19",
               "description": "Manos hacia los pies",
-              "file": "supabase/.temp/frames/abdominales-en-8-minutos/crunch-vertical-13.jpg"
+              "file": "supabase/.temp/frames/abdominales-en-8-minutos/crunch-vertical-14.jpg"
             }
           ],
           "tags": [
@@ -165,7 +185,14 @@
           "repetitions": 30,
           "duration_secs": 2,
           "preparation_secs": 3
-        },
+        }
+      ]
+    },
+    {
+      "name": "Bloque 4",
+      "description": "Crunch oblicuo y push through para finalizar con oblicuos y recto abdominal.",
+      "rounds": 1,
+      "exercises": [
         {
           "title": "Crunch oblicuo",
           "description": "Acostado con rodillas flexionadas, eleva el torso lateralmente contrayendo los oblicuos.",
@@ -174,13 +201,13 @@
               "youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
               "timestamp": "6:37",
               "description": "Posición inicial",
-              "file": "supabase/.temp/frames/abdominales-en-8-minutos/crunch-oblicuo-14.jpg"
+              "file": "supabase/.temp/frames/abdominales-en-8-minutos/crunch-oblicuo-15.jpg"
             },
             {
               "youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
               "timestamp": "6:44",
               "description": "Torso elevado lateralmente",
-              "file": "supabase/.temp/frames/abdominales-en-8-minutos/crunch-oblicuo-15.jpg"
+              "file": "supabase/.temp/frames/abdominales-en-8-minutos/crunch-oblicuo-16.jpg"
             }
           ],
           "tags": [
@@ -197,15 +224,15 @@
           "images": [
             {
               "youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
-              "timestamp": "7:29",
+              "timestamp": "7:18",
               "description": "Posición inicial acostado",
-              "file": "supabase/.temp/frames/abdominales-en-8-minutos/push-through-16.jpg"
+              "file": "supabase/.temp/frames/abdominales-en-8-minutos/push-through-17.jpg"
             },
             {
               "youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
               "timestamp": "7:31",
               "description": "Empujando manos entre piernas",
-              "file": "supabase/.temp/frames/abdominales-en-8-minutos/push-through-17.jpg"
+              "file": "supabase/.temp/frames/abdominales-en-8-minutos/push-through-18.jpg"
             }
           ],
           "tags": [
