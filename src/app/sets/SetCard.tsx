@@ -53,7 +53,12 @@ export default function SetCard({
         meta={
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-3 h-3 opacity-50">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 16 16"
+                fill="currentColor"
+                className="w-3 h-3 opacity-50"
+              >
                 <path d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5ZM14 5.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5ZM14 8a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5ZM2.5 12a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM2.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM2.5 9.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM3.5 14.5a1 1 0 1 0-2 0 1 1 0 0 0 2 0ZM3.5 4.5a1 1 0 1 0-2 0 1 1 0 0 0 2 0Z" />
               </svg>
               {exerciseCount}
@@ -62,8 +67,17 @@ export default function SetCard({
               <>
                 <span className="w-1 h-1 rounded-full bg-white/10" />
                 <span className="flex items-center gap-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-3 h-3 opacity-50">
-                    <path fillRule="evenodd" d="M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8Zm7.75-4.25a.75.75 0 0 0-1.5 0V8c0 .414.336.75.75.75h3a.75.75 0 0 0 0-1.5h-2.25V3.75Z" clipRule="evenodd" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    className="w-3 h-3 opacity-50"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8Zm7.75-4.25a.75.75 0 0 0-1.5 0V8c0 .414.336.75.75.75h3a.75.75 0 0 0 0-1.5h-2.25V3.75Z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                   {formatTime(totalSecs)}
                 </span>

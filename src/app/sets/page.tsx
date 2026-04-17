@@ -30,7 +30,11 @@ export default async function SetsPage({
     .order("created_at", { ascending: false });
 
   if (q?.trim()) {
-    const term = q.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    const term = q
+      .trim()
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
     query = query.ilike("name_search", `%${term}%`);
   }
 

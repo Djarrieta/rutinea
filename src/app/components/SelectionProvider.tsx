@@ -44,7 +44,9 @@ export default function SelectionProvider({
   userId,
   deleteAction,
 }: SelectionProviderProps) {
-  const [selectionMap, setSelectionMap] = useState<Map<string, string | undefined>>(new Map());
+  const [selectionMap, setSelectionMap] = useState<
+    Map<string, string | undefined>
+  >(new Map());
   const [isPending, startTransition] = useTransition();
 
   const selectedIds = new Set(selectionMap.keys());
