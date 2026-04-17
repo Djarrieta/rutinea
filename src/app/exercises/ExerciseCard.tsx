@@ -10,12 +10,14 @@ import { useSelection } from "@/app/components/SelectionProvider";
 export default function ExerciseCard({
   exercise,
   selectable,
+  userId,
 }: {
   exercise: Exercise;
   selectable?: boolean;
+  userId?: string;
 }) {
   const [showPlayer, setShowPlayer] = useState(false);
-  const selection = useSelection(exercise.id);
+  const selection = useSelection(exercise.id, exercise.user_id);
 
   return (
     <>

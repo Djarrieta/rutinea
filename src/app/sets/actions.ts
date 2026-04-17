@@ -136,3 +136,18 @@ export async function deleteSet(id: string) {
   revalidatePath('/sets')
   redirect('/sets')
 }
+
+export async function deleteSets(ids: string[]) {
+  const user = await requireAuth()
+  const supabase = await createClient()
+
+  const { error } = await supabase
+    .from('sets')
+    .delete()
+    .in('id', ids)
+    .eq('user_id', user.id)
+
+  if (error) throw new Error(error.message)
+
+  revalidatePath('/sets')
+}

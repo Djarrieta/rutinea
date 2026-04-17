@@ -1,0 +1,151 @@
+{
+  "routine": {
+    "name": "Abdominales en 8 Minutos",
+    "description": "Rutina clásica enfocada en fortalecer el core, basada en el sistema de entrenamiento de Passion4Profession.",
+    "rest_secs": 30
+  },
+  "sets": [
+      {
+        "name": "Circuito Principal",
+        "description": "Ejecución continua de ejercicios abdominales.",
+        "rounds": 1,
+        "exercises": [
+          {
+            "title": "Crunch",
+            "description": "Acostado boca arriba, eleva el torso contrayendo el abdomen sin tirar del cuello.",
+            "images": [
+              {
+                "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Crunches-2.png",
+                "description": "abdominal crunch"
+              }
+            ],
+            "tags": [
+              "abdominales",
+              "core"
+            ],
+            "repetitions": 30,
+            "duration_secs": 2,
+            "preparation_secs": 3
+          },
+          {
+            "title": "Crunch con flexión de piernas",
+            "description": "Realiza un crunch manteniendo las piernas elevadas con las rodillas flexionadas a 90 grados.",
+            "images": [
+              {
+                "url": "https://upload.wikimedia.org/wikipedia/commons/7/79/Crunches-with-legs-on-stability-ball-2.png",
+                "description": "crunch con piernas a 90 grados"
+              }
+            ],
+            "tags": [
+              "abdominales",
+              "core"
+            ],
+            "repetitions": 30,
+            "duration_secs": 2,
+            "preparation_secs": 3
+          },
+          {
+            "title": "Crunch cruzado",
+            "description": "Lleva el codo hacia la rodilla contraria alternando lados.",
+            "images": [
+              {
+                "url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Cross-body-crunch-2.png",
+                "description": "crunch cruzado"
+              }
+            ],
+            "tags": [
+              "oblicuos",
+              "core"
+            ],
+            "repetitions": 30,
+            "duration_secs": 2,
+            "preparation_secs": 3
+          },
+          {
+            "title": "Elevación de piernas",
+            "description": "Acostado, eleva las piernas rectas hasta formar un ángulo de 90 grados y baja controlado.",
+            "images": [
+              {
+                "url": "https://upload.wikimedia.org/wikipedia/commons/4/41/Leg-raises-1.png",
+                "description": "elevación de piernas"
+              }
+            ],
+            "tags": [
+              "abdominales inferiores",
+              "core"
+            ],
+            "repetitions": 20,
+            "duration_secs": 2,
+            "preparation_secs": 3
+          },
+          {
+            "title": "Crunch tocando los talones",
+            "description": "Oscila lateralmente para tocar tus talones manteniendo los hombros ligeramente elevados.",
+            "images": [
+              {
+                "url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Cross-body-crunch-1.png",
+                "description": "toque de talones"
+              }
+            ],
+            "tags": [
+              "oblicuos",
+              "lateral"
+            ],
+            "repetitions": 30,
+            "duration_secs": 2,
+            "preparation_secs": 3
+          },
+          {
+            "title": "Crunch manos a los pies",
+            "description": "Con las piernas elevadas, intenta alcanzar las puntas de tus pies con las manos.",
+            "images": [
+              {
+                "url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Bent-knee-hip-raise-2.png",
+                "description": "toe touchers"
+              }
+            ],
+            "tags": [
+              "abdominales superiores",
+              "core"
+            ],
+            "repetitions": 30,
+            "duration_secs": 2,
+            "preparation_secs": 3
+          },
+          {
+            "title": "Tijeras",
+            "description": "Intercala el movimiento de piernas extendidas arriba y abajo sin tocar el suelo.",
+            "images": [
+              {
+                "url": "https://upload.wikimedia.org/wikipedia/commons/9/99/Flutter-kicks-1.png",
+                "description": "tijeras abdominales"
+              }
+            ],
+            "tags": [
+              "abdominales inferiores",
+              "resistencia"
+            ],
+            "repetitions": 30,
+            "duration_secs": 2,
+            "preparation_secs": 3
+          },
+          {
+            "title": "Double Crunch",
+            "description": "Flexiona el torso y las rodillas al mismo tiempo para encontrarlos en el centro.",
+            "images": [
+              {
+                "url": "https://upload.wikimedia.org/wikipedia/commons/0/09/Bent-knee-hip-raise-1.png",
+                "description": "double crunch"
+              }
+            ],
+            "tags": [
+              "core completo"
+            ],
+            "repetitions": 20,
+            "duration_secs": 2,
+            "preparation_secs": 3
+          }
+        ]
+      }
+    ]
+}

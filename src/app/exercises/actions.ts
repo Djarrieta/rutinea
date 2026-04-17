@@ -106,3 +106,18 @@ export async function deleteExercise(id: string) {
   revalidatePath('/exercises')
   redirect('/exercises')
 }
+
+export async function deleteExercises(ids: string[]) {
+  const user = await requireAuth()
+  const supabase = await createClient()
+
+  const { error } = await supabase
+    .from('exercises')
+    .delete()
+    .in('id', ids)
+    .eq('user_id', user.id)
+
+  if (error) throw new Error(error.message)
+
+  revalidatePath('/exercises')
+}

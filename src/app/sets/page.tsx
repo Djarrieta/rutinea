@@ -5,6 +5,7 @@ import SetCard from "./SetCard";
 import PageHeader from "@/app/components/PageHeader";
 import FilterableList from "@/app/components/FilterableList";
 import SelectionProvider from "@/app/components/SelectionProvider";
+import { deleteSets } from "./actions";
 import { PAGE_SIZE } from "@/lib/constants";
 
 export default async function SetsPage({
@@ -55,6 +56,8 @@ export default async function SetsPage({
         actionLabel="Crear Rutina"
         createPath="/routines/new"
         paramName="sets"
+        userId={user?.id}
+        deleteAction={deleteSets}
       >
         <FilterableList
           placeholder="Buscar por nombre..."
@@ -69,6 +72,7 @@ export default async function SetsPage({
               set={set}
               exerciseCount={set.set_exercises.length}
               selectable
+              userId={user?.id}
             />
           ))}
         </FilterableList>

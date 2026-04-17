@@ -5,6 +5,7 @@ import ExerciseCard from "./ExerciseCard";
 import PageHeader from "@/app/components/PageHeader";
 import FilterableList from "@/app/components/FilterableList";
 import SelectionProvider from "@/app/components/SelectionProvider";
+import { deleteExercises } from "./actions";
 import { PAGE_SIZE } from "@/lib/constants";
 
 export default async function ExercisesPage({
@@ -75,6 +76,8 @@ export default async function ExercisesPage({
         actionLabel="Crear Set"
         createPath="/sets/new"
         paramName="exercises"
+        userId={user?.id}
+        deleteAction={deleteExercises}
       >
         <FilterableList
           placeholder="Buscar por nombre o descripción..."
@@ -86,7 +89,7 @@ export default async function ExercisesPage({
           mineActive={!!mine}
         >
           {(exercises ?? []).map((exercise) => (
-            <ExerciseCard key={exercise.id} exercise={exercise} selectable />
+            <ExerciseCard key={exercise.id} exercise={exercise} selectable userId={user?.id} />
           ))}
         </FilterableList>
       </SelectionProvider>

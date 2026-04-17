@@ -5,24 +5,25 @@ import {
   useContext,
   useState,
   useCallback,
+  useTransition,
   ReactNode,
 } from "react";
 import Link from "next/link";
 
 interface SelectionContextValue {
   selectedIds: Set<string>;
-  toggle: (id: string) => void;
+  toggle: (id: string, ownerId?: string) => void;
   clear: () => void;
 }
 
 const SelectionContext = createContext<SelectionContextValue | null>(null);
 
-export function useSelection(id: string) {
+export function useSelection(id: string, ownerId?: string) {
   const ctx = useContext(SelectionContext);
   if (!ctx) return null;
   return {
     selected: ctx.selectedIds.has(id),
-    toggle: () => ctx.toggle(id),
+    toggle: () => ctx.toggle(id, ownerId),
   };
 }
 
@@ -31,6 +32,8 @@ interface SelectionProviderProps {
   actionLabel: string;
   createPath: string;
   paramName: string;
+  userId?: string;
+  deleteAction?: (ids: string[]) => Promise<void>;
 }
 
 export default function SelectionProvider({
@@ -38,21 +41,41 @@ export default function SelectionProvider({
   actionLabel,
   createPath,
   paramName,
+  userId,
+  deleteAction,
 }: SelectionProviderProps) {
-  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
+  const [selectionMap, setSelectionMap] = useState<Map<string, string | undefined>>(new Map());
+  const [isPending, startTransition] = useTransition();
 
-  const toggle = useCallback((id: string) => {
-    setSelectedIds((prev) => {
-      const next = new Set(prev);
+  const selectedIds = new Set(selectionMap.keys());
+
+  const toggle = useCallback((id: string, ownerId?: string) => {
+    setSelectionMap((prev) => {
+      const next = new Map(prev);
       if (next.has(id)) next.delete(id);
-      else next.add(id);
+      else next.set(id, ownerId);
       return next;
     });
   }, []);
 
-  const clear = useCallback(() => setSelectedIds(new Set()), []);
+  const clear = useCallback(() => setSelectionMap(new Map()), []);
 
-  const count = selectedIds.size;
+  const count = selectionMap.size;
+
+  const allOwned =
+    userId &&
+    deleteAction &&
+    count > 0 &&
+    [...selectionMap.values()].every((ownerId) => ownerId === userId);
+
+  function handleDelete() {
+    if (!deleteAction || !allOwned) return;
+    const ids = [...selectionMap.keys()];
+    startTransition(async () => {
+      await deleteAction(ids);
+      clear();
+    });
+  }
 
   return (
     <SelectionContext.Provider value={{ selectedIds, toggle, clear }}>
@@ -69,6 +92,16 @@ export default function SelectionProvider({
             >
               Cancelar
             </button>
+            {allOwned && (
+              <button
+                type="button"
+                onClick={handleDelete}
+                disabled={isPending}
+                className="rounded-lg border border-red-500/40 bg-red-500/10 px-3 py-1.5 text-sm font-medium text-red-400 hover:bg-red-500/20 transition-colors disabled:opacity-50"
+              >
+                {isPending ? "Eliminando…" : `Eliminar (${count})`}
+              </button>
+            )}
             <Link
               href={`${createPath}?${paramName}=${[...selectedIds].join(",")}`}
               className="rounded-lg bg-primary-500 px-3 py-1.5 text-sm font-medium text-white hover:bg-primary-600 transition-colors"
