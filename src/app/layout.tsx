@@ -1,9 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
 import { getUser } from "@/lib/auth";
 import UserMenu from "./components/UserMenu";
 import { DesktopNavLinks, MobileNavLinks } from "./components/NavLinks";
+import BackgroundAtmosphere from "./components/BackgroundAtmosphere";
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Rutinea",
@@ -25,13 +39,17 @@ export default async function RootLayout({
     : null;
 
   return (
-    <html lang="es">
-      <body className="bg-bg text-text min-h-screen pb-20 sm:pb-0 overflow-x-hidden">
+    <html lang="es" className={`${outfit.variable} ${inter.variable}`}>
+      <body className="bg-bg text-text min-h-screen pb-20 sm:pb-0 overflow-x-hidden font-sans selection:bg-primary-500/30">
+        <BackgroundAtmosphere />
+        {/* Grain/Noise Overlay */}
+        <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-[9999] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat" />
+
         {/* Desktop top nav */}
-        <nav className="hidden sm:block bg-surface border-b border-border px-6 py-4">
+        <nav className="hidden sm:block sticky top-0 z-40 bg-surface/80 backdrop-blur-md border-b border-border/50 px-6 py-4">
           <div className="max-w-4xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-6">
-              <Link href="/" className="text-xl font-bold">
+              <Link href="/" className="text-2xl font-bold tracking-tight font-display bg-gradient-to-r from-primary-400 to-accent-500 bg-clip-text text-transparent">
                 Rutinea
               </Link>
               <DesktopNavLinks />
@@ -39,43 +57,31 @@ export default async function RootLayout({
             <div className="flex items-center gap-3">
               <Link
                 href="/plans/new"
-                className="bg-primary-500 text-black px-4 py-2 rounded-lg text-sm hover:bg-primary-600"
+                className="bg-primary-500 text-black px-4 py-2 rounded-xl text-sm font-semibold hover:bg-primary-600 transition-all hover:scale-[1.02] active:scale-[0.98]"
               >
                 + Plan
               </Link>
               <Link
                 href="/routines/new"
-                className="bg-surface-alt text-text-secondary px-4 py-2 rounded-lg text-sm hover:bg-surface-hover"
+                className="bg-surface-alt text-text-secondary px-4 py-2 rounded-xl text-sm font-medium hover:bg-surface-hover transition-colors"
               >
                 + Rutina
-              </Link>
-              <Link
-                href="/sets/new"
-                className="bg-surface-alt text-text-secondary px-4 py-2 rounded-lg text-sm hover:bg-surface-hover"
-              >
-                + Set
-              </Link>
-              <Link
-                href="/exercises/new"
-                className="bg-surface-alt text-text-secondary px-4 py-2 rounded-lg text-sm hover:bg-surface-hover"
-              >
-                + Ejercicio
               </Link>
               <UserMenu user={userMenu} />
             </div>
           </div>
         </nav>
 
-        <main className="max-w-4xl mx-auto px-4 py-6 sm:px-6 sm:py-8">
+        <main className="max-w-4xl mx-auto px-4 py-6 sm:px-6 sm:py-8 font-sans">
           {children}
         </main>
 
         {/* Mobile bottom nav */}
-        <nav className="sm:hidden fixed bottom-0 inset-x-0 bg-surface border-t border-border z-40">
-          <div className="flex justify-around items-center h-20">
+        <nav className="sm:hidden fixed bottom-6 inset-x-4 h-16 bg-surface/80 backdrop-blur-xl border border-white/10 rounded-2xl z-40 shadow-2xl overflow-hidden">
+          <div className="flex justify-around items-center h-full">
             <Link
               href="/"
-              className="flex flex-col items-center gap-0.5 text-text-muted hover:text-text"
+              className="flex flex-col items-center gap-0.5 text-text-muted hover:text-text transition-colors"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -89,7 +95,7 @@ export default async function RootLayout({
                   clipRule="evenodd"
                 />
               </svg>
-              <span className="text-[10px] font-medium">Inicio</span>
+              <span className="text-[10px] font-medium font-sans">Inicio</span>
             </Link>
             <UserMenu user={userMenu} popoverDirection="up" />
             <MobileNavLinks />
@@ -99,3 +105,4 @@ export default async function RootLayout({
     </html>
   );
 }
+
