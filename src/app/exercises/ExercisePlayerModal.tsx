@@ -177,9 +177,9 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
             </div>
           )}
 
-          {images.length > 0 && images[currentImageIndex].description && (
+          {exercise.description && (
             <div className="absolute bottom-3 left-3 right-3 bg-black/60 text-white text-sm px-3 py-2 rounded-lg text-center">
-              {images[currentImageIndex].description}
+              {exercise.description}
             </div>
           )}
 
