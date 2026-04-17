@@ -168,7 +168,7 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
           {images.length > 0 ? (
             <img
               src={images[currentImageIndex].url}
-              alt={`${exercise.title} step ${currentImageIndex + 1}`}
+              alt={`${images[currentImageIndex].description || "Exercise image"}`}
               className="w-full h-full object-contain"
             />
           ) : (
