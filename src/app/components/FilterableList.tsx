@@ -38,6 +38,7 @@ export default function FilterableList({
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
   const debounceRef = useRef<ReturnType<typeof setTimeout>>(null);
+  const isTypingRef = useRef(false);
   const [inputValue, setInputValue] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -46,9 +47,19 @@ export default function FilterableList({
   const totalPages = Math.ceil(total / PAGE_SIZE);
   const query = searchParams.get("q") ?? "";
 
-  // Sync input with URL query on mount / navigation
+  // Cleanup debounce timer on unmount
   useEffect(() => {
-    setInputValue(query);
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
+  }, []);
+
+  // Sync input with URL query on mount / navigation,
+  // but skip while user is actively typing to avoid overwriting.
+  useEffect(() => {
+    if (!isTypingRef.current) {
+      setInputValue(query);
+    }
   }, [query]);
 
   const hasTags = availableTags.length > 0;
@@ -79,11 +90,13 @@ export default function FilterableList({
 
   function handleInputChange(value: string) {
     setInputValue(value);
+    isTypingRef.current = true;
     if (hasTags) setDropdownOpen(true);
     if (debounceRef.current) clearTimeout(debounceRef.current);
     debounceRef.current = setTimeout(() => {
+      isTypingRef.current = false;
       navigate({ q: value, page: "" }, { replace: true });
-    }, 400);
+    }, 350);
   }
 
   function addTag(tag: string) {
@@ -166,7 +179,7 @@ export default function FilterableList({
 
         {/* Tag suggestions dropdown */}
         {dropdownOpen && suggestedTags.length > 0 && (
-          <ul className="absolute z-10 mt-1 w-full max-h-48 overflow-y-auto rounded-lg border border-border bg-surface shadow-lg">
+          <ul className="absolute left-0 top-full z-20 mt-1 w-full max-h-48 overflow-y-auto rounded-lg border border-border bg-surface shadow-lg">
             <li className="px-3 py-1 text-[11px] font-semibold uppercase tracking-wider text-text-muted select-none">
               Etiquetas
             </li>
