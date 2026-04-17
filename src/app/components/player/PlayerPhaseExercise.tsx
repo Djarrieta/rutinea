@@ -33,7 +33,7 @@ export default function PlayerPhaseExercise({
     <>
       {images.length > 0 ? (
         <img
-          key={imageKey}
+          key={currentImageIndex}
           src={images[currentImageIndex].url}
           alt={images[currentImageIndex].description || "Exercise image"}
           className="w-full h-full object-contain player-image-fade"

@@ -1,151 +1,189 @@
 {
   "routine": {
     "name": "Abdominales en 8 Minutos",
-    "description": "Rutina clásica enfocada en fortalecer el core, basada en el sistema de entrenamiento de Passion4Profession.",
+    "description": "Rutina clásica de abdominales de Passion4Profession. 8 ejercicios intensos con descansos de 30 segundos para trabajar todo el core.",
     "rest_secs": 30
   },
   "sets": [
-      {
-        "name": "Circuito Principal",
-        "description": "Ejecución continua de ejercicios abdominales.",
-        "rounds": 1,
-        "exercises": [
-          {
-            "title": "Crunch",
-            "description": "Acostado boca arriba, eleva el torso contrayendo el abdomen sin tirar del cuello.",
-            "images": [
-              {
-                "url": "https://upload.wikimedia.org/wikipedia/commons/e/ef/Crunches-2.png",
-                "description": "abdominal crunch"
-              }
-            ],
-            "tags": [
-              "abdominales",
-              "core"
-            ],
-            "repetitions": 30,
-            "duration_secs": 2,
-            "preparation_secs": 3
-          },
-          {
-            "title": "Crunch con flexión de piernas",
-            "description": "Realiza un crunch manteniendo las piernas elevadas con las rodillas flexionadas a 90 grados.",
-            "images": [
-              {
-                "url": "https://upload.wikimedia.org/wikipedia/commons/7/79/Crunches-with-legs-on-stability-ball-2.png",
-                "description": "crunch con piernas a 90 grados"
-              }
-            ],
-            "tags": [
-              "abdominales",
-              "core"
-            ],
-            "repetitions": 30,
-            "duration_secs": 2,
-            "preparation_secs": 3
-          },
-          {
-            "title": "Crunch cruzado",
-            "description": "Lleva el codo hacia la rodilla contraria alternando lados.",
-            "images": [
-              {
-                "url": "https://upload.wikimedia.org/wikipedia/commons/7/7f/Cross-body-crunch-2.png",
-                "description": "crunch cruzado"
-              }
-            ],
-            "tags": [
-              "oblicuos",
-              "core"
-            ],
-            "repetitions": 30,
-            "duration_secs": 2,
-            "preparation_secs": 3
-          },
-          {
-            "title": "Elevación de piernas",
-            "description": "Acostado, eleva las piernas rectas hasta formar un ángulo de 90 grados y baja controlado.",
-            "images": [
-              {
-                "url": "https://upload.wikimedia.org/wikipedia/commons/4/41/Leg-raises-1.png",
-                "description": "elevación de piernas"
-              }
-            ],
-            "tags": [
-              "abdominales inferiores",
-              "core"
-            ],
-            "repetitions": 20,
-            "duration_secs": 2,
-            "preparation_secs": 3
-          },
-          {
-            "title": "Crunch tocando los talones",
-            "description": "Oscila lateralmente para tocar tus talones manteniendo los hombros ligeramente elevados.",
-            "images": [
-              {
-                "url": "https://upload.wikimedia.org/wikipedia/commons/5/5b/Cross-body-crunch-1.png",
-                "description": "toque de talones"
-              }
-            ],
-            "tags": [
-              "oblicuos",
-              "lateral"
-            ],
-            "repetitions": 30,
-            "duration_secs": 2,
-            "preparation_secs": 3
-          },
-          {
-            "title": "Crunch manos a los pies",
-            "description": "Con las piernas elevadas, intenta alcanzar las puntas de tus pies con las manos.",
-            "images": [
-              {
-                "url": "https://upload.wikimedia.org/wikipedia/commons/e/e9/Bent-knee-hip-raise-2.png",
-                "description": "toe touchers"
-              }
-            ],
-            "tags": [
-              "abdominales superiores",
-              "core"
-            ],
-            "repetitions": 30,
-            "duration_secs": 2,
-            "preparation_secs": 3
-          },
-          {
-            "title": "Tijeras",
-            "description": "Intercala el movimiento de piernas extendidas arriba y abajo sin tocar el suelo.",
-            "images": [
-              {
-                "url": "https://upload.wikimedia.org/wikipedia/commons/9/99/Flutter-kicks-1.png",
-                "description": "tijeras abdominales"
-              }
-            ],
-            "tags": [
-              "abdominales inferiores",
-              "resistencia"
-            ],
-            "repetitions": 30,
-            "duration_secs": 2,
-            "preparation_secs": 3
-          },
-          {
-            "title": "Double Crunch",
-            "description": "Flexiona el torso y las rodillas al mismo tiempo para encontrarlos en el centro.",
-            "images": [
-              {
-                "url": "https://upload.wikimedia.org/wikipedia/commons/0/09/Bent-knee-hip-raise-1.png",
-                "description": "double crunch"
-              }
-            ],
-            "tags": [
-              "core completo"
-            ],
-            "repetitions": 20,
-            "duration_secs": 2,
-            "preparation_secs": 3
-          }
-        ]
-      }
-    ]
+    {
+      "name": "Bloque 1",
+      "description": "Crunch básico y crunch cruzado para activar recto abdominal y oblicuos.",
+      "rounds": 1,
+      "exercises": [
+        {
+          "title": "Crunch",
+          "description": "Acostado boca arriba con rodillas flexionadas, eleva el torso contrayendo el abdomen.",
+          "images": [
+            {
+              "url": "https://brfvalhqyhjefrahvozp.supabase.co/storage/v1/object/public/exercise-images/abs8-crunch-down.jpg",
+              "description": "Posición inicial acostado"
+            },
+            {
+              "url": "https://brfvalhqyhjefrahvozp.supabase.co/storage/v1/object/public/exercise-images/abs8-crunch-up.jpg",
+              "description": "Torso elevado"
+            }
+          ],
+          "tags": ["abdominales", "core"],
+          "repetitions": 30,
+          "duration_secs": 2,
+          "preparation_secs": 3
+        },
+        {
+          "title": "Crunch cruzado",
+          "description": "Acostado con manos detrás de la nuca, lleva el codo hacia la rodilla opuesta alternando lados.",
+          "images": [
+            {
+              "url": "https://brfvalhqyhjefrahvozp.supabase.co/storage/v1/object/public/exercise-images/abs8-cross-crunch-up.jpg",
+              "description": "Codo hacia rodilla opuesta"
+            },
+            {
+              "url": "https://brfvalhqyhjefrahvozp.supabase.co/storage/v1/object/public/exercise-images/abs8-cross-crunch-down.jpg",
+              "description": "Posición inicial"
+            }
+          ],
+          "tags": ["abdominales", "core"],
+          "repetitions": 30,
+          "duration_secs": 2,
+          "preparation_secs": 3
+        }
+      ]
+    },
+    {
+      "name": "Bloque 2",
+      "description": "Toque de talones y elevación de piernas para abdominales inferiores y oblicuos.",
+      "rounds": 1,
+      "exercises": [
+        {
+          "title": "Toque de talones",
+          "description": "Acostado con rodillas flexionadas, lleva cada mano al talón del mismo lado alternando.",
+          "images": [
+            {
+              "url": "https://brfvalhqyhjefrahvozp.supabase.co/storage/v1/object/public/exercise-images/abs8-heel-touch-down.jpg",
+              "description": "Posición inicial"
+            },
+            {
+              "url": "https://brfvalhqyhjefrahvozp.supabase.co/storage/v1/object/public/exercise-images/abs8-heel-touch-up.jpg",
+              "description": "Mano tocando talón"
+            }
+          ],
+          "tags": ["abdominales", "core"],
+          "repetitions": 30,
+          "duration_secs": 2,
+          "preparation_secs": 3
+        },
+        {
+          "title": "Elevación de piernas",
+          "description": "Acostado boca arriba con piernas extendidas, eleva ambas piernas juntas hasta la vertical y baja con control.",
+          "images": [
+            {
+              "url": "https://brfvalhqyhjefrahvozp.supabase.co/storage/v1/object/public/exercise-images/abs8-leg-raise-flat.jpg",
+              "description": "Piernas extendidas en el suelo"
+            },
+            {
+              "url": "https://brfvalhqyhjefrahvozp.supabase.co/storage/v1/object/public/exercise-images/abs8-leg-raise-up.jpg",
+              "description": "Piernas elevadas"
+            },
+            {
+              "url": "https://brfvalhqyhjefrahvozp.supabase.co/storage/v1/object/public/exercise-images/abs8-leg-raise-down.jpg",
+              "description": "Bajando piernas con control"
+            },
+            {
+              "url": "https://brfvalhqyhjefrahvozp.supabase.co/storage/v1/object/public/exercise-images/abs8-leg-raise-start.jpg",
+              "description": "Posición de inicio"
+            }
+          ],
+          "tags": ["abdominales", "core"],
+          "repetitions": 30,
+          "duration_secs": 2,
+          "preparation_secs": 3
+        }
+      ]
+    },
+    {
+      "name": "Bloque 3",
+      "description": "Crunch inverso y crunch vertical para abdominales inferiores y superiores.",
+      "rounds": 1,
+      "exercises": [
+        {
+          "title": "Crunch inverso",
+          "description": "Acostado con rodillas flexionadas, contrae el abdomen llevando las rodillas hacia el pecho con un movimiento corto.",
+          "images": [
+            {
+              "url": "https://brfvalhqyhjefrahvozp.supabase.co/storage/v1/object/public/exercise-images/abs8-reverse-crunch-down.jpg",
+              "description": "Posición inicial"
+            },
+            {
+              "url": "https://brfvalhqyhjefrahvozp.supabase.co/storage/v1/object/public/exercise-images/abs8-reverse-crunch-up.jpg",
+              "description": "Rodillas hacia el pecho"
+            }
+          ],
+          "tags": ["abdominales", "core"],
+          "repetitions": 30,
+          "duration_secs": 2,
+          "preparation_secs": 3
+        },
+        {
+          "title": "Crunch vertical",
+          "description": "Acostado con piernas extendidas hacia arriba, eleva el torso intentando tocar los pies con las manos.",
+          "images": [
+            {
+              "url": "https://brfvalhqyhjefrahvozp.supabase.co/storage/v1/object/public/exercise-images/abs8-vertical-crunch-down.jpg",
+              "description": "Acostado con piernas arriba"
+            },
+            {
+              "url": "https://brfvalhqyhjefrahvozp.supabase.co/storage/v1/object/public/exercise-images/abs8-vertical-crunch-up.jpg",
+              "description": "Manos hacia los pies"
+            }
+          ],
+          "tags": ["abdominales", "core"],
+          "repetitions": 30,
+          "duration_secs": 2,
+          "preparation_secs": 3
+        }
+      ]
+    },
+    {
+      "name": "Bloque 4",
+      "description": "Crunch oblicuo y push through para finalizar con oblicuos y recto abdominal.",
+      "rounds": 1,
+      "exercises": [
+        {
+          "title": "Crunch oblicuo",
+          "description": "Acostado con rodillas flexionadas, eleva el torso lateralmente contrayendo los oblicuos.",
+          "images": [
+            {
+              "url": "https://brfvalhqyhjefrahvozp.supabase.co/storage/v1/object/public/exercise-images/abs8-oblique-crunch-down.jpg",
+              "description": "Posición inicial"
+            },
+            {
+              "url": "https://brfvalhqyhjefrahvozp.supabase.co/storage/v1/object/public/exercise-images/abs8-oblique-crunch-up.jpg",
+              "description": "Torso elevado lateralmente"
+            }
+          ],
+          "tags": ["abdominales", "core"],
+          "repetitions": 30,
+          "duration_secs": 2,
+          "preparation_secs": 3
+        },
+        {
+          "title": "Push through",
+          "description": "Acostado con rodillas flexionadas, eleva el torso empujando las manos entre las piernas hacia adelante.",
+          "images": [
+            {
+              "url": "https://brfvalhqyhjefrahvozp.supabase.co/storage/v1/object/public/exercise-images/abs8-push-through-down.jpg",
+              "description": "Posición inicial acostado"
+            },
+            {
+              "url": "https://brfvalhqyhjefrahvozp.supabase.co/storage/v1/object/public/exercise-images/abs8-push-through-up.jpg",
+              "description": "Empujando manos entre piernas"
+            }
+          ],
+          "tags": ["abdominales", "core"],
+          "repetitions": 30,
+          "duration_secs": 2,
+          "preparation_secs": 3
+        }
+      ]
+    }
+  ]
 }
