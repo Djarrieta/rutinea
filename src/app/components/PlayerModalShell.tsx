@@ -42,7 +42,7 @@ export default function PlayerModalShell({
             <h2 className="font-semibold text-sm truncate">{title}</h2>
             <button
               onClick={onClose}
-              className="text-text-faint hover:text-text-secondary text-xl leading-none ml-2 p-1"
+              className="text-text-muted hover:text-text transition-colors text-xl leading-none ml-2 p-1"
             >
               &times;
             </button>

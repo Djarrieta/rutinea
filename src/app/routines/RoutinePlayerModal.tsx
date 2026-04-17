@@ -5,6 +5,14 @@ import type { RoutineWithSets, Exercise } from "@/types";
 import { useRepSounds } from "@/lib/hooks/useRepSounds";
 import PlayerModalShell from "@/app/components/PlayerModalShell";
 import PlayerControls from "@/app/components/PlayerControls";
+import {
+  PlayerPhasePreparation,
+  PlayerPhaseExercise,
+  PlayerPhaseFinished,
+  PlayerPhaseRest,
+  PlayerMiniTimer,
+  formatTime,
+} from "@/app/components/player";
 import { properCase } from "@/lib/format";
 
 type Phase = "preparation" | "exercise" | "rest" | "finished";
@@ -361,14 +369,27 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
       header={headerContent}
       controls={
         <PlayerControls
-          statusText={
-            phase === "preparation"
-              ? `Preparación ${Math.max(0, Math.ceil(exercisePreparationSecs - elapsed))}s`
-              : phase === "exercise"
-                ? `${exerciseRepetitions > 1 ? `Rep ${currentRep}/${exerciseRepetitions} · ` : ""}${Math.ceil(elapsed)}s / ${exerciseDuration}s`
-                : phase === "rest"
-                  ? `Descanso ${Math.ceil(elapsed)}s / ${routine.rest_secs}s`
-                  : "Finalizada"
+          statusContent={
+            phase === "preparation" ? (
+              <span className="text-xs text-primary-500 font-medium tabular-nums">
+                Preparación
+              </span>
+            ) : phase === "exercise" ? (
+              <PlayerMiniTimer
+                elapsed={elapsed}
+                totalDuration={exerciseTotalDuration}
+                currentRep={currentRep}
+                repetitions={exerciseRepetitions}
+              />
+            ) : phase === "rest" ? (
+              <span className="text-xs text-accent-500 font-medium tabular-nums">
+                Descanso · {Math.max(0, Math.ceil(routine.rest_secs - elapsed))}s
+              </span>
+            ) : (
+              <span className="text-xs text-success-400 font-medium">
+                Completada
+              </span>
+            )
           }
           finished={phase === "finished"}
           isPlaying={isPlaying}
@@ -378,116 +399,43 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
       }
     >
       {phase === "preparation" && currentExercise && (
-        <div className="flex flex-col items-center justify-center h-full gap-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-20 h-20 text-primary-500 animate-pulse"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-            />
-          </svg>
-          <p className="text-lg font-semibold text-text-secondary">
-            ¡Prepárate!
-          </p>
-          <p className="text-sm text-text-faint">
-            {properCase(currentExercise.title)}
-          </p>
-          <p className="text-4xl font-bold tabular-nums text-primary-500">
-            {Math.max(0, Math.ceil(exercisePreparationSecs - elapsed))}s
-          </p>
-        </div>
+        <PlayerPhasePreparation
+          elapsed={elapsed}
+          totalSecs={exercisePreparationSecs}
+          exerciseTitle={properCase(currentExercise.title)}
+        />
       )}
 
       {phase === "exercise" && currentExercise && (
-        <>
-          {images.length > 0 ? (
-            <img
-              src={images[imageIndex].url}
-              alt={`${currentExercise.title} step ${imageIndex + 1}`}
-              className="w-full h-full object-contain"
-            />
-          ) : (
-            <div className="flex items-center justify-center h-full text-text-faint">
-              Sin imágenes
-            </div>
-          )}
-
-          {images.length > 0 && images[imageIndex].description && (
-            <div className="absolute bottom-3 left-3 right-3 bg-black/60 text-white text-sm px-3 py-2 rounded-lg text-center">
-              {images[imageIndex].description}
-            </div>
-          )}
-
-          {images.length > 1 && (
-            <span className="absolute top-3 right-3 bg-black/60 text-white text-xs px-2 py-1 rounded-full">
-              {imageIndex + 1} / {images.length}
-            </span>
-          )}
-        </>
+        <PlayerPhaseExercise
+          images={images}
+          currentImageIndex={images.length > 0 ? imageIndex % images.length : 0}
+          imageKey={imageIndex}
+          currentRep={currentRep}
+          repetitions={exerciseRepetitions}
+          description={images.length > 0 ? images[imageIndex % images.length]?.description : undefined}
+          isPlaying={isPlaying}
+        />
       )}
 
       {phase === "rest" && (
-        <div className="flex flex-col items-center justify-center h-full gap-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-20 h-20 text-primary-500"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-            />
-          </svg>
-          <p className="text-3xl font-bold tabular-nums text-text-secondary">
-            {Math.max(0, Math.ceil(routine.rest_secs - elapsed))}s
-          </p>
-          {currentStep?.type === "rest" && currentStep.nextSetName && (
-            <div className="text-center space-y-1">
-              <p className="text-sm text-text-faint">Siguiente set</p>
-              <p className="text-sm font-medium text-text-secondary">
-                {currentStep.nextSetName}
-                {currentStep.nextRoundLabel && (
-                  <span className="ml-1 text-accent-500 text-xs">
-                    Ronda {currentStep.nextRoundLabel}
-                  </span>
-                )}
-              </p>
-            </div>
-          )}
-        </div>
+        <PlayerPhaseRest
+          elapsed={elapsed}
+          totalSecs={routine.rest_secs}
+          nextSetName={currentStep?.type === "rest" ? currentStep.nextSetName : undefined}
+          nextRoundLabel={currentStep?.type === "rest" ? currentStep.nextRoundLabel : undefined}
+        />
       )}
 
       {phase === "finished" && (
-        <div className="flex flex-col items-center justify-center h-full gap-3">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-16 h-16 text-success-500"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-            />
-          </svg>
-          <p className="text-lg font-semibold text-text-secondary">
-            ¡Rutina completada!
-          </p>
-        </div>
+        <PlayerPhaseFinished
+          message="¡Rutina completada!"
+          stats={[
+            { value: formatTime(totalDuration), label: "Tiempo" },
+            { value: String(totalExercises), label: "Ejercicios" },
+            { value: String(sortedSets.length), label: "Sets" },
+          ]}
+        />
       )}
     </PlayerModalShell>
   );

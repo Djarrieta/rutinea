@@ -5,6 +5,13 @@ import type { Exercise } from "@/types";
 import { useRepSounds } from "@/lib/hooks/useRepSounds";
 import PlayerModalShell from "@/app/components/PlayerModalShell";
 import PlayerControls from "@/app/components/PlayerControls";
+import {
+  PlayerPhasePreparation,
+  PlayerPhaseExercise,
+  PlayerPhaseFinished,
+  PlayerMiniTimer,
+  formatTime,
+} from "@/app/components/player";
 import { properCase } from "@/lib/format";
 
 interface Props {
@@ -28,7 +35,8 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
   const prevRepRef = useRef(1);
   const prevTickSecRef = useRef(-1);
 
-  const currentImageIndex = images.length > 0 ? currentSlot % images.length : 0;
+  const currentImageIndex =
+    images.length > 0 ? currentSlot % images.length : 0;
   const currentRep =
     images.length > 0 ? Math.floor(currentSlot / images.length) + 1 : 1;
 
@@ -116,8 +124,24 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
       : phase === "exercise"
         ? preparation_secs + elapsed
         : overallTotal;
-  const progress = overallTotal > 0 ? (overallElapsed / overallTotal) * 100 : 0;
+  const progress =
+    overallTotal > 0 ? (overallElapsed / overallTotal) * 100 : 0;
   const finished = phase === "finished";
+
+  const statusContent = phase === "preparation" ? (
+    <span className="text-xs text-primary-500 font-medium tabular-nums">
+      Preparación
+    </span>
+  ) : phase === "exercise" ? (
+    <PlayerMiniTimer
+      elapsed={elapsed}
+      totalDuration={totalDuration}
+      currentRep={currentRep}
+      repetitions={repetitions}
+    />
+  ) : (
+    <span className="text-xs text-success-400 font-medium">Completado</span>
+  );
 
   return (
     <PlayerModalShell
@@ -126,11 +150,7 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
       progress={progress}
       controls={
         <PlayerControls
-          statusText={
-            phase === "preparation"
-              ? `Preparación ${Math.max(0, Math.ceil(preparation_secs - elapsed))}s`
-              : `${repetitions > 1 ? `Rep ${currentRep}/${repetitions} \u00b7 ` : ""}${Math.ceil(elapsed)}s / ${totalDuration}s`
-          }
+          statusContent={statusContent}
           finished={finished}
           isPlaying={isPlaying}
           onRestart={restart}
@@ -139,79 +159,37 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
       }
     >
       {phase === "preparation" && (
-        <div className="flex flex-col items-center justify-center h-full gap-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-20 h-20 text-primary-500 animate-pulse"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-            />
-          </svg>
-          <p className="text-lg font-semibold text-text-secondary">
-            ¡Prepárate!
-          </p>
-          <p className="text-4xl font-bold tabular-nums text-primary-500">
-            {Math.max(0, Math.ceil(preparation_secs - elapsed))}s
-          </p>
-        </div>
+        <PlayerPhasePreparation
+          elapsed={elapsed}
+          totalSecs={preparation_secs}
+        />
       )}
 
       {phase === "exercise" && (
-        <>
-          {images.length > 0 ? (
-            <img
-              src={images[currentImageIndex].url}
-              alt={`${images[currentImageIndex].description || "Exercise image"}`}
-              className="w-full h-full object-contain"
-            />
-          ) : (
-            <div className="flex items-center justify-center h-full text-text-faint">
-              Sin imágenes
-            </div>
-          )}
-
-          {exercise.description && (
-            <div className="absolute bottom-3 left-3 right-3 bg-black/60 text-white text-sm px-3 py-2 rounded-lg text-center">
-              {exercise.description}
-            </div>
-          )}
-
-          {images.length > 0 && (
-            <span className="absolute top-3 right-3 bg-black/60 text-white text-xs px-2 py-1 rounded-full">
-              {currentImageIndex + 1}/{images.length}
-              {repetitions > 1 ? ` · rep ${currentRep}/${repetitions}` : ""}
-            </span>
-          )}
-        </>
+        <PlayerPhaseExercise
+          images={images}
+          currentImageIndex={currentImageIndex}
+          imageKey={currentSlot}
+          currentRep={currentRep}
+          repetitions={repetitions}
+          description={exercise.description}
+          isPlaying={isPlaying}
+        />
       )}
 
       {finished && (
-        <div className="flex flex-col items-center justify-center h-full gap-3">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-16 h-16 text-success-500"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-            />
-          </svg>
-          <p className="text-lg font-semibold text-text-secondary">
-            ¡Ejercicio completado!
-          </p>
-        </div>
+        <PlayerPhaseFinished
+          message="¡Ejercicio completado!"
+          stats={[
+            { value: formatTime(totalDuration), label: "Tiempo" },
+            ...(repetitions > 1
+              ? [{ value: String(repetitions), label: "Reps" }]
+              : []),
+            ...(images.length > 1
+              ? [{ value: String(images.length), label: "Poses" }]
+              : []),
+          ]}
+        />
       )}
     </PlayerModalShell>
   );

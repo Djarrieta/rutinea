@@ -5,6 +5,13 @@ import type { SetWithExercises, Exercise } from "@/types";
 import { useRepSounds } from "@/lib/hooks/useRepSounds";
 import PlayerModalShell from "@/app/components/PlayerModalShell";
 import PlayerControls from "@/app/components/PlayerControls";
+import {
+  PlayerPhasePreparation,
+  PlayerPhaseExercise,
+  PlayerPhaseFinished,
+  PlayerMiniTimer,
+  formatTime,
+} from "@/app/components/player";
 import { properCase } from "@/lib/format";
 
 interface Props {
@@ -198,12 +205,24 @@ export default function SetPlayerModal({ set, onClose }: Props) {
       header={headerContent}
       controls={
         <PlayerControls
-          statusText={
-            finished
-              ? "Finalizado"
-              : phase === "preparation"
-                ? `Preparación ${Math.max(0, Math.ceil(preparationSecs - elapsed))}s — ${exerciseIndex + 1}/${totalExercises}`
-                : `${repetitions > 1 ? `Rep ${currentRep}/${repetitions} · ` : ""}${Math.ceil(elapsed)}s / ${exerciseTotalDuration}s — ${exerciseIndex + 1}/${totalExercises}`
+          statusContent={
+            finished ? (
+              <span className="text-xs text-success-400 font-medium">
+                Completado
+              </span>
+            ) : phase === "preparation" ? (
+              <span className="text-xs text-primary-500 font-medium tabular-nums">
+                Preparación · {exerciseIndex + 1}/{totalExercises}
+              </span>
+            ) : (
+              <PlayerMiniTimer
+                elapsed={elapsed}
+                totalDuration={exerciseTotalDuration}
+                currentRep={currentRep}
+                repetitions={repetitions}
+                subtitle={`${exerciseIndex + 1}/${totalExercises} ejercicios`}
+              />
+            )
           }
           finished={finished}
           isPlaying={isPlaying}
@@ -213,82 +232,33 @@ export default function SetPlayerModal({ set, onClose }: Props) {
       }
     >
       {phase === "preparation" && currentExercise && (
-        <div className="flex flex-col items-center justify-center h-full gap-4">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-20 h-20 text-primary-500 animate-pulse"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-            />
-          </svg>
-          <p className="text-lg font-semibold text-text-secondary">
-            ¡Prepárate!
-          </p>
-          <p className="text-sm text-text-faint">
-            {properCase(currentExercise.title)}
-          </p>
-          <p className="text-4xl font-bold tabular-nums text-primary-500">
-            {Math.max(0, Math.ceil(preparationSecs - elapsed))}s
-          </p>
-        </div>
+        <PlayerPhasePreparation
+          elapsed={elapsed}
+          totalSecs={preparationSecs}
+          exerciseTitle={properCase(currentExercise.title)}
+        />
       )}
 
       {phase === "exercise" && currentExercise && (
-        <>
-          {images.length > 0 ? (
-            <img
-              src={images[imageIndex].url}
-              alt={`${currentExercise.title} step ${imageIndex + 1}`}
-              className="w-full h-full object-contain"
-            />
-          ) : (
-            <div className="flex items-center justify-center h-full text-text-faint">
-              Sin imágenes
-            </div>
-          )}
-
-          {images.length > 0 && images[imageIndex].description && (
-            <div className="absolute bottom-3 left-3 right-3 bg-black/60 text-white text-sm px-3 py-2 rounded-lg text-center">
-              {images[imageIndex].description}
-            </div>
-          )}
-
-          {images.length > 1 && (
-            <span className="absolute top-3 right-3 bg-black/60 text-white text-xs px-2 py-1 rounded-full">
-              {imageIndex + 1}/{images.length}
-              {repetitions > 1 ? ` · rep ${currentRep}/${repetitions}` : ""}
-            </span>
-          )}
-        </>
+        <PlayerPhaseExercise
+          images={images}
+          currentImageIndex={imageIndex}
+          imageKey={currentSlot}
+          currentRep={currentRep}
+          repetitions={repetitions}
+          description={images.length > 0 ? images[imageIndex]?.description : undefined}
+          isPlaying={isPlaying}
+        />
       )}
 
       {finished && (
-        <div className="flex flex-col items-center justify-center h-full gap-3">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-16 h-16 text-success-500"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
-            />
-          </svg>
-          <p className="text-lg font-semibold text-text-secondary">
-            ¡Set completado!
-          </p>
-        </div>
+        <PlayerPhaseFinished
+          message="¡Set completado!"
+          stats={[
+            { value: formatTime(totalDuration), label: "Tiempo" },
+            { value: String(totalExercises), label: "Ejercicios" },
+          ]}
+        />
       )}
     </PlayerModalShell>
   );

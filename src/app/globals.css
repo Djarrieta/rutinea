@@ -92,3 +92,54 @@
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+
+/* Player animations */
+@keyframes countdown-ring {
+  from { stroke-dashoffset: 0; }
+  to { stroke-dashoffset: 283; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.15); }
+  50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.35); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes tick-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+.player-scale-in {
+  animation: scale-in 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.player-slide-up {
+  animation: slide-up 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.player-image-fade {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.player-countdown-ring {
+  animation: countdown-ring var(--countdown-duration) linear forwards;
+}
+
+.player-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.player-tick-pulse {
+  animation: tick-pulse 0.3s ease;
+}
