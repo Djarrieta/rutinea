@@ -221,6 +221,7 @@ function buildRoutineBundle(data: RoutineJson): RoutineBundleJson {
 
 const data: RoutineJson = JSON.parse(readFileSync(inputPath, "utf-8"));
 const framesDirs = new Set<string>();
+const uploadedImages = new Map<string, string>();
 
 for (const set of data.sets) {
 	for (const exercise of set.exercises) {
@@ -230,6 +231,15 @@ for (const set of data.sets) {
 			// Already has a URL — keep as-is
 			if (img.url && !img.file) {
 				newImages.push({ url: img.url, description: img.description });
+				continue;
+			}
+
+			if (img.file && uploadedImages.has(img.file)) {
+				const publicUrl = uploadedImages.get(img.file)!;
+				console.log(
+					`☁  [${exercise.title}] Reusing uploaded ${basename(img.file)}`,
+				);
+				newImages.push({ url: publicUrl, description: img.description });
 				continue;
 			}
 
@@ -244,10 +254,11 @@ for (const set of data.sets) {
 				process.exit(1);
 			}
 
-			const remoteName = basename(img.file);
+			const remoteName = `${Date.now()}-${basename(img.file)}`;
 			console.log(`☁  [${exercise.title}] Uploading ${remoteName}`);
 			const publicUrl = await uploadToSupabase(img.file, remoteName);
 
+			uploadedImages.set(img.file, publicUrl);
 			framesDirs.add(dirname(img.file));
 			newImages.push({ url: publicUrl, description: img.description });
 		}

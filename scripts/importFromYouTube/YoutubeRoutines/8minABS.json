@@ -7,63 +7,63 @@
 		{
 			"exercises": [
 				{
-					"title": "Foot to Foot Crunch",
-					"description": "Acostado boca arriba, con las rodillas dobladas y los pies apoyados en el suelo. Toca los tobillos con las manos alternando lado a lado.",
+					"title": "Alternating Ankle Touches",
+					"description": "Acostado boca arriba, con las rodillas dobladas y los pies apoyados en el suelo. Eleva el torso y toca los tobillos con las manos alternando lado a lado.",
 					"images": [
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
 							"timestamp": "0:05",
 							"file": "",
-							"description": "Foot to Foot Crunch Starting position"
+							"description": "Alternating Ankle Touches Starting position"
 						},
 
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
 							"timestamp": "0:06.5",
 							"file": "",
-							"description": "Foot to Foot Crunch right touch"
+							"description": "Alternating Ankle Touches right touch"
 						},
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
 							"timestamp": "0:05",
 							"file": "",
-							"description": "Foot to Foot Crunch Starting position"
+							"description": "Alternating Ankle Touches Starting position"
 						},
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
 							"timestamp": "0:08",
 							"file": "",
-							"description": "Foot to Foot Crunch left touch"
+							"description": "Alternating Ankle Touches left touch"
 						}
 					]
 				},
 				{
-					"title": "Alternated Curls",
+					"title": "Bicycle Crunches",
 					"description": "Acostado boca arriba, con las rodillas dobladas y los pies apoyados en el suelo. Eleva el torso y toca la rodilla derecha con el codo izquierdo, luego vuelve a la posición inicial y repite del otro lado.",
 					"images": [
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
 							"timestamp": "0:54",
 							"file": "",
-							"description": "Alternated Curls Starting position"
+							"description": "Bicycle Crunches Starting position"
 						},
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
 							"timestamp": "0:55",
 							"file": "",
-							"description": "Alternated Curls End position"
+							"description": "Bicycle Crunches End position"
 						},
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
 							"timestamp": "0:54",
 							"file": "",
-							"description": "Alternated Curls Starting position"
+							"description": "Bicycle Crunches  Starting position"
 						},
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
 							"timestamp": "0:56.5",
 							"file": "",
-							"description": "Alternated Curls Middle position"
+							"description": "Bicycle Crunches Middle position"
 						}
 					]
 				}
@@ -72,50 +72,50 @@
 		{
 			"exercises": [
 				{
-					"title": "Push through",
+					"title": "V-Up",
 					"description": "Acostado boca arriba, con las rodillas dobladas eleva el torso y toca la parte interior de las rodillas con las manos.",
 					"images": [
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
 							"timestamp": "2:18",
 							"file": "",
-							"description": "Push through Starting position"
+							"description": "V-Up Starting position"
 						},
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
 							"timestamp": "2:20",
 							"file": "",
-							"description": "Push through End position"
+							"description": "V-Up End position"
 						}
 					]
 				},
 				{
-					"title": "4 times ABS",
-					"description": "Acostado boca arriba,eleva las piernas alternando.",
+					"title": "Alternating Leg Raises",
+					"description": "Acostado boca arriba, eleva las piernas alternando.",
 					"images": [
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
 							"timestamp": "3:05",
 							"file": "",
-							"description": "4 times ABS Starting position"
+							"description": "Alternating Leg Raises Starting position"
 						},
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
 							"timestamp": "3:05.6",
 							"file": "",
-							"description": "4 times ABS Starting position"
+							"description": "Alternating Leg Raises Starting position"
 						},
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
 							"timestamp": "3:06.2",
 							"file": "",
-							"description": "4 times ABS End position"
+							"description": "Alternating Leg Raises End position"
 						},
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
 							"timestamp": "3:46",
 							"file": "",
-							"description": "4 times ABS End position"
+							"description": "Alternating Leg Raises End position"
 						}
 					]
 				}
@@ -124,38 +124,38 @@
 		{
 			"exercises": [
 				{
-					"title": "Push through up",
+					"title": "Reverse Crunch",
 					"description": "Acostado boca arriba, con las rodillas dobladas eleva el torso y toca la parte superior de las rodillas con las manos.",
 					"images": [
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
 							"timestamp": "4:27",
 							"file": "",
-							"description": "Push through Starting position"
+							"description": "Reverse Crunch Starting position"
 						},
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
 							"timestamp": "4:29",
 							"file": "",
-							"description": "Push through End position"
+							"description": "Reverse Crunch End position"
 						}
 					]
 				},
         {
-					"title": "Push through up",
+					"title": "Reverse Crunch",
 					"description": "Acostado boca arriba, con las rodillas dobladas eleva el torso y toca la parte superior de las rodillas con las manos.",
 					"images": [
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
 							"timestamp": "5:16",
 							"file": "",
-							"description": "Push through Starting position"
+							"description": "Reverse Crunch Starting position"
 						},
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
 							"timestamp": "5:18",
 							"file": "",
-							"description": "Push through End position"
+							"description": "Reverse Crunch End position"
 						}
 					]
 				}
@@ -164,38 +164,38 @@
 		{
 			"exercises": [
 				{
-					"title": "Push through up",
+					"title": "Reverse Crunch",
 					"description": "Acostado boca arriba, con las rodillas dobladas eleva el torso y toca la parte superior de las rodillas con las manos.",
 					"images": [
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
 							"timestamp": "6:43",
 							"file": "",
-							"description": "Push through Starting position"
+							"description": "Reverse Crunch Starting position"
 						},
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
 							"timestamp": "6:44",
 							"file": "",
-							"description": "Push through End position"
+							"description": "Reverse Crunch End position"
 						}
 					]
 				},
         {
-					"title": "Push through up",
-					"description": "Acostado boca arriba, con las rodillas dobladas eleva el torso y toca la parte superior de las rodillas con las manos.",
+					"title": "Double crunch",
+					"description": "Acostado boca arriba, con los pies levantados, logra equilibrio y toca tus pies.",
 					"images": [
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
 							"timestamp": "7:26",
 							"file": "",
-							"description": "Push through Starting position"
+							"description": "Double crunch Starting position"
 						},
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
 							"timestamp": "7:28",
 							"file": "",
-							"description": "Push through End position"
+							"description": "Double crunch End position"
 						}
 					]
 				}
