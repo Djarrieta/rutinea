@@ -171,7 +171,51 @@ async function main() {
 		mkdirSync(FRAMES_DIR, { recursive: true });
 	}
 
-	// Process each image
+	// 1. Collect unique (youtube, timestamp) combinations
+	const uniqueFrameKeys = new Set<string>();
+	const frameKeyToFilePath = new Map<string, string>();
+
+	for (const set of data.sets) {
+		for (const exercise of set.exercises) {
+			for (const img of exercise.images) {
+				if (img.youtube && img.timestamp) {
+					const key = `${img.youtube}|${img.timestamp}`;
+					uniqueFrameKeys.add(key);
+				}
+			}
+		}
+	}
+
+	console.log(`📦 Found ${uniqueFrameKeys.size} unique frames to extract.`);
+
+	// 2. Extract each unique frame once
+	let frameIndex = 0;
+	for (const key of uniqueFrameKeys) {
+		const [youtube, timestamp] = key.split("|");
+		const videoPath = urlToVideoPath.get(youtube);
+		if (!videoPath) {
+			console.warn(`⚠  Skipping frame: video not downloaded for ${youtube}`);
+			continue;
+		}
+
+		// Generate filename based on frame index (ensures unique names)
+		const filename = `frame-${String(frameIndex).padStart(4, "0")}.jpg`;
+		const filePath = join(FRAMES_DIR, filename);
+		frameIndex++;
+
+		try {
+			await extractFrame(videoPath, timestamp, filePath);
+			frameKeyToFilePath.set(key, filePath);
+		} catch (error: unknown) {
+			console.error(
+				`❌ Failed to extract frame at ${timestamp} from ${youtube}:`,
+				error,
+			);
+			// Continue with others
+		}
+	}
+
+	// 3. Now assign frames to images (multiple images can reference the same frame)
 	for (const set of data.sets) {
 		for (const exercise of set.exercises) {
 			for (let i = 0; i < exercise.images.length; i++) {
@@ -183,30 +227,14 @@ async function main() {
 					continue;
 				}
 
-				const videoPath = urlToVideoPath.get(img.youtube);
-				if (!videoPath) {
-					console.warn(
-						`⚠  Skipping image ${i} in ${exercise.title}: video not downloaded`,
-					);
-					continue;
-				}
-
-				// Generate filename
-				const sanitizedTitle = exercise.title
-					.replace(/[^a-zA-Z0-9]/g, "-")
-					.toLowerCase();
-				const filename = `${sanitizedTitle}-${i + 1}.jpg`;
-				const filePath = join(FRAMES_DIR, filename);
-
-				try {
-					await extractFrame(videoPath, img.timestamp, filePath);
+				const key = `${img.youtube}|${img.timestamp}`;
+				const filePath = frameKeyToFilePath.get(key);
+				if (filePath) {
 					img.file = filePath;
-				} catch (error: unknown) {
-					console.error(
-						`❌ Failed to extract frame for ${exercise.title} image ${i + 1}:`,
-						error,
+				} else {
+					console.warn(
+						`⚠  Skipping image ${i} in ${exercise.title}: frame extraction failed`,
 					);
-					// Continue with others
 				}
 			}
 		}

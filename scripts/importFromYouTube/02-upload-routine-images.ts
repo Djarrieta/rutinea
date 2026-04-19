@@ -178,7 +178,9 @@ function buildRoutineBundle(data: RoutineJson): RoutineBundleJson {
 					? data.routine.description
 					: undefined,
 			rest_secs:
-				typeof data.routine.rest_secs === "number" ? data.routine.rest_secs : 0,
+				typeof data.routine.rest_secs === "number"
+					? data.routine.rest_secs
+					: 30,
 		},
 		sets: data.sets.map((set, si) => ({
 			name:
@@ -206,10 +208,10 @@ function buildRoutineBundle(data: RoutineJson): RoutineBundleJson {
 					? ex.tags.filter((tag) => typeof tag === "string")
 					: undefined,
 				preparation_secs:
-					typeof ex.preparation_secs === "number" ? ex.preparation_secs : 0,
+					typeof ex.preparation_secs === "number" ? ex.preparation_secs : 3,
 				duration_secs:
-					typeof ex.duration_secs === "number" ? ex.duration_secs : 0,
-				repetitions: typeof ex.repetitions === "number" ? ex.repetitions : 0,
+					typeof ex.duration_secs === "number" ? ex.duration_secs : 3,
+				repetitions: typeof ex.repetitions === "number" ? ex.repetitions : 10,
 			})),
 		})),
 	};
