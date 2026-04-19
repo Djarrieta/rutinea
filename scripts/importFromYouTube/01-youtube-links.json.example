@@ -1,0 +1,31 @@
+{
+  "_note": "Copy this file to scripts/importFromYouTube/.temp/01-youtube-links.json before running scripts/importFromYouTube/01-extract-frame-from-youtube.ts.",
+  "routine": {
+    "name": "Abs 8 Min",
+    "description": "A short abdominal routine",
+    "rest_secs": 10
+  },
+  "sets": [
+    {
+      "name": "set 1",
+      "description": "Core set",
+      "rounds": 1,
+      "exercises": [
+        {
+          "title": "Crunch",
+          "description": "Basic abdominal crunch exercise",
+          "preparation_secs": 5,
+          "duration_secs": 30,
+          "repetitions": 12,
+          "images": [
+            {
+              "youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
+              "timestamp": "0:05",
+              "description": "Starting position"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

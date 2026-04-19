@@ -2,9 +2,9 @@
 /**
  * Step 1: Extract frames from YouTube videos based on input JSON.
  *
- * Reads scripts/importFromYouTube/01-youtube-links.json and extracts frames
- * to scripts/importFromYouTube/01-extracted-frames/, then generates
- * scripts/importFromYouTube/02-proccessed-frames.json with file paths.
+ * Reads scripts/importFromYouTube/.temp/01-youtube-links.json and extracts frames
+ * to scripts/importFromYouTube/.temp/01-extracted-frames/, then generates
+ * scripts/importFromYouTube/.temp/02-proccessed-frames.json with file paths.
  *
  * Usage:
  *   bun scripts/importFromYouTube/01-extract-frame-from-youtube.ts
@@ -26,9 +26,9 @@ import { join, dirname } from "path";
 
 // ── Config ──────────────────────────────────────────────────────────────────
 
-const INPUT_JSON = "scripts/importFromYouTube/01-youtube-links.json";
-const OUTPUT_JSON = "scripts/importFromYouTube/02-proccessed-frames.json";
-const FRAMES_DIR = "scripts/importFromYouTube/01-extracted-frames";
+const INPUT_JSON = "scripts/importFromYouTube/.temp/01-youtube-links.json";
+const OUTPUT_JSON = "scripts/importFromYouTube/.temp/02-proccessed-frames.json";
+const FRAMES_DIR = "scripts/importFromYouTube/.temp/01-extracted-frames";
 
 // ── Types ───────────────────────────────────────────────────────────────────
 
