@@ -94,7 +94,7 @@ export async function cloneSet(id: string) {
 	const { data: source, error: fetchError } = await supabase
 		.from("sets")
 		.select(
-			"name, description, set_exercises(exercise_id, position, exercises(title, description, images, tags, preparation_secs, duration_secs, repetitions))",
+			"name, description, set_exercises(exercise_id, position, exercise:exercises(title, description, images, tags, preparation_secs, duration_secs, repetitions))",
 		)
 		.eq("id", id)
 		.single();
@@ -108,7 +108,7 @@ export async function cloneSet(id: string) {
 		set_exercises: {
 			exercise_id: string;
 			position: number;
-			exercises: {
+			exercise: {
 				title: string;
 				description: string | null;
 				images: unknown;
@@ -116,7 +116,7 @@ export async function cloneSet(id: string) {
 				preparation_secs: number;
 				duration_secs: number;
 				repetitions: number;
-			}[];
+			};
 		}[];
 	};
 
@@ -138,7 +138,7 @@ export async function cloneSet(id: string) {
 		}[];
 
 		for (const se of set_exercises) {
-			const exerciseData = se.exercises[0];
+			const exerciseData = se.exercise;
 			if (!exerciseData)
 				throw new Error("Exercise relation missing for set clone");
 
@@ -153,6 +153,10 @@ export async function cloneSet(id: string) {
 				.single();
 
 			if (cloneError) throw new Error(cloneError.message);
+			if (!clonedExercise) throw new Error("Failed to clone exercise");
+
+			if (!clone) throw new Error("Failed to clone set");
+
 			rows.push({
 				set_id: clone.id,
 				exercise_id: clonedExercise.id,

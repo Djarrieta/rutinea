@@ -98,7 +98,7 @@ export async function cloneRoutine(id: string) {
 	const { data: source, error: fetchError } = await supabase
 		.from("routines")
 		.select(
-			"name, description, rest_secs, routine_sets(set_id, position, rounds, sets(name, description, set_exercises(exercise_id, position, exercises(title, description, images, tags, preparation_secs, duration_secs, repetitions))))",
+			"name, description, rest_secs, routine_sets(set_id, position, rounds, set:sets(name, description, set_exercises(exercise_id, position, exercise:exercises(title, description, images, tags, preparation_secs, duration_secs, repetitions))))",
 		)
 		.eq("id", id)
 		.single();
@@ -114,13 +114,13 @@ export async function cloneRoutine(id: string) {
 			set_id: string;
 			position: number;
 			rounds: number;
-			sets: {
+			set: {
 				name: string;
 				description: string | null;
 				set_exercises: {
 					exercise_id: string;
 					position: number;
-					exercises: {
+					exercise: {
 						title: string;
 						description: string | null;
 						images: unknown;
@@ -128,9 +128,9 @@ export async function cloneRoutine(id: string) {
 						preparation_secs: number;
 						duration_secs: number;
 						repetitions: number;
-					}[];
+					};
 				}[];
-			}[];
+			};
 		}[];
 	};
 
@@ -157,8 +157,13 @@ export async function cloneRoutine(id: string) {
 		}[] = [];
 
 		for (const rs of routine_sets) {
-			const setData = rs.sets[0];
-			if (!setData) throw new Error("Set relation missing for routine clone");
+			if (!rs.set) {
+				console.warn(
+					`Set ${rs.set_id} missing or invalid for routine clone, skipping`,
+				);
+				continue;
+			}
+			const setData = rs.set;
 
 			// Create new set
 			const { data: clonedSet, error: setError } = await supabase
@@ -182,10 +187,13 @@ export async function cloneRoutine(id: string) {
 				}[];
 
 				for (const se of setData.set_exercises) {
-					const exerciseData = se.exercises[0];
-					if (!exerciseData)
-						throw new Error("Exercise relation missing for routine clone");
-
+					if (!se.exercise) {
+						console.warn(
+							`Exercise ${se.exercise_id} missing or invalid for routine clone, skipping`,
+						);
+						continue;
+					}
+					const exerciseData = se.exercise;
 					const { data: clonedExercise, error: exError } = await supabase
 						.from("exercises")
 						.insert({
