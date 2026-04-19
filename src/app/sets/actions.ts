@@ -116,7 +116,7 @@ export async function cloneSet(id: string) {
 				preparation_secs: number;
 				duration_secs: number;
 				repetitions: number;
-			};
+			}[];
 		}[];
 	};
 
@@ -131,10 +131,17 @@ export async function cloneSet(id: string) {
 
 	// Clone exercises and link them to new set
 	if (set_exercises.length > 0) {
-		const clonedExerciseIds: string[] = [];
+		const rows = [] as {
+			set_id: string;
+			exercise_id: string;
+			position: number;
+		}[];
 
 		for (const se of set_exercises) {
-			const exerciseData = se.exercises;
+			const exerciseData = se.exercises[0];
+			if (!exerciseData)
+				throw new Error("Exercise relation missing for set clone");
+
 			const { data: clonedExercise, error: cloneError } = await supabase
 				.from("exercises")
 				.insert({
@@ -146,14 +153,13 @@ export async function cloneSet(id: string) {
 				.single();
 
 			if (cloneError) throw new Error(cloneError.message);
-			clonedExerciseIds.push(clonedExercise.id);
+			rows.push({
+				set_id: clone.id,
+				exercise_id: clonedExercise.id,
+				position: se.position,
+			});
 		}
 
-		const rows = clonedExerciseIds.map((exercise_id, i) => ({
-			set_id: clone.id,
-			exercise_id,
-			position: i,
-		}));
 		const { error: linkError } = await supabase
 			.from("set_exercises")
 			.insert(rows);

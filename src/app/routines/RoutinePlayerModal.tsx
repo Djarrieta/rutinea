@@ -264,6 +264,8 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
     totalDuration > 0 ? (completedDuration / totalDuration) * 100 : 0;
 
   // Current active set index for the tree highlight
+  const activeSetRef = useRef<HTMLDivElement | null>(null);
+
   const activeSetIndex =
     currentStep?.type === "exercise"
       ? currentStep.setIndex
@@ -272,6 +274,14 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
         : -1;
   const activeExerciseInSet =
     currentStep?.type === "exercise" ? currentStep.exerciseInSetIndex : -1;
+
+  useEffect(() => {
+    activeSetRef.current?.scrollIntoView({
+      behavior: "smooth",
+      inline: "center",
+      block: "nearest",
+    });
+  }, [activeSetIndex]);
 
   const headerContent = (
     <>
@@ -285,6 +295,7 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
 
             return (
               <div
+                ref={isCurrent ? activeSetRef : null}
                 key={si}
                 className={`flex-shrink-0 rounded-lg border px-2.5 py-1.5 text-[11px] leading-tight transition-colors ${
                   isCurrent

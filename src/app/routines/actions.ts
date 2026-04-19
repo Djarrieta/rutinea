@@ -128,9 +128,9 @@ export async function cloneRoutine(id: string) {
 						preparation_secs: number;
 						duration_secs: number;
 						repetitions: number;
-					};
+					}[];
 				}[];
-			};
+			}[];
 		}[];
 	};
 
@@ -157,7 +157,8 @@ export async function cloneRoutine(id: string) {
 		}[] = [];
 
 		for (const rs of routine_sets) {
-			const setData = rs.sets;
+			const setData = rs.sets[0];
+			if (!setData) throw new Error("Set relation missing for routine clone");
 
 			// Create new set
 			const { data: clonedSet, error: setError } = await supabase
@@ -174,10 +175,17 @@ export async function cloneRoutine(id: string) {
 
 			// Clone exercises for this set
 			if (setData.set_exercises.length > 0) {
-				const clonedExerciseIds: string[] = [];
+				const rows = [] as {
+					set_id: string;
+					exercise_id: string;
+					position: number;
+				}[];
 
 				for (const se of setData.set_exercises) {
-					const exerciseData = se.exercises;
+					const exerciseData = se.exercises[0];
+					if (!exerciseData)
+						throw new Error("Exercise relation missing for routine clone");
+
 					const { data: clonedExercise, error: exError } = await supabase
 						.from("exercises")
 						.insert({
@@ -189,14 +197,13 @@ export async function cloneRoutine(id: string) {
 						.single();
 
 					if (exError) throw new Error(exError.message);
-					clonedExerciseIds.push(clonedExercise.id);
+					rows.push({
+						set_id: clonedSet.id,
+						exercise_id: clonedExercise.id,
+						position: se.position,
+					});
 				}
 
-				const rows = clonedExerciseIds.map((exercise_id, i) => ({
-					set_id: clonedSet.id,
-					exercise_id,
-					position: i,
-				}));
 				const { error: linkError } = await supabase
 					.from("set_exercises")
 					.insert(rows);

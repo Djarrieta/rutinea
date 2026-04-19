@@ -45,6 +45,7 @@ export default function SetPlayerModal({ set, onClose }: Props) {
   const duration = currentExercise?.duration_secs ?? 0;
   const repetitions = currentExercise?.repetitions ?? 1;
   const preparationSecs = currentExercise?.preparation_secs ?? 0;
+  const activeExerciseRef = useRef<HTMLDivElement | null>(null);
   const exerciseTotalDuration = duration * repetitions;
   const totalSlots = images.length * repetitions;
   const timePerSlot = totalSlots > 0 ? exerciseTotalDuration / totalSlots : 0;
@@ -168,6 +169,14 @@ export default function SetPlayerModal({ set, onClose }: Props) {
   const overallProgress =
     totalDuration > 0 ? (completedDuration / totalDuration) * 100 : 0;
 
+  useEffect(() => {
+    activeExerciseRef.current?.scrollIntoView({
+      behavior: "smooth",
+      inline: "center",
+      block: "nearest",
+    });
+  }, [exerciseIndex]);
+
   const headerContent = !finished ? (
     <div className="flex gap-1.5 overflow-x-auto pb-1 scroll-thin">
       {exercises.map((ex, i) => {
@@ -175,6 +184,7 @@ export default function SetPlayerModal({ set, onClose }: Props) {
         const isCurrent = i === exerciseIndex;
         return (
           <div
+            ref={isCurrent ? activeExerciseRef : null}
             key={i}
             className={`flex-shrink-0 rounded-lg border px-2.5 py-1.5 text-[11px] leading-tight transition-colors ${
               isCurrent
