@@ -33,6 +33,7 @@ export default function PlayerPhaseExercise({
           src={images[currentImageIndex].url}
           alt={images[currentImageIndex].description || "Exercise image"}
           className="w-full h-full object-contain"
+          loading="eager"
         />
       ) : (
         <div className="flex items-center justify-center h-full text-text-faint">

@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import type { Exercise } from "@/types";
+import { usePreloadImages } from "@/lib/hooks/usePreloadImages";
 import { useRepSounds } from "@/lib/hooks/useRepSounds";
 import PlayerModalShell from "@/app/components/PlayerModalShell";
 import PlayerControls from "@/app/components/PlayerControls";
@@ -37,6 +38,8 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
   const currentImageIndex = images.length > 0 ? currentSlot % images.length : 0;
   const currentRep =
     images.length > 0 ? Math.floor(currentSlot / images.length) + 1 : 1;
+
+  usePreloadImages(images.map((image) => image.url));
 
   useEffect(() => {
     if (phase !== "exercise") return;

@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import type { SetWithExercises, Exercise } from "@/types";
+import { usePreloadImages } from "@/lib/hooks/usePreloadImages";
 import { useRepSounds } from "@/lib/hooks/useRepSounds";
 import PlayerModalShell from "@/app/components/PlayerModalShell";
 import PlayerControls from "@/app/components/PlayerControls";
@@ -42,6 +43,9 @@ export default function SetPlayerModal({ set, onClose }: Props) {
 
   const currentExercise: Exercise | null = exercises[exerciseIndex] ?? null;
   const images = currentExercise?.images ?? [];
+
+  usePreloadImages(images.map((image) => image.url));
+
   const duration = currentExercise?.duration_secs ?? 0;
   const repetitions = currentExercise?.repetitions ?? 1;
   const preparationSecs = currentExercise?.preparation_secs ?? 0;

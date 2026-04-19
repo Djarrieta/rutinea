@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import type { RoutineWithSets, Exercise } from "@/types";
+import { usePreloadImages } from "@/lib/hooks/usePreloadImages";
 import { useRepSounds } from "@/lib/hooks/useRepSounds";
 import PlayerModalShell from "@/app/components/PlayerModalShell";
 import PlayerControls from "@/app/components/PlayerControls";
@@ -128,6 +129,9 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
   const currentExercise =
     currentStep?.type === "exercise" ? currentStep.exercise : null;
   const images = currentExercise?.images ?? [];
+
+  usePreloadImages(images.map((image) => image.url));
+
   const exerciseDuration = currentExercise?.duration_secs ?? 0;
   const exerciseRepetitions = currentExercise?.repetitions ?? 1;
   const exerciseTotalDuration = exerciseDuration * exerciseRepetitions;
