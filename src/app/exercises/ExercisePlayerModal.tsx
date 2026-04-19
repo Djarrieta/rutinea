@@ -165,6 +165,8 @@ export default function ExercisePlayerModal({ exercise, onClose }: Props) {
         <PlayerPhasePreparation
           elapsed={elapsed}
           totalSecs={preparation_secs}
+          images={images}
+          currentImageIndex={currentImageIndex}
         />
       )}
 

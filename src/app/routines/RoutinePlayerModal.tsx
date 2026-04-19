@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useLayoutEffect, useState, useRef } from "react";
 import type { RoutineWithSets, Exercise } from "@/types";
 import { usePreloadImages } from "@/lib/hooks/usePreloadImages";
 import { useRepSounds } from "@/lib/hooks/useRepSounds";
@@ -268,7 +268,7 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
     totalDuration > 0 ? (completedDuration / totalDuration) * 100 : 0;
 
   // Current active set index for the tree highlight
-  const activeSetRef = useRef<HTMLDivElement | null>(null);
+  const activeSetRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   const activeSetIndex =
     currentStep?.type === "exercise"
@@ -279,8 +279,9 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
   const activeExerciseInSet =
     currentStep?.type === "exercise" ? currentStep.exerciseInSetIndex : -1;
 
-  useEffect(() => {
-    activeSetRef.current?.scrollIntoView({
+  useLayoutEffect(() => {
+    if (activeSetIndex < 0) return;
+    activeSetRefs.current[activeSetIndex]?.scrollIntoView({
       behavior: "smooth",
       inline: "center",
       block: "nearest",
@@ -299,7 +300,9 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
 
             return (
               <div
-                ref={isCurrent ? activeSetRef : null}
+                ref={(el) => {
+                  activeSetRefs.current[si] = el;
+                }}
                 key={si}
                 className={`flex-shrink-0 rounded-lg border px-2.5 py-1.5 text-[11px] leading-tight transition-colors ${
                   isCurrent
@@ -418,6 +421,8 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
           elapsed={elapsed}
           totalSecs={exercisePreparationSecs}
           exerciseTitle={properCase(currentExercise.title)}
+          images={images}
+          currentImageIndex={imageIndex}
         />
       )}
 

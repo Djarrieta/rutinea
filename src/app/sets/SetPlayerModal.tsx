@@ -246,6 +246,8 @@ export default function SetPlayerModal({ set, onClose }: Props) {
           elapsed={elapsed}
           totalSecs={preparationSecs}
           exerciseTitle={properCase(currentExercise.title)}
+          images={images}
+          currentImageIndex={imageIndex}
         />
       )}
 
