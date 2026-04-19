@@ -1,14 +1,20 @@
 {
 	"_notes":"https://www.youtube.com/watch?v=W-9L0J_9qag",
 	"routine": {
-		"name": "Abdominales 8 Min"
+		"name": "Abdominales 8 Min",
+		"rest_secs": 30
 	},
 	"sets": [
 		{
+			"name": "Abdominales 8 Min set 1",
+			"rounds": 1,
 			"exercises": [
 				{
 					"title": "Alternating Ankle Touches",
 					"description": "Acostado boca arriba, con las rodillas dobladas y los pies apoyados en el suelo. Eleva el torso y toca los tobillos con las manos alternando lado a lado.",
+					"preparation_secs": 3,
+					"duration_secs": 4,
+					"repetitions": 15,
 					"images": [
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
@@ -40,6 +46,9 @@
 				{
 					"title": "Bicycle Crunches",
 					"description": "Acostado boca arriba, con las rodillas dobladas y los pies apoyados en el suelo. Eleva el torso y toca la rodilla derecha con el codo izquierdo, luego vuelve a la posición inicial y repite del otro lado.",
+					"preparation_secs": 3,
+					"duration_secs": 3,
+					"repetitions": 30,
 					"images": [
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
@@ -70,10 +79,15 @@
 			]
 		},
 		{
+			"name": "Abdominales 8 Min set 2",
+			"rounds": 1,
 			"exercises": [
 				{
 					"title": "V-Up",
 					"description": "Acostado boca arriba, con las rodillas dobladas eleva el torso y toca la parte interior de las rodillas con las manos.",
+					"preparation_secs": 3,
+					"duration_secs": 3,
+					"repetitions": 30,
 					"images": [
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
@@ -92,6 +106,9 @@
 				{
 					"title": "Alternating Leg Raises",
 					"description": "Acostado boca arriba, eleva las piernas alternando.",
+					"preparation_secs": 3,
+					"duration_secs": 3,
+					"repetitions": 30,
 					"images": [
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
@@ -122,10 +139,15 @@
 			]
 		},
 		{
+			"name": "Abdominales 8 Min set 3",
+			"rounds": 1,
 			"exercises": [
 				{
 					"title": "Reverse Crunch",
 					"description": "Acostado boca arriba, con las rodillas dobladas eleva el torso y toca la parte superior de las rodillas con las manos.",
+					"preparation_secs": 3,
+					"duration_secs": 3,
+					"repetitions": 30,
 					"images": [
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
@@ -144,6 +166,9 @@
         {
 					"title": "Reverse Crunch",
 					"description": "Acostado boca arriba, con las rodillas dobladas eleva el torso y toca la parte superior de las rodillas con las manos.",
+					"preparation_secs": 3,
+					"duration_secs": 3,
+					"repetitions": 30,
 					"images": [
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
@@ -162,10 +187,15 @@
 			]
 		},
 		{
+			"name": "Abdominales 8 Min set 4",
+			"rounds": 1,
 			"exercises": [
 				{
 					"title": "Reverse Crunch",
 					"description": "Acostado boca arriba, con las rodillas dobladas eleva el torso y toca la parte superior de las rodillas con las manos.",
+					"preparation_secs": 3,
+					"duration_secs": 3,
+					"repetitions": 30,
 					"images": [
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",
@@ -184,6 +214,9 @@
         {
 					"title": "Double crunch",
 					"description": "Acostado boca arriba, con los pies levantados, logra equilibrio y toca tus pies.",
+					"preparation_secs": 3,
+					"duration_secs": 3,
+					"repetitions": 30,
 					"images": [
 						{
 							"youtube": "https://www.youtube.com/watch?v=W-9L0J_9qag",

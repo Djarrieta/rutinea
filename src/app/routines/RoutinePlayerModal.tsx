@@ -413,9 +413,10 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
           currentRep={currentRep}
           repetitions={exerciseRepetitions}
           description={
-            images.length > 0
+            currentExercise.description ??
+            (images.length > 0
               ? images[imageIndex % images.length]?.description
-              : undefined
+              : undefined)
           }
           elapsed={elapsed}
           totalDuration={exerciseTotalDuration}

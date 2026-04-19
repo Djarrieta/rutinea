@@ -242,7 +242,8 @@ export default function SetPlayerModal({ set, onClose }: Props) {
           currentRep={currentRep}
           repetitions={repetitions}
           description={
-            images.length > 0 ? images[imageIndex]?.description : undefined
+            currentExercise.description ??
+            (images.length > 0 ? images[imageIndex]?.description : undefined)
           }
           elapsed={elapsed}
           totalDuration={exerciseTotalDuration}
