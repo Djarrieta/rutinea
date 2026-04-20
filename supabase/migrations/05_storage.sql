@@ -20,10 +20,16 @@ DROP POLICY IF EXISTS "allow_delete_exercise_images" ON storage.objects;
 CREATE POLICY "public_read_exercise_images" ON storage.objects FOR
 SELECT USING (bucket_id = 'exercise-images');
 
--- Anyone can upload (no auth for now)
+-- Authenticated users can upload
 CREATE POLICY "allow_upload_exercise_images" ON storage.objects FOR INSERT
 WITH
-    CHECK (bucket_id = 'exercise-images');
+    CHECK (
+        bucket_id = 'exercise-images'
+        AND auth.uid () IS NOT NULL
+    );
 
--- Anyone can delete their uploads
-CREATE POLICY "allow_delete_exercise_images" ON storage.objects FOR DELETE USING (bucket_id = 'exercise-images');
+-- Authenticated users can delete
+CREATE POLICY "allow_delete_exercise_images" ON storage.objects FOR DELETE USING (
+    bucket_id = 'exercise-images'
+    AND auth.uid () IS NOT NULL
+);
