@@ -55,18 +55,6 @@ export default async function RootLayout({
               <DesktopNavLinks />
             </div>
             <div className="flex items-center gap-3">
-              <Link
-                href="/plans/new"
-                className="bg-primary-500 text-black px-4 py-2 rounded-xl text-sm font-semibold hover:bg-primary-600 transition-all hover:scale-[1.02] active:scale-[0.98]"
-              >
-                + Plan
-              </Link>
-              <Link
-                href="/routines/new"
-                className="bg-surface-alt text-text-secondary px-4 py-2 rounded-xl text-sm font-medium hover:bg-surface-hover transition-colors"
-              >
-                + Rutina
-              </Link>
               <UserMenu user={userMenu} />
             </div>
           </div>
