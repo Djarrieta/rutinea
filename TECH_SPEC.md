@@ -24,9 +24,8 @@
 16. [Shared UI Components](#16-shared-ui-components)
 17. [Styling & Theming](#17-styling--theming)
 18. [Scripts & DB Reset](#18-scripts--db-reset)
-19. [Clone / Fork Feature](#19-clone--fork-feature)
-20. [Join Tables & Nested Modules](#20-join-tables--nested-modules)
-21. [API Routes (import/export)](#21-api-routes-importexport)
+19. [Join Tables & Nested Modules](#19-join-tables--nested-modules)
+20. [API Routes (import/export)](#20-api-routes-importexport)
 
 ---
 
@@ -245,7 +244,6 @@ CREATE TABLE public.<entities> (
     name        text NOT NULL,
     description text,
     -- ... module-specific columns ...
-    clone_count integer    NOT NULL DEFAULT 0,
     created_at  timestamptz NOT NULL DEFAULT now(),
     updated_at  timestamptz NOT NULL DEFAULT now()
 );
@@ -313,7 +311,7 @@ CREATE POLICY "<entities>: owner delete"
 
 ## 6. Profiles & User Management
 
-### Profiles Table (migration: `06_profiles_and_clone_count.sql`)
+### Profiles Table
 
 The `profiles` table is a **public mirror** of `auth.users`:
 
@@ -583,7 +581,6 @@ CREATE TABLE public.recipes (
     cook_time_mins  integer NOT NULL DEFAULT 0,
     servings        integer NOT NULL DEFAULT 1,
     --
-    clone_count     integer NOT NULL DEFAULT 0,
     created_at      timestamptz NOT NULL DEFAULT now(),
     updated_at      timestamptz NOT NULL DEFAULT now()
 );
@@ -638,7 +635,6 @@ export interface Recipe {
   prep_time_mins: number;
   cook_time_mins: number;
   servings: number;
-  clone_count: number;
   created_at: string;
   updated_at: string;
   profile?: { display_name: string; avatar_url: string | null };
@@ -646,7 +642,7 @@ export interface Recipe {
 
 export type CreateRecipeInput = Omit<
   Recipe,
-  "id" | "user_id" | "clone_count" | "created_at" | "updated_at" | "profile"
+  "id" | "user_id" | "created_at" | "updated_at" | "profile"
 >;
 
 export type UpdateRecipeInput = Partial<CreateRecipeInput>;
@@ -723,37 +719,6 @@ export async function updateRecipe(id: string, formData: FormData) {
 
   revalidatePath("/recipes");
   redirect(`/recipes/${id}`);
-}
-
-export async function cloneRecipe(id: string) {
-  const user = await requireAuth();
-  const supabase = await createClient();
-
-  const { data: source, error: fetchError } = await supabase
-    .from("recipes")
-    .select(
-      "title, description, images, tags, prep_time_mins, cook_time_mins, servings",
-    )
-    .eq("id", id)
-    .single();
-
-  if (fetchError || !source)
-    throw new Error(fetchError?.message ?? "Not found");
-
-  const { data: clone, error } = await supabase
-    .from("recipes")
-    .insert({ ...source, title: `${source.title} [clone]`, user_id: user.id })
-    .select("id")
-    .single();
-
-  if (error) throw new Error(error.message);
-  await supabase.rpc("increment_clone_count", {
-    table_name: "recipes",
-    row_id: id,
-  });
-
-  revalidatePath("/recipes");
-  redirect(`/recipes/${clone.id}/edit`);
 }
 
 export async function deleteRecipe(id: string) {
@@ -867,7 +832,7 @@ Create `src/app/recipes/[id]/page.tsx`:
 import { notFound } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { getUser } from "@/lib/auth";
-import { deleteRecipe, cloneRecipe } from "../actions";
+import { deleteRecipe } from "../actions";
 import type { Recipe } from "@/types";
 
 export default async function RecipeDetailPage({
@@ -891,7 +856,7 @@ export default async function RecipeDetailPage({
   return (
     <div>
       <h1>{recipe.title}</h1>
-      {/* Display fields, edit/delete buttons if isOwner, clone button if user */}
+      {/* Display fields, edit/delete buttons if isOwner */}
     </div>
   );
 }
@@ -962,7 +927,6 @@ export interface <Entity> {
   user_id: string
   name: string
   description: string | null
-  clone_count: number
   created_at: string
   updated_at: string
   profile?: { display_name: string; avatar_url: string | null }
@@ -975,7 +939,7 @@ export interface <Entity> {
 // For creating — omit server-managed fields
 export type Create<Entity>Input = Omit<
   <Entity>,
-  'id' | 'user_id' | 'clone_count' | 'created_at' | 'updated_at' | 'profile'
+  'id' | 'user_id' | 'created_at' | 'updated_at' | 'profile'
 >
 
 // For updating — all fields optional
@@ -1128,11 +1092,6 @@ export default async function EntityDetailPage({
           </form>
         </>
       )}
-      {user && (
-        <form action={cloneEntity.bind(null, id)}>
-          <button>Clone</button>
-        </form>
-      )}
     </>
   );
 }
@@ -1257,34 +1216,7 @@ await sql`SELECT ...`;
 
 ---
 
-## 19. Clone / Fork Feature
-
-Any logged-in user can **clone** any public entity:
-
-1. Fetch the source entity (all fields except `id`, `user_id`, timestamps)
-2. Insert a copy with the current user's `user_id` and `[clone]` suffix on the name
-3. Call `increment_clone_count` RPC to bump the source's counter
-4. Redirect to the clone's edit page
-
-The `increment_clone_count` function is a generic Postgres function:
-
-```sql
-CREATE OR REPLACE FUNCTION public.increment_clone_count(table_name text, row_id uuid)
-RETURNS void LANGUAGE plpgsql SECURITY DEFINER SET search_path = '' AS $$
-BEGIN
-  IF table_name = 'recipes' THEN
-    UPDATE public.recipes SET clone_count = clone_count + 1 WHERE id = row_id;
-  -- ... add ELSIF for each entity table
-  END IF;
-END;
-$$;
-```
-
-> When adding a new module, add an `ELSIF` branch to this function.
-
----
-
-## 20. Join Tables & Nested Modules
+## 19. Join Tables & Nested Modules
 
 When modules have parent-child relationships (e.g., a "Routine" contains "Sets", a "Set" contains "Exercises"):
 
@@ -1365,7 +1297,7 @@ await supabase.from("parent_children").insert(newRows);
 
 ---
 
-## 21. API Routes (import/export)
+## 20. API Routes (import/export)
 
 API routes are used only for bundle import/export operations (not for standard CRUD):
 
@@ -1392,13 +1324,11 @@ This allows users to share entities as JSON files that can be imported into othe
 ## Quick Reference: New Module Checklist
 
 - [ ] `supabase/migrations/NN_<module>.sql` — table + RLS + trigger
-- [ ] Add FK to profiles in `06_profiles_and_clone_count.sql`
-- [ ] Add `clone_count` column in `06_profiles_and_clone_count.sql`
-- [ ] Add `ELSIF` to `increment_clone_count()` function
+- [ ] Add FK to profiles in profiles migration
 - [ ] Add search column in `07_unaccent_search.sql`
 - [ ] `src/types/<module>.ts` — Entity + CreateInput + UpdateInput types
 - [ ] Re-export from `src/types/index.ts`
-- [ ] `src/app/<module>/actions.ts` — create, update, clone, delete Server Actions
+- [ ] `src/app/<module>/actions.ts` — create, update, delete Server Actions
 - [ ] `src/app/<module>/page.tsx` — list page
 - [ ] `src/app/<module>/[id]/page.tsx` — detail page
 - [ ] `src/app/<module>/[id]/edit/page.tsx` — edit page
