@@ -51,7 +51,7 @@ export default async function SetsPage({
   return (
     <PageHeader
       title="Sets"
-      emptyText="No hay sets a\u00fan."
+      emptyText="No hay sets aún."
       createHref="/sets/new"
       createLabel="Crear uno"
       isEmpty={total === 0 && !q && !mine}

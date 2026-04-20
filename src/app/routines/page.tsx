@@ -45,7 +45,7 @@ export default async function RoutinesPage({
   return (
     <PageHeader
       title="Rutinas"
-      emptyText="No hay rutinas a\u00fan."
+      emptyText="No hay rutinas aún."
       createHref="/routines/new"
       createLabel="Crear una"
       isEmpty={total === 0 && !q && !mine}

@@ -45,7 +45,7 @@ export default async function PlansPage({
   return (
     <PageHeader
       title="Planes"
-      emptyText="No hay planes a\u00fan."
+      emptyText="No hay planes aún."
       createHref="/plans/new"
       createLabel="Crear uno"
       isEmpty={total === 0 && !q && !mine}
