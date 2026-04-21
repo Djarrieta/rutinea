@@ -5,6 +5,7 @@ export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url)
   const code = searchParams.get('code')
   const next = searchParams.get('next') ?? '/'
+  const safeNext = next.startsWith('/') && !next.startsWith('//') ? next : '/'
 
   if (code) {
     const supabase = await createClient()
@@ -18,7 +19,7 @@ export async function GET(request: Request) {
           avatar_url: user.user_metadata?.avatar_url ?? null,
         }, { onConflict: 'id', ignoreDuplicates: false })
       }
-      return NextResponse.redirect(`${origin}${next}`)
+      return NextResponse.redirect(`${origin}${safeNext}`)
     }
   }
 
