@@ -58,7 +58,6 @@ export default async function RootLayout({
         <BackgroundAtmosphere />
         <OfflineBanner />
 
-
         {/* Desktop top nav */}
         <nav className="hidden sm:block sticky top-0 z-40 bg-surface/80 backdrop-blur-md border-b border-border/50 px-6 py-4">
           <div className="max-w-4xl mx-auto flex items-center justify-between">
