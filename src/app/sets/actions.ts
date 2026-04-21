@@ -5,14 +5,15 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { requireAuth } from "@/lib/auth";
 import type { CreateSetInput, UpdateSetInput } from "@/types";
+import { MAX_TITLE_LENGTH, MAX_DESCRIPTION_LENGTH } from "@/lib/constants";
 
 export async function createSet(formData: FormData) {
 	const user = await requireAuth();
 	const supabase = await createClient();
 
 	const input: CreateSetInput = {
-		name: (formData.get("name") as string).toLowerCase(),
-		description: (formData.get("description") as string)?.toLowerCase() || null,
+		name: (formData.get("name") as string).toLowerCase().slice(0, MAX_TITLE_LENGTH),
+		description: (formData.get("description") as string)?.toLowerCase().slice(0, MAX_DESCRIPTION_LENGTH) || null,
 	};
 
 	const exerciseIds: string[] = JSON.parse(
@@ -48,8 +49,8 @@ export async function updateSet(id: string, formData: FormData) {
 	const supabase = await createClient();
 
 	const input: UpdateSetInput = {
-		name: (formData.get("name") as string).toLowerCase(),
-		description: (formData.get("description") as string)?.toLowerCase() || null,
+		name: (formData.get("name") as string).toLowerCase().slice(0, MAX_TITLE_LENGTH),
+		description: (formData.get("description") as string)?.toLowerCase().slice(0, MAX_DESCRIPTION_LENGTH) || null,
 	};
 
 	const exerciseIds: string[] = JSON.parse(

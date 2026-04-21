@@ -6,6 +6,7 @@ import { DAY_LABELS } from "@/types";
 import { createClient } from "@/lib/supabase/client";
 import SearchableSelect from "@/app/components/SearchableSelect";
 import { properCase } from "@/lib/format";
+import { MAX_TITLE_LENGTH, MAX_DESCRIPTION_LENGTH } from "@/lib/constants";
 
 interface DayEntry {
   day_of_week: number;
@@ -151,6 +152,7 @@ export default function PlanForm({
           name="name"
           type="text"
           required
+          maxLength={MAX_TITLE_LENGTH}
           defaultValue={plan?.name ?? defaultValues?.name}
           className="w-full rounded-lg border border-border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
         />
@@ -164,6 +166,7 @@ export default function PlanForm({
           id="description"
           name="description"
           rows={3}
+          maxLength={MAX_DESCRIPTION_LENGTH}
           defaultValue={plan?.description ?? defaultValues?.description ?? ""}
           className="w-full rounded-lg border border-border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
         />

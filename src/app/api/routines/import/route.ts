@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { createClient } from '@/lib/supabase/server'
 import { getUser } from '@/lib/auth'
 import type { RoutineBundle, BundleExercise } from '@/types'
+import { MAX_TITLE_LENGTH, MAX_DESCRIPTION_LENGTH } from '@/lib/constants'
 
 export async function POST(request: Request) {
   const user = await getUser()
@@ -68,8 +69,8 @@ export async function POST(request: Request) {
     const { data: newSet, error: setError } = await supabase
       .from('sets')
       .insert({
-        name: bs.name.toLowerCase(),
-        description: bs.description?.toLowerCase() ?? null,
+        name: bs.name.toLowerCase().slice(0, MAX_TITLE_LENGTH),
+        description: bs.description?.toLowerCase().slice(0, MAX_DESCRIPTION_LENGTH) ?? null,
         user_id: user.id,
       })
       .select('id')
@@ -108,8 +109,8 @@ export async function POST(request: Request) {
   const { data: routine, error: routineError } = await supabase
     .from('routines')
     .insert({
-      name: bundle.routine.name.toLowerCase(),
-      description: bundle.routine.description?.toLowerCase() ?? null,
+      name: bundle.routine.name.toLowerCase().slice(0, MAX_TITLE_LENGTH),
+      description: bundle.routine.description?.toLowerCase().slice(0, MAX_DESCRIPTION_LENGTH) ?? null,
       rest_secs: bundle.routine.rest_secs,
       user_id: user.id,
     })
@@ -154,8 +155,8 @@ async function createExercise(
     .from('exercises')
     .insert({
       user_id: userId,
-      title: ex.title.toLowerCase(),
-      description: ex.description?.toLowerCase() ?? null,
+      title: ex.title.toLowerCase().slice(0, MAX_TITLE_LENGTH),
+      description: ex.description?.toLowerCase().slice(0, MAX_DESCRIPTION_LENGTH) ?? null,
       images: ex.images ?? [],
       tags: ex.tags ?? [],
       preparation_secs: ex.preparation_secs,

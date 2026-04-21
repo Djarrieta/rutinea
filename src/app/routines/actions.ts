@@ -5,14 +5,15 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { requireAuth } from "@/lib/auth";
 import type { CreateRoutineInput, UpdateRoutineInput } from "@/types";
+import { MAX_TITLE_LENGTH, MAX_DESCRIPTION_LENGTH } from "@/lib/constants";
 
 export async function createRoutine(formData: FormData) {
 	const user = await requireAuth();
 	const supabase = await createClient();
 
 	const input: CreateRoutineInput = {
-		name: (formData.get("name") as string).toLowerCase(),
-		description: (formData.get("description") as string)?.toLowerCase() || null,
+		name: (formData.get("name") as string).toLowerCase().slice(0, MAX_TITLE_LENGTH),
+		description: (formData.get("description") as string)?.toLowerCase().slice(0, MAX_DESCRIPTION_LENGTH) || null,
 		rest_secs: Number(formData.get("rest_secs")) || 60,
 	};
 
@@ -50,8 +51,8 @@ export async function updateRoutine(id: string, formData: FormData) {
 	const supabase = await createClient();
 
 	const input: UpdateRoutineInput = {
-		name: (formData.get("name") as string).toLowerCase(),
-		description: (formData.get("description") as string)?.toLowerCase() || null,
+		name: (formData.get("name") as string).toLowerCase().slice(0, MAX_TITLE_LENGTH),
+		description: (formData.get("description") as string)?.toLowerCase().slice(0, MAX_DESCRIPTION_LENGTH) || null,
 		rest_secs: Number(formData.get("rest_secs")) || 60,
 	};
 

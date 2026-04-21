@@ -5,14 +5,15 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { requireAuth } from '@/lib/auth'
 import type { CreatePlanInput, UpdatePlanInput } from '@/types'
+import { MAX_TITLE_LENGTH, MAX_DESCRIPTION_LENGTH } from '@/lib/constants'
 
 export async function createPlan(formData: FormData) {
   const user = await requireAuth()
   const supabase = await createClient()
 
   const input: CreatePlanInput = {
-    name: (formData.get('name') as string).toLowerCase(),
-    description: (formData.get('description') as string)?.toLowerCase() || null,
+    name: (formData.get('name') as string).toLowerCase().slice(0, MAX_TITLE_LENGTH),
+    description: (formData.get('description') as string)?.toLowerCase().slice(0, MAX_DESCRIPTION_LENGTH) || null,
   }
 
   const dayEntries: { day_of_week: number; routine_id: string }[] = JSON.parse(
@@ -48,8 +49,8 @@ export async function updatePlan(id: string, formData: FormData) {
   const supabase = await createClient()
 
   const input: UpdatePlanInput = {
-    name: (formData.get('name') as string).toLowerCase(),
-    description: (formData.get('description') as string)?.toLowerCase() || null,
+    name: (formData.get('name') as string).toLowerCase().slice(0, MAX_TITLE_LENGTH),
+    description: (formData.get('description') as string)?.toLowerCase().slice(0, MAX_DESCRIPTION_LENGTH) || null,
   }
 
   const dayEntries: { day_of_week: number; routine_id: string }[] = JSON.parse(

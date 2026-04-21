@@ -5,6 +5,7 @@ import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { requireAuth } from '@/lib/auth'
 import type { CreateExerciseInput, UpdateExerciseInput, ExerciseImage } from '@/types'
+import { MAX_TITLE_LENGTH, MAX_DESCRIPTION_LENGTH } from '@/lib/constants'
 
 function parseImages(formData: FormData): ExerciseImage[] {
   const raw = formData.get('images') as string || '[]'
@@ -20,8 +21,8 @@ export async function createExercise(formData: FormData) {
   const supabase = await createClient()
 
   const input: CreateExerciseInput = {
-    title: (formData.get('title') as string).toLowerCase(),
-    description: (formData.get('description') as string)?.toLowerCase() || null,
+    title: (formData.get('title') as string).toLowerCase().slice(0, MAX_TITLE_LENGTH),
+    description: (formData.get('description') as string)?.toLowerCase().slice(0, MAX_DESCRIPTION_LENGTH) || null,
     images: parseImages(formData),
     tags: (formData.get('tags') as string || '')
       .split(',')
@@ -45,8 +46,8 @@ export async function updateExercise(id: string, formData: FormData) {
   const supabase = await createClient()
 
   const input: UpdateExerciseInput = {
-    title: (formData.get('title') as string).toLowerCase(),
-    description: (formData.get('description') as string)?.toLowerCase() || null,
+    title: (formData.get('title') as string).toLowerCase().slice(0, MAX_TITLE_LENGTH),
+    description: (formData.get('description') as string)?.toLowerCase().slice(0, MAX_DESCRIPTION_LENGTH) || null,
     images: parseImages(formData),
     tags: (formData.get('tags') as string || '')
       .split(',')
