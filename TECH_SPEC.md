@@ -79,7 +79,7 @@
 │   │       └── new/page.tsx        # Create page
 │   ├── lib/
 │   │   ├── auth.ts             # getUser(), requireAuth(), ensureProfile()
-│   │   ├── constants.ts        # PAGE_SIZE, etc.
+│   │   ├── constants.ts        # PAGE_SIZE, MAX_TITLE_LENGTH, MAX_DESCRIPTION_LENGTH
 │   │   ├── format.ts           # Utility formatters
 │   │   ├── hooks/              # Client-side hooks
 │   │   └── supabase/
@@ -415,6 +415,19 @@ export async function ensureProfile(user: {
 4. Callback also **upserts the profile** to ensure it exists
 5. Redirects to home page
 
+### Open Redirect Protection
+
+The callback route validates the `next` query parameter to prevent open redirects:
+
+```ts
+const next = searchParams.get("next") ?? "/";
+const safeNext = next.startsWith("/") && !next.startsWith("//") ? next : "/";
+// ...
+return NextResponse.redirect(`${origin}${safeNext}`);
+```
+
+Without this, an attacker could craft `?next=//evil.com` to redirect users after login.
+
 ### Dev Login (local only)
 
 For development, a password-based login is available using a seed user:
@@ -503,7 +516,7 @@ interface EntityImage {
 
 ### Next.js Image Configuration
 
-Allow Supabase storage URLs in `next.config.ts`:
+For images from known domains (e.g., Supabase storage), configure `remotePatterns` in `next.config.ts`:
 
 ```ts
 images: {
@@ -514,6 +527,52 @@ images: {
   }],
 },
 ```
+
+For images from **arbitrary user-provided URLs** (unknown domains), use `<Image unoptimized />`:
+
+```tsx
+import Image from "next/image";
+
+<Image
+  src={userProvidedUrl}
+  alt={title}
+  width={128}
+  height={128}
+  unoptimized
+/>;
+```
+
+This skips Next.js image optimization (which requires whitelisted domains) but still provides lazy loading and layout shift prevention.
+
+### Security Headers
+
+Configure CSP and other security headers in `next.config.ts`:
+
+```ts
+headers: async () => [
+  {
+    source: "/:path*",
+    headers: [
+      {
+        key: "Content-Security-Policy",
+        value: [
+          "default-src 'self'",
+          "script-src 'self'",
+          "style-src 'self' 'unsafe-inline'",
+          "img-src 'self' https: data:",
+          "font-src 'self'",
+          "connect-src 'self' *.supabase.co",
+        ].join("; "),
+      },
+      { key: "X-Content-Type-Options", value: "nosniff" },
+      { key: "X-Frame-Options", value: "SAMEORIGIN" },
+      { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+    ],
+  },
+],
+```
+
+> **Note:** `img-src 'self' https: data:` allows images from any HTTPS source. This is safe — images cannot execute JavaScript. The critical directive is `script-src 'self'` which blocks injected scripts.
 
 ---
 
@@ -666,14 +725,20 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { requireAuth } from "@/lib/auth";
 import type { CreateRecipeInput, UpdateRecipeInput } from "@/types";
+import { MAX_TITLE_LENGTH, MAX_DESCRIPTION_LENGTH } from "@/lib/constants";
 
 export async function createRecipe(formData: FormData) {
   const user = await requireAuth();
   const supabase = await createClient();
 
   const input: CreateRecipeInput = {
-    title: (formData.get("title") as string).toLowerCase(),
-    description: (formData.get("description") as string)?.toLowerCase() || null,
+    title: (formData.get("title") as string)
+      .toLowerCase()
+      .slice(0, MAX_TITLE_LENGTH),
+    description:
+      (formData.get("description") as string)
+        ?.toLowerCase()
+        .slice(0, MAX_DESCRIPTION_LENGTH) || null,
     images: JSON.parse((formData.get("images") as string) || "[]"),
     tags: ((formData.get("tags") as string) || "")
       .split(",")
@@ -698,8 +763,13 @@ export async function updateRecipe(id: string, formData: FormData) {
   const supabase = await createClient();
 
   const input: UpdateRecipeInput = {
-    title: (formData.get("title") as string).toLowerCase(),
-    description: (formData.get("description") as string)?.toLowerCase() || null,
+    title: (formData.get("title") as string)
+      .toLowerCase()
+      .slice(0, MAX_TITLE_LENGTH),
+    description:
+      (formData.get("description") as string)
+        ?.toLowerCase()
+        .slice(0, MAX_DESCRIPTION_LENGTH) || null,
     images: JSON.parse((formData.get("images") as string) || "[]"),
     tags: ((formData.get("tags") as string) || "")
       .split(",")
@@ -972,18 +1042,30 @@ export interface AB {
 All CRUD mutations use **Next.js Server Actions** (`'use server'`):
 
 ```ts
-'use server'
+"use server";
+
+import { MAX_TITLE_LENGTH, MAX_DESCRIPTION_LENGTH } from "@/lib/constants";
 
 export async function create<Entity>(formData: FormData) {
-  const user = await requireAuth()          // 1. Auth check
-  const supabase = await createClient()     // 2. Get server client
-  const input = /* parse formData */        // 3. Parse input
-  const { error } = await supabase          // 4. DB operation
-    .from('<entities>')
-    .insert({ ...input, user_id: user.id })
-  if (error) throw new Error(error.message) // 5. Error handling
-  revalidatePath('/<entities>')             // 6. Cache invalidation
-  redirect('/<entities>')                   // 7. Redirect
+  const user = await requireAuth(); // 1. Auth check
+  const supabase = await createClient(); // 2. Get server client
+  const input = {
+    // 3. Parse & truncate input
+    name: (formData.get("name") as string)
+      .toLowerCase()
+      .slice(0, MAX_TITLE_LENGTH),
+    description:
+      (formData.get("description") as string)
+        ?.toLowerCase()
+        .slice(0, MAX_DESCRIPTION_LENGTH) || null,
+    // ...
+  };
+  const { error } = await supabase // 4. DB operation
+    .from("<entities>")
+    .insert({ ...input, user_id: user.id });
+  if (error) throw new Error(error.message); // 5. Error handling
+  revalidatePath("/<entities>"); // 6. Cache invalidation
+  redirect("/<entities>"); // 7. Redirect
 }
 ```
 
@@ -991,6 +1073,7 @@ export async function create<Entity>(formData: FormData) {
 
 - **Always call `requireAuth()`** before any mutation
 - **Always include `.eq('user_id', user.id)`** on update/delete for defense-in-depth (RLS is the primary guard)
+- **Truncate text inputs** with `.slice(0, MAX_TITLE_LENGTH)` / `.slice(0, MAX_DESCRIPTION_LENGTH)` to enforce length limits server-side
 - **Use `revalidatePath()`** after mutations to bust the Next.js cache
 - **Use `redirect()`** to navigate after successful operations
 - **Bind IDs** for update/delete: `updateEntity.bind(null, id)`
@@ -1106,6 +1189,8 @@ Forms are **Client Components** (`"use client"`) that receive a Server Action:
 ```tsx
 "use client";
 
+import { MAX_TITLE_LENGTH, MAX_DESCRIPTION_LENGTH } from "@/lib/constants";
+
 interface FormProps {
   action: (formData: FormData) => Promise<void>;
   defaultValues?: Partial<Entity>;
@@ -1114,9 +1199,14 @@ interface FormProps {
 export default function EntityForm({ action, defaultValues }: FormProps) {
   return (
     <form action={action}>
-      <input name="name" defaultValue={defaultValues?.name ?? ""} />
+      <input
+        name="name"
+        maxLength={MAX_TITLE_LENGTH}
+        defaultValue={defaultValues?.name ?? ""}
+      />
       <textarea
         name="description"
+        maxLength={MAX_DESCRIPTION_LENGTH}
         defaultValue={defaultValues?.description ?? ""}
       />
       {/* Complex fields serialized as hidden inputs */}
@@ -1126,6 +1216,8 @@ export default function EntityForm({ action, defaultValues }: FormProps) {
   );
 }
 ```
+
+> **Note:** `maxLength` prevents the browser from accepting more characters. The server actions also truncate with `.slice()` as defense-in-depth.
 
 ---
 
@@ -1328,16 +1420,17 @@ This allows users to share entities as JSON files that can be imported into othe
 - [ ] Add search column in `07_unaccent_search.sql`
 - [ ] `src/types/<module>.ts` — Entity + CreateInput + UpdateInput types
 - [ ] Re-export from `src/types/index.ts`
-- [ ] `src/app/<module>/actions.ts` — create, update, delete Server Actions
+- [ ] `src/app/<module>/actions.ts` — create, update, delete Server Actions (with `.slice()` truncation using `MAX_TITLE_LENGTH` / `MAX_DESCRIPTION_LENGTH`)
 - [ ] `src/app/<module>/page.tsx` — list page
 - [ ] `src/app/<module>/[id]/page.tsx` — detail page
 - [ ] `src/app/<module>/[id]/edit/page.tsx` — edit page
 - [ ] `src/app/<module>/new/page.tsx` — create page
 - [ ] `src/app/<module>/<Module>Card.tsx` — card component
-- [ ] `src/app/<module>/<Module>Form.tsx` — form component
+- [ ] `src/app/<module>/<Module>Form.tsx` — form component (with `maxLength` on text inputs)
 - [ ] Add nav link in `src/app/components/NavLinks.tsx`
 - [ ] Add nav buttons in `src/app/layout.tsx`
+- [ ] Use `<Image unoptimized />` instead of `<img>` for user-provided image URLs
 - [ ] (Optional) Storage bucket migration if module has images
 - [ ] (Optional) Join table migration if module has child entities
-- [ ] (Optional) API routes for import/export
+- [ ] (Optional) API routes for import/export (with `.slice()` truncation on text fields)
 - [ ] (Optional) Seed data in `supabase/seed/`
