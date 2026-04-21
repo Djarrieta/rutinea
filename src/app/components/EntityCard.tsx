@@ -2,6 +2,7 @@
 
 import { ReactNode } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import Badge from "./Badge";
 import { properCase } from "@/lib/format";
 
@@ -66,9 +67,12 @@ export default function EntityCard({
             {thumbnail && (
               <div className="relative group/thumb">
                 <div className="absolute inset-0 bg-primary-500/20 blur-lg opacity-0 group-hover/thumb:opacity-100 transition-opacity rounded-full scale-110" />
-                <img
+                <Image
                   src={thumbnail}
                   alt={title}
+                  width={56}
+                  height={56}
+                  unoptimized
                   className="w-14 h-14 rounded-2xl object-cover bg-surface/80 border border-white/10 shadow-lg relative z-10 transition-transform group-hover/thumb:scale-105 duration-500"
                 />
               </div>
@@ -109,9 +113,12 @@ export default function EntityCard({
                 title={`Creado por ${creatorName}`}
               >
                 {creatorAvatar ? (
-                  <img
+                  <Image
                     src={creatorAvatar}
                     alt={creatorName}
+                    width={20}
+                    height={20}
+                    unoptimized
                     referrerPolicy="no-referrer"
                     className="w-5 h-5 rounded-full border border-white/10 object-cover"
                   />

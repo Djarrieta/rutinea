@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 
@@ -69,11 +70,14 @@ export default function UserMenu({
         className="w-7 h-7 rounded-full bg-primary-500 text-black text-xs font-bold flex items-center justify-center overflow-hidden hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
       >
         {user.avatar_url ? (
-          <img
+          <Image
             src={user.avatar_url}
             alt=""
-            className="w-7 h-7 rounded-full"
+            width={28}
+            height={28}
+            unoptimized
             referrerPolicy="no-referrer"
+            className="w-7 h-7 rounded-full"
           />
         ) : (
           initials

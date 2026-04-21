@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ExerciseImage } from "@/types";
 import { RING_RADIUS, RING_CIRCUMFERENCE } from "./constants";
 
@@ -74,9 +75,12 @@ export default function PlayerPhasePreparation({
                     : "border-border"
                 }`}
               >
-                <img
+                <Image
                   src={image.url}
                   alt={image.description ?? `Imagen ${index + 1}`}
+                  width={80}
+                  height={80}
+                  unoptimized
                   className="w-20 h-20 object-cover"
                   loading="lazy"
                 />

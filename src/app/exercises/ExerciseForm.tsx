@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef } from "react";
+import Image from "next/image";
 import type { Exercise, ExerciseImage } from "@/types";
 import { uploadExerciseImage } from "@/lib/supabase/storage";
 
@@ -86,9 +87,12 @@ function ImageListInput({ defaultValue }: { defaultValue: ExerciseImage[] }) {
               </button>
             </div>
             {item.url && (
-              <img
+              <Image
                 src={item.url}
                 alt={item.description || "preview"}
+                width={64}
+                height={64}
+                unoptimized
                 className="h-16 w-16 object-contain rounded-lg border border-border bg-surface-alt"
               />
             )}

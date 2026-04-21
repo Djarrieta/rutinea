@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { createClient } from "@/lib/supabase/server";
 import { getUser } from "@/lib/auth";
 import { deleteExercise, cloneExercise } from "../actions";
@@ -109,9 +110,12 @@ export default async function ExerciseDetailPage({
         <div className="flex gap-3 flex-wrap mb-6">
           {exercise.images.map((img, i) => (
             <div key={i} className="flex flex-col items-center gap-1">
-              <img
+              <Image
                 src={img.url}
                 alt={img.description || `${exercise.title} ${i + 1}`}
+                width={128}
+                height={128}
+                unoptimized
                 className="w-32 h-32 object-contain rounded-lg border bg-surface-alt"
               />
               {img.description && (

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ExerciseImage } from "@/types";
 import { formatTime } from "./constants";
 
@@ -29,9 +30,11 @@ export default function PlayerPhaseExercise({
   return (
     <>
       {images.length > 0 ? (
-        <img
+        <Image
           src={images[currentImageIndex].url}
           alt={images[currentImageIndex].description || "Exercise image"}
+          fill
+          unoptimized
           className="w-full h-full object-contain"
           loading="eager"
         />
