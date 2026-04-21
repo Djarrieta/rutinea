@@ -57,8 +57,7 @@ export default async function RootLayout({
       <body className="bg-bg text-text min-h-screen pb-20 sm:pb-0 overflow-x-hidden font-sans selection:bg-primary-500/30">
         <BackgroundAtmosphere />
         <OfflineBanner />
-        {/* Grain/Noise Overlay */}
-        <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-[9999] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat" />
+
 
         {/* Desktop top nav */}
         <nav className="hidden sm:block sticky top-0 z-40 bg-surface/80 backdrop-blur-md border-b border-border/50 px-6 py-4">

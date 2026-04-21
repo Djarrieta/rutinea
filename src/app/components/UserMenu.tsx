@@ -94,7 +94,7 @@ export default function UserMenu({
           className={`absolute w-48 bg-surface border border-border rounded-lg shadow-lg py-1 z-50 ${
             popoverDirection === "up"
               ? "bottom-full mb-2 right-1/2 translate-x-1/2"
-              : "right-0 mt-2"
+              : "top-full right-0 mt-2"
           }`}
         >
           <div className="px-4 py-2 text-xs text-text-muted truncate border-b border-border-light">
