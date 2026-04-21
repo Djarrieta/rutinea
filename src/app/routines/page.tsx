@@ -4,7 +4,6 @@ import type { RoutineWithSets } from "@/types";
 import RoutineCard from "./RoutineCard";
 import PageHeader from "@/app/components/PageHeader";
 import FilterableList from "@/app/components/FilterableList";
-import OfflineRoutinesList from "./OfflineRoutinesList";
 import { PAGE_SIZE } from "@/lib/constants";
 
 export default async function RoutinesPage({
@@ -55,7 +54,6 @@ export default async function RoutinesPage({
       createLabel="Crear una"
       isEmpty={total === 0 && !q && !mine}
     >
-      <OfflineRoutinesList />
       <FilterableList
         placeholder="Buscar por nombre..."
         total={total}
