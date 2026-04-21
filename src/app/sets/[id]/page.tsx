@@ -4,6 +4,7 @@ import { createClient } from "@/lib/supabase/server";
 import { getUser } from "@/lib/auth";
 import { deleteSet, cloneSet } from "../actions";
 import Breadcrumb from "@/app/components/Breadcrumb";
+import { ActionBar, ActionForm, ActionLink } from "@/app/components/DetailActions";
 import SetDetailPlay from "../SetDetailPlay";
 import { properCase } from "@/lib/format";
 import type { SetWithExercises } from "@/types";
@@ -40,33 +41,25 @@ export default async function SetDetailPage({
           { label: properCase(set.name) },
         ]}
       />
-      <div className="flex items-center gap-3 mb-2">
-        <h1 className="text-2xl font-bold">{properCase(set.name)}</h1>
+      <h1 className="text-2xl font-bold mb-1">{properCase(set.name)}</h1>
+      <ActionBar>
         <SetDetailPlay set={set} />
         {user && (
-          <form action={cloneSet.bind(null, id)}>
-            <button
-              type="submit"
-              className="flex items-center gap-1.5 bg-primary-500 text-black px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-primary-600 transition-colors"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-3.5 h-3.5"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M15.988 3.012A2.25 2.25 0 0118 5.25v6.5A2.25 2.25 0 0115.75 14H13.5v-3.379a3 3 0 00-.879-2.121l-3.12-3.121a3 3 0 00-1.402-.791 2.252 2.252 0 011.913-1.576A2.25 2.25 0 0112.25 1h1.5a2.25 2.25 0 012.238 2.012zM11.5 3.25a.75.75 0 00-.75-.75h-1.5a.75.75 0 00-.75.75v.25h3v-.25z"
-                  clipRule="evenodd"
-                />
-                <path d="M3.5 6A1.5 1.5 0 002 7.5v9A1.5 1.5 0 003.5 18h7a1.5 1.5 0 001.5-1.5v-5.379a1.5 1.5 0 00-.44-1.06l-3.12-3.122A1.5 1.5 0 007.378 7.5H3.5z" />
-              </svg>
-              Clonar
-            </button>
-          </form>
+          <ActionForm action={cloneSet.bind(null, id)} icon="clone">
+            Clonar
+          </ActionForm>
         )}
-      </div>
+        {isOwner && (
+          <>
+            <ActionLink href={`/sets/${id}/edit`} icon="edit">
+              Editar
+            </ActionLink>
+            <ActionForm action={deleteWithId} variant="danger" icon="delete">
+              Eliminar
+            </ActionForm>
+          </>
+        )}
+      </ActionBar>
 
       {set.description && (
         <p className="text-text-secondary mb-4">
@@ -115,26 +108,6 @@ export default async function SetDetailPage({
         </div>
       )}
 
-      <div className="flex gap-3">
-        {isOwner && (
-          <>
-            <Link
-              href={`/sets/${id}/edit`}
-              className="bg-surface-alt px-4 py-2 rounded-lg text-sm hover:bg-surface-hover"
-            >
-              Editar
-            </Link>
-            <form action={deleteWithId}>
-              <button
-                type="submit"
-                className="bg-danger-50 text-danger-600 px-4 py-2 rounded-lg text-sm hover:bg-danger-100"
-              >
-                Eliminar
-              </button>
-            </form>
-          </>
-        )}
-      </div>
     </div>
   );
 }

@@ -42,10 +42,10 @@ export default function SaveOfflineButton({
       type="button"
       onClick={handleToggle}
       disabled={busy}
-      className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+      className={`inline-flex items-center gap-1.5 rounded-lg text-xs font-medium transition-colors px-3 py-1.5 ${
         saved
-          ? "bg-success-50 text-success-400 hover:bg-success-50/80"
-          : "bg-surface-2 text-text-primary hover:bg-surface-3"
+          ? "border border-success-500/30 text-success-400 hover:bg-success-50"
+          : "border border-border text-text-secondary hover:bg-surface-alt hover:text-text"
       } ${busy ? "opacity-50 cursor-wait" : ""}`}
     >
       {saved ? (
