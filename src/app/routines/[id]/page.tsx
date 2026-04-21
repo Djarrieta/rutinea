@@ -5,6 +5,7 @@ import { getUser } from "@/lib/auth";
 import { deleteRoutine, cloneRoutine } from "../actions";
 import Breadcrumb from "@/app/components/Breadcrumb";
 import RoutineDetailPlay from "../RoutineDetailPlay";
+import SaveOfflineButton from "../SaveOfflineButton";
 import { properCase, formatDuration, getRoutineDuration } from "@/lib/format";
 import type { RoutineWithSets } from "@/types";
 
@@ -44,31 +45,34 @@ export default async function RoutineDetailPage({
           { label: properCase(routine.name) },
         ]}
       />
-      <div className="flex items-center gap-3 mb-2">
+      <div className="flex flex-wrap items-center gap-3 mb-2">
         <h1 className="text-2xl font-bold">{properCase(routine.name)}</h1>
         <RoutineDetailPlay routine={routine} />
         {user && (
-          <form action={cloneRoutine.bind(null, id)}>
-            <button
-              type="submit"
-              className="flex items-center gap-1.5 bg-primary-500 text-black px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-primary-600 transition-colors"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-3.5 h-3.5"
+          <>
+            <form action={cloneRoutine.bind(null, id)}>
+              <button
+                type="submit"
+                className="flex items-center gap-1.5 bg-primary-500 text-black px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-primary-600 transition-colors"
               >
-                <path
-                  fillRule="evenodd"
-                  d="M15.988 3.012A2.25 2.25 0 0118 5.25v6.5A2.25 2.25 0 0115.75 14H13.5v-3.379a3 3 0 00-.879-2.121l-3.12-3.121a3 3 0 00-1.402-.791 2.252 2.252 0 011.913-1.576A2.25 2.25 0 0112.25 1h1.5a2.25 2.25 0 012.238 2.012zM11.5 3.25a.75.75 0 00-.75-.75h-1.5a.75.75 0 00-.75.75v.25h3v-.25z"
-                  clipRule="evenodd"
-                />
-                <path d="M3.5 6A1.5 1.5 0 002 7.5v9A1.5 1.5 0 003.5 18h7a1.5 1.5 0 001.5-1.5v-5.379a1.5 1.5 0 00-.44-1.06l-3.12-3.122A1.5 1.5 0 007.378 7.5H3.5z" />
-              </svg>
-              Clonar
-            </button>
-          </form>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                  className="w-3.5 h-3.5"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M15.988 3.012A2.25 2.25 0 0118 5.25v6.5A2.25 2.25 0 0115.75 14H13.5v-3.379a3 3 0 00-.879-2.121l-3.12-3.121a3 3 0 00-1.402-.791 2.252 2.252 0 011.913-1.576A2.25 2.25 0 0112.25 1h1.5a2.25 2.25 0 012.238 2.012zM11.5 3.25a.75.75 0 00-.75-.75h-1.5a.75.75 0 00-.75.75v.25h3v-.25z"
+                    clipRule="evenodd"
+                  />
+                  <path d="M3.5 6A1.5 1.5 0 002 7.5v9A1.5 1.5 0 003.5 18h7a1.5 1.5 0 001.5-1.5v-5.379a1.5 1.5 0 00-.44-1.06l-3.12-3.122A1.5 1.5 0 007.378 7.5H3.5z" />
+                </svg>
+                Clonar
+              </button>
+            </form>
+            <SaveOfflineButton routine={routine} />
+          </>
         )}
         <Link
           href={`/api/routines/${id}/export`}

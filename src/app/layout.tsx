@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Link from "next/link";
 import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
@@ -6,6 +6,7 @@ import { getUser } from "@/lib/auth";
 import UserMenu from "./components/UserMenu";
 import { DesktopNavLinks, MobileNavLinks } from "./components/NavLinks";
 import BackgroundAtmosphere from "./components/BackgroundAtmosphere";
+import OfflineBanner from "./components/OfflineBanner";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -22,6 +23,19 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Rutinea",
   description: "App de ejercicios",
+  applicationName: "Rutinea",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Rutinea",
+  },
+  formatDetection: {
+    telephone: false,
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#050505",
 };
 
 export default async function RootLayout({
@@ -42,6 +56,7 @@ export default async function RootLayout({
     <html lang="es" className={`${outfit.variable} ${inter.variable}`}>
       <body className="bg-bg text-text min-h-screen pb-20 sm:pb-0 overflow-x-hidden font-sans selection:bg-primary-500/30">
         <BackgroundAtmosphere />
+        <OfflineBanner />
         {/* Grain/Noise Overlay */}
         <div className="fixed inset-0 pointer-events-none opacity-[0.03] z-[9999] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat" />
 
@@ -49,7 +64,10 @@ export default async function RootLayout({
         <nav className="hidden sm:block sticky top-0 z-40 bg-surface/80 backdrop-blur-md border-b border-border/50 px-6 py-4">
           <div className="max-w-4xl mx-auto flex items-center justify-between">
             <div className="flex items-center gap-6">
-              <Link href="/" className="text-2xl font-bold tracking-tight font-display bg-gradient-to-r from-primary-400 to-accent-500 bg-clip-text text-transparent">
+              <Link
+                href="/"
+                className="text-2xl font-bold tracking-tight font-display bg-gradient-to-r from-primary-400 to-accent-500 bg-clip-text text-transparent"
+              >
                 Rutinea
               </Link>
               <DesktopNavLinks />
@@ -93,4 +111,3 @@ export default async function RootLayout({
     </html>
   );
 }
-

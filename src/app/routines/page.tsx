@@ -4,6 +4,7 @@ import type { RoutineWithSets } from "@/types";
 import RoutineCard from "./RoutineCard";
 import PageHeader from "@/app/components/PageHeader";
 import FilterableList from "@/app/components/FilterableList";
+import OfflineRoutinesList from "./OfflineRoutinesList";
 import { PAGE_SIZE } from "@/lib/constants";
 
 export default async function RoutinesPage({
@@ -28,7 +29,11 @@ export default async function RoutinesPage({
     .order("created_at", { ascending: false });
 
   if (q?.trim()) {
-    const term = q.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    const term = q
+      .trim()
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
     query = query.ilike("name_search", `%${term}%`);
   }
 
@@ -50,6 +55,7 @@ export default async function RoutinesPage({
       createLabel="Crear una"
       isEmpty={total === 0 && !q && !mine}
     >
+      <OfflineRoutinesList />
       <FilterableList
         placeholder="Buscar por nombre..."
         total={total}
