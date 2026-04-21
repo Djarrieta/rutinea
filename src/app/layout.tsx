@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
 import { getUser } from "@/lib/auth";
@@ -46,10 +47,10 @@ export default async function RootLayout({
   const user = await getUser();
   const userMenu = user
     ? {
-        email: user.email,
-        avatar_url: user.user_metadata?.avatar_url,
-        full_name: user.user_metadata?.full_name,
-      }
+      email: user.email,
+      avatar_url: user.user_metadata?.avatar_url,
+      full_name: user.user_metadata?.full_name,
+    }
     : null;
 
   return (
@@ -64,9 +65,16 @@ export default async function RootLayout({
             <div className="flex items-center gap-6">
               <Link
                 href="/"
-                className="text-2xl font-bold tracking-tight font-display bg-gradient-to-r from-primary-400 to-accent-500 bg-clip-text text-transparent"
+                className="flex items-center gap-2 text-2xl font-bold tracking-tight font-display bg-gradient-to-r from-primary-400 to-accent-500 bg-clip-text text-transparent hover:opacity-80 transition-opacity"
               >
-                Rutinea
+                <Image
+                  src="/images/icon-192.png"
+                  alt="Rutinea Logo"
+                  width={28}
+                  height={28}
+                  className="rounded-lg shadow-sm"
+                />
+
               </Link>
               <DesktopNavLinks />
             </div>
