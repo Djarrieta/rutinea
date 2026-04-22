@@ -57,9 +57,9 @@ export default async function RoutineDetailPage({
             <SaveOfflineButton routine={routine} />
           </>
         )}
-        <ActionLink href={`/api/routines/${id}/export`} target="_blank" icon="export">
+        {/* <ActionLink href={`/api/routines/${id}/export`} target="_blank" icon="export">
           Exportar
-        </ActionLink>
+        </ActionLink> */}
         {isOwner && (
           <>
             <ActionLink href={`/routines/${id}/edit`} icon="edit">

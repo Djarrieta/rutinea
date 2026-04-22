@@ -37,7 +37,7 @@ export default async function NewPlanPage({
       />
       <div className="flex items-center gap-3 mb-6">
         <h1 className="text-2xl font-bold">Nuevo Plan</h1>
-        <Link
+        {/* <Link
           href="/plans/import"
           className="flex items-center gap-1.5 bg-surface-2 text-text-primary px-3 py-1.5 rounded-lg text-xs font-medium hover:bg-surface-3 transition-colors"
         >
@@ -51,7 +51,7 @@ export default async function NewPlanPage({
             <path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z" />
           </svg>
           Importar JSON
-        </Link>
+        </Link> */}
       </div>
       <PlanForm
         action={createPlan}

@@ -52,9 +52,9 @@ export default async function PlanDetailPage({
             Clonar
           </ActionForm>
         )}
-        <ActionLink href={`/api/plans/${id}/export`} target="_blank" icon="export">
+        {/* <ActionLink href={`/api/plans/${id}/export`} target="_blank" icon="export">
           Exportar
-        </ActionLink>
+        </ActionLink> */}
         {isOwner && (
           <>
             <ActionLink href={`/plans/${id}/edit`} icon="edit">

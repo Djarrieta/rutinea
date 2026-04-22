@@ -52,6 +52,15 @@
 - **Row Level Security (RLS)** on every table — all data access goes through Supabase client which respects RLS.
 - **No additional state management** — React state + Server Components + `revalidatePath`.
 
+### AI Agent Skills
+
+The project uses the following Copilot agent skills (`.agents/skills/`):
+
+| Skill                              | Purpose                                                                                                                                        |
+| ---------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `frontend-design`                  | Generates distinctive, production-grade UI with high design quality. Used for all web components, pages, and layouts.                          |
+| `supabase-postgres-best-practices` | Postgres performance optimization and best practices from Supabase. Used when writing, reviewing, or optimizing queries, schema, or DB config. |
+
 ---
 
 ## 2. Project Structure
