@@ -138,7 +138,7 @@ export default async function ProfilePage() {
             <span className="text-2xl font-bold text-primary-500">
               {displayName
                 .split(" ")
-                .map((w) => w[0])
+                .map((w: string) => w[0])
                 .slice(0, 2)
                 .join("")
                 .toUpperCase()}
