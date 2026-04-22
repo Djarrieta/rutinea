@@ -47,10 +47,10 @@ export default async function RootLayout({
   const user = await getUser();
   const userMenu = user
     ? {
-      email: user.email,
-      avatar_url: user.user_metadata?.avatar_url,
-      full_name: user.user_metadata?.full_name,
-    }
+        email: user.email,
+        avatar_url: user.user_metadata?.avatar_url,
+        full_name: user.user_metadata?.full_name,
+      }
     : null;
 
   return (
@@ -74,7 +74,6 @@ export default async function RootLayout({
                   height={28}
                   className="rounded-lg shadow-sm"
                 />
-
               </Link>
               <DesktopNavLinks />
             </div>
