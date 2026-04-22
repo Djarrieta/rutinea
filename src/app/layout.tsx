@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Outfit, Inter } from "next/font/google";
 import "./globals.css";
 import { getUser } from "@/lib/auth";
-import UserMenu from "./components/UserMenu";
+import MoreMenu from "./components/MoreMenu";
 import { DesktopNavLinks, MobileNavLinks } from "./components/NavLinks";
 import BackgroundAtmosphere from "./components/BackgroundAtmosphere";
 import OfflineBanner from "./components/OfflineBanner";
@@ -78,7 +78,7 @@ export default async function RootLayout({
               <DesktopNavLinks />
             </div>
             <div className="flex items-center gap-3">
-              <UserMenu user={userMenu} />
+              <MoreMenu user={userMenu} />
             </div>
           </div>
         </nav>
@@ -90,26 +90,8 @@ export default async function RootLayout({
         {/* Mobile bottom nav */}
         <nav className="sm:hidden fixed bottom-6 inset-x-4 h-16 bg-surface/80 backdrop-blur-xl border border-white/10 rounded-2xl z-40 shadow-2xl overflow-hidden">
           <div className="flex justify-around items-center h-full">
-            <Link
-              href="/"
-              className="flex flex-col items-center gap-0.5 text-text-muted hover:text-text transition-colors"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-                className="w-5 h-5"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M9.293 2.293a1 1 0 011.414 0l7 7A1 1 0 0117 11h-1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-3a1 1 0 00-1-1H9a1 1 0 00-1 1v3a1 1 0 01-1 1H5a1 1 0 01-1-1v-6H3a1 1 0 01-.707-1.707l7-7z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span className="text-[10px] font-medium font-sans">Inicio</span>
-            </Link>
-            <UserMenu user={userMenu} popoverDirection="up" />
             <MobileNavLinks />
+            <MoreMenu user={userMenu} popoverDirection="up" />
           </div>
         </nav>
       </body>
