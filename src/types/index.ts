@@ -4,6 +4,7 @@ export * from './routine'
 export * from './plan'
 export * from './routine-bundle'
 export * from './plan-bundle'
+export * from './progress-entry'
 
 export interface Profile {
   id: string

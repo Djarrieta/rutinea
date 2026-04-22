@@ -2,35 +2,49 @@ import { requireAuth } from "@/lib/auth";
 import { createClient } from "@/lib/supabase/server";
 import Image from "next/image";
 import Link from "next/link";
+import ProfileProgressForm from "./ProfileProgressForm";
+import { createProgressEntry } from "./actions";
 
 export default async function ProfilePage() {
   const user = await requireAuth();
   const supabase = await createClient();
 
-  const [profile, exerciseCount, setCount, routineCount, planCount] =
-    await Promise.all([
-      supabase
-        .from("profiles")
-        .select("display_name, avatar_url, created_at")
-        .eq("id", user.id)
-        .single(),
-      supabase
-        .from("exercises")
-        .select("id", { count: "exact", head: true })
-        .eq("user_id", user.id),
-      supabase
-        .from("sets")
-        .select("id", { count: "exact", head: true })
-        .eq("user_id", user.id),
-      supabase
-        .from("routines")
-        .select("id", { count: "exact", head: true })
-        .eq("user_id", user.id),
-      supabase
-        .from("plans")
-        .select("id", { count: "exact", head: true })
-        .eq("user_id", user.id),
-    ]);
+  const [
+    profile,
+    exerciseCount,
+    setCount,
+    routineCount,
+    planCount,
+    progressEntriesResult,
+  ] = await Promise.all([
+    supabase
+      .from("profiles")
+      .select("display_name, avatar_url, created_at")
+      .eq("id", user.id)
+      .single(),
+    supabase
+      .from("exercises")
+      .select("id", { count: "exact", head: true })
+      .eq("user_id", user.id),
+    supabase
+      .from("sets")
+      .select("id", { count: "exact", head: true })
+      .eq("user_id", user.id),
+    supabase
+      .from("routines")
+      .select("id", { count: "exact", head: true })
+      .eq("user_id", user.id),
+    supabase
+      .from("plans")
+      .select("id", { count: "exact", head: true })
+      .eq("user_id", user.id),
+    supabase
+      .from("progress_entries")
+      .select("id, note, image_urls, created_at")
+      .eq("user_id", user.id)
+      .order("created_at", { ascending: false })
+      .limit(8),
+  ]);
 
   const displayName =
     profile.data?.display_name || user.email?.split("@")[0] || "Usuario";
@@ -43,6 +57,15 @@ export default async function ProfilePage() {
       })
     : null;
   const provider = user.app_metadata?.provider || "email";
+  const progressEntries =
+    progressEntriesResult.data?.map((entry) => ({
+      ...entry,
+      image_urls: Array.isArray(entry.image_urls)
+        ? entry.image_urls.filter(
+            (item): item is string => typeof item === "string",
+          )
+        : [],
+    })) ?? [];
 
   const stats = [
     {
@@ -235,6 +258,77 @@ export default async function ProfilePage() {
             </Link>
           ))}
         </div>
+      </div>
+
+      <div className="grid gap-4 lg:grid-cols-[1fr_1.25fr]">
+        <section className="rounded-xl border border-border bg-surface p-4">
+          <h2 className="mb-1 text-sm font-semibold text-text-secondary">
+            Sube tu progreso
+          </h2>
+          <p className="mb-4 text-sm text-text-muted">
+            Puedes guardar hasta 2 imagenes por registro y una nota de peso o
+            motivacion.
+          </p>
+          <ProfileProgressForm action={createProgressEntry} />
+        </section>
+
+        <section className="rounded-xl border border-border bg-surface p-4">
+          <h2 className="mb-3 text-sm font-semibold text-text-secondary">
+            Historial de progreso
+          </h2>
+
+          {progressEntries.length === 0 ? (
+            <p className="rounded-lg border border-dashed border-border p-4 text-sm text-text-muted">
+              Aun no has subido progreso. Crea tu primer registro para llevar
+              seguimiento.
+            </p>
+          ) : (
+            <div className="space-y-4">
+              {progressEntries.map((entry) => {
+                const formattedDate = new Date(
+                  entry.created_at,
+                ).toLocaleDateString("es-ES", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                });
+
+                return (
+                  <article
+                    key={entry.id}
+                    className="rounded-lg border border-border bg-bg/50 p-3"
+                  >
+                    <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-text-faint">
+                      {formattedDate}
+                    </p>
+
+                    {entry.note && (
+                      <p className="mb-3 whitespace-pre-wrap text-sm text-text">
+                        {entry.note}
+                      </p>
+                    )}
+
+                    {entry.image_urls.length > 0 && (
+                      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                        {entry.image_urls.map((url, index) => (
+                          <Image
+                            key={`${entry.id}-${url}-${index}`}
+                            src={url}
+                            alt={`Progreso ${index + 1}`}
+                            width={360}
+                            height={220}
+                            unoptimized
+                            className="h-32 w-full rounded-md object-cover"
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </article>
+                );
+              })}
+            </div>
+          )}
+        </section>
       </div>
     </div>
   );

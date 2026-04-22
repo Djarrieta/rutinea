@@ -8,6 +8,7 @@
     "start": "next start --port 5001",
     "lint": "eslint",
     "db:reset": "bun scripts/db-reset.ts",
+    "db:backup": "bun scripts/db-backup.ts",
     "supabase:start": "DOCKER_HOST=unix:///run/user/$(id -u)/podman/podman.sock bunx supabase start --ignore-health-check",
     "supabase:stop": "DOCKER_HOST=unix:///run/user/$(id -u)/podman/podman.sock bunx supabase stop"
   },
