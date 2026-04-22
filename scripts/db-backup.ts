@@ -1,6 +1,7 @@
 import postgres from "postgres";
 import { mkdirSync, writeFileSync } from "fs";
 import { join, dirname } from "path";
+import { createClient } from "@supabase/supabase-js";
 
 const root = join(dirname(new URL(import.meta.url).pathname), "..");
 const backupsDir = join(root, "backups");
@@ -14,6 +15,10 @@ if (!databaseUrl) {
   );
   process.exit(1);
 }
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 const sql = postgres(databaseUrl);
 
@@ -105,6 +110,72 @@ async function run() {
 
   console.log(`\n✓ Backup saved to ${filePath}`);
   console.log(`  ${totalRows} total rows across ${TABLES.length} tables`);
+
+  // ─── Storage backup ──────────────────────────────────────────────────────
+  const BUCKETS = ["exercise-images", "progress-images"];
+
+  console.log("\n🖼  Backing up storage buckets...\n");
+
+  let totalFiles = 0;
+
+  for (const bucket of BUCKETS) {
+    const bucketDir = join(backupsDir, "storage", bucket);
+    mkdirSync(bucketDir, { recursive: true });
+
+    process.stdout.write(`→ ${bucket}... `);
+
+    const allPaths: string[] = [];
+
+    async function collectPaths(prefix: string) {
+      const { data, error } = await supabase.storage
+        .from(bucket)
+        .list(prefix, { limit: 1000 });
+
+      if (error || !data) return;
+
+      for (const item of data) {
+        const path = prefix ? `${prefix}/${item.name}` : item.name;
+        if (item.metadata) {
+          allPaths.push(path);
+        } else {
+          await collectPaths(path);
+        }
+      }
+    }
+
+    await collectPaths("");
+
+    if (allPaths.length === 0) {
+      console.log("(empty)");
+      continue;
+    }
+
+    let downloaded = 0;
+
+    for (const filePath of allPaths) {
+      const { data, error } = await supabase.storage
+        .from(bucket)
+        .download(filePath);
+
+      if (error || !data) {
+        console.warn(`\n  ⚠ Failed to download ${bucket}/${filePath}: ${error?.message}`);
+        continue;
+      }
+
+      const localDir = join(bucketDir, dirname(filePath) === "." ? "" : dirname(filePath));
+      mkdirSync(localDir, { recursive: true });
+
+      const buffer = Buffer.from(await data.arrayBuffer());
+      const localPath = join(bucketDir, filePath);
+      writeFileSync(localPath, buffer);
+      downloaded++;
+    }
+
+    totalFiles += downloaded;
+    console.log(`${downloaded} files`);
+  }
+
+  console.log(`\n✓ Storage backup: ${totalFiles} files saved to backups/storage/`);
 
   await sql.end();
 }
