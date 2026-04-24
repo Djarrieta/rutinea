@@ -20,6 +20,7 @@ interface EntityCardProps {
   selectable?: boolean;
   selected?: boolean;
   onSelect?: () => void;
+  isApproved?: boolean;
 }
 
 export default function EntityCard({
@@ -36,6 +37,7 @@ export default function EntityCard({
   selectable,
   selected,
   onSelect,
+  isApproved,
 }: EntityCardProps) {
   return (
     <div
@@ -56,11 +58,30 @@ export default function EntityCard({
             <div className="flex items-center gap-3 text-[10px] font-bold tracking-widest uppercase text-text-muted mb-2 font-sans group-hover:text-primary-400/80 transition-colors">
               {meta}
             </div>
-            <Link href={href} className="block group/title">
-              <h2 className="font-display font-black text-xl sm:text-2xl leading-tight group-hover/title:text-primary-400 transition-colors">
-                {properCase(title)}
-              </h2>
-            </Link>
+              <Link href={href} className="block group/title">
+                <h2 className="font-display font-black text-xl sm:text-2xl leading-tight group-hover/title:text-primary-400 transition-colors flex items-center gap-2">
+                  {properCase(title)}
+                  {isApproved === false && (
+                    <span
+                      title="Pendiente de revisión"
+                      className="text-amber-500 shrink-0"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20"
+                        fill="currentColor"
+                        className="w-5 h-5"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 000-1.5h-3.25V5z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </span>
+                  )}
+                </h2>
+              </Link>
           </div>
 
           <div className="flex shrink-0 items-start gap-2">

@@ -54,13 +54,14 @@ export default function FilterableList({
     };
   }, []);
 
-  // Sync input with URL query on mount / navigation,
-  // but skip while user is actively typing to avoid overwriting.
-  useEffect(() => {
+  const [prevQuery, setPrevQuery] = useState(query);
+  if (query !== prevQuery) {
+    setPrevQuery(query);
+    // eslint-disable-next-line react-hooks/refs
     if (!isTypingRef.current) {
       setInputValue(query);
     }
-  }, [query]);
+  }
 
   const hasTags = availableTags.length > 0;
 

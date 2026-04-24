@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useLayoutEffect } from "react";
 import { createPortal } from "react-dom";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 
@@ -13,9 +14,34 @@ export default function MoreMenu({
   popoverDirection?: "up" | "down";
 }) {
   const [open, setOpen] = useState(false);
+  const [style, setStyle] = useState<React.CSSProperties>({});
   const buttonRef = useRef<HTMLButtonElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+
+  function getPopoverStyle(): React.CSSProperties {
+    if (!buttonRef.current) return {};
+    const rect = buttonRef.current.getBoundingClientRect();
+    if (popoverDirection === "up") {
+      return {
+        position: "fixed",
+        bottom: window.innerHeight - rect.top + 8,
+        right: window.innerWidth - rect.right,
+      };
+    }
+    return {
+      position: "fixed",
+      top: rect.bottom + 8,
+      right: window.innerWidth - rect.right,
+    };
+  }
+
+  useLayoutEffect(() => {
+    if (open) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setStyle(getPopoverStyle());
+    }
+  }, [open, popoverDirection]);
 
   useEffect(() => {
     function handleClick(e: MouseEvent) {
@@ -36,22 +62,6 @@ export default function MoreMenu({
     router.refresh();
   }
 
-  function getPopoverStyle(): React.CSSProperties {
-    if (!buttonRef.current) return {};
-    const rect = buttonRef.current.getBoundingClientRect();
-    if (popoverDirection === "up") {
-      return {
-        position: "fixed",
-        bottom: window.innerHeight - rect.top + 8,
-        right: window.innerWidth - rect.right,
-      };
-    }
-    return {
-      position: "fixed",
-      top: rect.bottom + 8,
-      right: window.innerWidth - rect.right,
-    };
-  }
 
   return (
     <div className="flex flex-col items-center">
@@ -78,26 +88,26 @@ export default function MoreMenu({
         createPortal(
           <div
             ref={popoverRef}
-            style={getPopoverStyle()}
+            style={style}
             className="w-48 bg-surface border border-border rounded-lg shadow-lg py-1 z-[9999]"
           >
-            <a
+            <Link
               href="/"
               className="block w-full text-left px-4 py-2 text-sm text-text-secondary hover:bg-bg"
             >
               Inicio
-            </a>
+            </Link>
             {user ? (
               <>
                 <div className="px-4 py-2 text-xs text-text-muted truncate border-y border-border-light">
                   {user.email}
                 </div>
-                <a
+                <Link
                   href="/profile"
                   className="block w-full text-left px-4 py-2 text-sm text-text-secondary hover:bg-bg"
                 >
                   Mi perfil
-                </a>
+                </Link>
                 <button
                   onClick={handleLogout}
                   className="w-full text-left px-4 py-2 text-sm text-text-secondary hover:bg-bg"
@@ -106,12 +116,12 @@ export default function MoreMenu({
                 </button>
               </>
             ) : (
-              <a
+              <Link
                 href="/login"
                 className="block w-full text-left px-4 py-2 text-sm text-text-secondary hover:bg-bg"
               >
                 Iniciar sesión
-              </a>
+              </Link>
             )}
           </div>,
           document.body,

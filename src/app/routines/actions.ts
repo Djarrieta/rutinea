@@ -23,7 +23,7 @@ export async function createRoutine(formData: FormData) {
 
 	const { data: routine, error } = await supabase
 		.from("routines")
-		.insert({ ...input, user_id: user.id })
+		.insert({ ...input, user_id: user.id, is_approved: false })
 		.select("id")
 		.single();
 
@@ -142,6 +142,7 @@ export async function cloneRoutine(id: string) {
 			...routineData,
 			name: `${routineData.name} [clon]`,
 			user_id: user.id,
+			is_approved: false,
 		})
 		.select("id")
 		.single();
@@ -173,6 +174,7 @@ export async function cloneRoutine(id: string) {
 					name: `${setData.name} [clon]`,
 					description: setData.description,
 					user_id: user.id,
+					is_approved: false,
 				})
 				.select("id")
 				.single();
@@ -201,6 +203,7 @@ export async function cloneRoutine(id: string) {
 							...exerciseData,
 							title: `${exerciseData.title} [clon]`,
 							user_id: user.id,
+							is_approved: false,
 						})
 						.select("id")
 						.single();

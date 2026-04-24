@@ -60,6 +60,7 @@ export default function RoutineCard({
         creatorName={routine.profile?.display_name}
         creatorAvatar={routine.profile?.avatar_url}
         cloneCount={routine.clone_count}
+        isApproved={routine.is_approved}
         meta={
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1">
@@ -71,7 +72,7 @@ export default function RoutineCard({
               >
                 <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v7A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5v-7A1.5 1.5 0 0 0 13.5 3h-11Zm3.5 3.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm1 0a1 1 0 1 1 2 0 1 1 0 0 1-2 0Z" />
               </svg>
-              {setCount}s
+              {setCount} set{setCount !== 1 ? "s" : ""}
             </span>
             <span className="w-1 h-1 rounded-full bg-white/25" />
             <span className="flex items-center gap-1">

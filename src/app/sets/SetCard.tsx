@@ -47,6 +47,7 @@ export default function SetCard({
         creatorName={set.profile?.display_name}
         creatorAvatar={set.profile?.avatar_url}
         cloneCount={set.clone_count}
+        isApproved={set.is_approved}
         selectable={selectable}
         selected={selection?.selected}
         onSelect={selection?.toggle}

@@ -30,6 +30,7 @@ export default function ExerciseCard({
         creatorName={exercise.profile?.display_name}
         creatorAvatar={exercise.profile?.avatar_url}
         cloneCount={exercise.clone_count}
+        isApproved={exercise.is_approved}
         selectable={selectable}
         selected={selection?.selected}
         onSelect={selection?.toggle}

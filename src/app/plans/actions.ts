@@ -22,7 +22,7 @@ export async function createPlan(formData: FormData) {
 
   const { data: plan, error } = await supabase
     .from('plans')
-    .insert({ ...input, user_id: user.id })
+    .insert({ ...input, user_id: user.id, is_approved: false })
     .select('id')
     .single()
 
@@ -104,7 +104,7 @@ export async function clonePlan(id: string) {
 
   const { data: clone, error } = await supabase
     .from('plans')
-    .insert({ ...planData, name: `${planData.name} [clon]`, user_id: user.id })
+    .insert({ ...planData, name: `${planData.name} [clon]`, user_id: user.id, is_approved: false })
     .select('id')
     .single()
 

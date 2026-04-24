@@ -127,6 +127,7 @@ async function createExercise(ex: BundleExercise): Promise<string> {
 			preparation_secs: ex.preparation_secs,
 			duration_secs: ex.duration_secs,
 			repetitions: ex.repetitions,
+			is_approved: true,
 		})
 		.select("id")
 		.single();
@@ -152,6 +153,7 @@ async function createSet(
 			name: name.toLowerCase(),
 			description,
 			user_id: USER_ID,
+			is_approved: true,
 		})
 		.select("id")
 		.single();
@@ -192,6 +194,7 @@ async function createRoutine(
 			description,
 			rest_secs,
 			user_id: USER_ID,
+			is_approved: true,
 		})
 		.select("id")
 		.single();

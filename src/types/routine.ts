@@ -10,6 +10,7 @@ export interface Routine {
   created_at: string
   updated_at: string
   profile?: { display_name: string; avatar_url: string | null }
+  is_approved: boolean
 }
 
 export interface RoutineSet {
@@ -26,6 +27,6 @@ export interface RoutineWithSets extends Routine {
   routine_sets: RoutineSet[]
 }
 
-export type CreateRoutineInput = Omit<Routine, 'id' | 'user_id' | 'clone_count' | 'created_at' | 'updated_at' | 'profile'>
+export type CreateRoutineInput = Omit<Routine, 'id' | 'user_id' | 'clone_count' | 'created_at' | 'updated_at' | 'profile' | 'is_approved'>
 
 export type UpdateRoutineInput = Partial<CreateRoutineInput>

@@ -40,6 +40,7 @@ export default function PlanCard({
       creatorName={plan.profile?.display_name}
       creatorAvatar={plan.profile?.avatar_url}
       cloneCount={plan.clone_count}
+      isApproved={plan.is_approved}
       meta={
         <div className="flex items-center gap-3">
           <span className="flex items-center gap-1">

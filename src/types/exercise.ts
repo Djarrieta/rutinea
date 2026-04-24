@@ -17,11 +17,12 @@ export interface Exercise {
   created_at: string
   updated_at: string
   profile?: { display_name: string; avatar_url: string | null }
+  is_approved: boolean
 }
 
 export type CreateExerciseInput = Omit<
   Exercise,
-  'id' | 'user_id' | 'clone_count' | 'created_at' | 'updated_at' | 'profile'
+  'id' | 'user_id' | 'clone_count' | 'created_at' | 'updated_at' | 'profile' | 'is_approved'
 >
 
 export type UpdateExerciseInput = Partial<CreateExerciseInput>

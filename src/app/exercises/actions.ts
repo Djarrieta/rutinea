@@ -33,7 +33,7 @@ export async function createExercise(formData: FormData) {
     repetitions: Number(formData.get('repetitions')) || 1,
   }
 
-  const { error } = await supabase.from('exercises').insert({ ...input, user_id: user.id })
+  const { error } = await supabase.from('exercises').insert({ ...input, user_id: user.id, is_approved: false })
 
   if (error) throw new Error(error.message)
 
@@ -84,7 +84,7 @@ export async function cloneExercise(id: string) {
 
   const { data: clone, error } = await supabase
     .from('exercises')
-    .insert({ ...source, title: `${source.title} [clon]`, user_id: user.id })
+    .insert({ ...source, title: `${source.title} [clon]`, user_id: user.id, is_approved: false })
     .select('id')
     .single()
 

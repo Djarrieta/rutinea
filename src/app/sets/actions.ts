@@ -22,7 +22,7 @@ export async function createSet(formData: FormData) {
 
 	const { data: set, error } = await supabase
 		.from("sets")
-		.insert({ ...input, user_id: user.id })
+		.insert({ ...input, user_id: user.id, is_approved: false })
 		.select("id")
 		.single();
 
@@ -124,7 +124,7 @@ export async function cloneSet(id: string) {
 	// Create new set
 	const { data: clone, error } = await supabase
 		.from("sets")
-		.insert({ ...setData, name: `${setData.name} [clon]`, user_id: user.id })
+		.insert({ ...setData, name: `${setData.name} [clon]`, user_id: user.id, is_approved: false })
 		.select("id")
 		.single();
 
@@ -149,6 +149,7 @@ export async function cloneSet(id: string) {
 					...exerciseData,
 					title: `${exerciseData.title} [clon]`,
 					user_id: user.id,
+					is_approved: false,
 				})
 				.select("id")
 				.single();

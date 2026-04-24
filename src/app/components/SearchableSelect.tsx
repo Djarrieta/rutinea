@@ -32,9 +32,6 @@ export default function SearchableSelect({
     ? options.filter((o) => o.label.toLowerCase().includes(query.toLowerCase()))
     : options;
 
-  useEffect(() => {
-    setHighlightIndex(0);
-  }, [query]);
 
   useEffect(() => {
     function handleClickOutside(e: MouseEvent) {
@@ -93,6 +90,7 @@ export default function SearchableSelect({
         disabled={disabled}
         onChange={(e) => {
           setQuery(e.target.value);
+          setHighlightIndex(0);
           setOpen(true);
         }}
         onFocus={() => setOpen(true)}

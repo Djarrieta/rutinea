@@ -38,6 +38,10 @@ export default async function RoutinesPage({
 
   if (mine && user) {
     query = query.eq("user_id", user.id);
+  } else if (user) {
+    query = query.or(`is_approved.eq.true,user_id.eq.${user.id}`);
+  } else {
+    query = query.eq("is_approved", true);
   }
 
   const { data: routines, count } = await query
