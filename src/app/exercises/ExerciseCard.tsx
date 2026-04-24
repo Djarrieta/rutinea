@@ -6,7 +6,7 @@ import EntityCard from "@/app/components/EntityCard";
 import PlayButton from "@/app/components/PlayButton";
 import ExercisePlayerModal from "./ExercisePlayerModal";
 import { useSelection } from "@/app/components/SelectionProvider";
-import { RepetitionsIndicator, DurationIndicator, ImagesIndicator } from "@/app/components/StatusIndicators";
+import { RepetitionsIndicator, DurationIndicator } from "@/app/components/StatusIndicators";
 
 export default function ExerciseCard({
   exercise,
@@ -37,7 +37,6 @@ export default function ExerciseCard({
           <div className="flex items-center gap-3">
             <DurationIndicator label={`${exercise.duration_secs}s`} />
             <RepetitionsIndicator count={exercise.repetitions} />
-            <ImagesIndicator count={exercise.images.length} />
           </div>
         }
         action={

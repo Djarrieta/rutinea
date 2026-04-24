@@ -50,27 +50,29 @@ export function Indicator({
   opacity = "opacity-50",
 }: IndicatorProps) {
   return (
-    <div className="group flex items-center transition-all duration-500 h-5">
+    <div className="group/indicator relative flex items-center h-5" title={title}>
       <span
         className={`flex items-center gap-1.5 ${className} cursor-default h-full`}
       >
-        <span className={`${opacity} shrink-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110 flex items-center justify-center`}>
+        <span className={`${opacity} shrink-0 transition-all duration-300 group-hover/indicator:opacity-100 group-hover/indicator:scale-110 flex items-center justify-center`}>
           {icon}
         </span>
-        
-        <div className="flex flex-col justify-center overflow-hidden h-full">
-          {label !== undefined && (
-            <span className="text-[10px] font-bold tracking-tight leading-none">
-              {label}
-            </span>
-          )}
-          {title && (
-            <span className="max-w-0 opacity-0 whitespace-nowrap text-[7px] font-black uppercase tracking-[0.2em] text-text-faint transition-all duration-500 ease-out group-hover:max-w-[120px] group-hover:opacity-100 group-hover:mt-0.5">
-              {title}
-            </span>
-          )}
-        </div>
+        {label !== undefined && (
+          <span className="text-[10px] font-bold tracking-tight leading-none">
+            {label}
+          </span>
+        )}
       </span>
+
+      {/* Tooltip on hover */}
+      {title && (
+        <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 top-full mt-1.5 opacity-0 scale-95 group-hover/indicator:opacity-100 group-hover/indicator:scale-100 transition-all duration-200 ease-out z-50">
+          <div className="absolute left-1/2 -translate-x-1/2 -top-1 w-2 h-2 bg-[#1a1a1a] border-l border-t border-white/10 rotate-45" />
+          <div className="whitespace-nowrap rounded-lg bg-[#1a1a1a] border border-white/10 px-2.5 py-1 text-[9px] font-bold uppercase tracking-widest text-text-secondary shadow-xl">
+            {title}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
