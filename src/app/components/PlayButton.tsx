@@ -10,7 +10,7 @@ export default function PlayButton({ onClick }: { onClick: () => void }) {
   return (
     <button
       onClick={handleClick}
-      className="inline-flex items-center gap-1.5 rounded-lg text-xs font-medium transition-colors px-3 py-1.5 bg-primary-500 text-black hover:bg-primary-600 active:bg-primary-700"
+      className="inline-flex items-center gap-1.5 rounded-lg text-xs font-medium transition-all px-3 py-1.5 bg-primary-500 text-black hover:bg-primary-600 active:scale-95 active:bg-primary-700"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

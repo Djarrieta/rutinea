@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useFormStatus } from "react-dom";
 import type { ReactNode } from "react";
 
 /* ── Shared button style tokens ── */
@@ -6,10 +9,10 @@ const base =
   "inline-flex items-center gap-1.5 rounded-lg text-xs font-medium transition-colors px-3 py-1.5";
 
 const variants = {
-  primary: `${base} bg-primary-500 text-black hover:bg-primary-600 active:bg-primary-700`,
-  secondary: `${base} border border-primary-500/30 text-primary-400 hover:bg-primary-500/10`,
-  ghost: `${base} border border-border text-text-secondary hover:bg-surface-alt hover:text-text`,
-  danger: `${base} border border-danger-400/20 text-danger-400 hover:bg-danger-50`,
+  primary: `${base} bg-primary-500 text-black hover:bg-primary-600 active:scale-95 active:bg-primary-700`,
+  secondary: `${base} border border-primary-500/30 text-primary-400 hover:bg-primary-500/10 active:scale-95`,
+  ghost: `${base} border border-border text-text-secondary hover:bg-surface-alt hover:text-text active:scale-95`,
+  danger: `${base} border border-danger-400/20 text-danger-400 hover:bg-danger-50 active:scale-95`,
 } as const;
 
 type Variant = keyof typeof variants;
@@ -127,23 +130,68 @@ export function ActionLink({
   );
 }
 
+function ActionFormButton({
+  variant,
+  icon,
+  children,
+}: {
+  variant: Variant;
+  icon?: IconName;
+  children: ReactNode;
+}) {
+  const { pending } = useFormStatus();
+
+  return (
+    <button
+      type="submit"
+      disabled={pending}
+      className={`${variants[variant]} disabled:opacity-50 disabled:cursor-not-allowed`}
+    >
+      {pending ? (
+        <svg
+          className="animate-spin h-3.5 w-3.5"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            className="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            strokeWidth="4"
+          ></circle>
+          <path
+            className="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+          ></path>
+        </svg>
+      ) : (
+        icon && icons[icon]
+      )}
+      {children}
+    </button>
+  );
+}
+
 export function ActionForm({
   action,
   variant = "ghost",
   icon,
   children,
 }: {
-  action: () => void;
+  action: (formData: FormData) => void;
   variant?: Variant;
   icon?: IconName;
   children: ReactNode;
 }) {
   return (
     <form action={action}>
-      <button type="submit" className={variants[variant]}>
-        {icon && icons[icon]}
+      <ActionFormButton variant={variant} icon={icon}>
         {children}
-      </button>
+      </ActionFormButton>
     </form>
   );
 }

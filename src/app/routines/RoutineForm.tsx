@@ -6,6 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 import SearchableSelect from "@/app/components/SearchableSelect";
 import { properCase } from "@/lib/format";
 import { MAX_TITLE_LENGTH, MAX_DESCRIPTION_LENGTH } from "@/lib/constants";
+import SubmitButton from "@/app/components/SubmitButton";
 
 interface SelectedSet {
   id: string;
@@ -202,12 +203,9 @@ export default function RoutineForm({
         <SetPicker defaultValue={defaultSetEntries} />
       </div>
 
-      <button
-        type="submit"
-        className="bg-primary-500 text-black px-5 py-2 rounded-lg text-sm font-medium hover:bg-primary-600"
-      >
+      <SubmitButton>
         {submitLabel}
-      </button>
+      </SubmitButton>
     </form>
   );
 }

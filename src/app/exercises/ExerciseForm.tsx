@@ -5,6 +5,7 @@ import Image from "next/image";
 import type { Exercise, ExerciseImage } from "@/types";
 import { MAX_TITLE_LENGTH, MAX_DESCRIPTION_LENGTH } from "@/lib/constants";
 import { uploadExerciseImage } from "@/lib/supabase/storage";
+import SubmitButton from "@/app/components/SubmitButton";
 
 interface ImageItem extends ExerciseImage {
   uploading?: boolean;
@@ -239,12 +240,9 @@ export default function ExerciseForm({ exercise, action, submitLabel }: Props) {
         />
       </div>
 
-      <button
-        type="submit"
-        className="bg-primary-500 text-black px-5 py-2 rounded-lg text-sm font-medium hover:bg-primary-600"
-      >
+      <SubmitButton>
         {submitLabel}
-      </button>
+      </SubmitButton>
     </form>
   );
 }
