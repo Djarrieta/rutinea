@@ -11,11 +11,9 @@ import { RepetitionsIndicator, DurationIndicator, ImagesIndicator } from "@/app/
 export default function ExerciseCard({
   exercise,
   selectable,
-  userId,
 }: {
   exercise: Exercise;
   selectable?: boolean;
-  userId?: string;
 }) {
   const [showPlayer, setShowPlayer] = useState(false);
   const selection = useSelection(exercise.id, exercise.user_id);

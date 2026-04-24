@@ -19,12 +19,10 @@ export default function SetCard({
   set,
   exerciseCount,
   selectable,
-  userId,
 }: {
   set: SetWithExercises;
   exerciseCount: number;
   selectable?: boolean;
-  userId?: string;
 }) {
   const [showPlayer, setShowPlayer] = useState(false);
   const selection = useSelection(set.id, set.user_id);

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import type { ExerciseImage } from "@/types";
-import { formatTime } from "./constants";
 
 interface Props {
   images: ExerciseImage[];
