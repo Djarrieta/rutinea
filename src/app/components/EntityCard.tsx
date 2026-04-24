@@ -56,15 +56,18 @@ export default function EntityCard({
       <div className="p-6 relative z-10">
         <div className="flex justify-between items-start gap-4 mb-4">
           <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-3 text-[10px] font-bold tracking-widest uppercase text-text-muted mb-2 font-sans group-hover:text-primary-400/80 transition-colors">
+            <div className="flex flex-wrap items-center gap-3 text-[10px] font-bold tracking-widest uppercase text-text-muted mb-3 font-sans group-hover:text-primary-400/80 transition-colors">
               {meta}
+              {cloneCount !== undefined && cloneCount > 0 && (
+                <CloneIndicator count={cloneCount} />
+              )}
+              {isApproved === false && (
+                <PendingIndicator />
+              )}
             </div>
               <Link href={href} className="block group/title">
-                <h2 className="font-display font-black text-xl sm:text-2xl leading-tight group-hover/title:text-primary-400 transition-colors flex items-center gap-2">
+                <h2 className="font-display font-black text-xl sm:text-2xl leading-tight group-hover/title:text-primary-400 transition-colors">
                   {properCase(title)}
-                  {isApproved === false && (
-                    <PendingIndicator />
-                  )}
                 </h2>
               </Link>
           </div>
@@ -112,7 +115,7 @@ export default function EntityCard({
         )}
 
         <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-white/5">
-          <div className="flex items-center gap-3 min-w-0">
+            <div className="flex items-center gap-3 min-w-0">
             {creatorName && (
               <div
                 className="flex items-center pr-3 border-r border-white/10 shrink-0"
@@ -136,7 +139,6 @@ export default function EntityCard({
               </div>
             )}
 
-            <CloneIndicator count={cloneCount ?? 0} />
             {action}
           </div>
 

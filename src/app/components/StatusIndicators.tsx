@@ -10,6 +10,38 @@ interface IndicatorProps {
   opacity?: string;
 }
 
+export function ImagesIndicator({
+  count,
+  className = "",
+}: {
+  count: number;
+  className?: string;
+}) {
+  if (count <= 0) return null;
+
+  return (
+    <Indicator
+      title="Imágenes"
+      label={count}
+      className={`text-text-muted ${className}`}
+      icon={
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 16 16"
+          fill="currentColor"
+          className="w-3.5 h-3.5"
+        >
+          <path
+            fillRule="evenodd"
+            d="M2 4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V4Zm10.5 2a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0ZM4 4h8v4.428l-2.09-2.09a1.5 1.5 0 0 0-2.12 0L4 10.139V4Zm8 8H4v-.639l4.29-4.29a.5.5 0 0 1 .708 0L12 10.071V12Z"
+            clipRule="evenodd"
+          />
+        </svg>
+      }
+    />
+  );
+}
+
 export function Indicator({
   icon,
   label,
@@ -18,15 +50,15 @@ export function Indicator({
   opacity = "opacity-50",
 }: IndicatorProps) {
   return (
-    <div className="group flex items-center transition-all duration-500">
+    <div className="group flex items-center transition-all duration-500 h-5">
       <span
-        className={`flex items-center gap-1.5 ${className} cursor-default`}
+        className={`flex items-center gap-1.5 ${className} cursor-default h-full`}
       >
-        <span className={`${opacity} shrink-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110`}>
+        <span className={`${opacity} shrink-0 transition-all duration-300 group-hover:opacity-100 group-hover:scale-110 flex items-center justify-center`}>
           {icon}
         </span>
         
-        <div className="flex flex-col justify-center overflow-hidden">
+        <div className="flex flex-col justify-center overflow-hidden h-full">
           {label !== undefined && (
             <span className="text-[10px] font-bold tracking-tight leading-none">
               {label}
@@ -144,6 +176,66 @@ export function OfflineIndicator({ className = "" }: { className?: string }) {
         >
           <path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z" />
           <path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z" />
+        </svg>
+      }
+    />
+  );
+}
+
+export function DaysIndicator({
+  count,
+  className = "",
+}: {
+  count: number;
+  className?: string;
+}) {
+  if (count <= 0) return null;
+
+  return (
+    <Indicator
+      title="Días"
+      label={`${count} día${count !== 1 ? "s" : ""}`}
+      className={`text-text-muted ${className}`}
+      icon={
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 16 16"
+          fill="currentColor"
+          className="w-3 h-3"
+        >
+          <path
+            fillRule="evenodd"
+            d="M4 1.75a.75.75 0 0 1 1.5 0V3h5V1.75a.75.75 0 0 1 1.5 0V3h.75A1.75 1.75 0 0 1 14.5 4.75v8.5a1.75 1.75 0 0 1-1.75 1.75H3.25a1.75 1.75 0 0 1-1.75-1.75v-8.5A1.75 1.75 0 0 1 3.25 3H4V1.75ZM3.25 4.5a.25.25 0 0 0-.25.25v8.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25h-9.5Z"
+            clipRule="evenodd"
+          />
+        </svg>
+      }
+    />
+  );
+}
+
+export function ExercisesCountIndicator({
+  count,
+  className = "",
+}: {
+  count: number;
+  className?: string;
+}) {
+  if (count <= 0) return null;
+
+  return (
+    <Indicator
+      title="Ejercicios"
+      label={`${count} ejercicio${count !== 1 ? "s" : ""}`}
+      className={`text-text-muted ${className}`}
+      icon={
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 16 16"
+          fill="currentColor"
+          className="w-3 h-3"
+        >
+          <path d="M14 10.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5ZM14 5.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5ZM14 8a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0 0 1h3a.5.5 0 0 0 .5-.5ZM2.5 12a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM2.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM2.5 9.5a1 1 0 1 1 0 2 1 1 0 0 1 0-2ZM3.5 14.5a1 1 0 1 0-2 0 1 1 0 0 0 2 0ZM3.5 4.5a1 1 0 1 0-2 0 1 1 0 0 0 2 0Z" />
         </svg>
       }
     />

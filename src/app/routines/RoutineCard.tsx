@@ -65,16 +65,10 @@ export default function RoutineCard({
         meta={
           <div className="flex items-center gap-3">
             <SetsIndicator count={setCount} />
-            <span className="w-1 h-1 rounded-full bg-white/25" />
             <DurationIndicator 
               label={totalSecs > 0 ? formatTime(totalSecs) : `${routine.rest_secs}s rest`} 
             />
-            {isOffline && (
-              <>
-                <span className="w-1 h-1 rounded-full bg-white/25" />
-                <OfflineIndicator />
-              </>
-            )}
+            {isOffline && <OfflineIndicator />}
           </div>
         }
         action={
