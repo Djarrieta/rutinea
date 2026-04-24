@@ -4,8 +4,8 @@ import { useEffect, useState, useRef } from "react";
 import type { Exercise } from "@/types";
 import { usePreloadImages } from "@/lib/hooks/usePreloadImages";
 import { useRepSounds } from "@/lib/hooks/useRepSounds";
-import PlayerModalShell from "@/app/components/PlayerModalShell";
-import PlayerControls from "@/app/components/PlayerControls";
+import PlayerModalShell from "@/app/components/player/PlayerModalShell";
+import PlayerControls from "@/app/components/player/PlayerControls";
 import {
   PlayerPhasePreparation,
   PlayerPhaseExercise,

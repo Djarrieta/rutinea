@@ -10,7 +10,7 @@ export default function MoreMenu({
   user,
   popoverDirection = "down",
 }: {
-  user: { email?: string; avatar_url?: string; full_name?: string } | null;
+  user: { avatar_url?: string; full_name?: string } | null;
   popoverDirection?: "up" | "down";
 }) {
   const [open, setOpen] = useState(false);
@@ -99,9 +99,7 @@ export default function MoreMenu({
             </Link>
             {user ? (
               <>
-                <div className="px-4 py-2 text-xs text-text-muted truncate border-y border-border-light">
-                  {user.email}
-                </div>
+
                 <Link
                   href="/profile"
                   className="block w-full text-left px-4 py-2 text-sm text-text-secondary hover:bg-bg"

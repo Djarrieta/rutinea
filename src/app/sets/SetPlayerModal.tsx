@@ -4,8 +4,8 @@ import { useEffect, useState, useRef } from "react";
 import type { SetWithExercises, Exercise } from "@/types";
 import { usePreloadImages } from "@/lib/hooks/usePreloadImages";
 import { useRepSounds } from "@/lib/hooks/useRepSounds";
-import PlayerModalShell from "@/app/components/PlayerModalShell";
-import PlayerControls from "@/app/components/PlayerControls";
+import PlayerModalShell from "@/app/components/player/PlayerModalShell";
+import PlayerControls from "@/app/components/player/PlayerControls";
 import {
   PlayerPhasePreparation,
   PlayerPhaseExercise,
@@ -190,13 +190,12 @@ export default function SetPlayerModal({ set, onClose }: Props) {
           <div
             ref={isCurrent ? activeExerciseRef : null}
             key={i}
-            className={`flex-shrink-0 rounded-lg border px-2.5 py-1.5 text-[11px] leading-tight transition-colors ${
-              isCurrent
+            className={`flex-shrink-0 rounded-lg border px-2.5 py-1.5 text-[11px] leading-tight transition-colors ${isCurrent
                 ? "border-primary-500 bg-primary-500/10"
                 : isDone
                   ? "border-success-500/40 bg-success-50"
                   : "border-border bg-surface-alt/60 opacity-60"
-            }`}
+              }`}
           >
             <div
               className={`font-semibold truncate max-w-[8rem] ${isCurrent ? "text-primary-400" : isDone ? "text-success-400" : "text-text-faint"}`}
