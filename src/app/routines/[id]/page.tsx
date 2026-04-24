@@ -9,6 +9,7 @@ import RoutineDetailPlay from "../RoutineDetailPlay";
 import SaveOfflineButton from "../SaveOfflineButton";
 import { properCase, formatDuration, getRoutineDuration } from "@/lib/format";
 import type { RoutineWithSets } from "@/types";
+import { PendingIndicator, CloneIndicator } from "@/app/components/StatusIndicators";
 
 export default async function RoutineDetailPage({
   params,
@@ -52,25 +53,7 @@ export default async function RoutineDetailPage({
       />
       <h1 className="text-2xl font-bold mb-1 flex items-center gap-2">
         {properCase(routine.name)}
-        {!routine.is_approved && (
-          <span
-            title="Pendiente de revisión"
-            className="text-amber-500 shrink-0"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="w-5 h-5"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 000-1.5h-3.25V5z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </span>
-        )}
+        {!routine.is_approved && <PendingIndicator />}
       </h1>
       <ActionBar>
         <RoutineDetailPlay routine={routine} />
@@ -115,6 +98,12 @@ export default async function RoutineDetailPage({
         <div>
           <dt className="text-text-faint">Duración total</dt>
           <dd>{formatDuration(totalDuration)}</dd>
+        </div>
+        <div>
+          <dt className="text-text-faint">Clonado</dt>
+          <dd>
+            <CloneIndicator count={routine.clone_count} className="!text-sm" />
+          </dd>
         </div>
       </dl>
 

@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Badge from "./Badge";
 import { properCase } from "@/lib/format";
+import { PendingIndicator, CloneIndicator } from "./StatusIndicators";
 
 interface EntityCardProps {
   href: string;
@@ -62,23 +63,7 @@ export default function EntityCard({
                 <h2 className="font-display font-black text-xl sm:text-2xl leading-tight group-hover/title:text-primary-400 transition-colors flex items-center gap-2">
                   {properCase(title)}
                   {isApproved === false && (
-                    <span
-                      title="Pendiente de revisión"
-                      className="text-amber-500 shrink-0"
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 20 20"
-                        fill="currentColor"
-                        className="w-5 h-5"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 000-1.5h-3.25V5z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                    </span>
+                    <PendingIndicator />
                   )}
                 </h2>
               </Link>
@@ -151,23 +136,7 @@ export default function EntityCard({
               </div>
             )}
 
-            {typeof cloneCount === "number" && cloneCount > 0 && (
-              <div
-                className="flex items-center gap-1.5 text-[10px] font-bold text-text-faint hover:text-text-muted transition-colors cursor-default shrink-0"
-                title={`Clonado ${cloneCount} vez${cloneCount !== 1 ? "es" : ""}`}
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 16 16"
-                  fill="currentColor"
-                  className="w-3.5 h-3.5 opacity-50"
-                >
-                  <path d="M11.986 3.012A1.75 1.75 0 0 1 14 4.75v5.5A1.75 1.75 0 0 1 12.25 12H11v-2.379a2.5 2.5 0 0 0-.732-1.768L8.354 5.94a2.5 2.5 0 0 0-1.168-.66A1.752 1.752 0 0 1 8.75 4h1.5c.87 0 1.59.634 1.736 1.512ZM9 4.75A.75.75 0 0 0 8.25 4h-1.5a.75.75 0 0 0 0 1.5h2.25v-.75Z" />
-                  <path d="M3.5 6A1.5 1.5 0 0 0 2 7.5v5A1.5 1.5 0 0 0 3.5 14h5a1.5 1.5 0 0 0 1.5-1.5V9.621a1.5 1.5 0 0 0-.44-1.06l-1.94-1.94A1.5 1.5 0 0 0 6.56 6.18H3.5Z" />
-                </svg>
-                {cloneCount}
-              </div>
-            )}
+            <CloneIndicator count={cloneCount ?? 0} />
             {action}
           </div>
 

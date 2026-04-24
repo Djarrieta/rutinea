@@ -6,6 +6,7 @@ import EntityCard from "@/app/components/EntityCard";
 import PlayButton from "@/app/components/PlayButton";
 import ExercisePlayerModal from "./ExercisePlayerModal";
 import { useSelection } from "@/app/components/SelectionProvider";
+import { RepetitionsIndicator, DurationIndicator } from "@/app/components/StatusIndicators";
 
 export default function ExerciseCard({
   exercise,
@@ -36,42 +37,8 @@ export default function ExerciseCard({
         onSelect={selection?.toggle}
         meta={
           <div className="flex items-center gap-3">
-            <span className="flex items-center gap-1">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 16 16"
-                fill="currentColor"
-                className="w-3 h-3 opacity-50"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8Zm7.75-4.25a.75.75 0 0 0-1.5 0V8c0 .414.336.75.75.75h3a.75.75 0 0 0 0-1.5h-2.25V3.75Z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              {exercise.duration_secs}s
-            </span>
-            {exercise.repetitions > 1 && (
-              <>
-                <span className="w-1 h-1 rounded-full bg-white/25" />
-                <span className="flex items-center gap-1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 16 16"
-                    fill="currentColor"
-                    className="w-3 h-3 opacity-50"
-                  >
-                    <path d="M8 5a3 3 0 1 0 0 6 3 3 0 0 0 0-6ZM6.5 8a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z" />
-                    <path
-                      fillRule="evenodd"
-                      d="M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8Zm12.5 0A5.5 5.5 0 1 1 2.5 8 5.5 5.5 0 0 1 13.5 8Z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  {exercise.repetitions} reps
-                </span>
-              </>
-            )}
+            <DurationIndicator label={`${exercise.duration_secs}s`} />
+            <RepetitionsIndicator count={exercise.repetitions} />
             {exercise.images.length > 0 && (
               <>
                 <span className="w-1 h-1 rounded-full bg-white/25" />

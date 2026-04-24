@@ -13,6 +13,7 @@ import Badge from "@/app/components/Badge";
 import ExerciseDetailPlay from "../ExerciseDetailPlay";
 import { properCase } from "@/lib/format";
 import type { Exercise } from "@/types";
+import { PendingIndicator, RepetitionsIndicator, CloneIndicator } from "@/app/components/StatusIndicators";
 
 export default async function ExerciseDetailPage({
   params,
@@ -48,25 +49,7 @@ export default async function ExerciseDetailPage({
       />
       <h1 className="text-2xl font-bold mb-1 flex items-center gap-2">
         {properCase(exercise.title)}
-        {!exercise.is_approved && (
-          <span
-            title="Pendiente de revisión"
-            className="text-amber-500 shrink-0"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              className="w-5 h-5"
-            >
-              <path
-                fillRule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm.75-13a.75.75 0 00-1.5 0v5c0 .414.336.75.75.75h4a.75.75 0 000-1.5h-3.25V5z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </span>
-        )}
+        {!exercise.is_approved && <PendingIndicator />}
       </h1>
       <ActionBar>
         <ExerciseDetailPlay exercise={exercise} />
@@ -106,7 +89,15 @@ export default async function ExerciseDetailPage({
         </div>
         <div>
           <dt className="text-text-faint">Repeticiones</dt>
-          <dd>{exercise.repetitions}</dd>
+          <dd>
+            <RepetitionsIndicator count={exercise.repetitions} className="!text-sm" />
+          </dd>
+        </div>
+        <div>
+          <dt className="text-text-faint">Clonado</dt>
+          <dd>
+            <CloneIndicator count={exercise.clone_count} className="!text-sm" />
+          </dd>
         </div>
         <div>
           <dt className="text-text-faint">Imágenes</dt>
