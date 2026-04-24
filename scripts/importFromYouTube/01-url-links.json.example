@@ -1,0 +1,118 @@
+{
+  "routine": {
+    "name": "Calistenia Principiante",
+    "description": "Pectoral Superior ∙ Pectoral Inferior ∙ Glúteos ∙ Cuádriceps ∙ Isquiotibiales ∙ Gemelos",
+    "rest_secs": 30
+  },
+  "sets": [
+    {
+      "name": "Calistenia Principiante set único",
+      "description": "Calistenia Principiante set único",
+      "rounds": 4,
+      "exercises": [
+        {
+          "title": "Flexiones de pecho",
+          "description": "Flexiones de pecho",
+          "tags": [
+            "peso propio",
+            "pecho"
+          ],
+          "images": [
+            {
+              "url": "https://cdn.calisteniapp.com/09_2024/images/exercise/full/EX004.jpg",
+              "description": "Posición Inicial"
+            }
+          ],
+          "preparation_secs": 3,
+          "duration_secs": 3,
+          "repetitions": 5
+        },
+        {
+          "title": "Sentadilla",
+          "description": "Sentadilla clásica para trabajar el tren inferior.",
+          "tags": [
+            "peso propio",
+            "piernas"
+          ],
+          "images": [
+            {
+              "url": "https://cdn.calisteniapp.com/09_2024/images/exercise/full/EX083.jpg",
+              "description": "Ejecución de sentadilla"
+            }
+          ],
+          "preparation_secs": 3,
+          "duration_secs": 3,
+          "repetitions": 20
+        },
+        {
+          "title": "Leg raises en suelo",
+          "description": "Elevaciones de piernas en suelo para fortalecer el abdomen.",
+          "tags": [
+            "peso propio",
+            "abdomen"
+          ],
+          "images": [
+            {
+              "url": "https://cdn.calisteniapp.com/09_2024/images/exercise/full/EX108.jpg",
+              "description": "Elevación de piernas"
+            }
+          ],
+          "preparation_secs": 3,
+          "duration_secs": 3,
+          "repetitions": 10
+        },
+        {
+          "title": "Fondos en banco",
+          "description": "Trabajo de tríceps utilizando un soporte elevado.",
+          "tags": [
+            "peso propio",
+            "tríceps"
+          ],
+          "images": [
+            {
+              "url": "https://cdn.calisteniapp.com/09_2024/images/exercise/full/EX029.jpg",
+              "description": "Ejecución de fondos"
+            }
+          ],
+          "preparation_secs": 3,
+          "duration_secs": 3,
+          "repetitions": 15
+        },
+        {
+          "title": "Zancadas",
+          "description": "Zancadas alternas para cuádriceps y glúteos.",
+          "tags": [
+            "peso propio",
+            "piernas"
+          ],
+          "images": [
+            {
+              "url": "https://cdn.calisteniapp.com/09_2024/images/exercise/full/EX086.jpg",
+              "description": "Posición de zancada"
+            }
+          ],
+          "preparation_secs": 3,
+          "duration_secs": 3,
+          "repetitions": 12
+        },
+        {
+          "title": "Isométrico flexiones",
+          "description": "Mantener la posición de flexión a media altura.",
+          "tags": [
+            "isométrico",
+            "pecho"
+          ],
+          "images": [
+            {
+              "url": "https://cdn.calisteniapp.com/09_2024/images/exercise/full/EX003.jpg",
+              "description": "Aguante isométrico"
+            }
+          ],
+          "preparation_secs": 3,
+          "duration_secs": 20,
+          "repetitions": 1
+        }
+      ]
+    }
+  ]
+}
