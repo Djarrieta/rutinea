@@ -80,7 +80,6 @@ export default async function SetsPage({
               set={set}
               exerciseCount={set.set_exercises.length}
               selectable
-              userId={user?.id}
             />
           ))}
         </FilterableList>

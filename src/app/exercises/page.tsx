@@ -103,7 +103,6 @@ export default async function ExercisesPage({
               key={exercise.id}
               exercise={exercise}
               selectable
-              userId={user?.id}
             />
           ))}
         </FilterableList>
