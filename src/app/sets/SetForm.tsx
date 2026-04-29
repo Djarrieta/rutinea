@@ -156,7 +156,10 @@ export default function SetForm({
       </div>
 
       <div>
-        <label htmlFor="preparation_secs" className="block text-sm font-medium mb-1">
+        <label
+          htmlFor="preparation_secs"
+          className="block text-sm font-medium mb-1"
+        >
           Tiempo de preparación (segundos)
         </label>
         <input

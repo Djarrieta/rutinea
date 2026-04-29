@@ -6,7 +6,10 @@ import EntityCard from "@/app/components/EntityCard";
 import PlayButton from "@/app/components/PlayButton";
 import SetPlayerModal from "./SetPlayerModal";
 import { useSelection } from "@/app/components/SelectionProvider";
-import { ExercisesCountIndicator, DurationIndicator } from "@/app/components/StatusIndicators";
+import {
+  ExercisesCountIndicator,
+  DurationIndicator,
+} from "@/app/components/StatusIndicators";
 
 function formatTime(secs: number): string {
   const m = Math.floor(secs / 60);
@@ -27,10 +30,12 @@ export default function SetCard({
   const [showPlayer, setShowPlayer] = useState(false);
   const selection = useSelection(set.id, set.user_id);
 
-  const totalSecs = (set.preparation_secs ?? 0) + set.set_exercises.reduce(
-    (sum, se) => sum + se.exercise.duration_secs * se.exercise.repetitions,
-    0,
-  );
+  const totalSecs =
+    (set.preparation_secs ?? 0) +
+    set.set_exercises.reduce(
+      (sum, se) => sum + se.exercise.duration_secs * se.exercise.repetitions,
+      0,
+    );
 
   const thumbnail = set.set_exercises.find(
     (se) => se.exercise.images.length > 0,

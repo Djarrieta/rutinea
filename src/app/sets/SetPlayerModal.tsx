@@ -179,10 +179,12 @@ export default function SetPlayerModal({ set, onClose }: Props) {
   };
 
   // Overall progress
-  const totalDuration = set.preparation_secs + exercises.reduce(
-    (s, e) => s + (e.preparation_secs ?? 0) + e.duration_secs * e.repetitions,
-    0,
-  );
+  const totalDuration =
+    set.preparation_secs +
+    exercises.reduce(
+      (s, e) => s + (e.preparation_secs ?? 0) + e.duration_secs * e.repetitions,
+      0,
+    );
   const completedDuration =
     (isSetPreparation ? elapsed : set.preparation_secs) +
     exercises
@@ -191,7 +193,12 @@ export default function SetPlayerModal({ set, onClose }: Props) {
         (s, e) =>
           s + (e.preparation_secs ?? 0) + e.duration_secs * e.repetitions,
         0,
-      ) + (phase === "preparation" && !isSetPreparation ? elapsed : !isSetPreparation ? (currentExercise?.preparation_secs ?? 0) + elapsed : 0);
+      ) +
+    (phase === "preparation" && !isSetPreparation
+      ? elapsed
+      : !isSetPreparation
+        ? (currentExercise?.preparation_secs ?? 0) + elapsed
+        : 0);
   const overallProgress =
     totalDuration > 0 ? (completedDuration / totalDuration) * 100 : 0;
 
@@ -212,12 +219,13 @@ export default function SetPlayerModal({ set, onClose }: Props) {
           <div
             ref={isCurrent ? activeExerciseRef : null}
             key={i}
-            className={`flex-shrink-0 rounded-lg border px-2.5 py-1.5 text-[11px] leading-tight transition-colors ${isCurrent
+            className={`flex-shrink-0 rounded-lg border px-2.5 py-1.5 text-[11px] leading-tight transition-colors ${
+              isCurrent
                 ? "border-primary-500 bg-primary-500/10"
                 : isDone
                   ? "border-success-500/40 bg-success-50"
                   : "border-border bg-surface-alt/60 opacity-60"
-              }`}
+            }`}
           >
             <div
               className={`font-semibold truncate max-w-[8rem] ${isCurrent ? "text-primary-400" : isDone ? "text-success-400" : "text-text-faint"}`}
@@ -266,7 +274,11 @@ export default function SetPlayerModal({ set, onClose }: Props) {
         <PlayerPhasePreparation
           elapsed={elapsed}
           totalSecs={preparationSecs}
-          exerciseTitle={isSetPreparation ? properCase(set.name) : properCase(currentExercise.title)}
+          exerciseTitle={
+            isSetPreparation
+              ? properCase(set.name)
+              : properCase(currentExercise.title)
+          }
           images={images}
           currentImageIndex={imageIndex}
         />

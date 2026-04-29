@@ -113,7 +113,10 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
   function initialPhase(): Phase {
     if (totalSteps === 0) return "finished";
     const first = steps[0];
-    if (first.type === "exercise" && (first.exercise.preparation_secs > 0 || first.setPreparationSecs > 0))
+    if (
+      first.type === "exercise" &&
+      (first.exercise.preparation_secs > 0 || first.setPreparationSecs > 0)
+    )
       return "preparation";
     return first.type === "exercise" ? "exercise" : "rest";
   }
@@ -137,8 +140,10 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
   const exerciseDuration = currentExercise?.duration_secs ?? 0;
   const exerciseRepetitions = currentExercise?.repetitions ?? 1;
   const exerciseTotalDuration = exerciseDuration * exerciseRepetitions;
-  const setPreparationSecs = currentStep?.type === "exercise" ? currentStep.setPreparationSecs : 0;
-  const exercisePreparationSecs = (currentExercise?.preparation_secs ?? 0) + setPreparationSecs;
+  const setPreparationSecs =
+    currentStep?.type === "exercise" ? currentStep.setPreparationSecs : 0;
+  const exercisePreparationSecs =
+    (currentExercise?.preparation_secs ?? 0) + setPreparationSecs;
   const totalSlots = images.length * exerciseRepetitions;
   const timePerSlot = totalSlots > 0 ? exerciseTotalDuration / totalSlots : 0;
   const phaseDuration =
@@ -214,7 +219,8 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
             setStepIndex(nextStepIdx);
             if (
               nextStep.type === "exercise" &&
-              (nextStep.exercise.preparation_secs > 0 || nextStep.setPreparationSecs > 0)
+              (nextStep.exercise.preparation_secs > 0 ||
+                nextStep.setPreparationSecs > 0)
             ) {
               setPhase("preparation");
             } else {
@@ -254,15 +260,17 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
     (sum, s) =>
       sum +
       (s.type === "exercise"
-        ? s.setPreparationSecs + (s.exercise.preparation_secs ?? 0) +
-        s.exercise.duration_secs * s.exercise.repetitions
+        ? s.setPreparationSecs +
+          (s.exercise.preparation_secs ?? 0) +
+          s.exercise.duration_secs * s.exercise.repetitions
         : routine.rest_secs),
     0,
   );
   const stepDurationFn = (s: Step) =>
     s.type === "exercise"
-      ? s.setPreparationSecs + (s.exercise.preparation_secs ?? 0) +
-      s.exercise.duration_secs * s.exercise.repetitions
+      ? s.setPreparationSecs +
+        (s.exercise.preparation_secs ?? 0) +
+        s.exercise.duration_secs * s.exercise.repetitions
       : routine.rest_secs;
   const completedDuration =
     steps.slice(0, stepIndex).reduce((sum, s) => sum + stepDurationFn(s), 0) +
@@ -307,12 +315,13 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
                   activeSetRefs.current[si] = el;
                 }}
                 key={si}
-                className={`flex-shrink-0 rounded-lg border px-2.5 py-1.5 text-[11px] leading-tight transition-colors ${isCurrent
+                className={`flex-shrink-0 rounded-lg border px-2.5 py-1.5 text-[11px] leading-tight transition-colors ${
+                  isCurrent
                     ? "border-primary-500 bg-primary-500/10"
                     : isDone
                       ? "border-success-500/40 bg-success-50"
                       : "border-border bg-surface-alt/60 opacity-60"
-                  }`}
+                }`}
               >
                 <div
                   className={`font-semibold truncate max-w-[8rem] ${isCurrent ? "text-primary-400" : isDone ? "text-success-400" : "text-text-faint"}`}
@@ -335,12 +344,13 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
                       return (
                         <div
                           key={ei}
-                          className={`truncate max-w-[8rem] ${exActive
+                          className={`truncate max-w-[8rem] ${
+                            exActive
                               ? "text-primary-400 font-semibold"
                               : exDone
                                 ? "text-success-400 line-through opacity-70"
                                 : "text-text-faint"
-                            }`}
+                          }`}
                         >
                           {exDone ? "✓ " : exActive ? "▸ " : "  "}
                           {properCase(ex.title)}

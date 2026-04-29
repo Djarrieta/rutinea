@@ -6,7 +6,11 @@ import EntityCard from "@/app/components/EntityCard";
 import PlayButton from "@/app/components/PlayButton";
 import RoutinePlayerModal from "./RoutinePlayerModal";
 import { isRoutineSavedOffline } from "@/lib/offline-store";
-import { SetsIndicator, OfflineIndicator, DurationIndicator } from "@/app/components/StatusIndicators";
+import {
+  SetsIndicator,
+  OfflineIndicator,
+  DurationIndicator,
+} from "@/app/components/StatusIndicators";
 
 function formatTime(secs: number): string {
   const m = Math.floor(secs / 60);
@@ -35,10 +39,12 @@ export default function RoutineCard({
   let totalSecs = 0;
   let totalExpandedSets = 0;
   sortedSets.forEach((rs) => {
-    const setDuration = (rs.set.preparation_secs ?? 0) + rs.set.set_exercises.reduce(
-      (sum, se) => sum + se.exercise.duration_secs * se.exercise.repetitions,
-      0,
-    );
+    const setDuration =
+      (rs.set.preparation_secs ?? 0) +
+      rs.set.set_exercises.reduce(
+        (sum, se) => sum + se.exercise.duration_secs * se.exercise.repetitions,
+        0,
+      );
     totalSecs += setDuration * rs.rounds;
     totalExpandedSets += rs.rounds;
   });
@@ -65,8 +71,12 @@ export default function RoutineCard({
         meta={
           <div className="flex items-center gap-3">
             <SetsIndicator count={setCount} />
-            <DurationIndicator 
-              label={totalSecs > 0 ? formatTime(totalSecs) : `${routine.rest_secs}s rest`} 
+            <DurationIndicator
+              label={
+                totalSecs > 0
+                  ? formatTime(totalSecs)
+                  : `${routine.rest_secs}s rest`
+              }
             />
             {isOffline && <OfflineIndicator />}
           </div>

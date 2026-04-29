@@ -4,7 +4,11 @@ import { createClient } from "@/lib/supabase/server";
 import { getUser } from "@/lib/auth";
 import { deleteSet, cloneSet } from "../actions";
 import Breadcrumb from "@/app/components/Breadcrumb";
-import { ActionBar, ActionForm, ActionLink } from "@/app/components/DetailActions";
+import {
+  ActionBar,
+  ActionForm,
+  ActionLink,
+} from "@/app/components/DetailActions";
 import SetDetailPlay from "../SetDetailPlay";
 import { properCase } from "@/lib/format";
 import type { SetWithExercises } from "@/types";
@@ -26,7 +30,7 @@ export default async function SetDetailPage({
 
   const user = await getUser();
   const isOwner = user?.id === set.user_id;
-  
+
   if (!set.is_approved && !isOwner) {
     notFound();
   }
@@ -138,7 +142,6 @@ export default async function SetDetailPage({
           </ol>
         </div>
       )}
-
     </div>
   );
 }
