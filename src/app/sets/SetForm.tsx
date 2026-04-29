@@ -156,6 +156,20 @@ export default function SetForm({
       </div>
 
       <div>
+        <label htmlFor="preparation_secs" className="block text-sm font-medium mb-1">
+          Tiempo de preparación (segundos)
+        </label>
+        <input
+          id="preparation_secs"
+          name="preparation_secs"
+          type="number"
+          min={0}
+          defaultValue={set?.preparation_secs ?? 0}
+          className="w-full rounded-lg border border-border px-3 py-2 text-base focus:outline-none focus:ring-2 focus:ring-primary-500"
+        />
+      </div>
+
+      <div>
         <label className="block text-sm font-medium mb-1">Ejercicios</label>
         <ExercisePicker defaultValue={defaultExerciseIds} />
       </div>

@@ -38,6 +38,7 @@ export async function GET(
       return {
         name: rs.set.name,
         description: rs.set.description,
+        preparation_secs: rs.set.preparation_secs,
         rounds: rs.rounds,
         exercises: sortedExercises.map((se): BundleExercise => ({
           id: se.exercise.id,

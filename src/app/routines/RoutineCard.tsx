@@ -35,7 +35,7 @@ export default function RoutineCard({
   let totalSecs = 0;
   let totalExpandedSets = 0;
   sortedSets.forEach((rs) => {
-    const setDuration = rs.set.set_exercises.reduce(
+    const setDuration = (rs.set.preparation_secs ?? 0) + rs.set.set_exercises.reduce(
       (sum, se) => sum + se.exercise.duration_secs * se.exercise.repetitions,
       0,
     );

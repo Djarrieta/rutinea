@@ -9,7 +9,7 @@ export type BundleExercise = Pick<
 > &
   Partial<Pick<Exercise, 'id' | 'description' | 'images' | 'tags'>>
 
-export type BundleSet = Pick<Set, 'name'> &
+export type BundleSet = Pick<Set, 'name' | 'preparation_secs'> &
   Partial<Pick<Set, 'description'>> &
   Pick<RoutineSet, 'rounds'> & {
     exercises: BundleExercise[]

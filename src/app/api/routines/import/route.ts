@@ -71,6 +71,7 @@ export async function POST(request: Request) {
       .insert({
         name: bs.name.toLowerCase().slice(0, MAX_TITLE_LENGTH),
         description: bs.description?.toLowerCase().slice(0, MAX_DESCRIPTION_LENGTH) ?? null,
+        preparation_secs: bs.preparation_secs ?? 0,
         user_id: user.id,
       })
       .select('id')

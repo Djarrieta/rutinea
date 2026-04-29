@@ -95,6 +95,12 @@ export default async function SetDetailPage({
       <dl className="text-sm mb-6">
         <dt className="text-text-faint">Ejercicios</dt>
         <dd>{sortedExercises.length}</dd>
+        {set.preparation_secs > 0 && (
+          <>
+            <dt className="text-text-faint mt-2">Tiempo de preparación</dt>
+            <dd>{set.preparation_secs}s</dd>
+          </>
+        )}
       </dl>
 
       {sortedExercises.length > 0 && (

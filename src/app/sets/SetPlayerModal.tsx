@@ -31,9 +31,14 @@ export default function SetPlayerModal({ set, onClose }: Props) {
   const [phase, setPhase] = useState<"preparation" | "exercise" | "finished">(
     () => {
       if (totalExercises === 0) return "finished";
+      // If the set has preparation_secs, start with set preparation
+      if (set.preparation_secs > 0) return "preparation";
       const first = exercises[0];
       return first && first.preparation_secs > 0 ? "preparation" : "exercise";
     },
+  );
+  const [isSetPreparation, setIsSetPreparation] = useState(
+    () => totalExercises > 0 && set.preparation_secs > 0,
   );
   const [isPlaying, setIsPlaying] = useState(true);
   const finished = phase === "finished";
@@ -48,7 +53,9 @@ export default function SetPlayerModal({ set, onClose }: Props) {
 
   const duration = currentExercise?.duration_secs ?? 0;
   const repetitions = currentExercise?.repetitions ?? 1;
-  const preparationSecs = currentExercise?.preparation_secs ?? 0;
+  const preparationSecs = isSetPreparation
+    ? set.preparation_secs
+    : (currentExercise?.preparation_secs ?? 0);
   const activeExerciseRef = useRef<HTMLDivElement | null>(null);
   const exerciseTotalDuration = duration * repetitions;
   const totalSlots = images.length * repetitions;
@@ -96,6 +103,15 @@ export default function SetPlayerModal({ set, onClose }: Props) {
         setElapsed((prev) => {
           const next = prev + 0.1;
           if (next >= preparationSecs) {
+            if (isSetPreparation) {
+              // Set preparation done, move to exercise preparation or exercise
+              setIsSetPreparation(false);
+              const exPrep = currentExercise.preparation_secs ?? 0;
+              if (exPrep > 0) {
+                // Stay in preparation phase but now for the exercise
+                return 0;
+              }
+            }
             setPhase("exercise");
             return 0;
           }
@@ -134,6 +150,7 @@ export default function SetPlayerModal({ set, onClose }: Props) {
     finished,
     phase,
     preparationSecs,
+    isSetPreparation,
     exerciseTotalDuration,
     exerciseIndex,
     totalExercises,
@@ -144,13 +161,17 @@ export default function SetPlayerModal({ set, onClose }: Props) {
   const restart = () => {
     setExerciseIndex(0);
     setElapsed(0);
+    const hasSetPrep = set.preparation_secs > 0;
+    setIsSetPreparation(hasSetPrep);
     const first = exercises[0];
     setPhase(
       totalExercises === 0
         ? "finished"
-        : first && first.preparation_secs > 0
+        : hasSetPrep
           ? "preparation"
-          : "exercise",
+          : first && first.preparation_secs > 0
+            ? "preparation"
+            : "exercise",
     );
     setIsPlaying(true);
     prevRepRef.current = 1;
@@ -158,18 +179,19 @@ export default function SetPlayerModal({ set, onClose }: Props) {
   };
 
   // Overall progress
-  const totalDuration = exercises.reduce(
+  const totalDuration = set.preparation_secs + exercises.reduce(
     (s, e) => s + (e.preparation_secs ?? 0) + e.duration_secs * e.repetitions,
     0,
   );
   const completedDuration =
+    (isSetPreparation ? elapsed : set.preparation_secs) +
     exercises
       .slice(0, exerciseIndex)
       .reduce(
         (s, e) =>
           s + (e.preparation_secs ?? 0) + e.duration_secs * e.repetitions,
         0,
-      ) + (phase === "preparation" ? elapsed : preparationSecs + elapsed);
+      ) + (phase === "preparation" && !isSetPreparation ? elapsed : !isSetPreparation ? (currentExercise?.preparation_secs ?? 0) + elapsed : 0);
   const overallProgress =
     totalDuration > 0 ? (completedDuration / totalDuration) * 100 : 0;
 
@@ -244,7 +266,7 @@ export default function SetPlayerModal({ set, onClose }: Props) {
         <PlayerPhasePreparation
           elapsed={elapsed}
           totalSecs={preparationSecs}
-          exerciseTitle={properCase(currentExercise.title)}
+          exerciseTitle={isSetPreparation ? properCase(set.name) : properCase(currentExercise.title)}
           images={images}
           currentImageIndex={imageIndex}
         />

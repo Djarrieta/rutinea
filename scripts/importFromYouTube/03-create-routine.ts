@@ -75,6 +75,7 @@ interface BundleExercise {
 interface BundleSet {
 	name: string;
 	description?: string;
+	preparation_secs?: number;
 	rounds: number;
 	exercises: BundleExercise[];
 }
@@ -146,12 +147,14 @@ async function createExercise(ex: BundleExercise): Promise<string> {
 async function createSet(
 	name: string,
 	description: string | null,
+	preparationSecs: number,
 ): Promise<string> {
 	const { data, error } = await supabase
 		.from("sets")
 		.insert({
 			name: name.toLowerCase(),
 			description,
+			preparation_secs: preparationSecs,
 			user_id: USER_ID,
 			is_approved: true,
 		})
@@ -255,6 +258,7 @@ async function main() {
 		const setId = await createSet(
 			set.name,
 			set.description?.toLowerCase() ?? null,
+			set.preparation_secs ?? 0,
 		);
 		const exerciseIds = set.exercises.map(
 			(_, ei) => exerciseIdMap.get(`${si}-${ei}`)!,

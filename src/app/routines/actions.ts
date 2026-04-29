@@ -99,7 +99,7 @@ export async function cloneRoutine(id: string) {
 	const { data: source, error: fetchError } = await supabase
 		.from("routines")
 		.select(
-			"name, description, rest_secs, routine_sets(set_id, position, rounds, set:sets(name, description, set_exercises(exercise_id, position, exercise:exercises(title, description, images, tags, preparation_secs, duration_secs, repetitions))))",
+			"name, description, rest_secs, routine_sets(set_id, position, rounds, set:sets(name, description, preparation_secs, set_exercises(exercise_id, position, exercise:exercises(title, description, images, tags, preparation_secs, duration_secs, repetitions))))",
 		)
 		.eq("id", id)
 		.single();
@@ -118,6 +118,7 @@ export async function cloneRoutine(id: string) {
 			set: {
 				name: string;
 				description: string | null;
+				preparation_secs: number;
 				set_exercises: {
 					exercise_id: string;
 					position: number;
@@ -173,6 +174,7 @@ export async function cloneRoutine(id: string) {
 				.insert({
 					name: `${setData.name} [clon]`,
 					description: setData.description,
+					preparation_secs: setData.preparation_secs ?? 0,
 					user_id: user.id,
 					is_approved: false,
 				})

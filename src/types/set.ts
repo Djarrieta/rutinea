@@ -5,6 +5,7 @@ export interface Set {
   user_id: string
   name: string
   description: string | null
+  preparation_secs: number
   clone_count: number
   created_at: string
   updated_at: string

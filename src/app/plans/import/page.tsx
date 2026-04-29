@@ -162,6 +162,7 @@ async function importRoutineBundle(
       .insert({
         name: bs.name.toLowerCase(),
         description: bs.description?.toLowerCase() ?? null,
+        preparation_secs: bs.preparation_secs ?? 0,
       })
       .select("id")
       .single();

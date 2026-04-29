@@ -27,6 +27,7 @@ type ExerciseStep = {
   exerciseInSetTotal: number;
   globalIndex: number;
   totalExercises: number;
+  setPreparationSecs: number;
 };
 type RestStep = {
   type: "rest";
@@ -82,6 +83,7 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
           exerciseInSetTotal: exercises.length,
           globalIndex: globalIdx,
           totalExercises,
+          setPreparationSecs: exIdx === 0 ? (rs.set.preparation_secs ?? 0) : 0,
         });
         globalIdx++;
       });
@@ -111,7 +113,7 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
   function initialPhase(): Phase {
     if (totalSteps === 0) return "finished";
     const first = steps[0];
-    if (first.type === "exercise" && first.exercise.preparation_secs > 0)
+    if (first.type === "exercise" && (first.exercise.preparation_secs > 0 || first.setPreparationSecs > 0))
       return "preparation";
     return first.type === "exercise" ? "exercise" : "rest";
   }
@@ -135,7 +137,8 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
   const exerciseDuration = currentExercise?.duration_secs ?? 0;
   const exerciseRepetitions = currentExercise?.repetitions ?? 1;
   const exerciseTotalDuration = exerciseDuration * exerciseRepetitions;
-  const exercisePreparationSecs = currentExercise?.preparation_secs ?? 0;
+  const setPreparationSecs = currentStep?.type === "exercise" ? currentStep.setPreparationSecs : 0;
+  const exercisePreparationSecs = (currentExercise?.preparation_secs ?? 0) + setPreparationSecs;
   const totalSlots = images.length * exerciseRepetitions;
   const timePerSlot = totalSlots > 0 ? exerciseTotalDuration / totalSlots : 0;
   const phaseDuration =
@@ -211,7 +214,7 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
             setStepIndex(nextStepIdx);
             if (
               nextStep.type === "exercise" &&
-              nextStep.exercise.preparation_secs > 0
+              (nextStep.exercise.preparation_secs > 0 || nextStep.setPreparationSecs > 0)
             ) {
               setPhase("preparation");
             } else {
@@ -251,14 +254,14 @@ export default function RoutinePlayerModal({ routine, onClose }: Props) {
     (sum, s) =>
       sum +
       (s.type === "exercise"
-        ? (s.exercise.preparation_secs ?? 0) +
+        ? s.setPreparationSecs + (s.exercise.preparation_secs ?? 0) +
         s.exercise.duration_secs * s.exercise.repetitions
         : routine.rest_secs),
     0,
   );
   const stepDurationFn = (s: Step) =>
     s.type === "exercise"
-      ? (s.exercise.preparation_secs ?? 0) +
+      ? s.setPreparationSecs + (s.exercise.preparation_secs ?? 0) +
       s.exercise.duration_secs * s.exercise.repetitions
       : routine.rest_secs;
   const completedDuration =

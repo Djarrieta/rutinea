@@ -14,6 +14,7 @@ export async function createSet(formData: FormData) {
 	const input: CreateSetInput = {
 		name: (formData.get("name") as string).toLowerCase().slice(0, MAX_TITLE_LENGTH),
 		description: (formData.get("description") as string)?.toLowerCase().slice(0, MAX_DESCRIPTION_LENGTH) || null,
+		preparation_secs: Math.max(0, Number(formData.get("preparation_secs")) || 0),
 	};
 
 	const exerciseIds: string[] = JSON.parse(
@@ -51,6 +52,7 @@ export async function updateSet(id: string, formData: FormData) {
 	const input: UpdateSetInput = {
 		name: (formData.get("name") as string).toLowerCase().slice(0, MAX_TITLE_LENGTH),
 		description: (formData.get("description") as string)?.toLowerCase().slice(0, MAX_DESCRIPTION_LENGTH) || null,
+		preparation_secs: Math.max(0, Number(formData.get("preparation_secs")) || 0),
 	};
 
 	const exerciseIds: string[] = JSON.parse(
@@ -95,7 +97,7 @@ export async function cloneSet(id: string) {
 	const { data: source, error: fetchError } = await supabase
 		.from("sets")
 		.select(
-			"name, description, set_exercises(exercise_id, position, exercise:exercises(title, description, images, tags, preparation_secs, duration_secs, repetitions))",
+			"name, description, preparation_secs, set_exercises(exercise_id, position, exercise:exercises(title, description, images, tags, preparation_secs, duration_secs, repetitions))",
 		)
 		.eq("id", id)
 		.single();
@@ -106,6 +108,7 @@ export async function cloneSet(id: string) {
 	const { set_exercises, ...setData } = source as unknown as {
 		name: string;
 		description: string | null;
+		preparation_secs: number;
 		set_exercises: {
 			exercise_id: string;
 			position: number;
