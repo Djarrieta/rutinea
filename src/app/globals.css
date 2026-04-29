@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
 @theme {
+  /* Breakpoints — push desktop view above iPad landscape */
+  --breakpoint-sm: 1024px;
+  --breakpoint-md: 1024px;
+  --breakpoint-lg: 1280px;
+
   /* Fonts */
   --font-display: var(--font-outfit), system-ui, sans-serif;
   --font-sans: var(--font-inter), system-ui, sans-serif;
